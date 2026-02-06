@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Admin Panel - Volantino</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .admin-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .toggle-btn {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn.active {
+            background: #4caf50;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .toggle-btn.active .toggle-slider {
+            transform: translateX(30px);
+        }
+        
+        .volantino-section {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            padding: 3rem 2rem;
+            margin: 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        
+        .volantino-section.active {
+            display: block;
+        }
+        
+        .btn-volantino-large {
+            background: white;
+            color: #4caf50;
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-volantino-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+            background: #f0f0f0;
+        }
+        
+        .volantino-hint {
+            color: white;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+        
+        .volantino-link {
+            color: white;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        
+        .volantino-link:hover {
+            color: #ffeb3b;
+        }
+        
+        .message {
+            max-width: 800px;
+            margin: 1rem auto;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .message.success {
+            background: #4caf50;
+            color: white;
+            display: block;
+        }
+        
+        .message.error {
+            background: #f44336;
+            color: white;
+            display: block;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-header">
+        <h1>🛒 Pannello Admin E-commerce - TEST</h1>
+        <div class="toggle-container">
+            <span id="modeLabel">👁️ Visualizzazione Pubblica</span>
+            <button id="toggleBtn" class="toggle-btn" onclick="toggleAdminMode()">
+                <span class="toggle-slider"></span>
+            </button>
+        </div>
+    </div>
+    
+    <div id="message" class="message"></div>
+    
+    <div id="volantinoSection" class="volantino-section">
+        <button onclick="openVolantino()" class="btn-volantino-large">
+            📄 Apri Generatore Volantini
+        </button>
+        <p class="volantino-hint">
+            oppure <a href="./src/stores/volantino.html" target="_blank" class="volantino-link">clicca qui per aprire direttamente</a>
+        </p>
+    </div>
+    
+    <div class="content">
+        <h2>🧪 Istruzioni per il Test</h2>
+        <ol style="line-height: 2;">
+            <li>Clicca sul toggle in alto per attivare la <strong>Modalità Admin</strong></li>
+            <li>Apparirà una sezione verde con il pulsante del volantino</li>
+            <li>Clicca sul pulsante "📄 Apri Generatore Volantini"</li>
+            <li>Si aprirà una nuova finestra con il generatore di volantini</li>
+            <li>Se il pulsante non funziona, usa il link alternativo sottostante</li>
+        </ol>
+        
+        <hr style="margin: 2rem 0;">
+        
+        <h3>📍 Percorso del volantino:</h3>
+        <p><code>./src/stores/volantino.html</code></p>
+        
+        <h3 style="margin-top: 1rem;">✅ Stato attuale:</h3>
+        <p id="status">Modalità: <strong>Pubblica</strong></p>
+    </div>
+    
+    <script>
+        let isAdminMode = false;
+        
+        function toggleAdminMode() {
+            isAdminMode = !isAdminMode;
+            const toggleBtn = document.getElementById('toggleBtn');
+            const modeLabel = document.getElementById('modeLabel');
+            const volantinoSection = document.getElementById('volantinoSection');
+            const status = document.getElementById('status');
+            
+            if (isAdminMode) {
+                toggleBtn.classList.add('active');
+                modeLabel.textContent = '🔧 Modalità Admin';
+                volantinoSection.classList.add('active');
+                status.innerHTML = 'Modalità: <strong style="color: #4caf50;">Admin</strong>';
+                showMessage('Modalità Admin attivata', 'success');
+            } else {
+                toggleBtn.classList.remove('active');
+                modeLabel.textContent = '👁️ Visualizzazione Pubblica';
+                volantinoSection.classList.remove('active');
+                status.innerHTML = 'Modalità: <strong>Pubblica</strong>';
+                showMessage('Visualizzazione pubblica attivata', 'success');
+            }
+        }
+        
+        function openVolantino() {
+            const baseUrl = window.location.origin;
+            const currentPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+            const volantinoPath = `${baseUrl}${currentPath}/src/stores/volantino.html`;
+            
+            console.log('Tentativo di aprire:', volantinoPath);
+            
+            const newWindow = window.open(volantinoPath, '_blank', 'width=1200,height=900');
+            
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                showMessage('⚠️ Sblocca i popup per aprire il volantino, oppure usa il link alternativo', 'error');
+            } else {
+                showMessage('✅ Volantino aperto in una nuova finestra!', 'success');
+            }
+        }
+        
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message ${type}`;
+            
+            setTimeout(() => {
+                message.className = 'message';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

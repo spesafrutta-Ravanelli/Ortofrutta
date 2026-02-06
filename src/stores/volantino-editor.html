@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Disabilita cache durante lo sviluppo -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>Generatore Volantini A5 Multiprodotto</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+:root {
+    --primary-color: #4caf50;
+    --primary-light: #d9f0d9;
+    --accent-color: #ffc107;
+    --secondary-color: #ff9800;
+    --text-primary: #333;
+    --text-secondary: #555;
+    --background-white: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+/* FORM AGGIUNGI PRODOTTO */
+.editor-section {
+    background: var(--background-white);
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 2px solid #ddd;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* BOTTONE STAMPA */
+.btn-print {
+    display: block;
+    margin: 20px auto 40px auto;
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 6px;
+    background: var(--accent-color);
+    border: none;
+    cursor: pointer;
+}
+
+/* VOLANTINO A5 */
+.flyer-preview {
+    width: 148mm;
+    height: 210mm;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 22px 3px 14px 3px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    position: relative;
+}
+
+/* Bordo decorativo SVG */
+.flyer-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="148mm" height="210mm" viewBox="0 0 148 210"><defs><linearGradient id="greenGrad" x1="0%25" y1="0%25" x2="0%25" y2="100%25"><stop offset="0%25" style="stop-color:%23206020;stop-opacity:1" /><stop offset="50%25" style="stop-color:%2300B050;stop-opacity:1" /><stop offset="100%25" style="stop-color:%2366bb6a;stop-opacity:1" /></linearGradient><filter id="shadow"><feDropShadow dx="1" dy="1" stdDeviation="1.5" flood-color="black" flood-opacity="0.4"/></filter></defs><rect x="0.5" y="22" width="147" height="166" stroke="url(%23greenGrad)" stroke-width="1.2" fill="none" filter="url(%23shadow)"/><circle cx="74" cy="22" r="17" fill="white" stroke="url(%23greenGrad)" stroke-width="1.2" filter="url(%23shadow)"/><path d="M74 5 q2 -7 4 0" stroke="url(%23greenGrad)" stroke-width="1.2" fill="none" filter="url(%23shadow)"/><path d="M80 3 q10 -5 12 4 q-9 3 -12 -4" stroke="url(%23greenGrad)" stroke-width="1.2" fill="none" filter="url(%23shadow)"/><circle cx="74" cy="188" r="17" fill="white" stroke="url(%23greenGrad)" stroke-width="1.2" filter="url(%23shadow)"/><path d="M74 205 q2 7 4 0" stroke="url(%23greenGrad)" stroke-width="1.2" fill="none" filter="url(%23shadow)"/><path d="M80 207 q10 5 12 -4 q-9 -3 -12 4" stroke="url(%23greenGrad)" stroke-width="1.2" fill="none" filter="url(%23shadow)"/></svg>');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+/* LOGO */
+.flyer-logo {
+    text-align: center;
+    font-size: 16pt;
+    font-weight: bold;
+    background: linear-gradient(180deg, #c62828 0%, #e53935 30%, #ff5722 70%, #ff9800 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    line-height: 1.2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    transform: translateY(51px);
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.4)) drop-shadow(0px 0px 8px rgba(255, 87, 34, 0.4));
+}
+
+/* GRID CARDS - Layout migliorato */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 8px;
+    margin-top: 130px;
+    margin-bottom: 45px;
+    margin-left: 20px;
+    margin-right: 20px;
+    max-height: 470px;
+    overflow: hidden;
+}
+
+/* CARD */
+.product-card {
+    background: var(--background-white);
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 0;
+    overflow: visible;
+    box-shadow: 0 2px 5px rgba(0,0,0,.1);
+    padding: 2px;
+}
+
+.product-card .image-container {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    padding: 0;
+}
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    background: white;
+}
+
+.product-card .placeholder-img {
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 8pt;
+    border-radius: 8px;
+}
+
+.product-card .card-content {
+    width: 30%;
+    text-align: left;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 2px 2px 2px 4px;
+}
+
+.product-card .card-content h3 {
+    font-size: 7.5pt;
+    color: var(--primary-color);
+    font-weight: 600;
+    line-height: 1.1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.product-card .price-badge {
+    position: absolute;
+    bottom: 5px;
+    right: -8px;
+    background: var(--accent-color);
+    color: var(--text-primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 8px;
+    border-radius: 5px;
+    border: 2px solid var(--secondary-color);
+    font-size: 8pt;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    z-index: 10;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.product-card .card-content p {
+    font-size: 7.5pt;
+    color: var(--text-secondary);
+    line-height: 1.3;
+    overflow: hidden;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.card-actions {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    display: flex;
+    gap: 5px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.product-card:hover .card-actions {
+    opacity: 1;
+}
+
+.card-actions button {
+    flex: 1;
+    padding: 4px;
+    font-size: 8pt;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background: var(--primary-color);
+}
+
+.delete-btn {
+    background: var(--secondary-color);
+}
+
+/* NUMERO TELEFONO */
+.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 11pt;
+    font-weight: bold;
+    background: linear-gradient(180deg, #c62828 0%, #e53935 30%, #ff5722 70%, #ff9800 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    flex-shrink: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    transform: translateY(-55px);
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.contact img,
+.contact svg {
+    width: 24px;
+    height: 24px;
+    margin: 0;
+}
+
+/* MARKET DAY CARD */
+.market-day-card {
+    border-radius: 6px;
+    padding: 3px;
+    color: white;
+    text-align: center;
+    position: relative;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+}
+
+/* Colori per ogni giorno */
+.market-day-card.martedi {
+    background: linear-gradient(135deg, #e57373 0%, #ef5350 100%);
+}
+
+.market-day-card.mercoledi {
+    background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%);
+}
+
+.market-day-card.giovedi {
+    background: linear-gradient(135deg, #ba68c8 0%, #ab47bc 100%);
+}
+
+.market-day-card.venerdi {
+    background: linear-gradient(135deg, #ffb74d 0%, #ffa726 100%);
+}
+
+.market-day-card.sabato {
+    background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
+}
+
+.market-day-card .day-name {
+    font-size: 8pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1px;
+}
+
+.market-day-card .pin-icon {
+    font-size: 10pt;
+    margin: 0;
+}
+
+.market-day-card .city-name {
+    font-size: 7.5pt;
+    font-weight: bold;
+}
+
+.market-day-card .address {
+    font-size: 5.5pt;
+    line-height: 1.2;
+}
+
+.market-day-card .time {
+    font-size: 6.5pt;
+    margin-top: 1px;
+    font-weight: bold;
+}
+
+/* TAB */
+.tab-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 12px 30px;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* ======== STILI STAMPA ======== */
+@media print {
+    @page {
+        size: A5;
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    .container {
+        margin: 0;
+        padding: 0;
+    }
+
+    .editor-section,
+    .btn-print,
+    h1,
+    .tab-container {
+        display: none !important;
+    }
+
+
+    /* Logo WordArt in stampa */
+    .flyer-logo {
+        text-align: center;
+        font-size: 16pt;
+        font-weight: bold;
+        background: linear-gradient(180deg, #c62828 0%, #e53935 30%, #ff5722 70%, #ff9800 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 0.5px;
+        flex-shrink: 0;
+        line-height: 1.2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        transform: translateY(51px);
+        filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.4)) drop-shadow(0px 0px 8px rgba(255, 87, 34, 0.4));
+        page-break-inside: avoid;
+    }
+    /* Mostra entrambi i volantini in stampa */
+    #flyerFrontePreview,
+    #flyerRetroPreview {
+        display: flex !important;
+    }
+
+    .flyer-preview {
+        width: 148mm;
+        height: 210mm;
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        page-break-inside: avoid;
+        border-radius: 0;
+        padding: 22px 3px 14px 3px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    /* Griglia in stampa con margini corretti */
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 1fr;
+        gap: 8px;
+        margin-top: 130px;
+        margin-bottom: 45px;
+        margin-left: 20px;
+        margin-right: 20px;
+        max-height: 470px;
+        overflow: hidden;
+    }
+
+    /* Card mantengono il layout orizzontale in stampa */
+    .product-card {
+        background: var(--background-white);
+        border-radius: 10px;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 100%;
+        min-height: 0;
+        overflow: visible;
+        box-shadow: 0 2px 5px rgba(0,0,0,.1);
+        padding: 2px;
+        page-break-inside: avoid;
+    }
+
+    /* Assicura che il numero di telefono non vada su un'altra pagina */
+    .contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        font-size: 11pt;
+        font-weight: bold;
+        background: linear-gradient(180deg, #c62828 0%, #e53935 30%, #ff5722 70%, #ff9800 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        flex-shrink: 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        transform: translateY(-55px);
+        filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+        page-break-inside: avoid;
+        page-break-before: avoid;
+    }
+
+    .card-actions {
+        display: none !important;
+    }
+
+    /* Margini del contenitore del retro (il secondo div dentro flyerRetroPreview) */
+    #flyerRetroPreview > div:nth-of-type(2) {
+        margin-top: 140px !important;
+        margin-bottom: 140px !important;
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🥬 Generatore Volantini A5 - Ortofrutticola Ravanelli & Carminati</h1>
+
+<div class="tab-container">
+    <button id="tabFronte" class="tab-btn active" style="background: var(--primary-color); color: white;">
+        Fronte
+    </button>
+    <button id="tabRetro" class="tab-btn" style="background: white; color: var(--primary-color);">
+        Retro
+    </button>
+</div>
+
+<!-- SEZIONE FRONTE -->
+<div id="fronteSection">
+
+<div class="editor-section">
+    <div class="form-group">
+        <label>Nome Prodotto</label>
+        <input id="titleInput" placeholder="Nome prodotto" />
+    </div>
+
+    <div class="form-group">
+        <label>Immagine Prodotto</label>
+        <input type="file" id="imageInput" accept="image/*" />
+    </div>
+
+    <div class="form-group">
+        <label>Prezzo (€)</label>
+        <input id="priceInput" placeholder="9,90" />
+    </div>
+
+    <div class="form-group">
+        <label>Secondo Prezzo (€) - opzionale</label>
+        <input id="price2Input" placeholder="es. 15,90 (opzionale)" />
+    </div>
+
+    <button id="addProductBtn" style="background: var(--primary-color); color: #fff; padding: 12px 20px; border-radius: 6px; border:none; font-size:16px; cursor: pointer;">
+        ➕ Aggiungi Prodotto
+    </button>
+</div>
+
+</div>
+
+<!-- SEZIONE RETRO -->
+<div id="retroSection" style="display: none;">
+<div class="editor-section">
+    <h2 style="color: var(--primary-color); margin-bottom: 20px;">📍 Retro del Volantino</h2>
+    <p style="color: var(--text-secondary); font-size: 14px;">
+        Il retro del volantino è fisso e mostra i giorni e le location dei mercati. 
+        Usa il tab "Retro" per visualizzare l'anteprima.
+    </p>
+</div>
+</div>
+
+<div style="display: flex; gap: 15px; justify-content: center; margin: 20px auto 40px auto; max-width: 600px;">
+    <button class="btn-print" onclick="window.print()" style="flex: 1;">🖨️ Stampa</button>
+    <button class="btn-print" onclick="saveVolantino()" style="flex: 1; background: var(--primary-color);">💾 Salva Volantino</button>
+    <button class="btn-print" onclick="document.getElementById('loadFileInput').click()" style="flex: 1; background: var(--secondary-color);">📂 Carica Volantino</button>
+</div>
+<input type="file" id="loadFileInput" accept=".json" style="display: none;" />
+
+<!-- PREVIEW FRONTE -->
+<div id="flyerFrontePreview" class="flyer-preview">
+    <div class="flyer-logo">Ortofrutticola<br />Ravanelli & Carminati</div>
+    <div class="product-grid" id="productGrid"></div>
+    <div class="contact">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/><path d="M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.48-8.45zm-8.475 18.297c-1.778 0-3.524-.477-5.042-1.377l-.362-.214-3.754.982 1.005-3.645-.236-.374c-.99-1.569-1.512-3.382-1.512-5.26.003-5.45 4.455-9.886 9.932-9.886 2.652 0 5.145 1.035 7.021 2.906 1.875 1.87 2.909 4.352 2.909 6.992-.004 5.45-4.457 9.887-9.93 9.887z" fill="#25D366"/></svg>
+        +39 375 680 4525
+    </div>
+</div>
+
+<!-- PREVIEW RETRO -->
+<div id="flyerRetroPreview" class="flyer-preview" style="display: none;">
+    <div class="flyer-logo">Ortofrutticola<br />Ravanelli & Carminati</div>
+    
+    <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 5px; gap: 2px; overflow: hidden; margin-top: 140px; margin-bottom: 140px; margin-left: 20px; margin-right: 20px;">
+        <h2 style="color: var(--primary-color); font-size: 10pt; margin-bottom: 0px; text-align: center; font-weight: bold;">
+            📅 DOVE TROVARCI
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: -2px;">
+            <!-- MARTEDÌ -->
+            <div class="market-day-card martedi">
+                <div class="day-name">MARTEDÌ</div>
+                <div class="pin-icon">📍</div>
+                <div class="city-name">Asso</div>
+                <div class="address">Piazza discacciati</div>
+                <div class="time">🕐 7:00 - 12:10</div>
+            </div>
+
+            <div class="market-day-card martedi">
+                <div class="day-name">MARTEDÌ</div>
+                <div class="pin-icon">📍</div>
+                <div class="city-name">Zelo Buon Persico</div>
+                <div class="address">Zona Mercato</div>
+                <div class="time">🕐 7:00 - 12:10</div>
+            </div>
+
+            <!-- MERCOLEDÌ -->
+            <div class="market-day-card mercoledi">
+                <div class="day-name">MERCOLEDÌ</div>
+                <div class="pin-icon">📍</div>
+                <div class="city-name">Scarenna</div>
+                <div class="address">Via Alcide De Gasperi, 7</div>
+                <div class="time">🕐 7:00 - 12:10</div>
+            </div>
+
+            <div class="market-day-card mercoledi">
+                <div class="day-name">MERCOLEDÌ</div>
+                <div class="pin-icon">📍</div>
+                <div class="city-name">Agrate</div>
+                <div class="address">Zona Mercato</div>
+                <div class="time">🕐 7:00 - 12:10</div>
+            </div>
+
+            <!-- GIOVEDÌ -->
+            <div class="market-day-card giovedi">
+                <div class="day-name">GIOVEDÌ</div>
+                <div class="pin-icon">📍</div>
+                <div class="city-name">Caslino D'Erba</div>
+                <div class="address">Piazza del Comune</div>
+                <div class="time">🕐 7:00 - 12:10</div>
+            </div>
+
+            <div class="market-day-card giovedi">
+                <div class="day-name">GIOVEDÌ</div>
+                <div class="pin-icon">📍</div>
+                <div class="city-name">Bussero</div>
+                <div class="address">Zona Mercato</div>
+                <div class="time">🕐 7:00 - 12:10</div>
+            </div>
+
+            <!-- VENERDÌ -->
+            <div class="market-day-card venerdi">
+                <div class="day-name">VENERDÌ</div>
+                <div class="pin-icon">📍</div>
+                <div class="city-name">Eupilio</div>
+                <div class="address">Via Emilio Scheibler</div>
+                <div class="time">🕐 7:00 - 12:10</div>
+            </div>
+
+            <!-- SABATO -->
+            <div class="market-day-card sabato">
+                <div class="day-name">SABATO</div>
+                <div class="pin-icon">📍</div>
+                <div class="city-name">Brembate</div>
+                <div class="address">Via Vittorio Veneto, 42</div>
+                <div class="time">🕐 7:00 - 12:10</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 2px; padding: 4px; background: var(--primary-light); border-radius: 6px; border: 2px solid var(--primary-color);">
+            <h3 style="color: var(--primary-color); font-size: 8pt; margin-bottom: 1px; text-align: center; font-weight: bold;">
+                🚚 Consegna a Domicilio
+            </h3>
+            <div style="font-size: 6.5pt; line-height: 1.2; color: var(--text-primary); text-align: center;">
+                Chiamaci o scrivici su WhatsApp!
+            </div>
+        </div>
+    </div>
+    
+    <div class="contact">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/><path d="M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.48-8.45zm-8.475 18.297c-1.778 0-3.524-.477-5.042-1.377l-.362-.214-3.754.982 1.005-3.645-.236-.374c-.99-1.569-1.512-3.382-1.512-5.26.003-5.45 4.455-9.886 9.932-9.886 2.652 0 5.145 1.035 7.021 2.906 1.875 1.87 2.909 4.352 2.909 6.992-.004 5.45-4.457 9.887-9.93 9.887z" fill="#25D366"/></svg>
+        +39 375 680 4525
+    </div>
+</div>
+
+</div>
+
+<script>
+let products = [];
+let uploadedImage = null;
+let editIndex = -1;
+
+const titleInput = document.getElementById("titleInput");
+const priceInput = document.getElementById("priceInput");
+const price2Input = document.getElementById("price2Input");
+const imageInput = document.getElementById("imageInput");
+const addProductBtn = document.getElementById("addProductBtn");
+const productGrid = document.getElementById("productGrid");
+
+// Gestione Tab
+const tabFronte = document.getElementById("tabFronte");
+const tabRetro = document.getElementById("tabRetro");
+const fronteSection = document.getElementById("fronteSection");
+const retroSection = document.getElementById("retroSection");
+const flyerFrontePreview = document.getElementById("flyerFrontePreview");
+const flyerRetroPreview = document.getElementById("flyerRetroPreview");
+
+// Tab switching
+tabFronte.addEventListener("click", () => {
+    tabFronte.classList.add("active");
+    tabRetro.classList.remove("active");
+    tabFronte.style.background = "var(--primary-color)";
+    tabFronte.style.color = "white";
+    tabRetro.style.background = "white";
+    tabRetro.style.color = "var(--primary-color)";
+    fronteSection.style.display = "block";
+    retroSection.style.display = "none";
+    flyerFrontePreview.style.display = "flex";
+    flyerRetroPreview.style.display = "none";
+});
+
+tabRetro.addEventListener("click", () => {
+    tabRetro.classList.add("active");
+    tabFronte.classList.remove("active");
+    tabRetro.style.background = "var(--primary-color)";
+    tabRetro.style.color = "white";
+    tabFronte.style.background = "white";
+    tabFronte.style.color = "var(--primary-color)";
+    fronteSection.style.display = "none";
+    retroSection.style.display = "block";
+    flyerFrontePreview.style.display = "none";
+    flyerRetroPreview.style.display = "flex";
+});
+
+imageInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => (uploadedImage = e.target.result);
+    reader.readAsDataURL(file);
+});
+
+addProductBtn.addEventListener("click", () => {
+    const title = titleInput.value.trim();
+    const price = priceInput.value.trim();
+    const price2 = price2Input.value.trim();
+    if (!title || !price) return alert("Compila almeno Nome e Prezzo!");
+    const productData = { title, price, price2, image: uploadedImage };
+    if (editIndex >= 0) {
+        products[editIndex] = productData;
+        editIndex = -1;
+        addProductBtn.textContent = "➕ Aggiungi Prodotto";
+    } else products.push(productData);
+    resetForm();
+    renderProducts();
+});
+
+function resetForm() {
+    titleInput.value = "";
+    priceInput.value = "";
+    price2Input.value = "";
+    imageInput.value = "";
+    uploadedImage = null;
+}
+
+function renderProducts() {
+    productGrid.innerHTML = "";
+    products.forEach((p, index) => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        const priceDisplay = p.price2 ? `€ ${p.price} / € ${p.price2}` : `€ ${p.price}`;
+        card.innerHTML = `
+            ${
+                p.image
+                    ? `<div class="image-container">
+                        <img src="${p.image}" alt="${p.title}">
+                        <div class="price-badge">${priceDisplay}</div>
+                       </div>`
+                    : `<div class="image-container">
+                        <div class="placeholder-img">Immagine</div>
+                        <div class="price-badge">${priceDisplay}</div>
+                       </div>`
+            }
+            <div class="card-content">
+                <h3>${p.title}</h3>
+            </div>
+            <div class="card-actions">
+                <button class="edit-btn">✏️ Modifica</button>
+                <button class="delete-btn">🗑️ Elimina</button>
+            </div>
+        `;
+        card.querySelector(".edit-btn").addEventListener("click", () => {
+            titleInput.value = p.title;
+            priceInput.value = p.price;
+            price2Input.value = p.price2 || "";
+            uploadedImage = p.image;
+            editIndex = index;
+            addProductBtn.textContent = "💾 Salva Modifica";
+        });
+        card.querySelector(".delete-btn").addEventListener("click", () => {
+            if (confirm("Rimuovere prodotto?")) {
+                products.splice(index, 1);
+                renderProducts();
+            }
+        });
+        productGrid.appendChild(card);
+    });
+    
+    // Sincronizza con localStorage per pagina pubblica
+    syncToLocalStorage();
+}
+
+// Funzione per salvare il volantino
+function saveVolantino() {
+    if (products.length === 0) {
+        alert("Non ci sono prodotti da salvare!");
+        return;
+    }
+    
+    const dataToSave = {
+        version: "1.0",
+        date: new Date().toISOString(),
+        products: products
+    };
+    
+    const dataStr = JSON.stringify(dataToSave, null, 2);
+    const dataBlob = new Blob([dataStr], { type: "application/json" });
+    
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement("a");
+    link.href = url;
+    
+    // Nome file con data e ora
+    const now = new Date();
+    const dateStr = now.toISOString().split('T')[0];
+    const timeStr = now.toTimeString().split(' ')[0].replace(/:/g, '-');
+    link.download = `volantino_${dateStr}_${timeStr}.json`;
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    
+    alert("✅ Volantino salvato con successo!");
+}
+
+// Funzione per caricare un volantino salvato
+function loadVolantino(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            
+            if (!data.products || !Array.isArray(data.products)) {
+                throw new Error("Formato file non valido");
+            }
+            
+            products = data.products;
+            renderProducts();
+            
+            alert(`✅ Volantino caricato con successo!\n${products.length} prodotti caricati.`);
+            
+            // Resetta l'input file per permettere di ricaricare lo stesso file
+            event.target.value = "";
+        } catch (error) {
+            alert("❌ Errore nel caricamento del file:\n" + error.message);
+        }
+    };
+    reader.readAsText(file);
+}
+
+// Aggiungi listener per il caricamento file
+document.getElementById('loadFileInput').addEventListener('change', loadVolantino);
+
+// Sincronizza prodotti con localStorage per pagina pubblica
+function syncToLocalStorage() {
+    try {
+        localStorage.setItem('volantinoProducts', JSON.stringify(products));
+    } catch (e) {
+        console.error('Errore salvataggio localStorage:', e);
+    }
+}
+
+// Carica prodotti da localStorage all'avvio
+function loadFromLocalStorage() {
+    try {
+        const saved = localStorage.getItem('volantinoProducts');
+        if (saved) {
+            const loadedProducts = JSON.parse(saved);
+            if (loadedProducts && loadedProducts.length > 0) {
+                products = loadedProducts;
+                return true;
+            }
+        }
+    } catch (e) {
+        console.error('Errore caricamento localStorage:', e);
+    }
+    return false;
+}
+
+// Carica prodotti salvati e renderizza
+loadFromLocalStorage();
+renderProducts();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+# ⚡ COMANDI RAPIDI PER DEPLOYMENT
+# Copia e incolla questi comandi nel terminale PowerShell
+
+# ========================================
+# STEP 1: TEST BUILD LOCALE
+# ========================================
+
+cd "C:\Users\siott\OneDrive\Desktop\nuovo sito ortofrutta"
+npm run build
+npm run preview
+# Apri http://localhost:4173 per testare
+
+
+# ========================================
+# STEP 2: INIZIALIZZA GIT (se non già fatto)
+# ========================================
+
+git init
+git add .
+git commit -m "Sito Ortofrutta - Ready for deployment"
+
+
+# ========================================
+# STEP 3: PUSH SU GITHUB
+# ========================================
+
+# Prima crea un repository su github.com chiamato "ortofrutta"
+# Poi esegui (SOSTITUISCI "TUO-USERNAME" con il tuo username GitHub):
+
+git remote add origin https://github.com/TUO-USERNAME/ortofrutta.git
+git branch -M main
+git push -u origin main
+
+
+# ========================================
+# STEP 4: DEPLOY SU VERCEL (via browser)
+# ========================================
+
+# 1. Vai su vercel.com
+# 2. Sign up con GitHub
+# 3. Click "New Project"
+# 4. Import repository "ortofrutta"
+# 5. Click "Deploy"
+# ✅ FATTO! Sito online in 1-2 minuti
+
+
+# ========================================
+# AGGIORNAMENTI FUTURI
+# ========================================
+
+# Ogni volta che fai modifiche:
+git add .
+git commit -m "Descrizione delle modifiche"
+git push
+
+# Vercel rebuilderà automaticamente!
+
+
+# ========================================
+# COMANDI UTILI
+# ========================================
+
+# Verifica status git
+git status
+
+# Vedi commit precedenti
+git log --oneline
+
+# Crea nuovo branch per test
+git checkout -b test-feature
+
+# Torna a main
+git checkout main
+
+# Pull aggiornamenti
+git pull origin main
+
+
+# ========================================
+# RISOLUZIONE PROBLEMI
+# ========================================
+
+# Se build fallisce, controlla errori:
+npm run build --verbose
+
+# Reinstalla dipendenze:
+Remove-Item -Recurse -Force node_modules
+Remove-Item package-lock.json
+npm install
+
+# Pulisci cache Vite:
+Remove-Item -Recurse -Force dist
+Remove-Item -Recurse -Force node_modules/.vite
+
+
+# ========================================
+# FINE
+# ========================================
