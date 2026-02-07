@@ -83,10 +83,6 @@
                     <p class="description" v-if="prodotto.description">
                       {{ prodotto.description }}
                     </p>
-                    <p class="origin">Provenienza: {{ prodotto.origin }}</p>
-                    <div class="price-tag">
-                      €{{ prodotto.price }}/{{ prodotto.unit }}
-                    </div>
                     <span 
                       class="availability-badge" 
                       :class="{ 'available': prodotto.available }"
@@ -234,12 +230,22 @@ const saveChanges = () => {
   }
 }
 
-// Usa editableProducts quando in edit mode
+// Usa editableProducts quando in edit mode + filtro disponibilità
 const productsToShow = computed(() => {
+  let products
+  
   if (isAdminMode.value && isEditMode.value && editableProducts.value.length > 0) {
-    return editableProducts.value
+    products = editableProducts.value
+  } else {
+    products = categoria.value?.products || []
   }
-  return categoria.value?.products || []
+  
+  // Se NON sei admin, nascondi i prodotti non disponibili
+  if (!isAdminMode.value) {
+    products = products.filter(p => p.available !== false)
+  }
+  
+  return products
 })
 
 const addNewProduct = () => {

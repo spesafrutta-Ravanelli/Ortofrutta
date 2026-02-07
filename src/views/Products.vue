@@ -4,6 +4,7 @@
     <section class="page-hero">
       <div class="container">
         <h1>📋 Listino Prezzi</h1>
+        <p>Gestisci facilmente prodotti e prezzi</p>
       </div>
     </section>
 
@@ -218,9 +219,14 @@ const uniqueCategories = computed(() => {
   return Array.from(cats).sort()
 })
 
-// Prodotti filtrati
+// Prodotti filtrati CON FILTRO DISPONIBILITÀ
 const filteredProducts = computed(() => {
   let products = isEditMode.value ? editableProducts.value : firebaseProducts.value
+  
+  // ⭐ FILTRO DISPONIBILITÀ: Se NON sei admin, mostra solo prodotti disponibili
+  if (!isAdminMode.value) {
+    products = products.filter(p => p.available !== false)
+  }
   
   // Filtro categoria
   if (selectedCategory.value) {
@@ -335,9 +341,8 @@ onMounted(async () => {
 })
 </script>
 
-<!-- Mantieni tutto lo stesso CSS -->
+<!-- STESSO CSS DI PRIMA -->
 <style scoped lang="scss">
-/* STESSO CSS DI PRIMA - Lo copio identico */
 $primary-color: #4caf50;
 $primary-dark: #45a049;
 $primary-light: #e8f5e9;
@@ -380,7 +385,6 @@ $bg-light: #f8f9fa;
   50% { opacity: 0.5; }
 }
 
-/* ... RESTO DEL CSS UGUALE ... */
 .page-hero {
   background: linear-gradient(135deg, $primary-color 0%, #66bb6a 100%);
   color: white;

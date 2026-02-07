@@ -110,10 +110,6 @@
                       <p class="description" v-if="prodotto.description">
                         {{ prodotto.description }}
                       </p>
-                      <p class="origin">Provenienza: {{ prodotto.origin }}</p>
-                      <div class="price-tag">
-                        €{{ prodotto.price }}/{{ prodotto.unit }}
-                      </div>
                       <span 
                         class="availability-badge" 
                         :class="{ 'available': prodotto.available }"
@@ -268,12 +264,25 @@ const saveChanges = () => {
   }
 }
 
-// Usa editableSubcategories quando in edit mode
+// Usa editableSubcategories quando in edit mode + filtro disponibilità
 const productsToShow = computed(() => {
+  let subcategories
+  
   if (isAdminMode.value && isEditMode.value && editableSubcategories.value.length > 0) {
-    return editableSubcategories.value
+    subcategories = editableSubcategories.value
+  } else {
+    subcategories = stagione.value?.sottocategorie || []
   }
-  return stagione.value?.sottocategorie || []
+  
+  // Se NON sei admin, filtra i prodotti non disponibili da ogni sottocategoria
+  if (!isAdminMode.value) {
+    subcategories = subcategories.map(subcat => ({
+      ...subcat,
+      prodotti: subcat.prodotti.filter(p => p.available !== false)
+    }))
+  }
+  
+  return subcategories
 })
 
 const addNewProduct = () => {
