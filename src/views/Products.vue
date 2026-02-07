@@ -4,7 +4,6 @@
     <section class="page-hero">
       <div class="container">
         <h1>📋 Listino Prezzi</h1>
-        <p>Gestisci facilmente prodotti e prezzi</p>
       </div>
     </section>
 

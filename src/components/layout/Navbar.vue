@@ -1,139 +1,509 @@
 <template>
-  <nav class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <!-- Logo -->
-        <RouterLink 
-          to="/" 
-          class="flex items-center space-x-2 hover:opacity-80 transition-opacity"
-          @click="handleLogoClick"
-        >
-          <img src="/logo.png" alt="Logo" class="h-10 w-10" />
-          <span class="text-xl font-bold text-gray-800">Ortofrutta</span>
-        </RouterLink>
+  <nav class="navbar">
+    <div class="container">
+      <RouterLink 
+        to="/" 
+        class="logo"
+        @touchstart="handleTouchStart"
+        @touchend="handleTouchEnd"
+      >
+        <span class="logo-icon">🍎</span>
+        <span class="logo-text">
+          Ortofrutticola<br />
+          Ravanelli & Carminati
+        </span>
+      </RouterLink>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-          <RouterLink
-            v-for="item in navigation"
-            :key="item.name"
-            :to="item.to"
-            class="text-gray-700 hover:text-primary transition-colors"
-          >
-            {{ item.name }}
-          </RouterLink>
-        </div>
+      <button 
+        class="mobile-toggle" 
+        @click="toggleMobileMenu"
+        :class="{ active: mobileMenuOpen }"
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-        <!-- Mobile menu button -->
-        <button
-          @click="mobileMenuOpen = !mobileMenuOpen"
-          class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors"
-        >
-          <svg
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              v-if="!mobileMenuOpen"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-            <path
-              v-else
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
+      <ul class="nav-links" :class="{ active: mobileMenuOpen }">
+        <li>
+          <RouterLink to="/" @click="closeMobileMenu">Home</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/categorie" @click="closeMobileMenu">Categorie</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/listino" @click="closeMobileMenu">Listino</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/offerte" @click="closeMobileMenu" class="btn-offerte">🎉 Offerte</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/chi-siamo" @click="closeMobileMenu">Chi Siamo</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/dove-siamo" @click="closeMobileMenu">Dove Siamo</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/prenota-qui" @click="closeMobileMenu" class="btn-prenota">Prenota Qui</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/contatti" @click="closeMobileMenu" class="btn-contact">Contatti</RouterLink>
+        </li>
+      </ul>
     </div>
 
-    <!-- Mobile menu -->
-    <div v-if="mobileMenuOpen" class="md:hidden bg-white border-t border-gray-200">
-      <div class="px-2 pt-2 pb-3 space-y-1">
-        <RouterLink
-          v-for="item in navigation"
-          :key="item.name"
-          :to="item.to"
-          @click="mobileMenuOpen = false"
-          class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors"
-        >
-          {{ item.name }}
-        </RouterLink>
-      </div>
+    <!-- Toast Notification per Triplo Tap -->
+    <div v-if="showToast" class="toast-notification">
+      {{ toastMessage }}
     </div>
   </nav>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { useAdminStore } from '@/stores/admin'
+<script setup>
+import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { useAdmin } from '@/composables/useAdmin'
 
-const router = useRouter()
-const adminStore = useAdminStore()
+const route = useRoute()
+const admin = useAdmin()
 const mobileMenuOpen = ref(false)
 
-const navigation = [
-  { name: 'Home', to: '/' },
-  { name: 'Prodotti', to: '/prodotti' },
-  { name: 'Chi Siamo', to: '/chi-siamo' },
-  { name: 'Contatti', to: '/contatti' },
-]
+// Variabili per triplo tap
+const tapCount = ref(0)
+const tapTimer = ref(null)
+const showToast = ref(false)
+const toastMessage = ref('')
 
-// Touch detection for mobile admin mode
-let touchCount = 0
-let touchTimer: ReturnType<typeof setTimeout> | null = null
-
-const handleLogoClick = (event: Event) => {
-  // Check if it's a touch device
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value
   
-  if (isTouchDevice) {
-    touchCount++
+  // Previeni lo scroll quando il menu è aperto su mobile
+  if (mobileMenuOpen.value) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+}
+
+const closeMobileMenu = () => {
+  mobileMenuOpen.value = false
+  document.body.style.overflow = ''
+}
+
+// Touch handlers per triplo tap (solo mobile)
+const handleTouchStart = (event) => {
+  tapCount.value++
+  
+  if (tapCount.value === 1) {
+    showToastMessage('👆 Tap 1/3')
+  } else if (tapCount.value === 2) {
+    showToastMessage('👆👆 Tap 2/3')
+  }
+}
+
+const handleTouchEnd = (event) => {
+  if (tapCount.value >= 3) {
+    event.preventDefault()
     
-    // If it's the third touch within the time window, activate admin mode
-    if (touchCount === 3) {
-      event.preventDefault() // Prevent navigation only on third touch
-      adminStore.toggleAdminMode()
-      touchCount = 0
-      if (touchTimer) clearTimeout(touchTimer)
-      return
+    admin.toggleAdminMode()
+    tapCount.value = 0
+    
+    if (admin.isAdminMode.value) {
+      showToastMessage('✅ Admin ATTIVATA')
+    } else {
+      showToastMessage('❌ Admin DISATTIVATA')
     }
     
-    // Reset counter after 800ms if not enough touches
-    if (touchTimer) clearTimeout(touchTimer)
-    touchTimer = setTimeout(() => {
-      touchCount = 0
-    }, 800)
-    
-    // For 1-2 touches, let the RouterLink navigate normally (don't prevent default)
+    return
   }
-  // On desktop, let RouterLink handle navigation normally
+  
+  // Reset dopo 1 secondo
+  clearTimeout(tapTimer.value)
+  tapTimer.value = setTimeout(() => {
+    tapCount.value = 0
+  }, 1000)
 }
 
-// Desktop keyboard shortcut (Ctrl+Shift+A)
-const handleKeyPress = (event: KeyboardEvent) => {
-  if (event.ctrlKey && event.shiftKey && event.key === 'A') {
-    event.preventDefault()
-    adminStore.toggleAdminMode()
+const showToastMessage = (message) => {
+  toastMessage.value = message
+  showToast.value = true
+  
+  setTimeout(() => {
+    showToast.value = false
+  }, 1500)
+}
+
+// Chiudi il menu mobile quando cambia la route
+watch(() => route.path, () => {
+  closeMobileMenu()
+})
+
+// Gestione eventi tastiera (ESC per chiudere)
+const handleKeyDown = (e) => {
+  if (e.key === 'Escape' && mobileMenuOpen.value) {
+    closeMobileMenu()
   }
 }
 
-// Add keyboard listener only on mount
-import { onMounted, onUnmounted } from 'vue'
+// Chiudi il menu se si clicca fuori
+const handleClickOutside = (e) => {
+  const navbar = document.querySelector('.navbar')
+  const isClickInside = navbar?.contains(e.target)
+  
+  if (!isClickInside && mobileMenuOpen.value) {
+    closeMobileMenu()
+  }
+}
 
 onMounted(() => {
-  window.addEventListener('keydown', handleKeyPress)
+  document.addEventListener('keydown', handleKeyDown)
+  document.addEventListener('click', handleClickOutside)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('keydown', handleKeyPress)
+  document.removeEventListener('keydown', handleKeyDown)
+  document.removeEventListener('click', handleClickOutside)
+  document.body.style.overflow = '' // Ripristina lo scroll
 })
 </script>
+
+<style scoped lang="scss">
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 1.25rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2c5f2d;
+  transition: transform 0.3s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  .logo-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-text {
+    font-family: 'Georgia', serif;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+
+  span {
+    width: 25px;
+    height: 3px;
+    background: #2c5f2d;
+    transition: all 0.3s ease;
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+  }
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #4caf50;
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      color: #4caf50;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &.router-link-active {
+      color: #4caf50;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &.btn-offerte {
+      background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+      
+      &::after {
+        display: none;
+      }
+
+      &:hover {
+        background: linear-gradient(135deg, #ffb300 0%, #f57c00 100%);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+      }
+    }
+
+    &.btn-prenota {
+      background: #ff9800;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      
+      &::after {
+        display: none;
+      }
+
+      &:hover {
+        background: #f57c00;
+        color: white;
+      }
+    }
+
+    &.btn-contact {
+      background: #4caf50;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      
+      &::after {
+        display: none;
+      }
+
+      &:hover {
+        background: #45a049;
+        color: white;
+      }
+    }
+  }
+}
+
+/* Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  z-index: 9999;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .logo {
+    font-size: 1rem;
+    
+    .logo-icon {
+      font-size: 1.75rem;
+    }
+    
+    .logo-text {
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+  }
+
+  .nav-links {
+    gap: 1rem;
+
+    li a {
+      font-size: 0.9rem;
+      padding: 0.4rem 1rem;
+    }
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .logo {
+    font-size: 0.95rem;
+
+    .logo-icon {
+      font-size: 1.5rem;
+    }
+
+    .logo-text {
+      font-size: 0.85rem;
+      line-height: 1.3;
+    }
+  }
+
+  .mobile-toggle {
+    display: flex;
+    min-width: 44px; // Touch target minimo
+    min-height: 44px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    max-width: 320px;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    padding: 5rem 2rem 2rem;
+    gap: 1rem;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    overflow-y: auto;
+
+    &.active {
+      right: 0;
+    }
+
+    li {
+      width: 100%;
+    }
+
+    li a {
+      font-size: 1.1rem;
+      display: block;
+      padding: 0.875rem 1rem;
+      min-height: 44px; // Touch target minimo
+      border-radius: 8px;
+      transition: background 0.3s ease;
+
+      &:hover,
+      &:active {
+        background: #f5f5f5;
+      }
+
+      &.btn-prenota,
+      &.btn-contact {
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}
+
+/* Responsive - Mobile molto piccolo */
+@media (max-width: 480px) {
+  .logo {
+    .logo-icon {
+      font-size: 1.3rem;
+    }
+    
+    .logo-text {
+      font-size: 0.75rem;
+      line-height: 1.2;
+    }
+  }
+
+  .nav-links {
+    width: 85%;
+    padding: 4rem 1.5rem 2rem;
+  }
+}
+</style>
