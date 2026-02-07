@@ -53,7 +53,7 @@
       </ul>
     </div>
 
-    <!-- Toast Notification per Triplo Tap -->
+    <!-- Toast SOLO per conferma admin attivata/disattivata -->
     <div v-if="showToast" class="toast-notification">
       {{ toastMessage }}
     </div>
@@ -69,7 +69,7 @@ const route = useRoute()
 const admin = useAdmin()
 const mobileMenuOpen = ref(false)
 
-// Variabili per triplo tap
+// Variabili per triplo tap (silenzioso)
 const tapCount = ref(0)
 const tapTimer = ref(null)
 const showToast = ref(false)
@@ -78,7 +78,6 @@ const toastMessage = ref('')
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
   
-  // Previeni lo scroll quando il menu è aperto su mobile
   if (mobileMenuOpen.value) {
     document.body.style.overflow = 'hidden'
   } else {
@@ -91,15 +90,10 @@ const closeMobileMenu = () => {
   document.body.style.overflow = ''
 }
 
-// Touch handlers per triplo tap (solo mobile)
+// Touch handlers - SILENZIOSO (no feedback durante il tap)
 const handleTouchStart = (event) => {
   tapCount.value++
-  
-  if (tapCount.value === 1) {
-    showToastMessage('👆 Tap 1/3')
-  } else if (tapCount.value === 2) {
-    showToastMessage('👆👆 Tap 2/3')
-  }
+  // NON mostriamo più "Tap 1/3", "Tap 2/3" - silenzioso!
 }
 
 const handleTouchEnd = (event) => {
@@ -109,10 +103,11 @@ const handleTouchEnd = (event) => {
     admin.toggleAdminMode()
     tapCount.value = 0
     
+    // Mostra SOLO quando admin viene attivata/disattivata
     if (admin.isAdminMode.value) {
-      showToastMessage('✅ Admin ATTIVATA')
+      showToastMessage('✅ Modalità Admin ATTIVATA')
     } else {
-      showToastMessage('❌ Admin DISATTIVATA')
+      showToastMessage('❌ Modalità Admin DISATTIVATA')
     }
     
     return
@@ -131,7 +126,7 @@ const showToastMessage = (message) => {
   
   setTimeout(() => {
     showToast.value = false
-  }, 1500)
+  }, 2000)
 }
 
 // Chiudi il menu mobile quando cambia la route
@@ -164,7 +159,7 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener('keydown', handleKeyDown)
   document.removeEventListener('click', handleClickOutside)
-  document.body.style.overflow = '' // Ripristina lo scroll
+  document.body.style.overflow = ''
 })
 </script>
 
@@ -361,7 +356,7 @@ onUnmounted(() => {
   }
 }
 
-/* Toast Notification */
+/* Toast Notification (SOLO per conferma admin) */
 .toast-notification {
   position: fixed;
   bottom: 100px;
@@ -439,7 +434,7 @@ onUnmounted(() => {
 
   .mobile-toggle {
     display: flex;
-    min-width: 44px; // Touch target minimo
+    min-width: 44px;
     min-height: 44px;
   }
 
@@ -470,7 +465,7 @@ onUnmounted(() => {
       font-size: 1.1rem;
       display: block;
       padding: 0.875rem 1rem;
-      min-height: 44px; // Touch target minimo
+      min-height: 44px;
       border-radius: 8px;
       transition: background 0.3s ease;
 
