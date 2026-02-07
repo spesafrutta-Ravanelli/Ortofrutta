@@ -1,219 +1,178 @@
-/**
- * Composable per gestire la modalità admin persistente
- * Attivabile con Ctrl+Shift+A
- * Stato salvato in localStorage
- */
+// useAdmin.js - Versione con Firebase Firestore e listener globale
+import { ref, computed } from 'vue';
+import { firestoreService } from '../firestore.service.js';
 
-import { ref, onMounted, onUnmounted } from 'vue'
+const isAdminMode = ref(false);
+const products = ref([]);
+const isLoading = ref(false);
+const error = ref(null);
 
-// Stato globale singleton
-const isAdminMode = ref(false)
-const listeners = new Set()
+// Variabile per tracciare se il listener è già stato registrato
+let listenerRegistered = false;
 
-// Chiave localStorage
-const STORAGE_KEY = 'adminMode'
-
-/**
- * Carica lo stato admin da localStorage
- */
-function loadAdminState() {
-  try {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const saved = localStorage.getItem(STORAGE_KEY)
-      if (saved === 'true') {
-        isAdminMode.value = true
-      }
-    }
-  } catch (error) {
-    console.warn('Errore nel caricamento dello stato admin:', error)
-  }
-}
-
-/**
- * Salva lo stato admin in localStorage
- */
-function saveAdminState() {
-  try {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.setItem(STORAGE_KEY, isAdminMode.value.toString())
-    }
-  } catch (error) {
-    console.warn('Errore nel salvataggio dello stato admin:', error)
-  }
-}
-
-/**
- * Mostra una notifica toast
- */
-function showNotification(message, type = 'success') {
-  // Rimuovi notifiche esistenti
-  const existing = document.querySelectorAll('.admin-notification')
-  existing.forEach(el => el.remove())
-
-  // Crea elemento notifica
-  const notification = document.createElement('div')
-  notification.className = 'admin-notification'
-  notification.textContent = message
-
-  // Stili in base al tipo
-  const styles = {
-    success: {
-      background: '#10b981',
-      color: 'white'
-    },
-    info: {
-      background: '#3b82f6',
-      color: 'white'
-    }
-  }
-
-  const style = styles[type] || styles.success
-
-  // Applica stili
-  Object.assign(notification.style, {
-    position: 'fixed',
-    top: '20px',
-    right: '20px',
-    padding: '16px 24px',
-    borderRadius: '8px',
-    fontWeight: '600',
-    fontSize: '1rem',
-    zIndex: '9999',
-    background: style.background,
-    color: style.color,
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-    animation: 'slideInRight 0.3s ease',
-    maxWidth: '400px',
-    wordWrap: 'break-word'
-  })
-
-  // Aggiungi animazione CSS se non esiste
-  if (!document.getElementById('admin-notification-styles')) {
-    const styleSheet = document.createElement('style')
-    styleSheet.id = 'admin-notification-styles'
-    styleSheet.textContent = `
-      @keyframes slideInRight {
-        from {
-          transform: translateX(100%);
-          opacity: 0;
-        }
-        to {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
-      @keyframes slideOutRight {
-        from {
-          transform: translateX(0);
-          opacity: 1;
-        }
-        to {
-          transform: translateX(100%);
-          opacity: 0;
-        }
-      }
-    `
-    document.head.appendChild(styleSheet)
-  }
-
-  // Aggiungi al DOM
-  document.body.appendChild(notification)
-
-  // Rimuovi dopo 2 secondi con animazione
-  setTimeout(() => {
-    notification.style.animation = 'slideOutRight 0.3s ease'
-    setTimeout(() => {
-      notification.remove()
-    }, 300)
-  }, 2000)
-}
-
-/**
- * Gestisce il toggle della modalità admin
- */
-function toggleAdmin() {
-  const newValue = !isAdminMode.value
-  isAdminMode.value = newValue
-  saveAdminState()
-  
-  console.log('🔄 Admin mode cambiato a:', newValue)
-
-  if (isAdminMode.value) {
-    showNotification('✅ Modalità Admin Attivata', 'success')
-  } else {
-    showNotification('ℹ️ Modalità Admin Disattivata', 'info')
-  }
-}
-
-/**
- * Handler per la combinazione di tasti Ctrl+Shift+A
- */
-function handleKeyDown(event) {
-  // Ctrl+Shift+A
-  if (event.ctrlKey && event.shiftKey && event.key === 'A') {
-    event.preventDefault()
-    event.stopPropagation()
-    console.log('🔑 Ctrl+Shift+A premuto, toggle admin mode')
-    toggleAdmin()
-    return false
-  }
-}
-
-/**
- * Inizializza il listener per i tasti
- */
-function initKeyListener() {
-  if (typeof window === 'undefined') return
-
-  // Assicurati che il DOM sia pronto
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      window.addEventListener('keydown', handleKeyDown)
-    })
-  } else {
-    window.addEventListener('keydown', handleKeyDown)
-  }
-}
-
-/**
- * Rimuove il listener per i tasti
- */
-function removeKeyListener() {
-  if (typeof window !== 'undefined') {
-    window.removeEventListener('keydown', handleKeyDown)
-  }
-}
-
-// Carica lo stato all'inizializzazione del modulo
-if (typeof window !== 'undefined') {
-  // Aspetta che il DOM sia pronto
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadAdminState)
-  } else {
-    loadAdminState()
-  }
-  
-  // Inizializza il listener
-  initKeyListener()
-}
-
-/**
- * Composable useAdmin
- * Usa questo composable nei componenti per accedere allo stato admin
- */
 export function useAdmin() {
-  // Inizializza il listener se non è già attivo
-  onMounted(() => {
-    initKeyListener()
-  })
+  // Carica i prodotti da Firestore
+  const loadProducts = async () => {
+    isLoading.value = true;
+    error.value = null;
+    try {
+      products.value = await firestoreService.getAllProducts();
+      console.log('Prodotti caricati da Firestore:', products.value.length);
+    } catch (err) {
+      error.value = 'Errore nel caricamento dei prodotti';
+      console.error(err);
+    } finally {
+      isLoading.value = false;
+    }
+  };
 
-  onUnmounted(() => {
-    // Non rimuovere il listener globale, è condiviso
-  })
+  // Toggle modalità admin
+  const toggleAdminMode = () => {
+    isAdminMode.value = !isAdminMode.value;
+    if (isAdminMode.value) {
+      console.log('✅ Modalità Admin ATTIVATA');
+      loadProducts(); // Carica i prodotti quando si entra in modalità admin
+    } else {
+      console.log('❌ Modalità Admin DISATTIVATA');
+    }
+  };
+
+  // Listener per la scorciatoia da tastiera Ctrl+Shift+A
+  const handleKeyPress = (event) => {
+    if (event.ctrlKey && event.shiftKey && event.key === 'A') {
+      event.preventDefault();
+      toggleAdminMode();
+    }
+  };
+
+  // Registra il listener GLOBALMENTE una sola volta
+  if (!listenerRegistered) {
+    window.addEventListener('keydown', handleKeyPress);
+    listenerRegistered = true;
+    console.log('🔑 Scorciatoia Admin attivata GLOBALMENTE: Ctrl+Shift+A');
+  }
+
+  // Salva un prodotto (crea o aggiorna)
+  const saveProduct = async (product) => {
+    isLoading.value = true;
+    error.value = null;
+    try {
+      const savedProduct = await firestoreService.saveProduct(product);
+      
+      // Aggiorna la lista locale
+      const index = products.value.findIndex(p => p.id === savedProduct.id);
+      if (index !== -1) {
+        products.value[index] = savedProduct;
+      } else {
+        products.value.push(savedProduct);
+      }
+      
+      console.log('✅ Prodotto salvato su Firebase:', savedProduct);
+      return savedProduct;
+    } catch (err) {
+      error.value = 'Errore nel salvataggio del prodotto';
+      console.error('❌ Errore salvataggio:', err);
+      throw err;
+    } finally {
+      isLoading.value = false;
+    }
+  };
+
+  // Aggiorna un prodotto esistente
+  const updateProduct = async (productId, updates) => {
+    isLoading.value = true;
+    error.value = null;
+    try {
+      await firestoreService.updateProduct(productId, updates);
+      
+      // Aggiorna la lista locale
+      const index = products.value.findIndex(p => p.id === productId);
+      if (index !== -1) {
+        products.value[index] = { ...products.value[index], ...updates };
+      }
+      
+      console.log('✅ Prodotto aggiornato su Firebase:', productId);
+      return true;
+    } catch (err) {
+      error.value = 'Errore nell\'aggiornamento del prodotto';
+      console.error('❌ Errore aggiornamento:', err);
+      throw err;
+    } finally {
+      isLoading.value = false;
+    }
+  };
+
+  // Elimina un prodotto
+  const deleteProduct = async (productId) => {
+    isLoading.value = true;
+    error.value = null;
+    try {
+      await firestoreService.deleteProduct(productId);
+      
+      // Rimuovi dalla lista locale
+      products.value = products.value.filter(p => p.id !== productId);
+      
+      console.log('✅ Prodotto eliminato da Firebase:', productId);
+      return true;
+    } catch (err) {
+      error.value = 'Errore nell\'eliminazione del prodotto';
+      console.error('❌ Errore eliminazione:', err);
+      throw err;
+    } finally {
+      isLoading.value = false;
+    }
+  };
+
+  // Ottieni prodotti per categoria
+  const getProductsByCategory = async (category) => {
+    isLoading.value = true;
+    error.value = null;
+    try {
+      const categoryProducts = await firestoreService.getProductsByCategory(category);
+      console.log(`📦 Prodotti della categoria ${category}:`, categoryProducts.length);
+      return categoryProducts;
+    } catch (err) {
+      error.value = 'Errore nel caricamento dei prodotti per categoria';
+      console.error(err);
+      return [];
+    } finally {
+      isLoading.value = false;
+    }
+  };
+
+  // Migrazione da localStorage (da usare una sola volta)
+  const migrateFromLocalStorage = async () => {
+    isLoading.value = true;
+    error.value = null;
+    try {
+      await firestoreService.migrateFromLocalStorage();
+      await loadProducts(); // Ricarica i prodotti dopo la migrazione
+      alert('✅ Migrazione completata! I dati sono ora su Firebase.');
+    } catch (err) {
+      error.value = 'Errore nella migrazione dei dati';
+      console.error(err);
+      alert('❌ Errore nella migrazione. Controlla la console.');
+    } finally {
+      isLoading.value = false;
+    }
+  };
+
+  // Computed
+  const adminProducts = computed(() => products.value);
+  const hasProducts = computed(() => products.value.length > 0);
 
   return {
-    isAdminMode, // Esposto direttamente come ref per reattività nei template
-    toggleAdmin,
-    showNotification
-  }
+    isAdminMode,
+    isLoading,
+    error,
+    products: adminProducts,
+    hasProducts,
+    toggleAdminMode,
+    loadProducts,
+    saveProduct,
+    updateProduct,
+    deleteProduct,
+    getProductsByCategory,
+    migrateFromLocalStorage
+  };
 }

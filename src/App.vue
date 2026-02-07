@@ -11,9 +11,9 @@
 <script setup>
 import Navbar from './components/layout/Navbar.vue'
 import Footer from './components/layout/Footer.vue'
-// Inizializza il sistema admin globale
 import { useAdmin } from './composables/useAdmin'
-useAdmin() // Inizializza il listener per Ctrl+Shift+A
+
+const admin = useAdmin() // Inizializza il listener per Ctrl+Shift+A
 </script>
 
 <style scoped>
