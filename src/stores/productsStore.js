@@ -1039,6 +1039,16 @@ export const useProductsStore = defineStore('products', () => {
               image: '/images/products/williams.jpg',
               description: 'Pera Williams: il simbolo della dolcezza e della succosità. Con la sua polpa morbida, succosa e profumata e la buccia sottile di colore verde-giallo, talvolta sfumata di rosso, la Williams è perfetta da gustare fresca, in macedonie, dolci o preparazioni al forno. Ricca di vitamine, fibre e antiossidanti naturali, è un frutto sano, genuino e versatile, ideale per tutta la famiglia. Williams: dolcezza naturale e profumo intenso in ogni morso.'
             },
+            { 
+              id: 181, 
+              name: 'Coscia', 
+              origin: 'Italia', 
+              price: '2.70', 
+              unit: 'kg', 
+              available: true,
+              image: '/images/products/Coscia.jpg',
+              description: 'Coscia: coscia è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i coscia freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+            },
             { id:77, 
               name: 'Anguria', 
               origin: 'Italia',
@@ -1133,6 +1143,15 @@ export const useProductsStore = defineStore('products', () => {
               image: '/images/products/pesca-noce-bianca.jpg',
               description: 'Pesca Noce Bianca: pesca noce bianca sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pesca noce bianca freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
             },
+            { id: 182,
+              name: 'Tabacchiera',
+              origin: 'Emilia Romagna',
+              price: '3.20',
+              unit: 'kg',
+              available: true,
+              image: '/images/products/tabacchiera.jpg',
+              description: 'Pesca Noce Bianca: pesca noce bianca sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pesca noce bianca freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+            },
             { id: 65, 
               name: 'Albicocche', 
               origin: 'Campania', 
@@ -1185,6 +1204,24 @@ export const useProductsStore = defineStore('products', () => {
                available: true,
                image: '/images/products/pomodoro ramato.jpg',
                description: 'Pomodoro ramato: pomodoro ramato è un pomodoro di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pomodori freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+            },
+            { id: 118, 
+              name: 'Cuore Di Bue',
+               origin: 'Sicilia', 
+               price: '2.50', 
+               unit: 'kg', 
+               available: true,
+               image: '/images/products/cuore di bue.jpeg',
+               description: 'Cuore Di Bue: cuore di bue è un pomodoro di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pomodori freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+            },
+            { id: 183, 
+              name: 'Pomodoro Perino',
+               origin: 'Sicilia', 
+               price: '2.50', 
+               unit: 'kg', 
+               available: true,
+               image: '/images/products/perino.jpg',
+               description: 'Pomodoro Perino: pomodoro perino è un pomodoro di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pomodori freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
             },
             { id: 88, 
               name: 'Pomodorino Datterino',

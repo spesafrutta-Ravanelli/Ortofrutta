@@ -4,13 +4,13 @@
     <section class="page-hero">
       <div class="container">
         <h1>📋 Listino Prezzi</h1>
-        <p>Gestisci facilmente prodotti e prezzi</p>
+        <p>I nostri prodotti freschi e di qualità</p>
       </div>
     </section>
 
     <!-- Loading -->
-    <div v-if="admin.isLoading.value" class="loading-overlay">
-      <div class="loading-spinner">⏳ Caricamento prodotti da Firebase...</div>
+    <div v-if="isLoading" class="loading-overlay">
+      <div class="loading-spinner">⏳ Caricamento prodotti...</div>
     </div>
 
     <!-- Lista Prodotti -->
@@ -77,6 +77,12 @@
           </div>
         </div>
 
+        <!-- Info Prodotti -->
+        <div class="products-info">
+          <p>📦 Prodotti visualizzati: <strong>{{ filteredProducts.length }}</strong></p>
+          <p class="sort-info">🔤 Ordinati alfabeticamente</p>
+        </div>
+
         <!-- Tabella Prodotti -->
         <div class="products-table-wrapper">
           <table class="products-table">
@@ -99,9 +105,8 @@
                     v-model="product.name" 
                     type="text"
                     class="edit-input"
-                    placeholder="Nome prodotto"
                   />
-                  <strong v-else>{{ product.name }}</strong>
+                  <span v-else class="product-name">{{ product.name }}</span>
                 </td>
 
                 <!-- Provenienza -->
@@ -111,9 +116,8 @@
                     v-model="product.origin" 
                     type="text"
                     class="edit-input"
-                    placeholder="Provenienza"
                   />
-                  <span v-else>{{ product.origin }}</span>
+                  <span v-else class="product-origin">{{ product.origin }}</span>
                 </td>
 
                 <!-- Prezzo -->
@@ -124,22 +128,25 @@
                     type="number"
                     step="0.10"
                     class="edit-input price-input"
-                    placeholder="0.00"
                   />
-                  <span v-else class="price">€{{ Number(product.price).toFixed(2) }}</span>
+                  <span v-else class="product-price">{{ formatPrice(product.price) }}</span>
                 </td>
 
                 <!-- Unità -->
                 <td>
-                  <select v-if="isAdminMode && isEditMode" v-model="product.unit" class="edit-select">
+                  <select 
+                    v-if="isAdminMode && isEditMode" 
+                    v-model="product.unit"
+                    class="edit-select"
+                  >
                     <option value="kg">kg</option>
                     <option value="pz">pz</option>
                     <option value="conf">conf</option>
                   </select>
-                  <span v-else>/{{ product.unit }}</span>
+                  <span v-else class="product-unit">{{ product.unit }}</span>
                 </td>
 
-                <!-- Disponibilità -->
+                <!-- Disponibile -->
                 <td>
                   <label v-if="isAdminMode && isEditMode" class="checkbox-label">
                     <input 
@@ -147,18 +154,17 @@
                       v-model="product.available"
                       class="checkbox-input"
                     />
-                    <span>{{ product.available ? '✓ Sì' : '✗ No' }}</span>
                   </label>
                   <span 
                     v-else 
                     class="availability-badge"
                     :class="{ 'available': product.available }"
                   >
-                    {{ product.available ? '✓ Disponibile' : '✗ Non disponibile' }}
+                    {{ product.available ? '✓' : '✗' }}
                   </span>
                 </td>
 
-                <!-- Azioni (solo in admin mode e edit mode) -->
+                <!-- Azioni -->
                 <td v-if="isAdminMode && isEditMode">
                   <button 
                     @click="removeProduct(index)" 
@@ -171,18 +177,9 @@
               </tr>
             </tbody>
           </table>
-          
-          <!-- Messaggio se nessun risultato -->
-          <div v-if="filteredProducts.length === 0" class="no-results">
-            <p>🔍 Nessun prodotto trovato</p>
-            <p v-if="searchQuery || selectedCategory">Prova a modificare i criteri di ricerca</p>
-            <button v-if="searchQuery || selectedCategory" @click="clearAllFilters" class="btn btn-clear-filters">
-              🔄 Rimuovi tutti i filtri
-            </button>
-          </div>
         </div>
 
-        <!-- Aggiungi Prodotto (solo in admin mode e edit mode) -->
+        <!-- Aggiungi Prodotto (solo in edit mode) -->
         <div v-if="isAdminMode && isEditMode" class="add-product-section">
           <button @click="addNewProduct" class="btn btn-add">
             ➕ Aggiungi Nuovo Prodotto
@@ -199,18 +196,37 @@ import { useAdmin } from '@/composables/useAdmin'
 
 const admin = useAdmin()
 
-// State reattivo
+// State
 const isAdminMode = computed(() => admin.isAdminMode.value)
 const isEditMode = ref(false)
 const showSuccessMessage = ref(false)
 const selectedCategory = ref('')
 const searchQuery = ref('')
 const editableProducts = ref([])
+const isLoading = ref(true)
 
-// Prodotti da Firebase
-const firebaseProducts = computed(() => admin.products.value || [])
+// Prodotti da Firebase DE-DUPLICATI e ORDINATI ALFABETICAMENTE
+const firebaseProducts = computed(() => {
+  const products = admin.products.value || []
+  
+  // De-duplicazione per NOME
+  const uniqueProducts = new Map()
+  products.forEach(product => {
+    const key = product.name.toLowerCase().trim()
+    if (!uniqueProducts.has(key)) {
+      uniqueProducts.set(key, product)
+    }
+  })
+  
+  // Converti Map in array e ordina alfabeticamente
+  return Array.from(uniqueProducts.values()).sort((a, b) => {
+    const nameA = (a.name || '').toLowerCase()
+    const nameB = (b.name || '').toLowerCase()
+    return nameA.localeCompare(nameB)
+  })
+})
 
-// Categorie uniche
+// Categorie uniche per il filtro
 const uniqueCategories = computed(() => {
   const cats = new Set()
   firebaseProducts.value.forEach(p => {
@@ -219,11 +235,11 @@ const uniqueCategories = computed(() => {
   return Array.from(cats).sort()
 })
 
-// Prodotti filtrati CON FILTRO DISPONIBILITÀ
+// Prodotti filtrati con ricerca e categoria
 const filteredProducts = computed(() => {
   let products = isEditMode.value ? editableProducts.value : firebaseProducts.value
   
-  // ⭐ FILTRO DISPONIBILITÀ: Se NON sei admin, mostra solo prodotti disponibili
+  // Filtra solo disponibili per il pubblico
   if (!isAdminMode.value) {
     products = products.filter(p => p.available !== false)
   }
@@ -248,13 +264,12 @@ const filteredProducts = computed(() => {
 })
 
 // Funzioni
-const clearSearch = () => {
-  searchQuery.value = ''
+const formatPrice = (price) => {
+  return typeof price === 'number' ? price.toFixed(2) : parseFloat(price || 0).toFixed(2)
 }
 
-const clearAllFilters = () => {
+const clearSearch = () => {
   searchQuery.value = ''
-  selectedCategory.value = ''
 }
 
 const enterEditMode = () => {
@@ -263,7 +278,7 @@ const enterEditMode = () => {
 }
 
 const cancelEdit = () => {
-  if (confirm('Annullare le modifiche?')) {
+  if (confirm('Annullare le modifiche? Le modifiche non salvate verranno perse.')) {
     isEditMode.value = false
     editableProducts.value = []
   }
@@ -272,10 +287,7 @@ const cancelEdit = () => {
 const saveChanges = async () => {
   if (!confirm('Salvare le modifiche su Firebase?')) return
   
-  console.log('💾 Salvataggio su Firebase...')
-  
   try {
-    // Salva ogni prodotto modificato
     for (const product of editableProducts.value) {
       await admin.updateProduct(product.id, {
         name: product.name,
@@ -283,11 +295,18 @@ const saveChanges = async () => {
         price: Number(product.price),
         unit: product.unit,
         available: product.available,
-        description: product.description || ''
+        description: product.description || '',
+        image: product.image || '/images/placeholder-product.jpg',
+        category: product.category,
+        categoryName: product.categoryName,
+        season: product.season,
+        seasonName: product.seasonName,
+        subcategory: product.subcategory,
+        subcategoryName: product.subcategoryName,
+        type: product.type
       })
     }
     
-    // Ricarica i prodotti da Firebase
     await admin.loadProducts()
     
     isEditMode.value = false
@@ -298,7 +317,7 @@ const saveChanges = async () => {
     }, 3000)
     
   } catch (error) {
-    console.error('❌ Errore salvataggio:', error)
+    console.error('Errore salvataggio:', error)
     alert('Errore nel salvataggio. Riprova.')
   }
 }
@@ -311,7 +330,7 @@ const removeProduct = async (index) => {
     await admin.deleteProduct(product.id)
     editableProducts.value.splice(index, 1)
   } catch (error) {
-    console.error('❌ Errore eliminazione:', error)
+    console.error('Errore eliminazione:', error)
     alert('Errore nell\'eliminazione.')
   }
 }
@@ -319,90 +338,30 @@ const removeProduct = async (index) => {
 const addNewProduct = () => {
   const newProduct = {
     id: `new_${Date.now()}`,
-    name: '',
+    name: 'Nuovo Prodotto',
     origin: 'Italia',
     price: 0,
     unit: 'kg',
     available: true,
     description: '',
-    category: 'unknown',
-    categoryName: 'Nuovo Prodotto',
-    type: 'year-round'
+    image: '/images/placeholder-product.jpg',
+    type: 'product'
   }
   
   editableProducts.value.push(newProduct)
 }
 
-// Carica prodotti all'avvio
+// Carica prodotti
 onMounted(async () => {
-  console.log('📦 Caricamento prodotti da Firebase...')
   await admin.loadProducts()
-  console.log(`✅ ${firebaseProducts.value.length} prodotti caricati`)
+  isLoading.value = false
 })
 </script>
 
-<!-- STESSO CSS DI PRIMA -->
-<style scoped lang="scss">
-$primary-color: #4caf50;
-$primary-dark: #45a049;
-$primary-light: #e8f5e9;
-$secondary-color: #2c5f2d;
-$danger-color: #f44336;
-$danger-dark: #d32f2f;
-$danger-light: #ffebee;
-$text-color: #333;
-$text-light: #666;
-$border-color: #e0e0e0;
-$bg-light: #f8f9fa;
-
+<style scoped>
 .products-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-}
-
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.loading-spinner {
-  font-size: 2rem;
-  font-weight: 600;
-  color: $primary-color;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-.page-hero {
-  background: linear-gradient(135deg, $primary-color 0%, #66bb6a 100%);
-  color: white;
-  padding: 3rem 0;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-  h1 {
-    font-size: 2.5rem;
-    margin: 0 0 1rem 0;
-    font-weight: 700;
-  }
-
-  p {
-    font-size: 1.2rem;
-    margin: 0;
-    opacity: 0.95;
-  }
+  background: #f8f9fa;
 }
 
 .container {
@@ -411,300 +370,387 @@ $bg-light: #f8f9fa;
   padding: 0 2rem;
 }
 
+.page-hero {
+  background: linear-gradient(135deg, #2c5f2d 0%, #4caf50 100%);
+  color: white;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-hero p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+}
+
+.loading-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.loading-spinner {
+  font-size: 1.5rem;
+  color: #4caf50;
+}
+
 .main-content {
-  padding: 2rem 0 4rem 0;
+  padding: 2rem 0;
 }
 
 .admin-indicator {
   position: fixed;
-  top: 100px;
+  top: 90px;
   right: 20px;
-  background: #ff9800;
+  background: #10b981;
   color: white;
   padding: 0.75rem 1.5rem;
-  border-radius: 25px;
+  border-radius: 8px;
   font-weight: 600;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  z-index: 999;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .action-bar {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
   margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   display: flex;
   justify-content: center;
+}
+
+.edit-actions {
+  display: flex;
   gap: 1rem;
+}
 
-  .btn {
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.btn {
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
 
-    &:hover {
-      transform: translateY(-2px);
-    }
-  }
+.btn-edit {
+  background: #4caf50;
+  color: white;
+}
 
-  .btn-edit, .btn-save {
-    background: $primary-color;
-    color: white;
+.btn-edit:hover {
+  background: #45a049;
+}
 
-    &:hover {
-      background: $primary-dark;
-    }
-  }
+.btn-save {
+  background: #2196F3;
+  color: white;
+}
 
-  .btn-cancel {
-    background: #757575;
-    color: white;
+.btn-save:hover {
+  background: #1976D2;
+}
 
-    &:hover {
-      background: #616161;
-    }
-  }
+.btn-cancel {
+  background: #f44336;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background: #d32f2f;
+}
+
+.btn-add {
+  background: #FF9800;
+  color: white;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+}
+
+.btn-add:hover {
+  background: #F57C00;
 }
 
 .success-message {
-  background: $primary-light;
-  color: $secondary-color;
-  padding: 1rem 2rem;
-  border-radius: 12px;
+  background: #4caf50;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
   text-align: center;
   font-weight: 600;
-  margin-bottom: 2rem;
 }
 
 .search-and-filters {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   display: flex;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .search-bar {
   flex: 1;
   min-width: 300px;
   position: relative;
+}
 
-  .search-input {
-    width: 100%;
-    padding: 1rem 3rem 1rem 1rem;
-    border: 2px solid $border-color;
-    border-radius: 12px;
-    font-size: 1.1rem;
+.search-input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
 
-    &:focus {
-      outline: none;
-      border-color: $primary-color;
-    }
-  }
+.search-input:focus {
+  outline: none;
+  border-color: #4caf50;
+}
 
-  .clear-search-btn {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: $danger-color;
-    color: white;
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
+.clear-search-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f44336;
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    &:hover {
-      background: $danger-dark;
-    }
-  }
+.clear-search-btn:hover {
+  background: #d32f2f;
 }
 
 .filters {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+}
 
-  .category-filter {
-    padding: 1rem 2rem;
-    border: 2px solid $border-color;
-    border-radius: 12px;
-    min-width: 200px;
+.filters label {
+  font-weight: 600;
+  color: #666;
+}
 
-    &:focus {
-      outline: none;
-      border-color: $primary-color;
-    }
-  }
+.category-filter {
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-width: 200px;
+}
+
+.category-filter:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.products-info {
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.products-info p {
+  margin: 0;
+  color: #666;
+}
+
+.sort-info {
+  font-style: italic;
+  color: #4caf50;
 }
 
 .products-table-wrapper {
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   overflow: hidden;
+  margin-bottom: 2rem;
 }
 
 .products-table {
   width: 100%;
   border-collapse: collapse;
+}
 
-  thead {
-    background: linear-gradient(135deg, $primary-color 0%, #66bb6a 100%);
-    color: white;
+.products-table thead {
+  background: #4caf50;
+  color: white;
+}
 
-    th {
-      padding: 1.5rem 1rem;
-      text-align: left;
-      font-weight: 600;
-    }
-  }
+.products-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
 
-  tbody {
-    tr {
-      border-bottom: 1px solid #f0f0f0;
+.products-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
 
-      &:hover {
-        background-color: #f8f9fa;
-      }
-    }
+.products-table tbody tr:hover {
+  background: #f5f5f5;
+}
 
-    td {
-      padding: 1.5rem 1rem;
+.product-name {
+  font-weight: 600;
+  color: #2c5f2d;
+}
 
-      strong {
-        color: $secondary-color;
-        font-size: 1.1rem;
-      }
+.product-origin {
+  color: #666;
+}
 
-      .price {
-        color: $primary-color;
-        font-weight: 700;
-        font-size: 1.2rem;
-      }
-    }
-  }
+.product-price {
+  font-weight: 700;
+  color: #4caf50;
+  font-size: 1.1rem;
+}
+
+.product-unit {
+  color: #666;
+  font-size: 0.9rem;
 }
 
 .availability-badge {
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
   font-weight: 600;
+  background: #f44336;
+  color: white;
+  font-size: 0.9rem;
+}
 
-  &.available {
-    background: $primary-light;
-    color: $secondary-color;
-  }
-
-  &:not(.available) {
-    background: $danger-light;
-    color: #c62828;
-  }
+.availability-badge.available {
+  background: #4caf50;
 }
 
 .edit-input {
   width: 100%;
-  padding: 0.75rem;
-  border: 2px solid $border-color;
-  border-radius: 8px;
+  padding: 0.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
 
-  &:focus {
-    outline: none;
-    border-color: $primary-color;
-  }
+.edit-input:focus {
+  outline: none;
+  border-color: #4caf50;
+}
 
-  &.price-input {
-    width: 100px;
-    font-weight: 700;
-    color: $primary-color;
-  }
+.price-input {
+  width: 100px;
 }
 
 .edit-select {
-  padding: 0.75rem;
-  border: 2px solid $border-color;
-  border-radius: 8px;
-  cursor: pointer;
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
 
-  &:focus {
-    outline: none;
-    border-color: $primary-color;
-  }
+.edit-select:focus {
+  outline: none;
+  border-color: #4caf50;
 }
 
 .checkbox-label {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
+  justify-content: center;
+}
 
-  .checkbox-input {
-    width: 24px;
-    height: 24px;
-  }
+.checkbox-input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .btn-delete {
-  background: $danger-color;
+  background: #f44336;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-
-  &:hover {
-    background: $danger-dark;
-  }
+  font-size: 1.2rem;
 }
 
-.no-results {
-  text-align: center;
-  padding: 3rem 2rem;
-  color: $text-light;
-
-  .btn-clear-filters {
-    background: $primary-color;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 1rem;
-
-    &:hover {
-      background: $primary-dark;
-    }
-  }
+.btn-delete:hover {
+  background: #d32f2f;
 }
 
 .add-product-section {
   text-align: center;
-  margin-top: 2rem;
-}
-
-.btn-add {
-  background: $primary-color;
-  color: white;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-
-  &:hover {
-    background: $primary-dark;
-  }
+  padding: 2rem 0;
 }
 
 @media (max-width: 768px) {
+  .page-hero h1 {
+    font-size: 2rem;
+  }
+
+  .search-and-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-bar {
+    min-width: 100%;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .category-filter {
+    width: 100%;
+  }
+
   .products-table-wrapper {
     overflow-x: auto;
   }
-  
+
   .products-table {
-    min-width: 600px;
+    min-width: 800px;
+  }
+
+  .products-info {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
   }
 }
 </style>

@@ -13,7 +13,8 @@ import Navbar from './components/layout/Navbar.vue'
 import Footer from './components/layout/Footer.vue'
 import { useAdmin } from './composables/useAdmin'
 
-const admin = useAdmin() // Inizializza il listener per Ctrl+Shift+A
+// Inizializza admin mode (Ctrl+Shift+A o triple-tap logo)
+const admin = useAdmin()
 </script>
 
 <style scoped>

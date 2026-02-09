@@ -4,8 +4,7 @@
       <RouterLink 
         to="/" 
         class="logo"
-        @touchstart="handleTouchStart"
-        @touchend="handleTouchEnd"
+        @click="handleLogoClick"
       >
         <span class="logo-icon">🍎</span>
         <span class="logo-text">
@@ -52,11 +51,6 @@
         </li>
       </ul>
     </div>
-
-    <!-- Toast SOLO per conferma admin attivata/disattivata -->
-    <div v-if="showToast" class="toast-notification">
-      {{ toastMessage }}
-    </div>
   </nav>
 </template>
 
@@ -66,18 +60,34 @@ import { useRoute } from 'vue-router'
 import { useAdmin } from '@/composables/useAdmin'
 
 const route = useRoute()
-const admin = useAdmin()
 const mobileMenuOpen = ref(false)
+const admin = useAdmin()
 
-// Variabili per triplo tap (silenzioso)
-const tapCount = ref(0)
-const tapTimer = ref(null)
-const showToast = ref(false)
-const toastMessage = ref('')
+// Triple-tap per admin mode
+const clickCount = ref(0)
+let clickTimer = null
+
+const handleLogoClick = (e) => {
+  clickCount.value++
+  
+  if (clickCount.value === 1) {
+    clickTimer = setTimeout(() => {
+      clickCount.value = 0
+    }, 500) // Reset dopo 500ms
+  }
+  
+  if (clickCount.value === 3) {
+    e.preventDefault()
+    clearTimeout(clickTimer)
+    clickCount.value = 0
+    admin.toggleAdminMode()
+  }
+}
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
   
+  // Previeni lo scroll quando il menu è aperto su mobile
   if (mobileMenuOpen.value) {
     document.body.style.overflow = 'hidden'
   } else {
@@ -88,45 +98,6 @@ const toggleMobileMenu = () => {
 const closeMobileMenu = () => {
   mobileMenuOpen.value = false
   document.body.style.overflow = ''
-}
-
-// Touch handlers - SILENZIOSO (no feedback durante il tap)
-const handleTouchStart = (event) => {
-  tapCount.value++
-  // NON mostriamo più "Tap 1/3", "Tap 2/3" - silenzioso!
-}
-
-const handleTouchEnd = (event) => {
-  if (tapCount.value >= 3) {
-    event.preventDefault()
-    
-    admin.toggleAdminMode()
-    tapCount.value = 0
-    
-    // Mostra SOLO quando admin viene attivata/disattivata
-    if (admin.isAdminMode.value) {
-      showToastMessage('✅ Modalità Admin ATTIVATA')
-    } else {
-      showToastMessage('❌ Modalità Admin DISATTIVATA')
-    }
-    
-    return
-  }
-  
-  // Reset dopo 1 secondo
-  clearTimeout(tapTimer.value)
-  tapTimer.value = setTimeout(() => {
-    tapCount.value = 0
-  }, 1000)
-}
-
-const showToastMessage = (message) => {
-  toastMessage.value = message
-  showToast.value = true
-  
-  setTimeout(() => {
-    showToast.value = false
-  }, 2000)
 }
 
 // Chiudi il menu mobile quando cambia la route
@@ -159,7 +130,7 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener('keydown', handleKeyDown)
   document.removeEventListener('click', handleClickOutside)
-  document.body.style.overflow = ''
+  document.body.style.overflow = '' // Ripristina lo scroll
 })
 </script>
 
@@ -194,15 +165,9 @@ onUnmounted(() => {
   font-weight: 700;
   color: #2c5f2d;
   transition: transform 0.3s ease;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     transform: scale(1.02);
-  }
-
-  &:active {
-    transform: scale(0.98);
   }
 
   .logo-icon {
@@ -356,34 +321,6 @@ onUnmounted(() => {
   }
 }
 
-/* Toast Notification (SOLO per conferma admin) */
-.toast-notification {
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.9);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  z-index: 9999;
-  animation: slideUp 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
 /* Responsive - Tablet */
 @media (max-width: 1024px) and (min-width: 769px) {
   .logo {
@@ -434,7 +371,7 @@ onUnmounted(() => {
 
   .mobile-toggle {
     display: flex;
-    min-width: 44px;
+    min-width: 44px; // Touch target minimo
     min-height: 44px;
   }
 
@@ -465,7 +402,7 @@ onUnmounted(() => {
       font-size: 1.1rem;
       display: block;
       padding: 0.875rem 1rem;
-      min-height: 44px;
+      min-height: 44px; // Touch target minimo
       border-radius: 8px;
       transition: background 0.3s ease;
 
