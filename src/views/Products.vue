@@ -289,22 +289,27 @@ const saveChanges = async () => {
   
   try {
     for (const product of editableProducts.value) {
-      await admin.updateProduct(product.id, {
-        name: product.name,
-        origin: product.origin,
-        price: Number(product.price),
-        unit: product.unit,
-        available: product.available,
+      // Prepara i dati rimuovendo campi undefined
+      const productData = {
+        name: product.name || '',
+        origin: product.origin || 'Italia',
+        price: Number(product.price) || 0,
+        unit: product.unit || 'kg',
+        available: product.available !== false,
         description: product.description || '',
         image: product.image || '/images/placeholder-product.jpg',
-        category: product.category,
-        categoryName: product.categoryName,
-        season: product.season,
-        seasonName: product.seasonName,
-        subcategory: product.subcategory,
-        subcategoryName: product.subcategoryName,
-        type: product.type
-      })
+        type: product.type || 'product'
+      }
+      
+      // Aggiungi campi opzionali solo se esistono
+      if (product.category) productData.category = product.category
+      if (product.categoryName) productData.categoryName = product.categoryName
+      if (product.season) productData.season = product.season
+      if (product.seasonName) productData.seasonName = product.seasonName
+      if (product.subcategory) productData.subcategory = product.subcategory
+      if (product.subcategoryName) productData.subcategoryName = product.subcategoryName
+      
+      await admin.updateProduct(product.id, productData)
     }
     
     await admin.loadProducts()
