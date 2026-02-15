@@ -11,7 +11,6 @@
 <!-- Firebase Compat SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
 <script>
 const firebaseConfig = {
@@ -24,7 +23,6 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-const storage = firebase.storage();
 </script>
 
 <style>
@@ -782,7 +780,7 @@ tabRetro.addEventListener("click", () => {
     flyerRetroPreview.style.display = "flex";
 });
 
-imageInput.addEventListener("change", async function () {
+imageInput.addEventListener("change", function () {
     const file = this.files[0];
     if (!file) return;
     
@@ -791,44 +789,67 @@ imageInput.addEventListener("change", async function () {
         return;
     }
     
-    if (file.size > 5 * 1024 * 1024) {
-        alert('Immagine troppo grande! Max 5MB.');
-        return;
-    }
+    const originalText = addProductBtn.textContent;
+    addProductBtn.disabled = true;
+    addProductBtn.textContent = '⏳ Elaborazione...';
     
-    try {
-        const originalText = addProductBtn.textContent;
-        addProductBtn.disabled = true;
-        addProductBtn.textContent = '⏳ Caricamento...';
-        
-        const fileName = `volantino/${Date.now()}_${file.name}`;
-        const storageRef = storage.ref(fileName);
-        const uploadTask = storageRef.put(file);
-        
-        uploadTask.on('state_changed',
-            (snapshot) => {
-                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-                addProductBtn.textContent = `⏳ ${progress}%`;
-            },
-            (error) => {
-                console.error('Upload error:', error);
-                alert('Errore caricamento!');
-                addProductBtn.disabled = false;
-                addProductBtn.textContent = originalText;
-            },
-            async () => {
-                const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-                uploadedImage = downloadURL;
-                addProductBtn.disabled = false;
-                addProductBtn.textContent = originalText;
-                alert('✅ Immagine caricata!');
+    // Ridimensiona e comprimi immagine
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+            // Canvas per ridimensionare
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Dimensione massima
+            const maxWidth = 600;
+            const maxHeight = 600;
+            
+            let width = img.width;
+            let height = img.height;
+            
+            // Ridimensiona proporzionalmente
+            if (width > height) {
+                if (width > maxWidth) {
+                    height = height * (maxWidth / width);
+                    width = maxWidth;
+                }
+            } else {
+                if (height > maxHeight) {
+                    width = width * (maxHeight / height);
+                    height = maxHeight;
+                }
             }
-        );
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Errore!');
+            
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Converti in Base64 con compressione
+            // Qualità 0.7 = buon compromesso dimensione/qualità
+            uploadedImage = canvas.toDataURL('image/jpeg', 0.7);
+            
+            // Verifica dimensione finale
+            const sizeKB = Math.round((uploadedImage.length * 3) / 4 / 1024);
+            
+            addProductBtn.disabled = false;
+            addProductBtn.textContent = originalText;
+            
+            if (sizeKB > 200) {
+                alert(`⚠️ Immagine ottimizzata (${sizeKB}KB). Se troppo grande, usa immagine più piccola.`);
+            } else {
+                alert(`✅ Immagine caricata! (${sizeKB}KB)`);
+            }
+        };
+        img.src = e.target.result;
+    };
+    reader.onerror = function() {
+        alert('❌ Errore lettura immagine!');
         addProductBtn.disabled = false;
-    }
+        addProductBtn.textContent = originalText;
+    };
+    reader.readAsDataURL(file);
 });
 
 addProductBtn.addEventListener("click", () => {
