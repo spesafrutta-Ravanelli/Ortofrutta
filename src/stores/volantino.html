@@ -3,33 +3,28 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- Disabilita cache durante lo sviluppo -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 <title>Volantino Offerte - Ortofrutticola Ravanelli & Carminati</title>
 
-<!-- Firebase SDK -->
-<script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-  import { getFirestore, doc, getDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+<!-- Firebase Compat SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
-  const firebaseConfig = {
+<script>
+// Inizializza Firebase
+const firebaseConfig = {
     apiKey: "AIzaSyBqwe7FJxPT2d7ugVbgB1TmUcaIFGj8eQA",
     authDomain: "ortofrutta-ravanelli-carminati.firebaseapp.com",
     projectId: "ortofrutta-ravanelli-carminati",
     storageBucket: "ortofrutta-ravanelli-carminati.firebasestorage.app",
     messagingSenderId: "483333881088",
     appId: "1:483333881088:web:9911dda5da2b4072ed47e5"
-  };
+};
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  window.db = db;
-  window.doc = doc;
-  window.getDoc = getDoc;
-  window.onSnapshot = onSnapshot;
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 </script>
 
 <style>
@@ -51,7 +46,6 @@
     --background-white: #ffffff;
 }
 
-/* === MODALITÀ PUBBLICA === */
 body {
     font-family: Arial, sans-serif;
     background: #f5f5f5;
@@ -63,14 +57,12 @@ body {
     min-height: 100vh;
 }
 
-/* Container centrato */
 .public-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* VOLANTINO A5 - Dimensioni esatte stampa */
 .flyer-preview {
     width: 148mm;
     height: 210mm;
@@ -84,7 +76,6 @@ body {
     position: relative;
 }
 
-/* Bordo decorativo SVG - identico alla stampa */
 .flyer-preview::before {
     content: '';
     position: absolute;
@@ -98,7 +89,6 @@ body {
     background-repeat: no-repeat;
 }
 
-/* LOGO - identico alla stampa */
 .flyer-logo {
     text-align: center;
     font-size: 16pt;
@@ -120,7 +110,6 @@ body {
     filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.4)) drop-shadow(0px 0px 8px rgba(255, 87, 34, 0.4));
 }
 
-/* GRID CARDS - Layout griglia 2x2 identico alla stampa */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -134,7 +123,6 @@ body {
     overflow: hidden;
 }
 
-/* CARD - identica alla stampa */
 .product-card {
     background: var(--background-white);
     border-radius: 10px;
@@ -223,7 +211,6 @@ body {
     white-space: nowrap;
 }
 
-/* NUMERO TELEFONO - identico alla stampa */
 .contact {
     display: flex;
     flex-direction: column;
@@ -253,7 +240,6 @@ body {
     margin: 0;
 }
 
-/* Messaggio nessun prodotto */
 .no-products {
     display: flex;
     flex-direction: column;
@@ -273,7 +259,6 @@ body {
     opacity: 0.5;
 }
 
-/* ======== STILI STAMPA ======== */
 @media print {
     @page {
         size: A5;
@@ -306,87 +291,11 @@ body {
         position: relative;
     }
 
-    .flyer-logo {
-        text-align: center;
-        font-size: 16pt;
-        font-weight: bold;
-        background: linear-gradient(180deg, #c62828 0%, #e53935 30%, #ff5722 70%, #ff9800 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        letter-spacing: 0.5px;
-        flex-shrink: 0;
-        line-height: 1.2;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1;
-        font-family: 'Helvetica Neue', Arial, sans-serif;
-        transform: translateY(51px);
-        filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.4)) drop-shadow(0px 0px 8px rgba(255, 87, 34, 0.4));
-        page-break-inside: avoid;
-    }
-
-    .product-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 1fr;
-        gap: 8px;
-        margin-top: 130px;
-        margin-bottom: 45px;
-        margin-left: 20px;
-        margin-right: 20px;
-        max-height: 470px;
-        overflow: hidden;
-    }
-
-    .product-card {
-        background: var(--background-white);
-        border-radius: 10px;
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        width: 100%;
-        min-height: 0;
-        overflow: visible;
-        box-shadow: 0 2px 5px rgba(0,0,0,.1);
-        padding: 2px;
-        page-break-inside: avoid;
-    }
-
-    .contact {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        font-size: 11pt;
-        font-weight: bold;
-        background: linear-gradient(180deg, #c62828 0%, #e53935 30%, #ff5722 70%, #ff9800 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        flex-shrink: 0;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 1;
-        font-family: 'Helvetica Neue', Arial, sans-serif;
-        transform: translateY(-55px);
-        filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
-        page-break-inside: avoid;
-        page-break-before: avoid;
-    }
-
     .no-products {
         display: none;
     }
 }
 
-/* === RESPONSIVE per mobile === */
 @media screen and (max-width: 600px) {
     body {
         padding: 10px;
@@ -404,11 +313,9 @@ body {
 <body>
 
 <div class="public-container">
-    <!-- VOLANTINO FRONTE - Solo visualizzazione pubblica -->
     <div class="flyer-preview" id="flyerFrontePreview">
         <div class="flyer-logo">Ortofrutticola<br />Ravanelli & Carminati</div>
         <div class="product-grid" id="productGrid">
-            <!-- Messaggio quando non ci sono prodotti -->
             <div class="no-products" id="noProductsMsg" style="grid-column: 1 / -1;">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
@@ -425,7 +332,7 @@ body {
 </div>
 
 <script>
-// Carica prodotti da Firebase e renderizza
+// Carica prodotti da Firebase
 async function loadAndRenderProducts() {
     const productGrid = document.getElementById('productGrid');
     const noProductsMsg = document.getElementById('noProductsMsg');
@@ -433,11 +340,10 @@ async function loadAndRenderProducts() {
     if (!productGrid) return;
     
     try {
-        const docRef = window.doc(window.db, 'settings', 'volantino');
-        const docSnap = await window.getDoc(docRef);
+        const doc = await db.collection('settings').doc('volantino').get();
         
-        if (docSnap.exists() && docSnap.data().products) {
-            const products = docSnap.data().products;
+        if (doc.exists && doc.data().products) {
+            const products = doc.data().products;
             if (products.length > 0) {
                 if (noProductsMsg) noProductsMsg.style.display = 'none';
                 renderProducts(products);
@@ -448,16 +354,13 @@ async function loadAndRenderProducts() {
         console.error('Errore caricamento da Firebase:', e);
     }
     
-    // Mostra messaggio "nessun prodotto" se non ci sono prodotti
     if (noProductsMsg) noProductsMsg.style.display = 'flex';
 }
 
-// Renderizza prodotti nel volantino - stesso layout dell'editor
 function renderProducts(products) {
     const productGrid = document.getElementById('productGrid');
     if (!productGrid) return;
     
-    // Rimuovi solo le card prodotto, mantieni il messaggio "no products"
     const existingCards = productGrid.querySelectorAll('.product-card');
     existingCards.forEach(card => card.remove());
     
@@ -486,18 +389,15 @@ function renderProducts(products) {
     });
 }
 
-// Carica prodotti all'avvio
+// Carica all'avvio
 loadAndRenderProducts();
 
-// Ascolta aggiornamenti in tempo reale da Firebase
-if (window.db) {
-    const docRef = window.doc(window.db, 'settings', 'volantino');
-    window.onSnapshot(docRef, (doc) => {
-        if (doc.exists() && doc.data().products) {
-            loadAndRenderProducts();
-        }
-    });
-}
+// Ascolta aggiornamenti in tempo reale
+db.collection('settings').doc('volantino').onSnapshot((doc) => {
+    if (doc.exists && doc.data().products) {
+        loadAndRenderProducts();
+    }
+});
 </script>
 
 </body>

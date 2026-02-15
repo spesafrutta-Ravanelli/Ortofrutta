@@ -8,34 +8,23 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 <title>Generatore Volantini A5 Multiprodotto</title>
+<!-- Firebase Compat SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
-<!-- Firebase SDK -->
-<script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-  import { getFirestore, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-  import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js';
-
-  const firebaseConfig = {
+<script>
+const firebaseConfig = {
     apiKey: "AIzaSyBqwe7FJxPT2d7ugVbgB1TmUcaIFGj8eQA",
     authDomain: "ortofrutta-ravanelli-carminati.firebaseapp.com",
     projectId: "ortofrutta-ravanelli-carminati",
     storageBucket: "ortofrutta-ravanelli-carminati.firebasestorage.app",
     messagingSenderId: "483333881088",
     appId: "1:483333881088:web:9911dda5da2b4072ed47e5"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const storage = getStorage(app);
-
-  window.db = db;
-  window.storage = storage;
-  window.doc = doc;
-  window.getDoc = getDoc;
-  window.setDoc = setDoc;
-  window.storageRef = storageRef;
-  window.uploadBytesResumable = uploadBytesResumable;
-  window.getDownloadURL = getDownloadURL;
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const storage = firebase.storage();
 </script>
 
 <style>
@@ -808,28 +797,27 @@ imageInput.addEventListener("change", async function () {
     }
     
     try {
-        // Disabilita bottone durante upload
-        addProductBtn.disabled = true;
         const originalText = addProductBtn.textContent;
-        addProductBtn.textContent = '⏳ Caricamento immagine...';
+        addProductBtn.disabled = true;
+        addProductBtn.textContent = '⏳ Caricamento...';
         
         const fileName = `volantino/${Date.now()}_${file.name}`;
-        const imageRef = window.storageRef(window.storage, fileName);
-        const uploadTask = window.uploadBytesResumable(imageRef, file);
+        const storageRef = storage.ref(fileName);
+        const uploadTask = storageRef.put(file);
         
         uploadTask.on('state_changed',
             (snapshot) => {
                 const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-                addProductBtn.textContent = `⏳ Caricamento... ${progress}%`;
+                addProductBtn.textContent = `⏳ ${progress}%`;
             },
             (error) => {
                 console.error('Upload error:', error);
-                alert('Errore caricamento immagine!');
+                alert('Errore caricamento!');
                 addProductBtn.disabled = false;
                 addProductBtn.textContent = originalText;
             },
             async () => {
-                const downloadURL = await window.getDownloadURL(uploadTask.snapshot.ref);
+                const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
                 uploadedImage = downloadURL;
                 addProductBtn.disabled = false;
                 addProductBtn.textContent = originalText;
@@ -838,9 +826,8 @@ imageInput.addEventListener("change", async function () {
         );
     } catch (error) {
         console.error('Error:', error);
-        alert('Errore caricamento!');
+        alert('Errore!');
         addProductBtn.disabled = false;
-        addProductBtn.textContent = originalText;
     }
 });
 
@@ -979,36 +966,33 @@ function loadVolantino(event) {
 // Aggiungi listener per il caricamento file
 document.getElementById('loadFileInput').addEventListener('change', loadVolantino);
 
-// Salva su Firebase invece di localStorage
+// Salva su Firebase
 async function syncToFirebase() {
     try {
-        const docRef = window.doc(window.db, 'settings', 'volantino');
-        await window.setDoc(docRef, {
+        await db.collection('settings').doc('volantino').set({
             products: products,
             updatedAt: new Date().toISOString()
         });
-        console.log('✅ Prodotti salvati su Firebase!');
+        console.log('✅ Salvato su Firebase!');
     } catch (e) {
-        console.error('Errore salvataggio Firebase:', e);
-        alert('Errore nel salvataggio su Firebase!');
+        console.error('Errore Firebase:', e);
+        alert('Errore salvataggio Firebase!');
     }
 }
 
-// Carica da Firebase invece di localStorage
+// Carica da Firebase
 async function loadFromFirebase() {
     try {
-        const docRef = window.doc(window.db, 'settings', 'volantino');
-        const docSnap = await window.getDoc(docRef);
-        
-        if (docSnap.exists() && docSnap.data().products) {
-            const loadedProducts = docSnap.data().products;
+        const doc = await db.collection('settings').doc('volantino').get();
+        if (doc.exists && doc.data().products) {
+            const loadedProducts = doc.data().products;
             if (loadedProducts && loadedProducts.length > 0) {
                 products = loadedProducts;
                 return true;
             }
         }
     } catch (e) {
-        console.error('Errore caricamento Firebase:', e);
+        console.error('Errore Firebase:', e);
     }
     return false;
 }

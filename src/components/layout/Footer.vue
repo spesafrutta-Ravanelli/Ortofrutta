@@ -80,28 +80,31 @@ const currentYear = computed(() => new Date().getFullYear())
 
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .footer-section {
+  min-width: 0;
+
   h3 {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     color: #4caf50;
   }
 
   h4 {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
     color: #4caf50;
   }
 
   p {
     color: #ccc;
-    margin-bottom: 1rem;
-    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    font-size: 0.9rem;
   }
 
   ul {
@@ -126,8 +129,10 @@ const currentYear = computed(() => new Date().getFullYear())
   }
 
   .contact-info li,
-  .opening-hours li {
-    line-height: 1.8;
+  .opening-hours li,
+  .payment-methods li {
+    line-height: 1.6;
+    margin-bottom: 0.35rem;
   }
 
   .contact-info a {
@@ -169,14 +174,14 @@ const currentYear = computed(() => new Date().getFullYear())
     li {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.6rem;
+      gap: 0.35rem;
       color: #ccc;
+      font-size: 0.9rem;
     }
   }
 
   .payment-emoji {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     line-height: 1;
   }
 }
@@ -213,10 +218,17 @@ const currentYear = computed(() => new Date().getFullYear())
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 }
 </style>
