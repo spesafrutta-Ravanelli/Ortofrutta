@@ -12,7 +12,28 @@ export default defineConfig({
   },
   server: {
     port: 3002,
-    open: true
+    open: true,
+    // Disabilita cache durante lo sviluppo
+    hmr: {
+      overlay: true
+    },
+    // Headers per disabilitare completamente la cache
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    },
+    // Forza il refresh dei moduli
+    fs: {
+      strict: false
+    }
+  },
+  // Disabilita cache dei moduli pre-bundlati durante lo sviluppo
+  optimizeDeps: {
+    include: ['vue', 'vue-router', 'pinia'],
+    exclude: [],
+    // Forza il re-bundling dei moduli
+    force: true
   },
   build: {
     outDir: 'dist',
@@ -28,10 +49,8 @@ export default defineConfig({
       }
     }
   },
-  optimizeDeps: {
-    include: ['vue', 'vue-router', 'pinia'],
-    exclude: []
-  },
   // Base path - cambia se usi GitHub Pages con nome repo
-  base: '/'
+  base: '/',
+  // Disabilita cache completamente durante lo sviluppo
+  clearScreen: true
 })

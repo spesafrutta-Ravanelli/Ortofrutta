@@ -88,6 +88,7 @@
           <table class="products-table">
             <thead>
               <tr>
+                <th v-if="isAdminMode && isEditMode">Immagine</th>
                 <th>Nome Prodotto</th>
                 <th>Provenienza</th>
                 <th>Prezzo (€)</th>
@@ -98,6 +99,40 @@
             </thead>
             <tbody>
               <tr v-for="(product, index) in filteredProducts" :key="product.id || index">
+                <!-- Immagine (solo in edit mode) -->
+                <td v-if="isAdminMode && isEditMode">
+                  <div class="image-cell">
+                    <img 
+                      :src="product.image || '/images/placeholder-product.jpg'" 
+                      :alt="product.name"
+                      class="product-image-preview"
+                      @error="handleImageError"
+                    />
+                    <div class="image-upload-options">
+                      <input 
+                        type="file"
+                        accept="image/*"
+                        @change="(e) => handleImageUpload(e, index)"
+                        class="file-input"
+                        :id="'file-' + index"
+                      />
+                      <label :for="'file-' + index" class="file-label">
+                        📁 Carica
+                      </label>
+                      <span class="separator">o</span>
+                      <input 
+                        v-model="product.image" 
+                        type="text"
+                        placeholder="URL immagine..."
+                        class="edit-input image-url-input"
+                      />
+                    </div>
+                    <div v-if="uploadProgress[index]" class="upload-progress">
+                      Caricamento: {{ uploadProgress[index] }}%
+                    </div>
+                  </div>
+                </td>
+
                 <!-- Nome -->
                 <td>
                   <input 
@@ -193,6 +228,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useAdmin } from '@/composables/useAdmin'
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 
 const admin = useAdmin()
 
@@ -204,6 +240,7 @@ const selectedCategory = ref('')
 const searchQuery = ref('')
 const editableProducts = ref([])
 const isLoading = ref(true)
+const uploadProgress = ref({})
 
 // Prodotti da Firebase DE-DUPLICATI e ORDINATI ALFABETICAMENTE
 const firebaseProducts = computed(() => {
@@ -281,7 +318,59 @@ const cancelEdit = () => {
   if (confirm('Annullare le modifiche? Le modifiche non salvate verranno perse.')) {
     isEditMode.value = false
     editableProducts.value = []
+    uploadProgress.value = {}
   }
+}
+
+const handleImageUpload = async (event, index) => {
+  const file = event.target.files[0]
+  if (!file) return
+  
+  // Valida tipo file
+  if (!file.type.startsWith('image/')) {
+    alert('Per favore seleziona un file immagine!')
+    return
+  }
+  
+  // Valida dimensione (max 5MB)
+  if (file.size > 5 * 1024 * 1024) {
+    alert('L\'immagine è troppo grande! Massimo 5MB.')
+    return
+  }
+  
+  try {
+    const storage = getStorage()
+    const fileName = `products/${Date.now()}_${file.name}`
+    const imageRef = storageRef(storage, fileName)
+    
+    const uploadTask = uploadBytesResumable(imageRef, file)
+    
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        // Progress
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        uploadProgress.value[index] = progress
+      },
+      (error) => {
+        console.error('Upload error:', error)
+        alert('Errore durante il caricamento dell\'immagine!')
+        delete uploadProgress.value[index]
+      },
+      async () => {
+        // Complete
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+        editableProducts.value[index].image = downloadURL
+        delete uploadProgress.value[index]
+      }
+    )
+  } catch (error) {
+    console.error('Error uploading image:', error)
+    alert('Errore durante il caricamento!')
+  }
+}
+
+const handleImageError = (event) => {
+  event.target.src = '/images/placeholder-product.jpg'
 }
 
 const saveChanges = async () => {
@@ -720,6 +809,64 @@ onMounted(async () => {
   padding: 2rem 0;
 }
 
+.image-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  min-width: 200px;
+}
+
+.product-image-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+}
+
+.image-upload-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-label {
+  background: #4caf50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.file-label:hover {
+  background: #45a049;
+}
+
+.separator {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.image-url-input {
+  font-size: 0.85rem;
+  padding: 0.4rem;
+}
+
+.upload-progress {
+  font-size: 0.85rem;
+  color: #4caf50;
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   .page-hero h1 {
     font-size: 2rem;
@@ -749,7 +896,7 @@ onMounted(async () => {
   }
 
   .products-table {
-    min-width: 800px;
+    min-width: 1000px;
   }
 
   .products-info {

@@ -5,12 +5,14 @@
   "type": "module",
   "description": "Sito web per rivendita ortofrutticola - Vue 3 + Vite + Pinia",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --force",
+    "dev:clean": "npm run clean:cache && vite --force",
     "build": "vite build && node copy-volantino.js",
     "build:simple": "vite build --config vite.config.simple.js && node copy-volantino.js",
     "build:vercel": "vite build && node copy-volantino.js",
     "preview": "vite preview",
     "clean": "rm -rf node_modules dist node_modules/.vite",
+    "clean:cache": "powershell -ExecutionPolicy Bypass -File clean-cache.ps1",
     "fix": "powershell -ExecutionPolicy Bypass -File fix-build.ps1"
   },
   "dependencies": {
