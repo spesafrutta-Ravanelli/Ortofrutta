@@ -43,6 +43,14 @@
             <li>7:00 - 12:10</li>
           </ul>
         </div>
+
+        <div class="footer-section">
+          <h4>Metodo di Pagamento</h4>
+          <ul class="payment-methods">
+            <li><span class="payment-emoji" aria-hidden="true">💵</span> Contanti</li>
+            <li><span class="payment-emoji" aria-hidden="true">💳</span> Bancomat</li>
+          </ul>
+        </div>
       </div>
 
       
@@ -151,6 +159,25 @@ const currentYear = computed(() => new Date().getFullYear())
     height: 20px;
     color: #25D366;
     transition: color 0.3s ease;
+  }
+
+  .payment-methods {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+      color: #ccc;
+    }
+  }
+
+  .payment-emoji {
+    font-size: 1.25rem;
+    line-height: 1;
   }
 }
 
