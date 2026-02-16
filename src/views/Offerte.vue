@@ -7,19 +7,11 @@
         <p class="subtitle">Scopri le promozioni della settimana</p>
       </div>
 
-      <!-- Indicatore Admin Mode (visibile solo se attivo) -->
-      <div v-if="isAdminMode" class="admin-indicator">
-        👨‍💼 Modalità Admin Attiva
-        <button @click="disableAdminMode" class="btn-disable-admin">
-          Disattiva
-        </button>
-      </div>
-
       <!-- Volantino Embedded -->
       <div class="volantino-container">
         <div class="volantino-wrapper">
           <iframe 
-            :src="iframeSrc" 
+            src="/src/stores/volantino.html" 
             class="volantino-iframe"
             title="Volantino Offerte"
             frameborder="0"
@@ -89,23 +81,72 @@
 </template>
 
 <script setup>
-import { computed, watch } from 'vue'
-import { useAdmin } from '@/composables/useAdmin'
+import { ref, onMounted, onUnmounted } from 'vue'
 
-const admin = useAdmin()
-const { isAdminMode, disableAdminMode } = admin
+const isAdminMode = ref(false)
 
-// Cambia iframe source in base a modalità admin
-const iframeSrc = computed(() => {
-  return isAdminMode.value 
-    ? '/src/stores/volantino-editor.html'
-    : '/src/stores/volantino.html'
+// Stato per combinazione tasti Ctrl+Shift+A
+const keysPressed = ref({
+  ctrl: false,
+  shift: false,
+  a: false
 })
 
-// Log per debug
-watch(isAdminMode, (newVal) => {
-  console.log('Admin mode changed:', newVal)
-  console.log('Iframe src:', iframeSrc.value)
+// Gestione combinazione tasti Ctrl+Shift+A per modalità admin
+const handleKeyDown = (event) => {
+  if (event.ctrlKey) keysPressed.value.ctrl = true
+  if (event.shiftKey) keysPressed.value.shift = true
+  if (event.key.toLowerCase() === 'a') keysPressed.value.a = true
+
+  // Controlla se tutti i tasti sono premuti
+  if (keysPressed.value.ctrl && keysPressed.value.shift && keysPressed.value.a) {
+    event.preventDefault() // Previeni il comportamento default
+    toggleAdminMode()
+    resetKeys()
+  }
+}
+
+const handleKeyUp = (event) => {
+  if (event.key === 'Control') keysPressed.value.ctrl = false
+  if (event.key === 'Shift') keysPressed.value.shift = false
+  if (event.key.toLowerCase() === 'a') keysPressed.value.a = false
+}
+
+const resetKeys = () => {
+  keysPressed.value = {
+    ctrl: false,
+    shift: false,
+    a: false
+  }
+}
+
+const toggleAdminMode = () => {
+  isAdminMode.value = !isAdminMode.value
+  
+  // Cambia l'iframe source in base alla modalità
+  const iframe = document.querySelector('.volantino-iframe')
+  if (iframe) {
+    if (isAdminMode.value) {
+      iframe.src = '/src/stores/volantino-editor.html'
+    } else {
+      iframe.src = '/src/stores/volantino.html'
+    }
+  }
+}
+
+onMounted(() => {
+  // Scroll to top quando la pagina viene caricata
+  window.scrollTo(0, 0)
+  
+  // Aggiungi listener per combinazione tasti
+  window.addEventListener('keydown', handleKeyDown)
+  window.addEventListener('keyup', handleKeyUp)
+})
+
+// Rimuovi listener quando il componente viene distrutto
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeyDown)
+  window.removeEventListener('keyup', handleKeyUp)
 })
 </script>
 
@@ -142,38 +183,6 @@ watch(isAdminMode, (newVal) => {
   }
 }
 
-/* Admin Indicator */
-.admin-indicator {
-  position: fixed;
-  top: 90px;
-  right: 20px;
-  background: #10b981;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  z-index: 999;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.btn-disable-admin {
-  background: white;
-  color: #10b981;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-
-  &:hover {
-    background: #f0f0f0;
-  }
-}
 
 /* Volantino Container */
 .volantino-container {
@@ -306,7 +315,7 @@ watch(isAdminMode, (newVal) => {
   }
 }
 
-/* RESPONSIVE - MOBILE */
+/* Responsive */
 @media (max-width: 1200px) {
   .cta-section {
     grid-template-columns: 1fr;
@@ -318,88 +327,17 @@ watch(isAdminMode, (newVal) => {
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 0 1rem;
+  .page-header h1 {
+    font-size: 2rem;
   }
 
-  .page-header {
-    padding: 1rem 0;
-    margin-bottom: 2rem;
-
-    h1 {
-      font-size: 2rem;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-    }
-  }
-
-  /* Admin indicator responsive */
-  .admin-indicator {
-    top: 70px;
-    right: 10px;
-    left: 10px;
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .btn-disable-admin {
-    width: 100%;
-  }
-
-  /* Volantino responsive */
   .volantino-wrapper {
     height: 600px;
     max-width: 100%;
   }
 
-  /* CTA cards stack */
-  .cta-section {
-    gap: 1.5rem;
-  }
-
-  .cta-card {
-    padding: 1.5rem;
-
-    h2 {
-      font-size: 1.3rem;
-    }
-
-    p {
-      font-size: 0.95rem;
-    }
-  }
-
-  /* Info grid single column */
   .info-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .info-item {
-    padding: 1.5rem;
-  }
-}
-
-/* RESPONSIVE - SMALL MOBILE */
-@media (max-width: 480px) {
-  .page-header h1 {
-    font-size: 1.5rem;
-  }
-
-  .volantino-wrapper {
-    height: 500px;
-  }
-
-  .cta-card {
-    padding: 1rem;
-
-    h2 {
-      font-size: 1.2rem;
-    }
   }
 }
 
