@@ -482,12 +482,11 @@ textarea {
 
     /* Volantino: scala per adattarsi allo schermo */
     .flyer-preview {
-        width: 100%;
-        max-width: 148mm;
-        height: auto;
-        min-height: 210mm;
-        /* Scala proporzionalmente se troppo largo */
+        width: 148mm;
+        height: 210mm;
         transform-origin: top center;
+        transform: scale(0.55);
+        margin-bottom: -95mm; /* compensa lo spazio lasciato dallo scale */
     }
 
     /* Bottoni modifica/elimina sempre visibili su touch */
