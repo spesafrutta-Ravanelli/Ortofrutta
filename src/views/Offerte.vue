@@ -1,17 +1,17 @@
 <template>
   <div class="offerte-page">
     <div class="container">
-      <!-- Page Header -->
-      <div class="page-header">
+      <!-- Page Hero -->
+      <div class="page-hero">
         <h1>🎉 Le Nostre Offerte</h1>
-        <p class="subtitle">Scopri le promozioni della settimana</p>
+        <p>Scopri le promozioni della settimana</p>
       </div>
 
       <!-- Volantino Embedded -->
       <div class="volantino-container">
         <div class="volantino-wrapper">
           <iframe 
-            src="/src/stores/volantino.html" 
+            :src="iframeSrc"
             class="volantino-iframe"
             title="Volantino Offerte"
             frameborder="0"
@@ -81,72 +81,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+// ✅ CORREZIONE PRINCIPALE: usa il composable condiviso invece di una ref locale
+// In questo modo quando il navbar attiva l'admin mode (triple-tap sulla mela),
+// questo componente reagisce allo STESSO stato condiviso.
+import { computed, watch, onMounted } from 'vue'
+import { useAdmin } from '@/composables/useAdmin'
 
-const isAdminMode = ref(false)
+const { isAdminMode } = useAdmin()
 
-// Stato per combinazione tasti Ctrl+Shift+A
-const keysPressed = ref({
-  ctrl: false,
-  shift: false,
-  a: false
+// Src dell'iframe calcolato in base allo stato admin condiviso
+const iframeSrc = computed(() => {
+  return isAdminMode.value
+    ? '/src/stores/volantino-editor.html'
+    : '/src/stores/volantino.html'
 })
-
-// Gestione combinazione tasti Ctrl+Shift+A per modalità admin
-const handleKeyDown = (event) => {
-  if (event.ctrlKey) keysPressed.value.ctrl = true
-  if (event.shiftKey) keysPressed.value.shift = true
-  if (event.key.toLowerCase() === 'a') keysPressed.value.a = true
-
-  // Controlla se tutti i tasti sono premuti
-  if (keysPressed.value.ctrl && keysPressed.value.shift && keysPressed.value.a) {
-    event.preventDefault() // Previeni il comportamento default
-    toggleAdminMode()
-    resetKeys()
-  }
-}
-
-const handleKeyUp = (event) => {
-  if (event.key === 'Control') keysPressed.value.ctrl = false
-  if (event.key === 'Shift') keysPressed.value.shift = false
-  if (event.key.toLowerCase() === 'a') keysPressed.value.a = false
-}
-
-const resetKeys = () => {
-  keysPressed.value = {
-    ctrl: false,
-    shift: false,
-    a: false
-  }
-}
-
-const toggleAdminMode = () => {
-  isAdminMode.value = !isAdminMode.value
-  
-  // Cambia l'iframe source in base alla modalità
-  const iframe = document.querySelector('.volantino-iframe')
-  if (iframe) {
-    if (isAdminMode.value) {
-      iframe.src = '/src/stores/volantino-editor.html'
-    } else {
-      iframe.src = '/src/stores/volantino.html'
-    }
-  }
-}
 
 onMounted(() => {
-  // Scroll to top quando la pagina viene caricata
   window.scrollTo(0, 0)
-  
-  // Aggiungi listener per combinazione tasti
-  window.addEventListener('keydown', handleKeyDown)
-  window.addEventListener('keyup', handleKeyUp)
-})
-
-// Rimuovi listener quando il componente viene distrutto
-onUnmounted(() => {
-  window.removeEventListener('keydown', handleKeyDown)
-  window.removeEventListener('keyup', handleKeyUp)
 })
 </script>
 
@@ -163,26 +114,25 @@ onUnmounted(() => {
   padding: 0 2rem;
 }
 
-/* Page Header */
-.page-header {
+/* Page Hero — stesso stile di Categories.vue */
+.page-hero {
+  background: linear-gradient(135deg, #2c5f2d 0%, #4caf50 100%);
+  color: white;
+  padding: 3rem 0;
   text-align: center;
   margin-bottom: 3rem;
-  padding: 2rem 0;
 
   h1 {
     font-size: 3rem;
-    color: #2c3e50;
     margin-bottom: 1rem;
-    font-weight: 800;
+    font-weight: 700;
   }
 
-  .subtitle {
-    font-size: 1.3rem;
-    color: #666;
-    margin-bottom: 1rem;
+  p {
+    font-size: 1.2rem;
+    opacity: 0.95;
   }
 }
-
 
 /* Volantino Container */
 .volantino-container {
@@ -198,6 +148,7 @@ onUnmounted(() => {
   overflow: hidden;
   width: 100%;
   max-width: 600px;
+  /* Altezza dinamica invece di fissa */
   height: 850px;
 }
 
@@ -315,7 +266,11 @@ onUnmounted(() => {
   }
 }
 
-/* Responsive */
+/* ===================== */
+/* RESPONSIVE COMPLETO   */
+/* ===================== */
+
+/* Tablet grande */
 @media (max-width: 1200px) {
   .cta-section {
     grid-template-columns: 1fr;
@@ -326,8 +281,13 @@ onUnmounted(() => {
   }
 }
 
+/* Tablet piccolo */
 @media (max-width: 768px) {
-  .page-header h1 {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .page-hero h1 {
     font-size: 2rem;
   }
 
@@ -338,6 +298,85 @@ onUnmounted(() => {
 
   .info-grid {
     grid-template-columns: 1fr;
+  }
+
+  .cta-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Smartphone */
+@media (max-width: 480px) {
+  .offerte-page {
+    padding: 1rem 0;
+  }
+
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .page-hero {
+    padding: 2rem 1rem;
+
+    h1 {
+      font-size: 1.6rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  /* Iframe volantino: occupa tutta la larghezza
+     con altezza proporzionale su mobile */
+  .volantino-wrapper {
+    /* Usa aspect-ratio invece di altezza fissa */
+    height: auto;
+    aspect-ratio: 1 / 1.41; /* Proporzione A4 */
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .volantino-iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  .cta-section {
+    gap: 1rem;
+  }
+
+  .cta-card {
+    padding: 1.25rem;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+
+  .btn-cta {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .info-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .info-grid {
+    gap: 1rem;
+  }
+
+  .info-item {
+    padding: 1.25rem;
+
+    .info-icon {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
   }
 }
 

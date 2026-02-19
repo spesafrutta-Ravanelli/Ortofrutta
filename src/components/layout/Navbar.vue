@@ -1,17 +1,21 @@
 <template>
   <nav class="navbar">
     <div class="container">
-      <RouterLink 
-        to="/" 
+      <!-- ✅ RouterLink rimosso: gestiamo noi la navigazione manualmente
+           per evitare che il 1° tap navighi subito a "/" -->
+      <div 
         class="logo"
         @click="handleLogoClick"
+        role="link"
+        tabindex="0"
+        @keydown.enter="handleLogoClick"
       >
         <span class="logo-icon">🍎</span>
         <span class="logo-text">
           Ortofrutticola<br />
           Ravanelli & Carminati
         </span>
-      </RouterLink>
+      </div>
 
       <button 
         class="mobile-toggle" 
@@ -51,43 +55,67 @@
         </li>
       </ul>
     </div>
+
+    <!-- Indicatore visivo admin mode (opzionale ma utile) -->
+    <div v-if="admin.isAdminMode.value" class="admin-badge">
+      🔐 Admin Mode
+    </div>
   </nav>
 </template>
 
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useAdmin } from '@/composables/useAdmin'
 
 const route = useRoute()
+const router = useRouter()
 const mobileMenuOpen = ref(false)
 const admin = useAdmin()
 
-// Triple-tap per admin mode
+// =========================================================
+// TRIPLE-TAP LOGO — LOGICA CORRETTA
+// =========================================================
+// Problema precedente: RouterLink navigava a "/" già al 1° tap,
+// quindi al 3° tap l'utente era già tornato alla homepage.
+//
+// Soluzione: il logo è ora un <div> normale. Gestiamo noi
+// la navigazione:
+//  - 1 tap solo → dopo 500ms navighiamo a "/"
+//  - 3 tap rapidi → attiviamo admin mode (senza navigare)
+// =========================================================
+
 const clickCount = ref(0)
 let clickTimer = null
 
-const handleLogoClick = (e) => {
+const handleLogoClick = () => {
   clickCount.value++
-  
+
+  // Al primo tap avviamo il timer di "attesa"
   if (clickCount.value === 1) {
     clickTimer = setTimeout(() => {
+      // Scaduto il tempo senza 3 tap → è un tap singolo → naviga a home
+      if (clickCount.value < 3) {
+        router.push('/')
+      }
       clickCount.value = 0
-    }, 500) // Reset dopo 500ms
+    }, 500)
   }
-  
+
+  // Al 3° tap attiviamo l'admin mode senza navigare
   if (clickCount.value === 3) {
-    e.preventDefault()
     clearTimeout(clickTimer)
     clickCount.value = 0
     admin.toggleAdminMode()
+    console.log('🍎 Triple-tap: Admin mode', admin.isAdminMode.value ? 'ATTIVATO' : 'DISATTIVATO')
   }
 }
+
+// =========================================================
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
   
-  // Previeni lo scroll quando il menu è aperto su mobile
   if (mobileMenuOpen.value) {
     document.body.style.overflow = 'hidden'
   } else {
@@ -105,7 +133,7 @@ watch(() => route.path, () => {
   closeMobileMenu()
 })
 
-// Gestione eventi tastiera (ESC per chiudere)
+// ESC per chiudere il menu
 const handleKeyDown = (e) => {
   if (e.key === 'Escape' && mobileMenuOpen.value) {
     closeMobileMenu()
@@ -130,7 +158,9 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener('keydown', handleKeyDown)
   document.removeEventListener('click', handleClickOutside)
-  document.body.style.overflow = '' // Ripristina lo scroll
+  document.body.style.overflow = ''
+  // Pulisci il timer se il componente viene smontato
+  if (clickTimer) clearTimeout(clickTimer)
 })
 </script>
 
@@ -156,6 +186,7 @@ onUnmounted(() => {
   min-height: 60px;
 }
 
+/* Logo ora è un div, manteniamo lo stesso stile + cursor pointer */
 .logo {
   display: flex;
   align-items: center;
@@ -165,6 +196,9 @@ onUnmounted(() => {
   font-weight: 700;
   color: #2c5f2d;
   transition: transform 0.3s ease;
+  cursor: pointer;        /* ← importante: mostra la manina */
+  user-select: none;      /* ← evita selezione testo durante i tap rapidi */
+  -webkit-tap-highlight-color: transparent; /* ← rimuove il flash blu su mobile */
 
   &:hover {
     transform: scale(1.02);
@@ -184,6 +218,23 @@ onUnmounted(() => {
     flex-direction: column;
     justify-content: center;
   }
+}
+
+/* Badge admin mode */
+.admin-badge {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e53935;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.75rem;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px rgba(229, 57, 53, 0.4);
+  white-space: nowrap;
+  z-index: 999;
 }
 
 .mobile-toggle {
@@ -371,7 +422,7 @@ onUnmounted(() => {
 
   .mobile-toggle {
     display: flex;
-    min-width: 44px; // Touch target minimo
+    min-width: 44px;
     min-height: 44px;
   }
 
@@ -402,7 +453,7 @@ onUnmounted(() => {
       font-size: 1.1rem;
       display: block;
       padding: 0.875rem 1rem;
-      min-height: 44px; // Touch target minimo
+      min-height: 44px;
       border-radius: 8px;
       transition: background 0.3s ease;
 

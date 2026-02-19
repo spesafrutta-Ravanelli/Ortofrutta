@@ -399,6 +399,8 @@ textarea {
     font-weight: bold;
 }
 
+
+
 /* TAB */
 .tab-container {
     display: flex;
@@ -420,6 +422,105 @@ textarea {
 .tab-btn.active {
     background: var(--primary-color);
     color: white;
+}
+
+/* ======== BOTTONI AZIONE ======== */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px auto 40px auto;
+    max-width: 600px;
+}
+
+/* ======== RESPONSIVE MOBILE ======== */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    /* Tab a tutta larghezza */
+    .tab-container {
+        gap: 8px;
+    }
+
+    .tab-btn {
+        flex: 1;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    /* Form più compatto */
+    .editor-section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    input, textarea {
+        font-size: 16px; /* evita zoom automatico su iOS */
+        padding: 10px;
+    }
+
+    /* Bottoni azione impilati su mobile */
+    .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+        margin: 15px auto 25px auto;
+    }
+
+    .btn-print {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    /* Volantino: scala per adattarsi allo schermo */
+    .flyer-preview {
+        width: 100%;
+        max-width: 148mm;
+        height: auto;
+        min-height: 210mm;
+        /* Scala proporzionalmente se troppo largo */
+        transform-origin: top center;
+    }
+
+    /* Bottoni modifica/elimina sempre visibili su touch */
+    .card-actions {
+        opacity: 1 !important;
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        margin-top: 4px;
+        flex-direction: column;
+    }
+
+    .card-actions button {
+        padding: 6px;
+        font-size: 10pt;
+        min-height: 32px; /* touch target */
+    }
+
+    .product-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .product-card .image-container {
+        width: 100%;
+        height: 80px;
+    }
+
+    .product-card .card-content {
+        width: 100%;
+        padding: 4px;
+    }
 }
 
 /* ======== STILI STAMPA ======== */
@@ -618,7 +719,7 @@ textarea {
 </div>
 </div>
 
-<div style="display: flex; gap: 15px; justify-content: center; margin: 20px auto 40px auto; max-width: 600px;">
+<div class="action-buttons">
     <button class="btn-print" onclick="window.print()" style="flex: 1;">🖨️ Stampa</button>
     <button class="btn-print" onclick="saveVolantino()" style="flex: 1; background: var(--primary-color);">💾 Salva Volantino</button>
     <button class="btn-print" onclick="document.getElementById('loadFileInput').click()" style="flex: 1; background: var(--secondary-color);">📂 Carica Volantino</button>
