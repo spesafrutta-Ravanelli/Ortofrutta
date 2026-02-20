@@ -97,29 +97,23 @@
                 class="product-card"
                 :class="{ 'unavailable': !prodotto.available }"
               >
-                <div class="product-image-wrapper">
+                <div class="product-image-wrapper" :class="{ 'edit-mode-active': isAdminMode && isEditMode }">
                   <img 
+                    v-if="!isAdminMode || !isEditMode"
                     :src="prodotto.image || '/images/placeholder-product.jpg'" 
                     :alt="prodotto.name"
                     @error="handleImageError"
                   />
-                  <div class="product-overlay">
+                  <div class="product-overlay" :class="{ 'edit-mode-overlay': isAdminMode && isEditMode }">
                     <!-- Modalità Visualizzazione -->
                     <template v-if="!isAdminMode || !isEditMode">
                       <h3>{{ prodotto.name }}</h3>
                       <p class="description" v-if="prodotto.description">
                         {{ prodotto.description }}
                       </p>
-                      <p class="origin">Provenienza: {{ prodotto.origin }}</p>
-                      <div class="price-tag">
-                        €{{ prodotto.price }}/{{ prodotto.unit }}
+                      <div class="price-tag" v-if="getPriceFromFirebase(prodotto.name)">
+                        {{ getPriceFromFirebase(prodotto.name) }}
                       </div>
-                      <span 
-                        class="availability-badge" 
-                        :class="{ 'available': prodotto.available }"
-                      >
-                        {{ prodotto.available ? '✓ Disponibile' : '✗ Non disponibile' }}
-                      </span>
                     </template>
 
                   <!-- Modalità Admin Edit -->
@@ -131,40 +125,32 @@
                         class="edit-input"
                         placeholder="Nome prodotto"
                       />
-                      <input 
-                        v-model="prodotto.origin" 
-                        type="text"
-                        class="edit-input"
-                        placeholder="Provenienza"
-                      />
-                      <div class="price-edit-group">
-                        <input 
-                          v-model.number="prodotto.price" 
-                          type="number"
-                          step="0.10"
-                          class="edit-input price-input"
-                          placeholder="0.00"
-                        />
-                        <select v-model="prodotto.unit" class="edit-select">
-                          <option value="kg">kg</option>
-                          <option value="pz">pz</option>
-                          <option value="conf">conf</option>
-                        </select>
-                      </div>
                       <textarea 
                         v-model="prodotto.description" 
                         class="edit-textarea"
                         placeholder="Descrizione prodotto"
                         rows="3"
                       ></textarea>
-                      <label class="checkbox-label">
-                        <input 
-                          type="checkbox" 
-                          v-model="prodotto.available"
-                          class="checkbox-input"
+
+                      <!-- Upload Immagine -->
+                      <div class="image-upload-wrapper">
+                        <img 
+                          v-if="prodotto.image && !prodotto.image.includes('placeholder')"
+                          :src="prodotto.image"
+                          class="image-preview-thumb"
+                          alt="Anteprima"
                         />
-                        <span>{{ prodotto.available ? '✓ Disponibile' : '✗ Non disponibile' }}</span>
-                      </label>
+                        <label class="image-upload-btn">
+                          📷 {{ prodotto.image && !prodotto.image.includes('placeholder') ? 'Cambia foto' : 'Aggiungi foto' }}
+                          <input 
+                            type="file"
+                            accept="image/*"
+                            style="display:none"
+                            @change="(e) => handleImageUpload(e, prodotto)"
+                          />
+                        </label>
+                      </div>
+
                       <button 
                         @click="removeProduct(prodotto.id, sottocategoria.id)" 
                         class="btn-delete"
@@ -202,7 +188,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductsStore } from '@/stores/productsStore'
 import { useAdmin } from '@/composables/useAdmin'
@@ -212,6 +198,15 @@ const store = useProductsStore()
 const admin = useAdmin()
 
 const isAdminMode = computed(() => admin.isAdminMode.value)
+
+// Prende il prezzo aggiornato da Firebase per nome prodotto
+const getPriceFromFirebase = (prodottoName) => {
+  const found = admin.products.value?.find(
+    p => p.name?.toLowerCase().trim() === prodottoName?.toLowerCase().trim()
+  )
+  if (found && found.price) return `€${parseFloat(found.price).toFixed(2)}/${found.unit || 'kg'}`
+  return null
+}
 const isEditMode = ref(false)
 const showSuccessMessage = ref(false)
 const editableSubcategories = ref([])
@@ -312,9 +307,45 @@ const removeProduct = (productId, subcategoryId) => {
   }
 }
 
+const handleImageUpload = (event, prodotto) => {
+  const file = event.target.files[0]
+  if (!file) return
+
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    const img = new Image()
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
+      const maxSize = 600
+      let width = img.width
+      let height = img.height
+
+      if (width > height) {
+        if (width > maxSize) { height = height * (maxSize / width); width = maxSize }
+      } else {
+        if (height > maxSize) { width = width * (maxSize / height); height = maxSize }
+      }
+
+      canvas.width = width
+      canvas.height = height
+      ctx.drawImage(img, 0, 0, width, height)
+      prodotto.image = canvas.toDataURL('image/jpeg', 0.7)
+    }
+    img.src = e.target.result
+  }
+  reader.readAsDataURL(file)
+}
+
 const handleImageError = (e) => {
   e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300"%3E%3Crect fill="%23f0f0f0" width="300" height="300"/%3E%3Ctext fill="%234caf50" font-family="Arial" font-size="60" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3E🍎%3C/text%3E%3C/svg%3E'
 }
+
+onMounted(async () => {
+  if (!admin.products.value || admin.products.value.length === 0) {
+    await admin.loadProducts()
+  }
+})
 </script>
 
 <style scoped lang="scss">
@@ -480,6 +511,20 @@ const handleImageError = (e) => {
   &:hover img {
     transform: scale(1.1);
   }
+
+  &.edit-mode-active {
+    padding-top: 0;
+    height: auto;
+    background: #2c5f2d;
+  }
+}
+
+.edit-mode-overlay {
+  position: static !important;
+  opacity: 1 !important;
+  background: transparent !important;
+  padding: 1rem !important;
+  overflow: visible !important;
 }
 
 .product-overlay {
@@ -797,6 +842,42 @@ const handleImageError = (e) => {
 
     span {
       font-size: 1rem;
+    }
+  }
+
+  .image-upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+
+    .image-preview-thumb {
+      width: 100%;
+      max-height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .image-upload-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.75rem;
+      background: rgba(255,255,255,0.2);
+      border: 2px dashed rgba(255,255,255,0.7);
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      min-height: 44px;
+
+      &:hover {
+        background: rgba(255,255,255,0.3);
+      }
     }
   }
 

@@ -1,4 +1,4 @@
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed } from 'vue'
 import { db } from '@/firebase.config'
 import { 
   collection, 
@@ -11,6 +11,16 @@ import {
 const isAdminMode = ref(false)
 const products = ref([])
 
+// Listener tastiera a livello di modulo — registrato una volta sola
+const handleKeyPress = (event) => {
+  if (event.ctrlKey && event.shiftKey && (event.key === 'A' || event.key === 'a')) {
+    event.preventDefault()
+    isAdminMode.value = !isAdminMode.value
+    console.log(isAdminMode.value ? '✅ Modalità Admin ATTIVATA' : '❌ Modalità Admin DISATTIVATA')
+  }
+}
+window.addEventListener('keydown', handleKeyPress)
+
 export function useAdmin() {
   
   // Toggle modalità admin
@@ -22,25 +32,6 @@ export function useAdmin() {
       console.log('❌ Modalità Admin DISATTIVATA')
     }
   }
-  
-  // Listener per la scorciatoia Ctrl+Shift+A
-  const handleKeyPress = (event) => {
-    if (event.ctrlKey && event.shiftKey && event.key === 'A') {
-      event.preventDefault()
-      toggleAdminMode()
-    }
-  }
-  
-  // Setup listener tastiera
-  onMounted(() => {
-    window.addEventListener('keydown', handleKeyPress)
-    console.log('🔑 Scorciatoia Admin attivata: Ctrl+Shift+A')
-  })
-  
-  // Cleanup listener
-  onUnmounted(() => {
-    window.removeEventListener('keydown', handleKeyPress)
-  })
   
   // Carica prodotti da Firebase
   const loadProducts = async () => {

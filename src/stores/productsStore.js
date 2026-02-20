@@ -2794,7 +2794,7 @@ export const useProductsStore = defineStore('products', () => {
       products: [
         { 
           id: 135, 
-          name: 'Noci', 
+          name: 'Noci Naturali', 
           origin: 'Italia', 
           price: '1.90', 
           unit: 'kg', 
