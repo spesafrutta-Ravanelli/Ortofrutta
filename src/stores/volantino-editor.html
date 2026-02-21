@@ -676,6 +676,25 @@ textarea {
     </button>
 </div>
 
+<!-- SEZIONE DATE -->
+<div class="editor-section" style="margin-bottom: 20px;">
+    <h3 style="color: var(--primary-color); margin-bottom: 15px;">📅 Periodo Offerte</h3>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+        <div class="form-group" style="flex: 1; min-width: 150px;">
+            <label>Data inizio</label>
+            <input type="date" id="dataInizio" />
+        </div>
+        <div class="form-group" style="flex: 1; min-width: 150px;">
+            <label>Data fine</label>
+            <input type="date" id="dataFine" />
+        </div>
+    </div>
+    <button id="saveDateBtn" style="background: var(--primary-color); color: #fff; padding: 10px 20px; border-radius: 6px; border:none; font-size:15px; cursor: pointer; margin-top: 10px;">
+        💾 Salva Date
+    </button>
+    <span id="dateSavedMsg" style="display:none; color: var(--primary-color); margin-left: 10px; font-weight: bold;">✅ Date salvate!</span>
+</div>
+
 <!-- SEZIONE FRONTE -->
 <div id="fronteSection">
 
@@ -687,7 +706,44 @@ textarea {
 
     <div class="form-group">
         <label>Immagine Prodotto</label>
-        <input type="file" id="imageInput" accept="image/*" />
+        <!-- Input file nascosto -->
+        <input type="file" id="imageInput" accept="image/*" capture="environment" style="display:none;" />
+        <!-- Bottone visibile che lo attiva -->
+        <div id="imageUploadBtn" onclick="document.getElementById('imageInput').click()" style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 2px dashed #4caf50;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            background: #f9fff9;
+            transition: background 0.2s;
+            min-height: 100px;
+        ">
+            <span style="font-size: 2rem;">📷</span>
+            <span id="imageUploadLabel" style="color: #4caf50; font-weight: bold; font-size: 15px;">
+                Tocca per aggiungere foto
+            </span>
+            <span style="color: #999; font-size: 12px;">Galleria o Fotocamera</span>
+        </div>
+        <!-- Anteprima immagine selezionata -->
+        <div id="imagePreview" style="display:none; margin-top: 10px; text-align: center;">
+            <img id="previewImg" style="max-width: 100%; max-height: 150px; border-radius: 8px; object-fit: cover;" />
+            <button onclick="clearImage()" style="
+                display: block;
+                margin: 8px auto 0;
+                background: #f44336;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 6px 16px;
+                cursor: pointer;
+                font-size: 13px;
+            ">🗑️ Rimuovi foto</button>
+        </div>
     </div>
 
     <div class="form-group">
@@ -926,11 +982,18 @@ imageInput.addEventListener("change", function () {
             canvas.height = height;
             ctx.drawImage(img, 0, 0, width, height);
             
-            // Converti in Base64 con compressione
-            // Qualità 0.7 = buon compromesso dimensione/qualità
             uploadedImage = canvas.toDataURL('image/jpeg', 0.7);
             
-            // Verifica dimensione finale
+            // Mostra anteprima
+            const previewImg = document.getElementById('previewImg');
+            const imagePreview = document.getElementById('imagePreview');
+            const imageUploadLabel = document.getElementById('imageUploadLabel');
+            if (previewImg && imagePreview) {
+                previewImg.src = uploadedImage;
+                imagePreview.style.display = 'block';
+                imageUploadLabel.textContent = '✅ Foto caricata';
+            }
+            
             const sizeKB = Math.round((uploadedImage.length * 3) / 4 / 1024);
             
             addProductBtn.disabled = false;
@@ -938,8 +1001,6 @@ imageInput.addEventListener("change", function () {
             
             if (sizeKB > 200) {
                 alert(`⚠️ Immagine ottimizzata (${sizeKB}KB). Se troppo grande, usa immagine più piccola.`);
-            } else {
-                alert(`✅ Immagine caricata! (${sizeKB}KB)`);
             }
         };
         img.src = e.target.result;
@@ -951,6 +1012,13 @@ imageInput.addEventListener("change", function () {
     };
     reader.readAsDataURL(file);
 });
+
+function clearImage() {
+    uploadedImage = null;
+    document.getElementById('imageInput').value = '';
+    document.getElementById('imagePreview').style.display = 'none';
+    document.getElementById('imageUploadLabel').textContent = 'Tocca per aggiungere foto';
+}
 
 addProductBtn.addEventListener("click", () => {
     const title = titleInput.value.trim();
@@ -973,6 +1041,8 @@ function resetForm() {
     price2Input.value = "";
     imageInput.value = "";
     uploadedImage = null;
+    document.getElementById('imagePreview').style.display = 'none';
+    document.getElementById('imageUploadLabel').textContent = 'Tocca per aggiungere foto';
 }
 
 function renderProducts() {
@@ -1105,18 +1175,42 @@ async function syncToFirebase() {
 async function loadFromFirebase() {
     try {
         const doc = await db.collection('settings').doc('volantino').get();
-        if (doc.exists && doc.data().products) {
-            const loadedProducts = doc.data().products;
-            if (loadedProducts && loadedProducts.length > 0) {
-                products = loadedProducts;
-                return true;
+        if (doc.exists) {
+            const data = doc.data();
+            if (data.products && data.products.length > 0) {
+                products = data.products;
             }
+            // Carica date se presenti
+            if (data.dataInizio) document.getElementById('dataInizio').value = data.dataInizio;
+            if (data.dataFine) document.getElementById('dataFine').value = data.dataFine;
+            return true;
         }
     } catch (e) {
         console.error('Errore Firebase:', e);
     }
     return false;
 }
+
+// Salva date su Firebase
+document.getElementById('saveDateBtn').addEventListener('click', async () => {
+    const dataInizio = document.getElementById('dataInizio').value;
+    const dataFine = document.getElementById('dataFine').value;
+    if (!dataInizio || !dataFine) {
+        alert('Compila entrambe le date!');
+        return;
+    }
+    try {
+        await db.collection('settings').doc('volantino').set({
+            dataInizio,
+            dataFine
+        }, { merge: true });
+        const msg = document.getElementById('dateSavedMsg');
+        msg.style.display = 'inline';
+        setTimeout(() => msg.style.display = 'none', 2000);
+    } catch(e) {
+        alert('Errore salvataggio date!');
+    }
+});
 
 // Carica prodotti da Firebase all'avvio
 (async function() {

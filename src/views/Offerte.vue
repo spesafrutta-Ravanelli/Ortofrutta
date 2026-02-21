@@ -1,21 +1,69 @@
 <template>
   <div class="offerte-page">
     <div class="container">
-      <!-- Page Hero -->
-      <div class="page-hero">
+      <!-- Page Header -->
+      <div class="page-header">
         <h1>🎉 Le Nostre Offerte</h1>
-        <p>Scopri le promozioni della settimana</p>
+        <p class="subtitle">
+          <template v-if="dataInizio && dataFine">
+            Offerte della settimana dal {{ formatData(dataInizio) }} al {{ formatData(dataFine) }}
+          </template>
+          <template v-else>
+            Scopri le promozioni della settimana
+          </template>
+        </p>
       </div>
 
-      <!-- Volantino Embedded -->
-      <div class="volantino-container">
-        <div class="volantino-wrapper">
+      <!-- ADMIN MODE: sempre editor -->
+      <div v-if="isAdminMode" class="volantino-container">
+        <div class="volantino-wrapper admin-wrapper">
           <iframe 
-            :src="iframeSrc"
+            src="/src/stores/volantino-editor.html"
             class="volantino-iframe"
-            title="Volantino Offerte"
+            title="Editor Volantino"
             frameborder="0"
           ></iframe>
+        </div>
+      </div>
+
+      <!-- UTENTE: card se ci sono offerte, altrimenti volantino -->
+      <div v-else>
+        <!-- Card prodotti -->
+        <div v-if="offerte.length > 0" class="offerte-grid">
+          <div 
+            v-for="prodotto in offerte" 
+            :key="prodotto.title"
+            class="offerta-card"
+          >
+            <div class="offerta-image">
+              <img 
+                v-if="prodotto.image" 
+                :src="prodotto.image" 
+                :alt="prodotto.title"
+                @error="handleImageError"
+              />
+              <div v-else class="offerta-placeholder">🛒</div>
+            </div>
+            <div class="offerta-info">
+              <h3>{{ prodotto.title }}</h3>
+              <div class="offerta-price">
+                <span class="price-main">€ {{ prodotto.price }}</span>
+                <span v-if="prodotto.price2" class="price-secondary">/ € {{ prodotto.price2 }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nessuna offerta: mostra volantino -->
+        <div v-else class="volantino-container">
+          <div class="volantino-wrapper">
+            <iframe 
+              src="/src/stores/volantino.html"
+              class="volantino-iframe"
+              title="Volantino Offerte"
+              frameborder="0"
+            ></iframe>
+          </div>
         </div>
       </div>
 
@@ -81,23 +129,44 @@
 </template>
 
 <script setup>
-// ✅ CORREZIONE PRINCIPALE: usa il composable condiviso invece di una ref locale
-// In questo modo quando il navbar attiva l'admin mode (triple-tap sulla mela),
-// questo componente reagisce allo STESSO stato condiviso.
-import { computed, watch, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useAdmin } from '@/composables/useAdmin'
+import { db } from '@/firebase.config'
+import { doc, getDoc } from 'firebase/firestore'
 
 const { isAdminMode } = useAdmin()
+const offerte = ref([])
+const dataInizio = ref('')
+const dataFine = ref('')
 
-// Src dell'iframe calcolato in base allo stato admin condiviso
-const iframeSrc = computed(() => {
-  return isAdminMode.value
-    ? '/src/stores/volantino-editor.html'
-    : '/src/stores/volantino.html'
-})
+const formatData = (dateStr) => {
+  if (!dateStr) return ''
+  const [year, month, day] = dateStr.split('-')
+  return `${day}/${month}/${year}`
+}
 
-onMounted(() => {
+const loadOfferte = async () => {
+  try {
+    const docSnap = await getDoc(doc(db, 'settings', 'volantino'))
+    if (docSnap.exists()) {
+      const data = docSnap.data()
+      if (data.products?.length > 0) offerte.value = data.products
+      if (data.dataInizio) dataInizio.value = data.dataInizio
+      if (data.dataFine) dataFine.value = data.dataFine
+    }
+  } catch (e) {
+    console.error('Errore caricamento offerte:', e)
+    offerte.value = []
+  }
+}
+
+const handleImageError = (e) => {
+  e.target.style.display = 'none'
+}
+
+onMounted(async () => {
   window.scrollTo(0, 0)
+  await loadOfferte()
 })
 </script>
 
@@ -114,23 +183,103 @@ onMounted(() => {
   padding: 0 2rem;
 }
 
-/* Page Hero — stesso stile di Categories.vue */
-.page-hero {
-  background: linear-gradient(135deg, #2c5f2d 0%, #4caf50 100%);
-  color: white;
-  padding: 3rem 0;
+/* Page Header */
+.page-header {
   text-align: center;
   margin-bottom: 3rem;
+  padding: 2rem 0;
 
   h1 {
     font-size: 3rem;
+    color: #2c3e50;
     margin-bottom: 1rem;
-    font-weight: 700;
+    font-weight: 800;
   }
 
-  p {
-    font-size: 1.2rem;
-    opacity: 0.95;
+  .subtitle {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Admin wrapper più alto per l'editor */
+.admin-wrapper {
+  height: 1000px !important;
+  max-width: 900px !important;
+}
+
+/* Grid card offerte */
+.offerte-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.offerta-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+  }
+}
+
+.offerta-image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.offerta-placeholder {
+  font-size: 4rem;
+}
+
+.offerta-info {
+  padding: 1rem;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.offerta-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+
+  .price-main {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #4caf50;
+  }
+
+  .price-secondary {
+    font-size: 0.9rem;
+    color: #666;
   }
 }
 
@@ -287,7 +436,7 @@ onMounted(() => {
     padding: 0 1rem;
   }
 
-  .page-hero h1 {
+  .page-header h1 {
     font-size: 2rem;
   }
 
@@ -315,14 +464,15 @@ onMounted(() => {
     padding: 0 0.75rem;
   }
 
-  .page-hero {
-    padding: 2rem 1rem;
+  .page-header {
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
 
     h1 {
       font-size: 1.6rem;
     }
 
-    p {
+    .subtitle {
       font-size: 1rem;
     }
   }
