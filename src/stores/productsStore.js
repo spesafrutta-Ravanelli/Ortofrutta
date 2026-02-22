@@ -2408,7 +2408,7 @@ export const useProductsStore = defineStore('products', () => {
         price: '1.40',
         unit: 'pz',
         available: true,
-        image: '/images/products/cuore-di-bue.jpeg',
+        image: '/images/products/cuore di bue.jpeg',
         description: 'Cuore di Bue: cuore di bue sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le cuore di bue fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
        },
        {

@@ -53,7 +53,15 @@
         </div>
       </div>
 
-      
+      <!-- Footer Bottom con Credits -->
+      <div class="footer-bottom">
+        <p class="credits">
+          🌐 Sito realizzato da 
+          <a href="mailto:MarziaAlaimoDev@gmail.com" class="credits-link">Marzia Alaimo</a>
+           — 
+          <a href="mailto:MarziaAlaimoDev@gmail.com" class="credits-link">MarziaAlaimoDev@gmail.com</a>
+        </p>
+      </div>
     </div>
   </footer>
 </template>
@@ -215,6 +223,18 @@ const currentYear = computed(() => new Date().getFullYear())
 
   .credits {
     font-size: 0.85rem;
+  }
+
+  .credits-link {
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #81c784;
+      text-decoration: underline;
+    }
   }
 }
 
