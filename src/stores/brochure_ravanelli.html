@@ -139,6 +139,19 @@ input[type=file] {
     background:#ff5252; color:white; border:none; border-radius:6px;
     padding:4px 10px; cursor:pointer; font-size:12px; font-weight:700;
 }
+.preview-item .pi-edit {
+    background: linear-gradient(135deg, var(--green-main), var(--green-light));
+    color:white; border:none; border-radius:6px;
+    padding:4px 10px; cursor:pointer; font-size:12px; font-weight:700;
+}
+.preview-item .pi-edit:hover { filter: brightness(1.1); }
+.editor-actions { display:flex; gap:12px; align-items:center; margin-top:12px; flex-wrap:wrap; }
+.btn-cancel {
+    background:#757575; color:white; border:none; padding:10px 20px; border-radius:8px;
+    font-size:14px; font-weight:700; cursor:pointer; font-family:'Nunito',sans-serif;
+}
+.btn-cancel:hover { background:#616161; }
+.preview-item.editing { box-shadow:0 0 0 2px var(--green-light); }
 
 /* ── PAGES CONTAINER ── */
 .pages-container {
@@ -858,7 +871,10 @@ body.public-mode .slider-dot.active {
       <input type="text" id="pTag" placeholder="es. -30% · BIO · NOVITÀ" />
     </div>
   </div>
-  <button class="btn-add" onclick="addProduct()">➕ Aggiungi al Volantino</button>
+  <div class="editor-actions">
+    <button class="btn-add" id="btnAddOrSave" onclick="addOrSaveProduct()">➕ Aggiungi al Volantino</button>
+    <button class="btn-cancel" id="btnCancelEdit" onclick="cancelEdit()" style="display:none;">Annulla</button>
+  </div>
 </div>
 
 <!-- PRODUCT PREVIEW LIST -->
@@ -1005,6 +1021,7 @@ if (window.self !== window.top) {
 // ── Products logic ──
 let products = [];
 let pendingImg = null;
+let editingIndex = -1;
 let scrollToFirstPage = function() {};
 
 if (typeof isPublicMode !== 'undefined' && isPublicMode) {
@@ -1098,25 +1115,59 @@ function formatPriceBadge(price, price2) {
   return a && b ? a + ' <span class="prod-price-sep"></span> ' + b : (a || b);
 }
 function tagIsPrice(tag) { return tag && /€/.test(String(tag)); }
-function addProduct() {
+function addOrSaveProduct() {
   const name = document.getElementById('pName').value.trim();
   const price = document.getElementById('pPrice').value.trim();
   const price2 = document.getElementById('pPrice2').value.trim();
   const tag = document.getElementById('pTag').value.trim();
   if (!name || !price) return alert('Inserisci almeno nome e prezzo!');
-  products.push({ name, price, price2, tag, img: pendingImg });
-  if (typeof db !== 'undefined') saveToFirebase();
+  var img = pendingImg !== null ? pendingImg : (editingIndex >= 0 && products[editingIndex] ? products[editingIndex].img : null);
+  if (editingIndex >= 0) {
+    products[editingIndex] = { name, price, price2, tag, img };
+    cancelEdit();
+  } else {
+    products.push({ name, price, price2, tag, img });
+  }
   pendingImg = null;
   document.getElementById('pName').value = '';
   document.getElementById('pPrice').value = '';
   document.getElementById('pPrice2').value = '';
   document.getElementById('pTag').value = '';
   document.getElementById('pImg').value = '';
+  if (typeof db !== 'undefined') saveToFirebase();
+  renderAll();
+}
+
+function editProduct(i) {
+  var p = products[i];
+  if (!p) return;
+  editingIndex = i;
+  document.getElementById('pName').value = p.name || '';
+  document.getElementById('pPrice').value = p.price || '';
+  document.getElementById('pPrice2').value = p.price2 || '';
+  document.getElementById('pTag').value = p.tag || '';
+  document.getElementById('pImg').value = '';
+  pendingImg = p.img || null;
+  document.getElementById('btnAddOrSave').textContent = '💾 Salva Modifiche';
+  document.getElementById('btnCancelEdit').style.display = 'inline-block';
+}
+
+function cancelEdit() {
+  editingIndex = -1;
+  pendingImg = null;
+  document.getElementById('pName').value = '';
+  document.getElementById('pPrice').value = '';
+  document.getElementById('pPrice2').value = '';
+  document.getElementById('pTag').value = '';
+  document.getElementById('pImg').value = '';
+  document.getElementById('btnAddOrSave').textContent = '➕ Aggiungi al Volantino';
+  document.getElementById('btnCancelEdit').style.display = 'none';
   renderAll();
 }
 
 function removeProduct(i) {
   products.splice(i, 1);
+  if (editingIndex === i) cancelEdit(); else if (editingIndex > i) editingIndex--;
   if (typeof db !== 'undefined') saveToFirebase();
   renderAll();
 }
@@ -1148,11 +1199,12 @@ function renderAll() {
   while (list.children.length > 1) list.removeChild(list.lastChild);
   products.forEach((p, i) => {
     const d = document.createElement('div');
-    d.className = 'preview-item';
+    d.className = 'preview-item' + (editingIndex === i ? ' editing' : '');
     d.innerHTML = `
       ${p.img ? `<img src="${p.img}" />` : '<div style="width:48px;height:48px;background:#e8f5e9;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px;">🥦</div>'}
       <span class="pi-name">${p.name}</span>
-      <span class="pi-price">${p.price && p.price2 ? '€ ' + p.price + ' / € ' + p.price2 : (p.price ? '€ ' + p.price : '€ ' + p.price2)}</span>
+      <span class="pi-price">${p.price && p.price2 ? '€ ' + p.price + ' / € ' + p.price2 : (p.price ? '€ ' + p.price : (p.price2 ? '€ ' + p.price2 : ''))}</span>
+      <button class="pi-edit" onclick="editProduct(${i})" title="Modifica">✏️ Modifica</button>
       <button class="pi-del" onclick="removeProduct(${i})">✕</button>`;
     list.appendChild(d);
   });
