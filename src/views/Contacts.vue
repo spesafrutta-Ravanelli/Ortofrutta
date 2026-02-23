@@ -166,8 +166,8 @@
       <div class="social-section">
         <h2>Seguici sui Social</h2>
         <div class="social-links">
-          <a href="#" class="social-link facebook">
-            <span class="social-icon">📘</span>
+          <a href="https://www.facebook.com/fruttora" class="social-link facebook">
+            <span class="social-icon">Facebook</span>
             <span>Facebook</span>
           </a>
           <a href="#" class="social-link instagram">

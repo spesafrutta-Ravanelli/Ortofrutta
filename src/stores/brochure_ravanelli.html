@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brochure Ravanelli & Carminati</title>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig={apiKey:"AIzaSyBqwe7FJxPT2d7ugVbgB1TmUcaIFGj8eQA",authDomain:"ortofrutta-ravanelli-carminati.firebaseapp.com",projectId:"ortofrutta-ravanelli-carminati",storageBucket:"ortofrutta-ravanelli-carminati.firebasestorage.app",messagingSenderId:"483333881088",appId:"1:483333881088:web:9911dda5da2b4072ed47e5"};
+try{firebase.initializeApp(firebaseConfig);var db=firebase.firestore();}catch(e){}
+const isPublicMode=typeof URLSearchParams!=='undefined'&&new URLSearchParams(window.location.search).get('public')==='1';
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+:root {
+    --green-dark: #1a5c1a;
+    --green-main: #2e7d32;
+    --green-light: #4caf50;
+    --green-pale: #c8e6c9;
+    --accent-yellow: #ffd600;
+    --accent-orange: #ff6f00;
+    --text-dark: #1a1a1a;
+    --white: #ffffff;
+    --border-radius: 8px;
+    --dark-green: #1a5c1a;
+    --gray: #666;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: #e8e8e8;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    color: var(--green-main);
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.subtitle { text-align:center; color:#666; margin-bottom:30px; font-size:14px; }
+
+/* ── EDITOR UI ── */
+.editor-wrap {
+    max-width: 860px;
+    margin: 0 auto 30px;
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
+}
+
+.editor-wrap h2 { color: var(--green-main); margin-bottom:18px; font-size:18px; }
+
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+.form-group { display:flex; flex-direction:column; gap:5px; }
+.form-group.full { grid-column:1/-1; }
+
+label { font-weight:700; font-size:13px; color:#444; }
+
+input[type=text], input[type=number] {
+    padding: 10px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size:15px;
+    font-family:'Nunito',sans-serif;
+    transition: border-color .2s;
+}
+input[type=text]:focus, input[type=number]:focus { outline:none; border-color:var(--green-light); }
+
+input[type=file] {
+    padding: 8px;
+    border: 2px dashed #bbb;
+    border-radius: 8px;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.btn-add {
+    background: linear-gradient(135deg, var(--green-main), var(--green-light));
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 3px 10px rgba(46,125,50,.3);
+}
+.btn-add:hover { transform:translateY(-2px); box-shadow:0 6px 16px rgba(46,125,50,.4); }
+
+.btn-print {
+    display: block;
+    margin: 0 auto 30px;
+    padding: 14px 44px;
+    font-size: 17px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff6f00, #ffd600);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255,111,0,.4);
+    transition: transform .15s;
+}
+.btn-print:hover { transform:translateY(-2px); }
+
+/* ── PRODUCT PREVIEW LIST ── */
+.products-preview {
+    max-width: 860px;
+    margin: 0 auto 20px;
+}
+.products-preview h3 { color:var(--green-main); margin-bottom:10px; font-size:15px; }
+.preview-item {
+    display:flex; align-items:center; gap:12px;
+    background:white; border-radius:10px; padding:10px 14px;
+    margin-bottom:8px; box-shadow:0 2px 6px rgba(0,0,0,.07);
+}
+.preview-item img { width:48px; height:48px; object-fit:cover; border-radius:6px; }
+.preview-item .pi-name { font-weight:700; flex:1; }
+.preview-item .pi-price { color:var(--green-main); font-weight:800; font-size:15px; }
+.preview-item .pi-del {
+    background:#ff5252; color:white; border:none; border-radius:6px;
+    padding:4px 10px; cursor:pointer; font-size:12px; font-weight:700;
+}
+
+/* ── PAGES CONTAINER ── */
+.pages-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+/* ── PAGE BASE (A5 landscape 210×148mm) ── */
+.page {
+    width: 210mm;
+    height: 148mm;
+    position: relative;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 6px 30px rgba(0,0,0,.2);
+}
+
+/* ════════════════════════════════
+   COVER PAGE
+════════════════════════════════ */
+.page-cover {
+    background: #1a2a1a;
+}
+
+.cover-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #000;
+}
+.cover-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Se c'è l'immagine di copertina (già progettata) e caricata, nascondi overlay per evitare doppia copertina */
+.page-cover:has(.cover-bg-img.cover-img-loaded) .cover-content,
+.page-cover:has(.cover-bg-img.cover-img-loaded) .cover-nav {
+    display: none !important;
+}
+
+.cover-content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    gap: 8px;
+}
+
+.cover-cart {
+    font-size: 38px;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,.5));
+    margin-bottom: 4px;
+}
+
+.cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26pt;
+    font-weight: 900;
+    color: white;
+    line-height: 1.1;
+    text-shadow: 2px 3px 8px rgba(0,0,0,.7);
+    letter-spacing: -0.5px;
+}
+
+.cover-title .amp {
+    color: var(--green-light);
+    font-style: italic;
+}
+
+.cover-subtitle {
+    font-size: 8pt;
+    color: rgba(255,255,255,.75);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 2px;
+    margin-bottom: 8px;
+}
+
+.cover-headline {
+    font-size: 11pt;
+    color: white;
+    font-weight: 700;
+    line-height: 1.5;
+    text-shadow: 1px 2px 5px rgba(0,0,0,.6);
+    margin: 4px 0;
+}
+
+.cover-headline .highlight {
+    color: var(--accent-yellow);
+    font-style: italic;
+}
+
+.cover-btn-web {
+    background: var(--green-light);
+    color: white;
+    border-radius: 30px;
+    padding: 9px 24px;
+    font-size: 9pt;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 6px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.4);
+}
+
+.cover-btn-phone {
+    background: rgba(255,255,255,.15);
+    border: 2px solid rgba(255,255,255,.5);
+    color: white;
+    border-radius: 30px;
+    padding: 7px 22px;
+    font-size: 9pt;
+    font-weight: 700;
+}
+
+.cover-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background: rgba(0,0,0,.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    border-top: 1px solid rgba(255,255,255,.15);
+}
+
+.cover-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 4px;
+    gap: 3px;
+    border-right: 1px solid rgba(255,255,255,.1);
+}
+.cover-nav-item:last-child { border-right: none; }
+.cover-nav-item .nav-icon { font-size: 14px; }
+.cover-nav-item .nav-label { font-size: 5.5pt; color: rgba(255,255,255,.8); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+/* ════════════════════════════════
+   PRODUCTS PAGE
+════════════════════════════════ */
+.page-products {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.products-header {
+    background: white;
+    padding: 14px 16px 10px;
+    text-align: center;
+    position: relative;
+    flex-shrink: 0;
+    border-bottom: 3px solid var(--green-light);
+}
+
+.products-header h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16pt;
+    font-weight: bold;
+    background: linear-gradient(180deg, #c62828 0%, #e53935 30%, #ff5722 70%, #ff9800 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,.2));
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+}
+
+.products-header .week-label {
+    color: var(--green-main);
+    font-size: 7pt;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 3px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.page-products .brand-small {
+    font-size: 6.5pt;
+    color: #888;
+    font-weight: 600;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.products-grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 4), 1fr);
+    grid-template-rows: repeat(var(--rows, 4), minmax(0, 1fr));
+    gap: 4px;
+    padding: 8px 10px 6px;
+    align-content: center;
+    justify-content: center;
+    container-type: size;
+}
+
+/* Celle quadrate che riempiono tutto il foglio (adattive a numero prodotti) */
+.products-grid .prod-card {
+    width: min(
+        calc((100cqw - (var(--cols, 4) - 1) * 4px) / var(--cols, 4)),
+        calc((100cqh - (var(--rows, 4) - 1) * 4px) / var(--rows, 4))
+    );
+    height: min(
+        calc((100cqw - (var(--cols, 4) - 1) * 4px) / var(--cols, 4)),
+        calc((100cqh - (var(--rows, 4) - 1) * 4px) / var(--rows, 4))
+    );
+    max-width: 100%;
+    max-height: 100%;
+    justify-self: center;
+    align-self: center;
+}
+
+/* Card prodotto – CSS di riferimento fornito dall’utente */
+.prod-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    border: 1.5px solid #e8f5e9;
+    transition: all 0.2s ease;
+}
+
+.prod-card:hover {
+    box-shadow: 0 4px 12px rgba(76,175,80,.2);
+    border-color: rgba(76,175,80,.4);
+}
+
+.prod-card .prod-img-wrap {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+    background: #f1f8e9;
+}
+
+.prod-card .prod-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.prod-card .prod-img-wrap .no-img {
+    width: 100%;
+    height: 100%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+}
+
+/* ═══ NOME PRODOTTO: modifica font-size e padding per leggibilità ═══ */
+.prod-card .prod-body {
+    flex-shrink: 0;
+    padding: 3px 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+    min-width: 0;
+}
+
+.prod-card .prod-name {
+    font-size: 12pt;   /* ← NOME PRODOTTO: aumenta (es. 7pt, 8pt) per leggere meglio */
+    font-weight: 700;
+    color: var(--green-main);
+    line-height: 1.15;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* ═══ BADGE PREZZO: modifica font-size e padding per leggibilità ═══ */
+.prod-card .prod-price-badge {
+    background: linear-gradient(135deg, var(--accent-orange), var(--accent-yellow));
+    color: white;
+    font-size: 12pt;   /* ← BADGE PREZZO: aumenta (es. 7pt, 8pt) per leggere meglio */
+    font-weight: 900;
+    padding: 1px 4px;
+    border-radius: 8px;
+    align-self: flex-start;
+    white-space: nowrap;
+}
+
+.prod-card .prod-offer-tag {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #e53935;
+    color: white;
+    font-size: 0.45rem;
+    font-weight: 900;
+    padding: 1px 4px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.page-products .footer-strip {
+    background: var(--green-dark);
+    padding: 7px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.footer-strip .footer-brand {
+    color: white;
+    font-size: 7pt;
+    font-weight: 700;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.footer-strip .footer-phone {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--accent-yellow);
+    font-size: 7.5pt;
+    font-weight: 800;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ════════════════════════════════
+   BACK PAGE
+════════════════════════════════ */
+.page-back {
+    display: flex;
+    flex-direction: column;
+}
+
+.back-header {
+    background: linear-gradient(135deg, var(--green-dark), var(--green-main));
+    padding: 16px 16px 12px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.back-header h2 {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 14pt;
+}
+
+.back-header .sub {
+    color: var(--green-pale);
+    font-size: 7pt;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 3px;
+}
+
+.back-section-title {
+    text-align: center;
+    font-size: 8pt;
+    font-weight: 800;
+    color: var(--green-dark);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 10px 0 6px;
+}
+
+.market-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    padding: 0 14px;
+}
+
+.market-card {
+    border-radius: 8px;
+    padding: 6px 7px;
+    color: white;
+    text-align: center;
+}
+.market-card.mar { background: linear-gradient(135deg, #ef5350, #e53935); }
+.market-card.mer { background: linear-gradient(135deg, #42a5f5, #1e88e5); }
+.market-card.gio { background: linear-gradient(135deg, #ab47bc, #8e24aa); }
+.market-card.ven { background: linear-gradient(135deg, #ffa726, #fb8c00); }
+.market-card.sab { background: linear-gradient(135deg, #4caf50, #388e3c); }
+
+.market-card .mc-day { font-size: 6.5pt; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; opacity: .9; }
+.market-card .mc-pin { font-size: 10px; margin: 1px 0; }
+.market-card .mc-city { font-size: 7.5pt; font-weight: 800; line-height: 1.2; }
+.market-card .mc-addr { font-size: 5pt; opacity: .85; margin-top: 1px; }
+.market-card .mc-time { font-size: 6pt; font-weight: 700; margin-top: 3px; background: rgba(0,0,0,.15); border-radius: 4px; padding: 1px 5px; display: inline-block; }
+
+.delivery-box {
+    margin: 8px 14px;
+    background: var(--green-pale);
+    border: 2px solid var(--green-light);
+    border-radius: 8px;
+    padding: 7px 10px;
+    text-align: center;
+    flex-shrink: 0;
+}
+.delivery-box h3 { color: var(--green-dark); font-size: 8pt; margin-bottom: 2px; }
+.delivery-box p { font-size: 6.5pt; color: #333; }
+
+.back-contact {
+    margin-top: auto;
+    background: var(--green-dark);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.back-contact .phone-num {
+    color: var(--accent-yellow);
+    font-size: 12pt;
+    font-weight: 900;
+    font-family: 'Playfair Display', serif;
+}
+
+/* ════════════════════════════════
+   PAGE LABEL
+════════════════════════════════ */
+.page-label {
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+}
+
+/* Public mode: slider A4 orizzontale, 3 pagine scorrevoli a dimensione completa */
+html.public-mode, html.public-mode body {
+  width: 100%;
+  height: 100%;
+}
+body.public-mode {
+  padding: 0;
+  margin: 0;
+  background: #f0f0f0;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+body.public-mode .editor-wrap,
+body.public-mode .products-preview,
+body.public-mode .btn-print,
+body.public-mode h1,
+body.public-mode .subtitle,
+body.public-mode .page-label { display:none !important; }
+
+/* Slider: una sola slide visibile, niente scroll (indice 0 = copertina) */
+body.public-mode .pages-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+}
+body.public-mode .pages-container > div {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+body.public-mode .pages-container > div.slide-active {
+  display: flex;
+  position: relative;
+}
+/* Pagine A5 completamente adattate allo spazio disponibile */
+body.public-mode .page {
+  width: min(95vw, calc(95vh * 210 / 148));
+  height: min(95vh, calc(95vw * 148 / 210));
+  aspect-ratio: 210 / 148;
+  flex-shrink: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
+/* Frecce navigazione slider – evidenti per far capire che ci sono altre pagine */
+body.public-mode .slider-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 20px rgba(0,0,0,.35);
+  background: rgba(46,125,50,.95);
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .2s, background .2s;
+}
+body.public-mode .slider-nav:hover {
+  background: rgba(46,125,50,1);
+  transform: translateY(-50%) scale(1.1);
+}
+body.public-mode .slider-nav.prev { left: 16px; }
+body.public-mode .slider-nav.next { right: 16px; }
+body.public-mode .slider-dots {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 100;
+  background: rgba(0,0,0,.5);
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+body.public-mode .slider-dots-hint {
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+body.public-mode .slider-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: transparent;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+body.public-mode .slider-dot:hover {
+  transform: scale(1.2);
+}
+body.public-mode .slider-dot.active {
+  background: white;
+  box-shadow: 0 0 8px rgba(255,255,255,.8);
+}
+
+/* Editor mode – responsive mobile */
+@media screen and (max-width: 768px) {
+  body:not(.public-mode) { padding: 12px; }
+  .editor-wrap, .products-preview { max-width: 100%; padding: 16px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* Brochure public mode – responsive mobile */
+@media screen and (max-width: 480px) {
+  body.public-mode .slider-nav {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+  body.public-mode .slider-nav.prev { left: 8px; }
+  body.public-mode .slider-nav.next { right: 8px; }
+  body.public-mode .slider-dots {
+    padding: 8px 14px;
+    bottom: 12px;
+    gap: 8px;
+  }
+  body.public-mode .slider-dots-hint { font-size: 11px; }
+  body.public-mode .slider-dot {
+    width: 10px;
+    height: 10px;
+  }
+  body.public-mode .page {
+    width: min(98vw, calc(98vh * 210 / 148));
+    height: min(98vh, calc(98vw * 148 / 210));
+  }
+}
+
+/* ════════════════════════════════
+   PRINT
+════════════════════════════════ */
+@media print {
+    @page { size: A5 landscape; margin: 0; }
+    body { margin:0; padding:0; background:white; }
+    .editor-wrap, .btn-print, .products-preview, h1, .subtitle, .page-label, .print-controls { display:none !important; }
+    .pages-container { gap:0; }
+    .page { width:210mm; height:148mm; page-break-after:always; page-break-inside:avoid; box-shadow:none; }
+}
+</style>
+</head>
+<body>
+
+<h1>🥬 Brochure · Ravanelli & Carminati</h1>
+<p class="subtitle">Aggiungi i prodotti in offerta — poi stampa la brochure a 3 facciate</p>
+
+<!-- EDITOR -->
+<div class="editor-wrap">
+  <h2>➕ Aggiungi Prodotto in Offerta</h2>
+  <div class="form-row">
+    <div class="form-group">
+      <label>Nome Prodotto *</label>
+      <input type="text" id="pName" placeholder="es. Pomodori Cuore di Bue" />
+    </div>
+    <div class="form-group">
+      <label>Prezzo (€) *</label>
+      <input type="text" id="pPrice" placeholder="es. 2,90 /kg" />
+    </div>
+    <div class="form-group">
+      <label>Immagine Prodotto</label>
+      <input type="file" id="pImg" accept="image/*" />
+    </div>
+    <div class="form-group">
+      <label>Etichetta offerta (opz.)</label>
+      <input type="text" id="pTag" placeholder="es. -30% · BIO · NOVITÀ" />
+    </div>
+  </div>
+  <button class="btn-add" onclick="addProduct()">➕ Aggiungi al Volantino</button>
+</div>
+
+<!-- PRODUCT PREVIEW LIST -->
+<div class="products-preview" id="previewList">
+  <h3 id="previewTitle" style="display:none">📋 Prodotti inseriti:</h3>
+</div>
+
+<button class="btn-print" onclick="window.print()">🖨️ Stampa Brochure</button>
+
+<!-- ══════ PAGES ══════ -->
+<div class="pages-container">
+
+  <!-- ① COVER -->
+  <div>
+    <div class="page-label">① Copertina</div>
+    <div class="page page-cover">
+      <div class="cover-bg" id="coverBg">
+        <img src="/prima-pagina-brochure.jpg" alt="" class="cover-bg-img" onload="this.classList.add('cover-img-loaded')" />
+      </div>
+      <div class="cover-content">
+        <div class="cover-cart">🛒</div>
+        <h2 class="cover-title">Ravanelli <span class="amp">&</span> Carminati</h2>
+        <div class="cover-subtitle">ORTOFRUTTICOLA - FRUTTA & VERDURA</div>
+        <p class="cover-headline">Scopri il nostro <span class="highlight">listino prezzi</span>, le offerte della settimana e molto altro!</p>
+        <a href="https://ortofruttaravanellicarminati.it" target="_blank" rel="noopener" class="cover-btn-web">🌐 ortofruttaravanellicarminati.it</a>
+        <a href="tel:+393756804525" class="cover-btn-phone">📞 +39 375 680 4525</a>
+      </div>
+      <nav class="cover-nav">
+        <a href="/listino" target="_top" class="cover-nav-item"><span class="nav-icon">📋</span><span class="nav-label">Listino</span></a>
+        <a href="/offerte" target="_top" class="cover-nav-item"><span class="nav-icon">🎉</span><span class="nav-label">Offerte</span></a>
+        <a href="/dove-siamo" target="_top" class="cover-nav-item"><span class="nav-icon">📍</span><span class="nav-label">Dove Siamo</span></a>
+        <a href="/prenota-qui" target="_top" class="cover-nav-item"><span class="nav-icon">💬</span><span class="nav-label">Prenota</span></a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ② PRODUCTS -->
+  <div>
+    <div class="page-label">② Offerte della Settimana</div>
+    <div class="page page-products">
+      <div class="products-header">
+        <div class="brand-small">Ortofrutticola Ravanelli & Carminati</div>
+        <h2>🌿 Offerte della Settimana</h2>
+        <div class="week-label">Freschissimo · Direttamente dal mercato</div>
+      </div>
+      <div class="products-grid" id="productsGrid">
+        <div style="grid-column:1/-1; text-align:center; padding:30px 10px; color:#bbb; font-size:9pt;">
+          ← Aggiungi prodotti dal pannello sopra
+        </div>
+      </div>
+      <div class="footer-strip">
+        <div class="footer-brand">Ravanelli &amp; Carminati</div>
+        <div class="footer-phone">
+          <i class="fa-brands fa-whatsapp" style="color:#25D366;font-size:16px;"></i>
+          +39 375 680 4525
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ BACK -->
+  <div>
+    <div class="page-label">③ Retro — Dove Trovarci</div>
+    <div class="page page-back">
+      <div class="back-header">
+        <h2>Ortofrutticola<br>Ravanelli &amp; Carminati</h2>
+        <div class="sub">Frutta &amp; Verdura · Freschissima</div>
+      </div>
+      <div class="back-section-title">📅 Dove Trovarci</div>
+      <div class="market-grid">
+        <div class="market-card mar">
+          <div class="mc-day">Martedì</div><div class="mc-pin">📍</div>
+          <div class="mc-city">Asso</div>
+          <div class="mc-addr">Piazza Discacciati</div>
+          <div class="mc-time">🕐 7:00 – 12:10</div>
+        </div>
+        <div class="market-card mar">
+          <div class="mc-day">Martedì</div><div class="mc-pin">📍</div>
+          <div class="mc-city">Zelo Buon Persico</div>
+          <div class="mc-addr">Zona Mercato</div>
+          <div class="mc-time">🕐 7:00 – 12:10</div>
+        </div>
+        <div class="market-card mer">
+          <div class="mc-day">Mercoledì</div><div class="mc-pin">📍</div>
+          <div class="mc-city">Scarenna</div>
+          <div class="mc-addr">Via Alcide De Gasperi, 7</div>
+          <div class="mc-time">🕐 7:00 – 12:10</div>
+        </div>
+        <div class="market-card mer">
+          <div class="mc-day">Mercoledì</div><div class="mc-pin">📍</div>
+          <div class="mc-city">Agrate</div>
+          <div class="mc-addr">Zona Mercato</div>
+          <div class="mc-time">🕐 7:00 – 12:10</div>
+        </div>
+        <div class="market-card gio">
+          <div class="mc-day">Giovedì</div><div class="mc-pin">📍</div>
+          <div class="mc-city">Caslino D'Erba</div>
+          <div class="mc-addr">Piazza del Comune</div>
+          <div class="mc-time">🕐 7:00 – 12:10</div>
+        </div>
+        <div class="market-card gio">
+          <div class="mc-day">Giovedì</div><div class="mc-pin">📍</div>
+          <div class="mc-city">Bussero</div>
+          <div class="mc-addr">Zona Mercato</div>
+          <div class="mc-time">🕐 7:00 – 12:10</div>
+        </div>
+        <div class="market-card ven">
+          <div class="mc-day">Venerdì</div><div class="mc-pin">📍</div>
+          <div class="mc-city">Eupilio</div>
+          <div class="mc-addr">Via Emilio Scheibler</div>
+          <div class="mc-time">🕐 7:00 – 12:10</div>
+        </div>
+        <div class="market-card sab">
+          <div class="mc-day">Sabato</div><div class="mc-pin">📍</div>
+          <div class="mc-city">Brembate</div>
+          <div class="mc-addr">Via Vittorio Veneto, 42</div>
+          <div class="mc-time">🕐 7:00 – 12:10</div>
+        </div>
+      </div>
+      <div class="delivery-box">
+        <h3>🚚 Consegna a Domicilio</h3>
+        <p>Chiamaci o scrivici su WhatsApp!</p>
+      </div>
+      <div class="back-contact">
+        <i class="fa-brands fa-whatsapp" style="color:#25D366;font-size:22px;"></i>
+        <div class="phone-num">+39 375 680 4525</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end pages-container -->
+
+<script>
+// ── Products logic ──
+let products = [];
+let pendingImg = null;
+let scrollToFirstPage = function() {};
+
+if (typeof isPublicMode !== 'undefined' && isPublicMode) {
+  document.documentElement.classList.add('public-mode');
+  document.body.classList.add('public-mode');
+  (function initSlider() {
+    var pc = document.querySelector('.pages-container');
+    if (!pc) return;
+    var slides = pc.querySelectorAll(':scope > div');
+    var totalSlides = slides.length;
+    var currentIdx = 0;
+    var dots = document.createElement('div');
+    dots.className = 'slider-dots';
+    var hint = document.createElement('span');
+    hint.className = 'slider-dots-hint';
+    hint.textContent = 'Sfoglia: ';
+    dots.appendChild(hint);
+    hint.textContent = 'Pagina 1 di ' + totalSlides + ' – Sfoglia ';
+    for (var i = 0; i < totalSlides; i++) {
+      var d = document.createElement('button');
+      d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label','Pagina ' + (i+1));
+      (function(idx) {
+        d.onclick = function() { showSlide(idx); };
+      })(i);
+      dots.appendChild(d);
+    }
+    function showSlide(idx) {
+      currentIdx = Math.max(0, Math.min(idx, totalSlides - 1));
+      slides.forEach(function(s, i) {
+        s.classList.toggle('slide-active', i === currentIdx);
+      });
+      dots.querySelectorAll('.slider-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === currentIdx);
+      });
+      hint.textContent = 'Pagina ' + (currentIdx + 1) + ' di ' + totalSlides + ' – Sfoglia ';
+    }
+    scrollToFirstPage = function() {
+      showSlide(0);
+    };
+    showSlide(0);
+    var prev = document.createElement('button');
+    prev.className = 'slider-nav prev';
+    prev.setAttribute('aria-label','Pagina precedente');
+    prev.innerHTML = '‹';
+    var next = document.createElement('button');
+    next.className = 'slider-nav next';
+    next.setAttribute('aria-label','Pagina successiva');
+    next.innerHTML = '›';
+    prev.onclick = function() { showSlide(currentIdx - 1); };
+    next.onclick = function() { showSlide(currentIdx + 1); };
+    document.body.appendChild(prev);
+    document.body.appendChild(next);
+    document.body.appendChild(dots);
+  })();
+}
+if (typeof isPublicMode !== 'undefined' && isPublicMode && typeof db !== 'undefined') {
+  function loadFromFirebase() {
+    db.collection('settings').doc('volantino').get().then(function(docSnap) {
+      if (docSnap.exists && docSnap.data().products && docSnap.data().products.length > 0) {
+        products = docSnap.data().products.map(function(p) {
+          return { name: p.title || '', price: p.price2 ? p.price + ' / ' + p.price2 : (p.price || ''), tag: p.tag || '', img: p.image || null };
+        });
+        renderAll();
+      }
+    }).catch(function(e) { console.error('Firebase:', e); });
+  }
+  loadFromFirebase();
+  db.collection('settings').doc('volantino').onSnapshot(function(docSnap) {
+    if (docSnap.exists && docSnap.data().products && docSnap.data().products.length > 0) {
+      products = docSnap.data().products.map(function(p) {
+        return { name: p.title || '', price: p.price2 ? p.price + ' / ' + p.price2 : (p.price || ''), tag: p.tag || '', img: p.image || null };
+      });
+      renderAll();
+    }
+  });
+}
+
+document.getElementById('pImg').addEventListener('change', function() {
+  const f = this.files[0];
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = e => pendingImg = e.target.result;
+  r.readAsDataURL(f);
+});
+
+function addProduct() {
+  const name = document.getElementById('pName').value.trim();
+  const price = document.getElementById('pPrice').value.trim();
+  const tag = document.getElementById('pTag').value.trim();
+  if (!name || !price) return alert('Inserisci almeno nome e prezzo!');
+  products.push({ name, price, tag, img: pendingImg });
+  if (typeof db !== 'undefined') saveToFirebase();
+  pendingImg = null;
+  document.getElementById('pName').value = '';
+  document.getElementById('pPrice').value = '';
+  document.getElementById('pTag').value = '';
+  document.getElementById('pImg').value = '';
+  renderAll();
+}
+
+function removeProduct(i) {
+  products.splice(i, 1);
+  if (typeof db !== 'undefined') saveToFirebase();
+  renderAll();
+}
+function saveToFirebase() {
+  if (typeof db === 'undefined') return;
+  var toSave = products.map(function(p) { return { title: p.name, price: p.price, price2: '', image: p.img || null, tag: p.tag || '' }; });
+  db.collection('settings').doc('volantino').set({ products: toSave, updatedAt: new Date().toISOString() }, { merge: true });
+}
+
+function renderAll() {
+  // preview list
+  const list = document.getElementById('previewList');
+  const title = document.getElementById('previewTitle');
+  title.style.display = products.length ? 'block' : 'none';
+  // clear old items but keep title
+  while (list.children.length > 1) list.removeChild(list.lastChild);
+  products.forEach((p, i) => {
+    const d = document.createElement('div');
+    d.className = 'preview-item';
+    d.innerHTML = `
+      ${p.img ? `<img src="${p.img}" />` : '<div style="width:48px;height:48px;background:#e8f5e9;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px;">🥦</div>'}
+      <span class="pi-name">${p.name}</span>
+      <span class="pi-price">€ ${p.price}</span>
+      <button class="pi-del" onclick="removeProduct(${i})">✕</button>`;
+    list.appendChild(d);
+  });
+
+  // products grid
+  const grid = document.getElementById('productsGrid');
+  if (products.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:30px 10px;color:#bbb;font-size:9pt;">← Aggiungi prodotti dal pannello sopra</div>';
+    return;
+  }
+  grid.innerHTML = '';
+  var cols = Math.min(4, products.length) || 1;
+  var rows = Math.ceil(products.length / 4) || 1;
+  grid.style.setProperty('--cols', String(cols));
+  grid.style.setProperty('--rows', String(rows));
+  products.forEach(p => {
+    const c = document.createElement('div');
+    c.className = 'prod-card';
+    c.innerHTML = `
+      <div class="prod-img-wrap">
+        ${p.img ? `<img src="${p.img}" alt="${p.name}" />` : '<div class="no-img">🥦</div>'}
+        ${p.tag ? `<div class="prod-offer-tag">${p.tag}</div>` : ''}
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">${p.name}</div>
+        <span class="prod-price-badge">€ ${p.price}${p.price2 ? ' / ' + p.price2 : ''}</span>
+      </div>`;
+    grid.appendChild(c);
+  });
+  if (typeof isPublicMode !== 'undefined' && isPublicMode) scrollToFirstPage();
+}
+
+if (typeof isPublicMode !== 'undefined' && !isPublicMode && typeof db !== 'undefined') {
+  db.collection('settings').doc('volantino').get().then(function(docSnap) {
+    if (docSnap.exists && docSnap.data().products && docSnap.data().products.length > 0) {
+      products = docSnap.data().products.map(function(p) {
+        return { name: p.title || '', price: p.price2 ? p.price + ' / ' + p.price2 : (p.price || ''), tag: p.tag || '', img: p.image || null };
+      });
+      renderAll();
+    }
+  });
+}
+</script>
+</body>
+</html>

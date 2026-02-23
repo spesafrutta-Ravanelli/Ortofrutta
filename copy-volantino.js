@@ -18,6 +18,10 @@ try {
   // Copia volantino-editor.html (versione admin - con editor)
   copyFileSync('./src/stores/volantino-editor.html', './dist/src/stores/volantino-editor.html');
   console.log('✅ volantino-editor.html copiato con successo in dist/src/stores/');
+
+  // Copia brochure_ravanelli.html (brochure: ?public=1 vista, senza = editor)
+  copyFileSync('./src/stores/brochure_ravanelli.html', './dist/src/stores/brochure_ravanelli.html');
+  console.log('✅ brochure_ravanelli.html copiato con successo in dist/src/stores/');
 } catch (error) {
   console.error('❌ Errore durante la copia dei file volantino:', error);
   process.exit(1);

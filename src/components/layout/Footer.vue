@@ -246,6 +246,10 @@ const currentYear = computed(() => new Date().getFullYear())
 }
 
 @media (max-width: 576px) {
+  .footer .container {
+    padding: 0 1rem;
+  }
+
   .footer-content {
     grid-template-columns: 1fr;
     gap: 1.5rem;

@@ -32,14 +32,14 @@
       {{ message.text }}
     </div>
 
-    <!-- Bottone Volantino (solo in Admin Mode) -->
+    <!-- Bottone Editor Brochure Offerte (solo in Admin Mode) -->
       <div v-if="isAdminMode" class="volantino-section">
         <div class="container">
-          <button @click="openVolantino" class="btn-volantino-large">
-            📄 Apri Editor Volantini
-          </button>
+          <RouterLink to="/offerte" class="btn-volantino-large">
+            📄 Editor Brochure Offerte
+          </RouterLink>
           <p class="volantino-hint">
-            oppure <a href="/src/stores/volantino-editor.html" target="_blank" class="volantino-link">clicca qui per aprire direttamente</a>
+            Oppure attiva la modalità admin (Ctrl+Shift+A) e vai su Offerte
           </p>
         </div>
       </div>
@@ -482,23 +482,6 @@ const handleImageError = (event) => {
   event.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f0f0f0" width="400" height="300"/%3E%3Ctext fill="%234caf50" font-family="Arial" font-size="24" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3E🛒 Immagine non disponibile%3C/text%3E%3C/svg%3E'
 }
 
-// Apri pagina volantino editor (solo admin)
-const openVolantino = () => {
-  // Costruisci il percorso assoluto del volantino editor
-  const baseUrl = window.location.origin
-  const volantinoPath = `${baseUrl}/src/stores/volantino-editor.html`
-  
-  // Apri in una nuova finestra
-  const newWindow = window.open(volantinoPath, '_blank', 'width=1200,height=900')
-  
-  // Se il popup è bloccato, mostra un messaggio
-  if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-    showMessage('⚠️ Sblocca i popup per aprire l\'editor, oppure vai direttamente su: /src/stores/volantino-editor.html', 'error')
-  } else {
-    showMessage('✅ Editor Volantino aperto in una nuova finestra!', 'success')
-  }
-}
-
 // Gestione combinazione tasti Ctrl+Shift+A
 const handleKeyDown = (event) => {
   if (event.ctrlKey) keysPressed.value.ctrl = true
@@ -642,6 +625,7 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 1rem;
+  text-decoration: none;
 
   &:hover {
     transform: translateY(-3px);
