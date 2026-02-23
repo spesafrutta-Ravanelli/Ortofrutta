@@ -153,6 +153,8 @@ input[type=file] {
 .btn-cancel:hover { background:#616161; }
 .preview-item.editing { box-shadow:0 0 0 2px var(--green-light); }
 
+.public-print-btn { display: none; }
+
 /* ── PAGES CONTAINER ── */
 .pages-container {
     display: flex;
@@ -652,6 +654,33 @@ body.public-mode h1,
 body.public-mode .subtitle,
 body.public-mode .page-label { display:none !important; }
 
+/* Pulsante Stampa visibile al pubblico */
+body.public-mode .public-print-btn {
+  display: flex !important;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 101;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff6f00, #ffd600);
+  color: #1a1a1a;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'Nunito', sans-serif;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255,111,0,.5);
+  transition: transform .2s, box-shadow .2s;
+}
+body.public-mode .public-print-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255,111,0,.6);
+}
+
 /* Slider: una sola slide visibile, niente scroll (indice 0 = copertina) */
 body.public-mode .pages-container {
   flex: 1;
@@ -751,6 +780,20 @@ body.public-mode .slider-dot.active {
   .form-row { grid-template-columns: 1fr; }
 }
 
+/* Brochure public mode – responsive tablet */
+@media screen and (max-width: 768px) {
+  body.public-mode .page-products {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  body.public-mode .page-products .products-header h2 { font-size: 12pt; }
+  body.public-mode .page-products .week-label { font-size: 6pt; }
+  body.public-mode .page-products .prod-card .prod-name { font-size: 8pt; }
+  body.public-mode .page-products .prod-card .prod-price-badge { font-size: 8pt; }
+  body.public-mode .page-products .products-grid { gap: 4px; padding: 6px 8px; }
+}
+
 /* Brochure public mode – responsive mobile */
 @media screen and (max-width: 480px) {
   body.public-mode .slider-nav {
@@ -773,6 +816,62 @@ body.public-mode .slider-dot.active {
   body.public-mode .page {
     width: min(98vw, calc(98vh * 210 / 148));
     height: min(98vh, calc(98vw * 148 / 210));
+  }
+  body.public-mode .public-print-btn {
+    bottom: 12px;
+    right: 12px;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  /* Seconda pagina (Offerte) – ridimensionamento per vedere tutto */
+  body.public-mode .page-products {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  body.public-mode .page-products .products-header {
+    flex-shrink: 0;
+    padding: 6px 8px 4px;
+  }
+  body.public-mode .page-products .products-header h2 {
+    font-size: 10pt;
+  }
+  body.public-mode .page-products .week-label {
+    font-size: 5pt;
+  }
+  body.public-mode .page-products .brand-small {
+    font-size: 5pt;
+  }
+  body.public-mode .page-products .products-grid {
+    flex: 1;
+    min-height: 0;
+    padding: 4px 6px;
+    gap: 3px;
+    overflow: auto;
+  }
+  body.public-mode .page-products .prod-card .prod-name {
+    font-size: 6pt;
+  }
+  body.public-mode .page-products .prod-card .prod-price-badge {
+    font-size: 6pt;
+    padding: 1px 3px;
+  }
+  body.public-mode .page-products .prod-card .prod-body {
+    padding: 2px 3px;
+  }
+  body.public-mode .page-products .footer-strip {
+    padding: 4px 8px;
+    flex-shrink: 0;
+  }
+  body.public-mode .page-products .footer-strip .footer-brand {
+    font-size: 5pt;
+  }
+  body.public-mode .page-products .footer-strip .footer-phone {
+    font-size: 5.5pt;
   }
 
   /* Terza pagina (Retro) – responsive smartphone */
@@ -823,9 +922,11 @@ body.public-mode .slider-dot.active {
 ════════════════════════════════ */
 @media print {
     @page { size: A5 landscape; margin: 0; }
-    body { margin:0; padding:0; background:white; }
-    .editor-wrap, .btn-print, .products-preview, h1, .subtitle, .page-label, .print-controls { display:none !important; }
-    .pages-container { gap:0; }
+    body { margin:0; padding:0; background:white; overflow:visible !important; }
+    .editor-wrap, .btn-print, .products-preview, .public-print-btn, h1, .subtitle, .page-label, .print-controls,
+    .slider-nav, .slider-dots { display:none !important; }
+    .pages-container { display:block !important; }
+    .pages-container > div { display:block !important; position:static !important; }
     .page { width:210mm; height:148mm; page-break-after:always; page-break-inside:avoid; box-shadow:none; }
 }
 </style>
@@ -1006,6 +1107,10 @@ body.public-mode .slider-dot.active {
   </div>
 
 </div><!-- end pages-container -->
+
+<button class="public-print-btn" onclick="window.print()" title="Stampa brochure">
+  🖨️ Stampa
+</button>
 
 <script>
 // Ctrl+Shift+A nell'iframe → notifica al parent (modalità admin)
