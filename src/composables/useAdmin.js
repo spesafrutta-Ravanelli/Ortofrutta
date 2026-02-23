@@ -11,15 +11,24 @@ import {
 const isAdminMode = ref(false)
 const products = ref([])
 
-// Listener tastiera a livello di modulo — registrato una volta sola
+// Listener tastiera — capture:true per intercettare prima che l'iframe catturi l'evento
 const handleKeyPress = (event) => {
   if (event.ctrlKey && event.shiftKey && (event.key === 'A' || event.key === 'a')) {
     event.preventDefault()
+    event.stopPropagation()
     isAdminMode.value = !isAdminMode.value
     console.log(isAdminMode.value ? '✅ Modalità Admin ATTIVATA' : '❌ Modalità Admin DISATTIVATA')
   }
 }
-window.addEventListener('keydown', handleKeyPress)
+document.addEventListener('keydown', handleKeyPress, { capture: true })
+
+// Ascolta messaggi dall'iframe brochure (quando l'iframe ha il focus, i tasti non arrivano al parent)
+window.addEventListener('message', (event) => {
+  if (event.data?.type === 'TOGGLE_ADMIN_MODE') {
+    isAdminMode.value = !isAdminMode.value
+    console.log(isAdminMode.value ? '✅ Modalità Admin ATTIVATA (da iframe)' : '❌ Modalità Admin DISATTIVATA (da iframe)')
+  }
+})
 
 export function useAdmin() {
   

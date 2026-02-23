@@ -166,16 +166,16 @@
       <div class="social-section">
         <h2>Seguici sui Social</h2>
         <div class="social-links">
-          <a href="https://www.facebook.com/fruttora" class="social-link facebook">
-            <span class="social-icon">Facebook</span>
+          <a href="https://www.facebook.com/fruttora" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+            <i class="fa-brands fa-facebook social-icon"></i>
             <span>Facebook</span>
           </a>
-          <a href="#" class="social-link instagram">
-            <span class="social-icon">📷</span>
+          <a href="https://www.instagram.com/ortofrutticola_ravanelli.alex?igsh=Zm5xbXdiNWdnOWNl/" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+            <i class="fa-brands fa-instagram social-icon"></i>
             <span>Instagram</span>
           </a>
-          <a href="#" class="social-link whatsapp">
-            <span class="social-icon">💬</span>
+          <a href="https://wa.me/393756804525" target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
+            <i class="fa-brands fa-whatsapp social-icon"></i>
             <span>WhatsApp</span>
           </a>
         </div>
@@ -567,6 +567,10 @@ const handleSubmit = async () => {
       font-size: 2.5rem;
     }
 
+    &.facebook .social-icon { color: #1877f2; }
+    &.instagram .social-icon { color: #e4405f; }
+    &.whatsapp .social-icon { color: #25d366; }
+
     &:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -574,14 +578,17 @@ const handleSubmit = async () => {
 
     &.facebook:hover {
       color: #1877f2;
+      .social-icon { color: #1877f2; }
     }
 
     &.instagram:hover {
       color: #e4405f;
+      .social-icon { color: #e4405f; }
     }
 
     &.whatsapp:hover {
       color: #25d366;
+      .social-icon { color: #25d366; }
     }
   }
 }
@@ -651,7 +658,7 @@ const handleSubmit = async () => {
     padding: 1.25rem 1.5rem;
 
     .social-icon {
-      font-size: 2rem;
+      font-size: 2.25rem;
     }
   }
 }

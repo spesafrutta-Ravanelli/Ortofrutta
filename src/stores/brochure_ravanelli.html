@@ -922,6 +922,16 @@ body.public-mode .slider-dot.active {
 </div><!-- end pages-container -->
 
 <script>
+// Ctrl+Shift+A nell'iframe → notifica al parent (modalità admin)
+if (window.self !== window.top) {
+  document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+      e.preventDefault();
+      window.parent.postMessage({ type: 'TOGGLE_ADMIN_MODE' }, '*');
+    }
+  });
+}
+
 // ── Products logic ──
 let products = [];
 let pendingImg = null;
