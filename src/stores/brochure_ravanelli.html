@@ -64,6 +64,7 @@ h1 {
 }
 
 .editor-wrap h2 { color: var(--green-main); margin-bottom:18px; font-size:18px; }
+.editor-wrap .date-row { margin-bottom:20px; }
 
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
 .form-group { display:flex; flex-direction:column; gap:5px; }
@@ -811,6 +812,17 @@ body.public-mode .slider-dot.active {
 
 <!-- EDITOR -->
 <div class="editor-wrap">
+  <h2>📅 Date Validità Offerte</h2>
+  <div class="form-row date-row">
+    <div class="form-group">
+      <label>Data Inizio *</label>
+      <input type="date" id="dataInizio" onchange="saveDatesToFirebase()" />
+    </div>
+    <div class="form-group">
+      <label>Data Fine *</label>
+      <input type="date" id="dataFine" onchange="saveDatesToFirebase()" />
+    </div>
+  </div>
   <h2>➕ Aggiungi Prodotto in Offerta</h2>
   <div class="form-row">
     <div class="form-group">
@@ -1086,7 +1098,20 @@ function removeProduct(i) {
 function saveToFirebase() {
   if (typeof db === 'undefined') return;
   var toSave = products.map(function(p) { return { title: p.name, price: p.price, price2: '', image: p.img || null, tag: p.tag || '' }; });
-  db.collection('settings').doc('volantino').set({ products: toSave, updatedAt: new Date().toISOString() }, { merge: true });
+  var data = { products: toSave, updatedAt: new Date().toISOString() };
+  var di = document.getElementById('dataInizio');
+  var df = document.getElementById('dataFine');
+  if (di && di.value) data.dataInizio = di.value;
+  if (df && df.value) data.dataFine = df.value;
+  db.collection('settings').doc('volantino').set(data, { merge: true });
+}
+function saveDatesToFirebase() {
+  if (typeof db === 'undefined') return;
+  var di = document.getElementById('dataInizio');
+  var df = document.getElementById('dataFine');
+  if (!di || !df) return;
+  var data = { dataInizio: di.value || '', dataFine: df.value || '', updatedAt: new Date().toISOString() };
+  db.collection('settings').doc('volantino').set(data, { merge: true });
 }
 
 function renderAll() {
@@ -1137,11 +1162,16 @@ function renderAll() {
 
 if (typeof isPublicMode !== 'undefined' && !isPublicMode && typeof db !== 'undefined') {
   db.collection('settings').doc('volantino').get().then(function(docSnap) {
-    if (docSnap.exists && docSnap.data().products && docSnap.data().products.length > 0) {
-      products = docSnap.data().products.map(function(p) {
-        return { name: p.title || '', price: p.price2 ? p.price + ' / ' + p.price2 : (p.price || ''), tag: p.tag || '', img: p.image || null };
-      });
-      renderAll();
+    if (docSnap.exists) {
+      var d = docSnap.data();
+      if (d.dataInizio) { var di = document.getElementById('dataInizio'); if (di) di.value = d.dataInizio; }
+      if (d.dataFine) { var df = document.getElementById('dataFine'); if (df) df.value = d.dataFine; }
+      if (d.products && d.products.length > 0) {
+        products = d.products.map(function(p) {
+          return { name: p.title || '', price: p.price2 ? p.price + ' / ' + p.price2 : (p.price || ''), tag: p.tag || '', img: p.image || null };
+        });
+        renderAll();
+      }
     }
   });
 }
