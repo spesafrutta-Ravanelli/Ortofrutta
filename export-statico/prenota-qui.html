@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prenota Qui - Ortofrutticola Ravanelli & Carminati</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo"><span class="logo-icon">🍎</span><span class="logo-text">Ortofrutticola<br>Ravanelli & Carminati</span></div>
+      <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="categorie.html">Categorie</a></li>
+        <li><a href="listino.html">Listino</a></li>
+        <li><a href="offerte.html" class="btn-offerte">🎉 Offerte</a></li>
+        <li><a href="chi-siamo.html">Chi Siamo</a></li>
+        <li><a href="dove-siamo.html">Dove Siamo</a></li>
+        <li><a href="prenota-qui.html" class="active btn-prenota">Prenota Qui</a></li>
+        <li><a href="contatti.html" class="btn-contact">Contatti</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="prenota-page">
+      <div class="container">
+        <div class="page-header">
+          <h1>🛒 Prenota Qui</h1>
+          <p class="subtitle">Compila il form e prenota la tua spesa. Sarà pronta per te al mercato!</p>
+        </div>
+
+        <div class="info-banner">
+          <div class="info-icon">📋</div>
+          <div class="info-content">
+            <h3>Come funziona?</h3>
+            <p><strong>1.</strong> Compila il modulo con i prodotti desiderati<br>
+            <strong>2.</strong> Clicca "Invia su WhatsApp"<br>
+            <strong>3.</strong> Si aprirà WhatsApp con il messaggio precompilato<br>
+            <strong>4.</strong> Invia il messaggio per confermare la prenotazione</p>
+          </div>
+        </div>
+
+        <form class="prenota-form" id="prenotaForm">
+          <div class="form-section">
+            <h2>📝 I Tuoi Dati</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nome">Nome (sul citofono) *</label>
+                <input type="text" id="nome" required placeholder="Es: Mario Rossi">
+              </div>
+              <div class="form-group">
+                <label for="telefono">Telefono / WhatsApp *</label>
+                <input type="tel" id="telefono" required placeholder="+39 ...">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="via">Via e numero civico *</label>
+                <input type="text" id="via" required placeholder="Es: Via Roma, 10">
+              </div>
+              <div class="form-group">
+                <label for="paese">Paese *</label>
+                <input type="text" id="paese" required placeholder="Es: Milano">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="mercato">Mercato di Ritiro *</label>
+              <select id="mercato" required>
+                <option value="">Seleziona il mercato...</option>
+                <option value="Martedì - Asso">Martedì - Asso</option>
+                <option value="Martedì - Zelo Buon Persico">Martedì - Zelo Buon Persico</option>
+                <option value="Mercoledì - Scarenna">Mercoledì - Scarenna</option>
+                <option value="Mercoledì - Agrate">Mercoledì - Agrate</option>
+                <option value="Giovedì - Caslino D'Erba">Giovedì - Caslino D'Erba</option>
+                <option value="Giovedì - Bussero">Giovedì - Bussero</option>
+                <option value="Venerdì - Eupilio">Venerdì - Eupilio</option>
+                <option value="Sabato - Brembate">Sabato - Brembate</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-section">
+            <h2>🛒 I Tuoi Prodotti</h2>
+            <div class="form-group">
+              <label for="prodotti">Prodotti desiderati (descrizione)</label>
+              <textarea id="prodotti" rows="4" placeholder="Es: 2 kg mele Golden, 1 kg arance..."></textarea>
+            </div>
+          </div>
+          <div class="form-section">
+            <h2>💬 Note Aggiuntive</h2>
+            <div class="form-group">
+              <label for="note">Altre richieste (opzionale)</label>
+              <textarea id="note" rows="3" placeholder="Scrivi qui eventuali richieste..."></textarea>
+            </div>
+          </div>
+          <div class="form-section">
+            <div class="form-group">
+              <label><input type="checkbox" id="privacy" required> Accetto il trattamento dei dati personali *</label>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-large">💬 Invia su WhatsApp</button>
+            <p class="submit-info">Cliccando il pulsante si aprirà WhatsApp con il tuo ordine precompilato</p>
+          </div>
+        </form>
+
+        <div style="text-align:center; margin-top:3rem; padding:2rem; background:#f8f8f8; border-radius:12px;">
+          <h3>Hai bisogno di aiuto?</h3>
+          <p>Contattaci su WhatsApp per qualsiasi dubbio sulla prenotazione</p>
+          <a href="https://wa.me/393756804525" target="_blank" class="btn btn-whatsapp">💬 Scrivici su WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section"><h4>🍎 Ortofrutticola Golosello S.N.C.</h4></div>
+        <div class="footer-section"><h4>Contatti</h4><ul><li><a href="tel:+393756804525">+39 375 680 4525</a></li><li><a href="https://wa.me/393756804525" target="_blank">WhatsApp</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>🌐 Sito da <a href="mailto:MarziaAlaimoDev@gmail.com" class="credits-link">Marzia Alaimo</a></p></div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('prenotaForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var nome = document.getElementById('nome').value;
+      var tel = document.getElementById('telefono').value.replace(/\s/g,'');
+      var via = document.getElementById('via').value;
+      var paese = document.getElementById('paese').value;
+      var mercato = document.getElementById('mercato').value;
+      var prodotti = document.getElementById('prodotti').value;
+      var note = document.getElementById('note').value;
+      var msg = '🛒 *PRENOTAZIONE*\n\n👤 Nome: ' + nome + '\n📞 Tel: ' + tel + '\n📍 Via: ' + via + ', ' + paese + '\n🏪 Mercato: ' + mercato + '\n\n🛒 Prodotti:\n' + (prodotti || '-') + (note ? '\n\n💬 Note: ' + note : '');
+      var url = 'https://wa.me/393756804525?text=' + encodeURIComponent(msg);
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+</html>

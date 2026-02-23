@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listino Prezzi - Ortofrutticola Ravanelli & Carminati</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo"><span class="logo-icon">🍎</span><span class="logo-text">Ortofrutticola<br>Ravanelli & Carminati</span></div>
+      <button class="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="categorie.html">Categorie</a></li>
+        <li><a href="listino.html" class="active">Listino</a></li>
+        <li><a href="offerte.html" class="btn-offerte">🎉 Offerte</a></li>
+        <li><a href="chi-siamo.html">Chi Siamo</a></li>
+        <li><a href="dove-siamo.html">Dove Siamo</a></li>
+        <li><a href="prenota-qui.html" class="btn-prenota">Prenota Qui</a></li>
+        <li><a href="contatti.html" class="btn-contact">Contatti</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="products-page">
+      <section class="page-hero">
+        <div class="container">
+          <h1>📋 Listino Prezzi</h1>
+          <p>I nostri prodotti freschi e di qualità</p>
+        </div>
+      </section>
+
+      <section style="padding: 2rem 0;">
+        <div class="container">
+          <div class="search-and-filters">
+            <input type="text" class="search-input" placeholder="🔍 Cerca prodotto..." id="searchInput">
+            <select class="category-filter" id="categoryFilter">
+              <option value="">Tutte le categorie</option>
+              <option value="Frutta">Frutta</option>
+              <option value="Verdura">Verdura</option>
+              <option value="Agrumi">Agrumi</option>
+            </select>
+          </div>
+          <p style="margin-bottom: 1rem; color: #666;">📦 Listino statico di esempio. Per il listino completo e aggiornato visita il sito dinamico.</p>
+          <div class="products-table-wrapper">
+            <table class="products-table">
+              <thead>
+                <tr>
+                  <th>Nome Prodotto</th>
+                  <th>Provenienza</th>
+                  <th>Prezzo (€)</th>
+                  <th>Unità</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="product-name">Melinda Golden Delicious</td><td>Trentino</td><td class="product-price">2.40</td><td>kg</td></tr>
+                <tr><td class="product-name">Golden Delicious</td><td>Italia</td><td class="product-price">2.40</td><td>kg</td></tr>
+                <tr><td class="product-name">Arancia Tarocco</td><td>Sicilia</td><td class="product-price">2.20</td><td>kg</td></tr>
+                <tr><td class="product-name">Arancia Navel</td><td>Sicilia</td><td class="product-price">2.00</td><td>kg</td></tr>
+                <tr><td class="product-name">Mandarino</td><td>Calabria</td><td class="product-price">2.80</td><td>kg</td></tr>
+                <tr><td class="product-name">Kiwi Verde</td><td>Italia</td><td class="product-price">3.20</td><td>kg</td></tr>
+                <tr><td class="product-name">Pomodoro San Marzano</td><td>Italia</td><td class="product-price">3.50</td><td>kg</td></tr>
+                <tr><td class="product-name">Broccoli</td><td>Italia</td><td class="product-price">2.50</td><td>pz</td></tr>
+                <tr><td class="product-name">Cavolfiore</td><td>Italia</td><td class="product-price">2.20</td><td>kg</td></tr>
+                <tr><td class="product-name">Spinaci</td><td>Italia</td><td class="product-price">2.40</td><td>kg</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section"><h4>🍎 Ortofrutticola Golosello S.N.C.</h4><p>P.IVA: 04324410168</p></div>
+        <div class="footer-section"><h4>Link Rapidi</h4><ul><li><a href="index.html">Home</a></li><li><a href="categorie.html">Categorie</a></li><li><a href="listino.html">Listino</a></li><li><a href="chi-siamo.html">Chi Siamo</a></li><li><a href="dove-siamo.html">Dove Siamo</a></li></ul></div>
+        <div class="footer-section"><h4>Contatti</h4><ul><li>📞 <a href="tel:+393756804525">+39 375 680 4525</a></li><li><a href="https://wa.me/393756804525" target="_blank">WhatsApp</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>🌐 Sito da <a href="mailto:MarziaAlaimoDev@gmail.com" class="credits-link">Marzia Alaimo</a></p></div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

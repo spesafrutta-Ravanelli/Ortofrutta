@@ -1,0 +1,1066 @@
+/* ============================================================
+   Ortofrutticola Ravanelli & Carminati - Static Export Styles
+   Foglio di stile principale per l'esportazione statica del sito
+   ============================================================ */
+
+/* Reset globale: include padding e bordo nelle dimensioni degli elementi */
+* { box-sizing: border-box; }
+
+/* Stile base del body: font di sistema, nessun margine, colore testo scuro */
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #333; }
+
+/* Contenitore centrato riutilizzabile con larghezza massima e padding laterale */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+/* ============================================================
+   NAVBAR
+   Barra di navigazione fissa in cima allo schermo,
+   sempre visibile durante lo scroll grazie a position: fixed
+   ============================================================ */
+.navbar {
+  position: fixed;         /* Rimane ancorata in cima durante lo scroll */
+  top: 0; left: 0; right: 0;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Ombra sottile per staccarla dallo sfondo */
+  z-index: 1000;           /* Sopra tutto il contenuto della pagina */
+  padding: 1.25rem 0;
+}
+
+/* Contenitore interno della navbar: logo a sinistra, link a destra */
+.navbar .container {
+  display: flex;
+  justify-content: space-between; /* Spazio tra logo e nav-links */
+  align-items: center;
+  min-height: 60px;
+}
+
+/* Logo: icona + testo affiancati, con transizione di scala al hover */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2c5f2d;          /* Verde scuro del brand */
+  cursor: pointer;
+  user-select: none;       /* Impedisce la selezione accidentale del testo */
+}
+.logo:hover { transform: scale(1.02); } /* Leggerissimo ingrandimento al hover */
+
+/* Icona emoji grande nel logo */
+.logo-icon { font-size: 2rem; }
+
+/* Testo del logo in serif per un aspetto classico */
+.logo-text { font-family: Georgia, serif; line-height: 1.4; }
+
+/* ============================================================
+   HAMBURGER MENU (mobile-toggle)
+   Bottone con 3 linee visibile solo su mobile.
+   Si trasforma in "X" quando il menu è aperto (classe .active).
+   ============================================================ */
+.mobile-toggle {
+  display: none;           /* Nascosto su desktop, visibile via media query */
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;           /* Sopra il pannello nav aperto */
+}
+
+/* Le 3 linee dell'hamburger */
+.mobile-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #2c5f2d;
+  transition: all 0.3s ease; /* Transizione fluida verso la "X" */
+}
+
+/* Trasformazione in "X" quando il menu è aperto */
+.mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.mobile-toggle.active span:nth-child(2) { opacity: 0; }          /* Linea centrale scompare */
+.mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+/* ============================================================
+   LINK DI NAVIGAZIONE (desktop)
+   Lista orizzontale di link con bottoni CTA colorati
+   ============================================================ */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+/* Stile base dei link: testo scuro con transizione colore */
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+.nav-links li a:hover { color: #4caf50; }          /* Verde al hover */
+.nav-links li a.active { color: #4caf50; }         /* Verde per pagina corrente */
+
+/* Bottone "Offerte": gradiente giallo-arancio con forma pill */
+.nav-links .btn-offerte {
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+  color: white !important;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+}
+
+/* Bottone "Prenota": arancio pieno */
+.nav-links .btn-prenota {
+  background: #ff9800;
+  color: white !important;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+}
+
+/* Bottone "Contatti": verde pieno */
+.nav-links .btn-contact {
+  background: #4caf50;
+  color: white !important;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+}
+
+/* ============================================================
+   NAVBAR RESPONSIVE (mobile ≤ 768px)
+   Il menu scorre da destra a sinistra come pannello laterale
+   ============================================================ */
+@media (max-width: 768px) {
+  .navbar { padding: 0.75rem 0; }
+
+  /* Mostra il bottone hamburger su mobile (area minima 44x44px per accessibilità) */
+  .mobile-toggle { display: flex; min-width: 44px; min-height: 44px; }
+
+  /* Pannello nav nascosto fuori schermo a destra di default */
+  .nav-links {
+    position: fixed;
+    top: 0; right: -100%;        /* Nascosto a destra */
+    width: 75%;
+    max-width: 320px;
+    height: 100vh;               /* Altezza intera schermo */
+    background: white;
+    flex-direction: column;      /* Link in colonna */
+    padding: 5rem 2rem 2rem;     /* Padding superiore per non sovrapporsi alla navbar */
+    gap: 1rem;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: right 0.3s ease; /* Animazione di apertura */
+    overflow-y: auto;            /* Scroll se i link non entrano */
+  }
+
+  /* Pannello aperto: scorre in posizione */
+  .nav-links.active { right: 0; }
+
+  /* Link a larghezza piena su mobile */
+  .nav-links li { width: 100%; }
+  .nav-links li a {
+    display: block;
+    padding: 0.875rem 1rem;
+    font-size: 1.1rem;           /* Font più grande per touch */
+  }
+}
+
+/* ============================================================
+   MAIN CONTENT
+   Area principale della pagina con padding per compensare la navbar fissa
+   ============================================================ */
+.main-content {
+  min-height: calc(100vh - 140px); /* Almeno viewport meno header e footer */
+  padding-top: 100px;              /* Spazio per la navbar fissa */
+}
+@media (max-width: 768px) { .main-content { padding-top: 90px; } }
+
+/* ============================================================
+   FOOTER
+   Piè di pagina scuro con griglia a 5 colonne
+   ============================================================ */
+.footer {
+  background: #1a1a1a; /* Quasi nero */
+  color: #fff;
+  padding: 3rem 0 1rem;
+  margin-top: 4rem;
+}
+
+/* Griglia 5 colonne per le sezioni del footer */
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem 1.25rem;   /* gap riga, gap colonna */
+  margin-bottom: 1.5rem;
+}
+
+/* Titoli sezioni footer in verde */
+.footer-section h4 { font-size: 1rem; margin-bottom: 0.5rem; color: #4caf50; }
+
+/* Testi paragrafo footer in grigio chiaro */
+.footer-section p { color: #ccc; margin-bottom: 0.5rem; font-size: 0.9rem; line-height: 1.5; }
+
+/* Liste link footer senza stile predefinito */
+.footer-section ul { list-style: none; padding: 0; margin: 0; }
+.footer-section ul li { margin-bottom: 0.5rem; }
+.footer-section ul a { color: #ccc; text-decoration: none; }
+.footer-section ul a:hover { color: #4caf50; } /* Verde al hover */
+
+/* Barra inferiore copyright con separatore */
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 1.5rem;
+  text-align: center;
+}
+.footer-bottom p { color: #999; margin: 0.5rem 0; font-size: 0.9rem; }
+
+/* Link crediti evidenziato in verde */
+.credits-link { color: #4caf50; text-decoration: none; font-weight: 600; }
+
+/* Footer responsive: 2 colonne su tablet, 1 su mobile */
+@media (max-width: 992px) { .footer-content { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 576px) { .footer-content { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   BOTTONI GENERICI
+   Stile base riutilizzabile con varianti per colore e dimensione
+   ============================================================ */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: 25px;         /* Forma pill */
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+/* Verde pieno — azione principale */
+.btn-primary { background: #4caf50; color: white; }
+.btn-primary:hover { background: #45a049; transform: translateY(-2px); }
+
+/* Bianco con bordo bianco — usato su sfondi scuri */
+.btn-secondary { background: white; color: #4caf50; border-color: white; }
+.btn-secondary:hover { background: transparent; color: white; }
+
+/* Gradiente giallo-arancio — per offerte e promozioni */
+.btn-offerte {
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+  color: white;
+}
+.btn-offerte:hover { transform: translateY(-3px); }
+
+/* Variante grande: padding e font aumentati */
+.btn-large { padding: 1rem 3rem; font-size: 1.1rem; }
+
+/* ============================================================
+   HOME PAGE — SCROLLING BANNER
+   Striscia con gradiente verde e testo in scorrimento automatico continuo
+   ============================================================ */
+.scrolling-banner {
+  background: linear-gradient(90deg, #4caf50, #2c5f2d, #4caf50);
+  color: white;
+  padding: 1rem 0;
+  overflow: hidden;             /* Nasconde il testo fuori dallo schermo */
+  animation: scroll 30s linear infinite; /* Scorrimento perpetuo */
+}
+
+/* Contenitore del testo senza a capo */
+.banner-content { display: flex; white-space: nowrap; }
+
+/* Testo del banner in maiuscolo e grassetto */
+.banner-text { padding: 0 2rem; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; }
+
+/* Animazione: sposta il contenuto del 50% (il contenuto è duplicato per creare il loop) */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   HOME PAGE — HERO SECTION
+   Sezione principale con gradiente verde, testo e immagine affiancati
+   ============================================================ */
+.hero {
+  background: linear-gradient(135deg, #2c5f2d, #4caf50);
+  color: white;
+  padding: 4rem 0;
+  margin-bottom: 3rem;
+}
+
+/* Layout a due colonne: testo | immagine */
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Titolo grande del hero */
+.hero-title { font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; }
+
+/* Elemento in evidenza (emoji o parola) che va a capo con dimensione maggiore */
+.hero-title .accent { display: block; font-size: 4rem; margin-bottom: 0.5rem; }
+
+/* Testo in giallo paglierino per enfatizzare parole chiave */
+.hero-title .highlight { color: #fff3cd; }
+
+/* Paragrafo descrittivo con alta leggibilità */
+.hero-description { font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem; opacity: 0.95; }
+
+/* Riga di bottoni CTA con wrapping su mobile */
+.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Immagine hero: larghezza piena, angoli arrotondati e ombra profonda */
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* ============================================================
+   HOME PAGE — SLIDER BANCO IMMAGINI
+   Slider manuale con frecce prev/next e pallini di navigazione
+   ============================================================ */
+.banco-slider-section { padding: 0 0 3rem; margin-bottom: 2rem; }
+
+/* Contenitore centrato con larghezza massima */
+.slider-wrapper { max-width: 1000px; margin: 0 auto; }
+
+/* Box relativo per sovrapporre i bottoni alle immagini */
+.slider-container {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
+/* Slide nascosta di default */
+.slide { display: none; width: 100%; }
+
+/* Slide attiva: visibile con animazione fade-in */
+.slide.active { display: block; animation: fadeIn 0.8s ease-in-out; }
+
+/* Immagine della slide */
+.slide img { width: 100%; height: auto; max-height: 600px; object-fit: cover; }
+
+/* Frecce di navigazione: circolari, centrate verticalmente */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  color: #2c5f2d;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 2.5rem;
+  cursor: pointer;
+  z-index: 10;
+  line-height: 1;
+}
+.slider-btn.prev { left: 20px; }   /* Freccia sinistra */
+.slider-btn.next { right: 20px; }  /* Freccia destra */
+
+/* Pallini di navigazione centrati in basso */
+.slider-dots {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+/* Singolo pallino semi-trasparente */
+.slider-dots .dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+/* Pallino attivo: bianco pieno e ingrandito */
+.slider-dots .dot.active { background: white; transform: scale(1.4); }
+
+/* Animazione fade-in riutilizzabile */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ============================================================
+   HOME PAGE — STATISTICHE
+   Griglia di card con numeri in evidenza (es. anni di attività, clienti)
+   ============================================================ */
+.stats { padding: 2rem 0; margin-bottom: 3rem; }
+
+/* Griglia adattiva: almeno 200px per colonna */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+/* Card statistica: centrata con ombra leggera */
+.stat-card {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Numero grande in verde */
+.stat-number { font-size: 3rem; font-weight: 700; color: #4caf50; }
+
+/* Etichetta descrittiva sotto il numero */
+.stat-label { color: #666; font-size: 1rem; }
+
+/* ============================================================
+   TITOLI E DESCRIZIONI DI SEZIONE
+   Classi riutilizzabili per heading e sottotitoli centrati
+   ============================================================ */
+.section-title { font-size: 2.5rem; color: #2c5f2d; text-align: center; margin-bottom: 1rem; font-weight: 700; }
+.section-description { text-align: center; color: #666; font-size: 1.1rem; margin-bottom: 3rem; }
+
+/* ============================================================
+   HOME PAGE — PRODOTTI DI STAGIONE
+   Griglia di card cliccabili con icona, descrizione e mesi
+   ============================================================ */
+.seasonal-products { padding: 3rem 0; margin-bottom: 3rem; background: white; }
+
+/* Griglia adattiva: almeno 250px per card */
+.seasonal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Card stagione: link cliccabile con hover interattivo */
+.season-card {
+  background: linear-gradient(135deg, #f8f8f8, #fff);
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;  /* Bordo invisibile che appare al hover */
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Hover: sollevamento, ombra verde e bordo visibile */
+.season-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(76,175,80,0.2);
+  border-color: #4caf50;
+}
+
+/* Icona emoji della stagione */
+.season-icon { font-size: 4rem; margin-bottom: 1rem; }
+.season-card h3 { font-size: 1.4rem; color: #2c5f2d; margin-bottom: 0.75rem; }
+.season-card p { color: #666; line-height: 1.6; margin-bottom: 1rem; font-size: 0.95rem; }
+
+/* Badge pill verde con i mesi della stagione */
+.season-months {
+  background: #4caf50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Responsive home: hero in 1 colonna, stats 2 colonne, stagioni 1 colonna */
+@media (max-width: 768px) {
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-text { text-align: center; }
+  .hero-title { font-size: 2rem; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .seasonal-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   PAGE HERO
+   Intestazione verde comune a molte pagine interne (categorie, listino…)
+   ============================================================ */
+.page-hero {
+  background: linear-gradient(135deg, #2c5f2d, #4caf50);
+  color: white;
+  padding: 3rem 0;
+  text-align: center;
+}
+.page-hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 700; }
+.page-hero p { font-size: 1.2rem; opacity: 0.95; }
+
+/* Intestazione alternativa su sfondo bianco (senza gradiente) */
+.page-header { text-align: center; margin-bottom: 4rem; }
+.page-header h1 { font-size: 3rem; color: #2c5f2d; margin-bottom: 1rem; font-weight: 700; }
+.page-header .subtitle { font-size: 1.3rem; color: #666; font-style: italic; }
+
+/* ============================================================
+   PAGINA CATEGORIE
+   Sezioni stagionali e tutto l'anno con card cliccabili
+   ============================================================ */
+.seasonal-section { padding: 4rem 0; background: white; }
+.year-round-section { padding: 4rem 0; background: #f8f9fa; }  /* Grigio alternato */
+
+/* Card stagione per la pagina categorie (versione leggermente più grande) */
+.season-card-cat {
+  background: linear-gradient(135deg, #f8f9fa, #fff);
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border: 2px solid transparent;
+}
+.season-card-cat:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(76,175,80,0.25);
+  border-color: #4caf50;
+}
+
+/* Card categoria generica (es. Frutta, Verdura) */
+.category-card {
+  background: white;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(76,175,80,0.2);
+  border-color: #4caf50;
+}
+
+/* Griglia stagioni: 4 colonne fisse */
+.seasonal-grid-cat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+
+/* Griglia tutto l'anno: adattiva, almeno 250px */
+.year-round-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+
+/* Icone per categorie e stagioni */
+.category-icon, .season-icon-cat { font-size: 4rem; margin-bottom: 1rem; }
+
+/* Badge verde chiaro con il numero di prodotti per categoria */
+.product-count {
+  background: #e8f5e9;
+  color: #2c5f2d;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: inline-block;
+}
+
+/* Responsive categorie: 2 colonne su tablet, 1 su mobile */
+@media (max-width: 1024px) { .seasonal-grid-cat { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) {
+  .seasonal-grid-cat { grid-template-columns: 1fr; }
+  .year-round-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   PAGINA LISTINO PREZZI
+   Tabella prodotti con ricerca e filtro per categoria
+   ============================================================ */
+.products-page { min-height: 100vh; background: #f8f9fa; }
+
+/* Contenitore tabella con scroll orizzontale su mobile */
+.products-table-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow-x: auto;            /* Scroll orizzontale se la tabella non entra */
+  margin-bottom: 2rem;
+}
+
+/* Tabella senza bordi doppi */
+.products-table { width: 100%; border-collapse: collapse; }
+
+/* Intestazione tabella: verde pieno con testo bianco */
+.products-table thead { background: #4caf50; color: white; }
+.products-table th, .products-table td { padding: 1rem; text-align: left; }
+
+/* Hover sulle righe: grigio chiarissimo */
+.products-table tbody tr:hover { background: #f5f5f5; }
+
+/* Nome prodotto in verde grassetto */
+.product-name { font-weight: 600; color: #2c5f2d; }
+
+/* Prezzo in verde grassetto e dimensione maggiore */
+.product-price { font-weight: 700; color: #4caf50; font-size: 1.1rem; }
+
+/* Barra di ricerca e filtri sopra la tabella */
+.search-and-filters {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Campo di testo per la ricerca prodotto */
+.search-input {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-width: 250px;
+}
+
+/* Dropdown per filtrare per categoria */
+.category-filter {
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-width: 200px;
+}
+
+/* ============================================================
+   PAGINA CHI SIAMO
+   Sezione storia aziendale e valori con layout centrato
+   ============================================================ */
+.about-page { padding: 2rem 0; }
+
+/* Sezione storia: titolo centrato e testo giustificato */
+.story-section { margin-bottom: 5rem; }
+.story-section h2 { font-size: 2.5rem; color: #2c5f2d; margin-bottom: 2rem; text-align: center; }
+.story-section p { font-size: 1.1rem; line-height: 2; color: #555; margin-bottom: 1.5rem; text-align: justify; }
+
+/* Sezione valori aziendali con ombra e padding generoso */
+.values-section {
+  margin-bottom: 5rem;
+  padding: 4rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.values-section h2 { font-size: 2.5rem; color: #2c5f2d; text-align: center; margin-bottom: 2rem; }
+
+/* Griglia adattiva per le card dei valori */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+/* Card singolo valore: centrata con hover di sollevamento */
+.value-card {
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.value-card:hover { transform: translateY(-5px); }
+
+/* Icona emoji grande del valore */
+.value-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+.value-card h3 { font-size: 1.5rem; color: #2c5f2d; margin-bottom: 1rem; }
+.value-card p { color: #666; line-height: 1.6; }
+
+/* Sezione numeri (statistiche aziendali) */
+.numbers-section { margin-bottom: 5rem; }
+.numbers-section h2 { font-size: 2.2rem; color: #2c5f2d; text-align: center; margin-bottom: 3rem; }
+
+/* Griglia adattiva per i numeri */
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+/* Card numero: gradiente verde con testo bianco */
+.number-card {
+  background: linear-gradient(135deg, #4caf50, #2c5f2d);
+  color: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* Numero grande all'interno della card */
+.number-card .number { font-size: 3rem; font-weight: 700; }
+
+/* Sezione CTA centrata con bottoni affiancati */
+.cta-section { text-align: center; padding: 4rem 2rem; }
+.cta-section h2 { font-size: 2.2rem; color: #2c5f2d; margin-bottom: 1rem; }
+.cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ============================================================
+   PAGINA CONTATTI
+   Griglia con info contatto, orari e form
+   ============================================================ */
+.contacts-page { padding: 2rem 0; }
+
+/* Layout a 2 colonne: info | orari/form */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+/* Card generica con ombra (usata per info e orari) */
+.info-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.info-card h3 { font-size: 1.3rem; color: #2c5f2d; margin-bottom: 0.75rem; }
+
+/* Link nelle card info in verde */
+.info-card p a { color: #4caf50; text-decoration: none; }
+
+/* Sezione orari di apertura */
+.hours-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.hours-list { margin-bottom: 1rem; }
+
+/* Riga orario: giorno a sinistra, orario a destra */
+.hours-item { display: flex; justify-content: space-between; padding: 0.75rem 1rem; border-bottom: 1px solid #f0f0f0; }
+
+/* Nota orari in giallo paglierino */
+.hours-note { background: #fff3cd; padding: 1rem; border-radius: 8px; font-size: 0.9rem; color: #856404; margin-top: 1rem; }
+
+/* Colonna di card info in sequenza verticale */
+.contact-info-section { display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* Riga evidenziata negli orari (es. orario speciale) */
+.hours-item.highlight { background: #f8f8f8; border-radius: 6px; font-weight: 600; color: #4caf50; }
+
+/* Form di contatto: 2 colonne per i campi */
+.contact-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+
+/* Gruppo label + campo del form */
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+
+/* Stile comune per tutti i campi del form */
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Sezione social media centrata */
+.social-section { text-align: center; margin: 3rem 0; }
+
+/* Riga di link social con wrapping */
+.social-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+
+/* Singolo link social: icona + nome in colonna, card con ombra */
+.social-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 2rem;
+  background: white;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  min-width: 150px;
+}
+.social-link:hover { transform: translateY(-5px); }
+
+/* Icona del social network */
+.social-icon { font-size: 2.5rem; }
+
+/* Colori brand per le icone dei social */
+.social-link.facebook .social-icon { color: #1877f2; }
+.social-link.instagram .social-icon { color: #e4405f; }
+.social-link.whatsapp .social-icon { color: #25d366; }
+
+/* Responsive contatti: 1 colonna su mobile */
+@media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   PAGINA DOVE SIAMO
+   Mappa mercati organizzati per giorno della settimana
+   ============================================================ */
+.dove-siamo-page { padding: 2rem 0; }
+
+/* Banner info principale con gradiente verde */
+.market-info .info-box {
+  background: linear-gradient(135deg, #4caf50, #2c5f2d);
+  color: white;
+  padding: 3rem;
+  border-radius: 16px;
+  text-align: center;
+}
+
+/* Griglia adattiva dei mercati divisi per giorno */
+.markets-by-day {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Colonna giornaliera: card bianca con ombra */
+.day-column {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Intestazione del giorno con gradiente verde chiaro */
+.day-header {
+  font-size: 1.6rem;
+  color: #2c5f2d;
+  font-weight: 700;
+  text-align: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+/* Singola voce mercato: icona + testo affiancati */
+.market-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: #f8f8f8;
+  margin-bottom: 1rem;
+}
+
+/* Link nel market-item senza decorazione */
+.market-item a { color: inherit; text-decoration: none; }
+
+/* Riga mercati del weekend centrata */
+.weekend-markets { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 2rem; }
+
+/* Card mercato del weekend: grande, gradiente verde */
+.weekend-market-card {
+  background: linear-gradient(135deg, #4caf50, #2c5f2d);
+  color: white;
+  padding: 3rem 4rem;
+  border-radius: 20px;
+  text-align: center;
+  min-width: 300px;
+}
+.weekend-market-card { text-decoration: none; color: white; }
+.weekend-market-card h3, .weekend-market-card p { color: white; margin: 0.5rem 0; }
+
+/* Margine sotto il titolo nella sezione mercati */
+.markets-section .section-title { margin-bottom: 2rem; }
+
+/* Icona grande nelle card info */
+.info-card .card-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+/* Griglia adattiva per card informative generiche */
+.info-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+/* ============================================================
+   PAGINA PRENOTA QUI
+   Banner istruzioni + form di prenotazione
+   ============================================================ */
+.prenota-page { padding: 2rem 0; }
+
+/* Banner arancione con istruzioni affiancate all'icona */
+.info-banner {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+/* Form di prenotazione: card bianca con ombra */
+.prenota-form {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Sezione interna del form con separatore inferiore */
+.form-section { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #f0f0f0; }
+.form-section h2 { font-size: 1.8rem; color: #2c5f2d; margin-bottom: 1.5rem; }
+
+/* Riga a 2 colonne per i campi del form */
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+
+/* Variante WhatsApp del bottone submit */
+.btn-whatsapp { background: #25D366; color: white; }
+.btn-whatsapp:hover { background: #128C7E; }
+
+/* Responsive form: 1 colonna su mobile */
+@media (max-width: 768px) { .form-row { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   PAGINA OFFERTE
+   Mini header, griglia CTA e griglia info
+   ============================================================ */
+.offerte-page { padding: 2rem 0; }
+
+/* Header compatto verde per la pagina offerte */
+.page-header-mini {
+  text-align: center;
+  padding: 1rem;
+  background: #4caf50;
+  color: white;
+}
+.page-header-mini h1 { font-size: 1.5rem; margin: 0; }
+
+/* Griglia 3 colonne per le card CTA delle offerte */
+.cta-section-offerte {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+/* Singola card CTA offerta */
+.cta-card-offerte {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.cta-card-offerte h2 { font-size: 1.5rem; color: #2c3e50; margin-bottom: 1rem; }
+
+/* Griglia 4 colonne per le card informative aggiuntive */
+.info-grid-offerte {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Singola card info offerta */
+.info-item-offerte {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Responsive offerte: 1 colonna su mobile */
+@media (max-width: 768px) {
+  .cta-section-offerte { grid-template-columns: 1fr; }
+  .info-grid-offerte { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   PANNELLO ADMIN
+   Interfaccia di amministrazione con header blu (distinto dal verde del sito)
+   ============================================================ */
+.admin-panel { min-height: 100vh; background: #f5f5f5; }
+
+/* Header admin in blu — colore differente per distinguerlo dalle pagine pubbliche */
+.admin-header {
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+  color: white;
+  padding: 2rem 0;
+}
+.admin-header h1 { font-size: 2.5rem; margin: 0; }
+
+/* ============================================================
+   PAGINE STAGIONE / CATEGORIA (dettaglio prodotti)
+   Hero verde con icona grande, link "torna indietro" e griglia prodotti
+   ============================================================ */
+
+/* Hero verde condiviso per pagine stagione e categoria */
+.season-hero, .category-hero {
+  background: linear-gradient(135deg, #2c5f2d, #4caf50);
+  color: white;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+/* Intestazioni centrate */
+.season-header, .category-header { text-align: center; }
+
+/* Icone emoji molto grandi per identificare visivamente la stagione/categoria */
+.season-icon-large, .category-icon-large { font-size: 6rem; margin-bottom: 1rem; }
+
+/* Testo periodo stagionale o descrizione categoria */
+.season-period, .category-description { font-size: 1.2rem; opacity: 0.95; }
+
+/* Titolo del giorno del mercato in evidenza */
+.market-day-large { font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; }
+
+/* Link "torna indietro" in bianco */
+.back-link { color: white; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 1.5rem; }
+.back-link:hover { opacity: 0.9; }
+
+/* Griglia adattiva dei prodotti della stagione/categoria */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+/* Card prodotto statica: immagine + info testuale */
+.product-card-static {
+  border-radius: 16px;
+  overflow: hidden;             /* Angoli arrotondati anche sull'immagine */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  background: white;
+}
+
+/* Immagine prodotto con altezza fissa e ritaglio */
+.product-card-static img { width: 100%; height: 200px; object-fit: cover; }
+
+/* Zona testuale sotto l'immagine */
+.product-card-static .product-info { padding: 1rem; }
+.product-card-static h3 { font-size: 1.2rem; color: #2c5f2d; margin: 0 0 0.5rem; }
+
+/* Prezzo del prodotto in verde grassetto */
+.product-card-static .price-tag { font-weight: 700; color: #4caf50; }
