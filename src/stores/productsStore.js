@@ -28,7 +28,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/melinda-golden.jpg',
-              description:'Mela Golden Delicious Melinda dal Trentino: eccellenza certificata e qualità garantita. La sua buccia giallo dorata racchiude una polpa croccante, succosa e naturalmente dolce, dal sapore equilibrato e delicato. Coltivata nelle valli alpine con metodi sostenibili, è perfetta sia fresca che in cucina, per dolci, torte e preparazioni salate. Ricca di vitamine e antiossidanti, è la scelta ideale per tutta la famiglia.'
+              description:'La mela Golden Delicious Melinda si distingue per il colore giallo dorato e la buccia sottile. La polpa è croccante, succosa e dal gusto naturalmente dolce e delicato. Coltivata nei frutteti di montagna del Trentino, è ideale sia per il consumo fresco sia per l’utilizzo in cucina, perfetta per dolci e preparazioni salate.'
             },
             { 
               id: 2, 
@@ -38,7 +38,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/golden-amelia.jpg',
-              description: 'Golden Delicious: dolcezza, croccantezza e qualità certificata in ogni morso. Coltivata con cura nelle valli italiane, si distingue per la polpa succosa, fragrante e naturalmente dolce, racchiusa in una buccia dal caratteristico giallo dorato. Ideale da gustare fresca o in cucina, per dolci, torte, macedonie o dessert al forno. Ricca di vitamine e antiossidanti, porta tradizione e genuinità direttamente sulla tua tavola.'
+              description: 'La mela Golden Delicious presenta una buccia giallo dorata e una polpa croccante e succosa. Il gusto è dolce e delicato, molto equilibrato. È una mela versatile, ideale per il consumo fresco e perfetta anche per l’utilizzo in cucina, sia per dolci sia per preparazioni salate.'
             },
             { 
               id: 3, 
@@ -48,7 +48,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/renetta.jpg',
-              description: 'Mela Renetta: un classico della tradizione italiana dal sapore equilibrato tra dolce e acidulo e dalla polpa compatta e profumata. La buccia sottile e leggermente rugosa racchiude un frutto versatile, ideale sia da gustare fresco che per preparazioni in cucina, come dolci, torte e composte, dove mantiene consistenza e aroma. Ricca di nutrienti e antiossidanti naturali, unisce gusto, genuinità e tradizione.'
+              description: 'La mela Renetta è una varietà classica dal gusto aromatico e acidulo, con polpa compatta. Ottima sia da mangiare fresca sia per preparazioni culinarie tradizionali.'
             },
             { 
               id: 4, 
@@ -58,7 +58,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/ambrosia.jpg',
-              description:'Mela Ambrosia: dolcezza e succosità in ogni morso. La polpa croccante, morbida e aromatica conquista al primo assaggio, mentre la buccia rosata sfumata di giallo la rende immediatamente riconoscibile. Coltivata con attenzione in terreni selezionati, unisce gusto e qualità, perfetta da gustare fresca o in insalate, dessert e preparazioni creative. Ricca di vitamine e antiossidanti, è la scelta ideale per chi cerca un frutto sano e naturalmente dolce.'
+              description:'La mela Ambrosia si distingue per la buccia bicolore giallo-rossa e l’aspetto elegante. La polpa è molto croccante, succosa e dal gusto intensamente dolce, con leggere note aromatiche. È ideale per il consumo fresco, perfetta come snack e apprezzata anche dai bambini.'
             },
             { 
               id: 5, 
@@ -68,7 +68,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/fuji.jpg',
-              description: 'Mela Fuji: dolcezza intensa e croccantezza in ogni morso. Con la polpa soda, succosa e aromaticamente zuccherina, la Fuji è una delle mele più amate per il gusto deciso e persistente. La buccia liscia dai toni rosso sfumato con giallo nasconde un frutto versatile, ideale sia fresco che in insalate, dolci, dessert o preparazioni al forno. Ricca di vitamine e antiossidanti naturali, è perfetta per tutta la famiglia.'
+              description: 'La mela Fuji presenta una buccia bicolore con fondo giallo e sovraccolore rosso. La polpa è molto croccante, compatta e succosa. Il gusto è dolce e aromatico, con un equilibrio piacevole. È ideale per il consumo fresco e adatta anche a preparazioni in cucina.'
             },
             { 
               id: 6, 
@@ -78,7 +78,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/red-delicious.jpg',
-              description:  'Red Delicious: la mela dal gusto dolce e delicato, con buccia rosso intenso e brillante. La polpa croccante e succosa la rende perfetta da gustare fresca, in spuntini o macedonie, portando colore e dolcezza naturale sulla tua tavola. Grazie al sapore equilibrato e alla consistenza soda, è ideale anche per piatti leggeri e dessert, rappresentando la scelta sana e genuina per tutta la famiglia.'
+              description:  'La mela Red Delicious si riconosce per la buccia rosso intenso e la forma allungata. La polpa è tenera e succosa, dal gusto dolce e delicato. È ideale per il consumo fresco ed è apprezzata per il suo aspetto elegante e il sapore equilibrato.'
             },
             { 
               id: 7, 
@@ -88,7 +88,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/granny-smith.jpg',
-              description: 'Granny Smith: la mela dal gusto fresco, acidulo e vivace, dal caratteristico colore verde brillante. La sua polpa croccante e succosa offre un equilibrio perfetto tra acidità e dolcezza naturale, rendendola ideale da gustare fresca, in insalate, dessert o preparazioni al forno. Ricca di vitamine e antiossidanti, la Granny Smith è perfetta per chi cerca un frutto sano, rinfrescante e dal sapore deciso, capace di dare carattere a ogni piatto. Granny Smith: freschezza, croccantezza e gusto inconfondibile in ogni morso.'
+              description: 'La mela Granny Smith si distingue per la buccia verde brillante e la polpa molto croccante e succosa. Il gusto è fresco, deciso e marcatamente acidulo. È ideale per il consumo fresco e particolarmente apprezzata in cucina, soprattutto per dolci e preparazioni salate.'
             },
             { 
               id: 8, 
@@ -98,7 +98,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/annurca.jpg',
-              description: 'La Mela Annurca è un frutto tipico italiano, di piccole dimensioni, con buccia rosso brillante e polpa croccante e dolce-acidula. Perfetta da gustare fresca, in macedonie o dessert, è apprezzata per il suo sapore unico e aromatico. Ricca di vitamine e fibre, la mela Annurca fresca e di stagione garantisce qualità e genuinità direttamente dal produttore al tuo banco.'
+              description: 'La mela Annurca è una varietà tradizionale italiana, riconoscibile per la buccia rosso intenso con fondo verde. La polpa è compatta e croccante, dal gusto equilibrato, dolce con una piacevole nota acidula. È ideale per il consumo fresco ed è apprezzata per il suo profumo intenso e caratteristico.'
             },
             { 
               id: 9, 
@@ -108,7 +108,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/kissabel.jpg',
-              description: 'La mela Kissabel è un frutto tipico italiano, di piccole dimensioni, con buccia rosso brillante e polpa croccante e dolce-acidula. Perfetta da gustare fresca, in macedonie o dessert, è apprezzata per il suo sapore unico e aromatico. Ricca di vitamine e fibre, la mela Kissabel fresca e di stagione garantisce qualità e genuinità direttamente dal produttore al tuo banco.'
+              description: 'La mela Kissabel, nota anche come mela fragola, ha una buccia rossa intensa con sfumature rosa e gialle. La polpa è croccante, succosa e dal gusto dolce con un leggero aroma fruttato che ricorda le fragole. È ideale per il consumo fresco e come snack goloso per tutta la famiglia.'
             },
             { 
               id: 10, 
@@ -118,7 +118,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/abate-fetel.jpg',
-              description: 'Pera Abate Fetel: dolcezza elegante e polpa succosa in ogni morso. Dalla forma allungata e slanciata, con buccia liscia e color giallo dorato, la Abate Fetel è famosa per il suo aroma delicato e il sapore naturalmente zuccherino. Perfetta da gustare fresca, in macedonie o dessert, mantiene anche consistenza e gusto nelle preparazioni al forno. Ricca di vitamine e fibre naturali, è una scelta sana e genuina per tutta la famiglia. Abate Fetel: dolcezza, morbidezza e profumo inconfondibile, un classico della frutta italiana.'
+              description: 'La pera Abate Fetel si riconosce per la forma allungata e la buccia verde con sfumature giallo-rugginose. La polpa è bianca, fine, molto succosa e dal gusto dolce e aromatico. È ideale per il consumo fresco ed è apprezzata per l’elevata qualità e la sua eleganza.'
             },
             { 
               id: 11, 
@@ -128,7 +128,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/pera-kaiser.jpg',
-              description: 'Pera Kaiser: dolcezza delicata e polpa croccante in ogni morso. La sua buccia liscia, dal verde chiaro leggermente sfumato di rosso, nasconde un frutto versatile e saporito, ideale da gustare fresco o in preparazioni al forno, dolci e macedonie. Ricca di vitamine e antiossidanti naturali, la Kaiser unisce gusto e qualità, rendendola perfetta per chi cerca un frutto sano, genuino e dal sapore equilibrato. Kaiser: croccantezza, dolcezza e freschezza in ogni morso.'
+              description: 'La pera Kaiser si distingue per la forma allungata, la buccia ruvida di colore marrone-ruggine e la polpa chiara, soda e profumata. Il gusto è dolce e aromatico, ideale per il consumo crudo, cotto, in dolci, macedonie e preparazioni da forno.'
             },
             { 
               id: 12, 
@@ -138,7 +138,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/decana.jpg',
-              description: 'Pera Decana: dolcezza intensa e polpa succosa in ogni morso. La sua forma rotonda e compatta, con buccia liscia dal colore giallo-verde, racchiude un frutto dal sapore equilibrato e aromatico. Perfetta da gustare fresca, in macedonie o dessert, mantiene consistenza e gusto anche nelle preparazioni al forno. Ricca di vitamine, fibre e antiossidanti naturali, la Decana è un frutto sano, genuino e versatile, ideale per tutta la famiglia. Decana: dolcezza, morbidezza e aroma inconfondibile, un classico della frutta italiana.'
+              description: 'La pera Decana ha una buccia verde-gialla, talvolta con leggere sfumature rossastre. La polpa è soda, succosa e dal gusto dolce e aromatico, molto equilibrato. È ideale per il consumo fresco e ottima anche per dolci e preparazioni culinarie.'
             },
             { 
               id: 13, 
@@ -148,7 +148,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/kiwi-giallo.jpg',
-              description: 'Kiwi Giallo: dolcezza esotica e polpa morbida in ogni morso. Con il suo colore dorato brillante e il sapore naturalmente zuccherino, il kiwi giallo è perfetto da gustare fresco, in macedonie, smoothie o dessert. Ricco di vitamine, in particolare vitamina C, minerali e antiossidanti naturali, è un frutto sano, nutriente e ideale per chi cerca freschezza e energia in ogni momento della giornata. Kiwi Giallo: gusto dolce, polpa succosa e vitalità naturale, direttamente dalla natura alla tua tavola.'
+              description: 'Il kiwi giallo si distingue per la buccia sottile e liscia di colore marrone chiaro e la polpa interna giallo dorato. La polpa è morbida, succosa e dal gusto dolce, meno acidulo rispetto al kiwi verde, con un aroma intenso e tropicale. È ideale per il consumo fresco, macedonie, smoothie e dolci.'
             },
             {
               id: 179,
@@ -158,7 +158,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/kiwi-rosso.jpeg',
-              description: 'Kiwi Rosso: dolcezza esotica e polpa morbida in ogni morso. Con il suo colore rosso brillante e il sapore naturalmente zuccherino, il kiwi rosso è perfetto da gustare fresco, in macedonie, smoothie o dessert. Ricco di vitamine, in particolare vitamina C, minerali e antiossidanti naturali, è un frutto sano, nutriente e ideale per chi cerca freschezza e energia in ogni momento della giornata. Kiwi Rosso: gusto dolce, polpa succosa e vitalità naturale, direttamente dalla natura alla tua tavola.'
+              description: 'Il kiwi verde si caratterizza per la buccia marrone leggermente pelosa e la polpa verde brillante con piccoli semi neri. La polpa è morbida, succosa e dal gusto acidulo equilibrato, con aroma intenso e caratteristico. Ricco di vitamina C e antiossidanti, è ideale per il consumo fresco, macedonie, frullati, dessert e dolci. Nutriente e rinfrescante.'
             },
             { 
               id: 14, 
@@ -168,7 +168,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/kiwi-verde.jpg',
-              description: 'Kiwi Verde: freschezza e sapore inconfondibili in ogni morso. Con la sua polpa verde brillante, succosa e leggermente acidula, il kiwi verde è perfetto da gustare fresco, in macedonie, smoothie o dessert. Ricco di vitamina C, fibre e antiossidanti naturali, è un frutto sano e nutriente, ideale per chi cerca energia e vitalità in modo naturale. Kiwi Verde: gusto deciso, freschezza e benessere direttamente dalla natura alla tua tavola.'
+              description: 'Il kiwi verde si caratterizza per la buccia marrone leggermente pelosa e la polpa verde brillante con piccoli semi neri. La polpa è morbida, succosa e dal gusto acidulo equilibrato, con aroma intenso e caratteristico. Ricco di vitamina C e antiossidanti, è ideale per il consumo fresco, macedonie, frullati, dessert e dolci. Nutriente e rinfrescante.'
             },
             { 
               id: 15, 
@@ -178,7 +178,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/melograno.jpg',
-              description: 'Melograno: colore intenso, freschezza e gusto unico in ogni chicco. Il melograno racchiude una polpa succosa e dolce-acidula, ricca di antiossidanti naturali e vitamine, ideale da gustare fresco, in macedonie, smoothie o come ingrediente originale in piatti creativi. Frutto simbolo di salute e vitalità, il melograno è perfetto per chi cerca un\'alimentazione sana, naturale e gustosa, portando sulla tavola un tocco di colore e benessere. Melograno: dolcezza, freschezza e vitalità naturale in ogni chicco.'
+              description: 'Il melograno si distingue per il frutto tondeggiante con buccia spessa di colore rosso intenso e i chicchi interni succosi e brillanti. Il gusto è dolce con una leggera nota acidula, ideale per il consumo fresco, in spremute, insalate, macedonie e come ingrediente decorativo.'
             },
             { 
               id: 16, 
@@ -188,7 +188,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cachi.jpg',
-              description: 'Cachi: i cachi sono frutti dal colore arancione intenso e dalla polpa morbida e dolce. Ideali da consumare maturi al cucchiaio o come ingrediente per dolci e dessert, sono apprezzati per il loro gusto zuccherino e avvolgente. Ricchi di vitamine e sali minerali, i cachi freschi e di stagione garantiscono qualità e genuinità direttamente dal produttore al tuo banco.'
+              description: 'Il cachi si distingue per la buccia liscia di colore arancione intenso e la polpa morbida e dolce quando maturo. Il gusto è zuccherino, aromatico e molto gradevole. È ideale per il consumo fresco, dolci, macedonie e frullati.'
             },
             { 
               id: 17, 
@@ -198,7 +198,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cachi-mela.jpg',
-              description: 'Cachi Mela: dolcezza croccante e polpa soda in ogni morso. Il cachi mela, con la sua forma tondeggiante e il colore arancio intenso, unisce il gusto delicato del cachi alla consistenza più compatta, simile a quella di una mela. Perfetto da gustare fresco, in spuntini, macedonie o dessert, è un frutto sano e nutriente, ricco di vitamine, fibre e antiossidanti naturali. Cachi Mela: freschezza, dolcezza e croccantezza naturale, direttamente dalla natura alla tua tavola.'
+              description: 'Il Cacomela è un frutto ibrido tra mela e cachi, con buccia liscia che può variare dal giallo-arancio al rosso tenue. La polpa è morbida, succosa e dolce, con un aroma delicato che ricorda entrambe le varietà. È ideale per il consumo fresco, dessert e frullati.'
             },
             { 
               id: 18, 
@@ -208,7 +208,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/tarocco.jpg',
-              description: 'Arancia Tarocco: dolcezza equilibrata e colore intenso in ogni fetta. L\'arancia Tarocco, con la sua polpa succosa, rossa e aromatica, è famosa per il gusto dolce, leggermente acidulo e il profumo inconfondibile. Perfetta da gustare fresca, spremuta o in macedonie, smoothie e dolci, è ricca di vitamina C e antiossidanti naturali, ideale per chi cerca salute, energia e gusto in un frutto genuino. Tarocco: dolcezza, colore e freschezza naturale direttamente sulla tua tavola.'
+              description: 'L\'arancia Tarocco si distingue per la buccia arancione intenso con sfumature rosse e la polpa succosa e dolce, leggermente acidula. Il gusto è aromatico e fresco, molto equilibrato. È ideale per il consumo fresco, spremute, macedonie e dolci.'
             },
             { 
               id: 19, 
@@ -218,7 +218,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/navel.jpg',
-              description: 'Arancia Navel: dolcezza, freschezza e succosità in ogni fetta. L\'arancia Navel, con la sua polpa succosa, di colore arancio brillante e senza semi, è perfetta da gustare fresca, in macedonie, dessert o spremute naturali. Dal gusto naturalmente dolce e aromatico, è ricca di vitamina C e antiossidanti, ideale per chi cerca un frutto genuino, sano e ricco di energia. Navel: colore intenso, dolcezza equilibrata e freschezza naturale direttamente sulla tua tavola.'
+              description: 'Scopri la qualità premium di Arancia Navel. Un prodotto selezionato con cura per offrirti il miglior sapore e la massima freschezza.'
             },
             { 
               id: 20, 
@@ -228,7 +228,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/tarocco-spremuta.jpg',
-              description: 'Arancia Tarocco da Spremuta: il massimo della dolcezza e del succo in ogni frutto. L\'arancia Tarocco da spremuta, con la sua polpa rossa, succosa e aromatica, è perfetta per ottenere spremute naturali, fresche e ricche di vitamina C. Dal gusto equilibrato, leggermente dolce con un tocco acidulo, è ideale per iniziare la giornata con energia o per arricchire smoothie e bevande salutari. Ricca di antiossidanti naturali, l\'arancia Tarocco da spremuta porta benessere e freschezza direttamente sulla tua tavola. Tarocco da Spremuta: gusto intenso, succosità naturale e vitalità in ogni spremuta.'
+              description: 'L\'arancia Tarocco da spremuta si distingue per la buccia arancione con sfumature rosse e la polpa molto succosa e dolce, leggermente acidula. Il gusto è fresco e aromatico, perfetto per spremute e succhi naturali, ma adatto anche al consumo fresco.'
             },
             { 
               id: 21, 
@@ -238,7 +238,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/mandarino.jpg',
-              description: 'Mandarino: dolcezza e freschezza in ogni spicchio. Il mandarino, con la sua buccia sottile e facile da sbucciare, racchiude una polpa succosa, aromatica e naturalmente dolce, ideale da gustare fresco, in macedonie, dolci o spremute. Ricco di vitamina C e antiossidanti naturali, è un frutto sano, leggero e nutriente, perfetto per chi cerca gusto e vitalità in ogni momento della giornata. Mandarino: praticità, dolcezza e freschezza naturale direttamente sulla tua tavola.'
+              description: 'Il mandarino si riconosce per la buccia sottile e facile da sbucciare, di colore arancione brillante, e la polpa succosa e dolce con note aromatiche. È ideale per il consumo fresco, macedonie, spremute e dolci.'
             },
             { 
               id: 22, 
@@ -248,7 +248,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/mandarancio.jpg',
-              description: 'Mandarancio: il perfetto equilibrio tra dolcezza e acidità in ogni spicchio. Il mandarancio, frutto dalla buccia sottile e profumata, combina il gusto intenso del mandarino con la freschezza dell\'arancia, regalando una polpa succosa e aromatica, ideale da gustare fresca, in macedonie, dolci o spremute naturali. Ricco di vitamina C, fibre e antiossidanti naturali, è un frutto sano, nutriente e versatile, perfetto per chi cerca gusto, energia e benessere in ogni momento della giornata. Mandarancio: freschezza, dolcezza e vitalità naturale direttamente sulla tua tavola.'
+              description: 'Il mandarancio è un frutto ibrido tra mandarino e arancia, con buccia arancione brillante e polpa succosa, dolce e leggermente acidula. Il gusto è aromatico e equilibrato, ideale per il consumo fresco, spremute e macedonie.'
             },
             { 
               id: 23, 
@@ -258,7 +258,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/pompelmo-rosa.jpg',
-              description: 'Pompelmo Rosa: freschezza e gusto inconfondibili in ogni fetta. Il pompelmo rosa, con la sua polpa succosa e leggermente acidula, regala un equilibrio unico tra dolcezza e note acidule, ideale da gustare fresco, in macedonie, spremute o smoothie salutari. Ricco di vitamina C, fibre e antiossidanti naturali, è un frutto sano e leggero, perfetto per chi cerca benessere, vitalità e un tocco di freschezza naturale in ogni momento della giornata. Pompelmo Rosa: gusto deciso, colore intenso e freschezza naturale direttamente sulla tua tavola.'
+              description: 'Il pompelmo rosa si distingue per la buccia giallo-rosata e la polpa rosa brillante, succosa e leggermente acidula. Il gusto è fresco, aromatico e rinfrescante, ideale per il consumo fresco, spremute, macedonie e insalate.'
             },
             { 
               id: 24, 
@@ -268,7 +268,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/bergamotto.jpg',
-              description: 'Bergamotti: il profumo e l\'aroma della tradizione italiana in ogni frutto. Il bergamotto, con la sua buccia aromaticamente intensa e leggermente amara, è perfetto per spremute, aromatizzare piatti, dolci, bevande o per creare oli essenziali dal caratteristico profumo. Ricco di vitamine e composti naturali benefici, è un frutto sano, versatile e unico nel suo genere, capace di donare freschezza e gusto in cucina e benessere a chi lo utilizza. Bergamotto: aroma intenso, freschezza naturale e gusto autentico della Calabria direttamente sulla tua tavola.'
+              description: 'Il bergamotto è un agrume dalle straordinarie proprietà aromatiche, con una buccia gialla-verde e una polpa succosa e acidula. Il gusto è deciso, leggermente amaro con note floreali affascinanti. Utilizzato principalmente in profumeria e confetteria per l\'eccezionale profumo, è perfetto per aromatizzare tè, dolci e liquori. Tesoro della gastronomia meridionale.'
             },
             { 
               id: 25, 
@@ -278,7 +278,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/limoni.jpeg',
-              description: 'Pera: dolcezza e freschezza in ogni morso. Con la sua polpa succosa, aromatica e naturalmente zuccherina, la pera è un frutto versatile, ideale da gustare fresco, in macedonie, dolci o spremute naturali. Ricca di vitamine e antiossidanti naturali, è un frutto sano e nutriente, perfetto per chi cerca gusto e vitalità in ogni momento della giornata. Pera: dolcezza, freschezza e benessere naturale direttamente sulla tua tavola.'
+              description: 'Il limone si distingue per la buccia gialla, liscia o leggermente rugosa, e la polpa succosa e acidula. Il gusto è fresco, aromatico e deciso, ideale per il consumo fresco, spremuto come succo o utilizzato in cucina per condimenti e preparazioni dolci e salate. Ricco di vitamina C e proprietà benefiche.'
             },
             { 
               id: 26, 
@@ -288,7 +288,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/limoni-edibili.jpg',
-              description: 'Limoni a buccia edibile: freschezza, aroma e versatilità in un solo frutto. Con la loro buccia sottile e commestibile, i limoni a buccia edibile offrono un gusto intenso e profumato, ideale per spremute, insalate, dolci, piatti gourmet e decorazioni. Ricchi di vitamina C e antiossidanti naturali, sono un frutto sano, genuino e pratico, perfetto per chi ama sapore e benessere in cucina senza sprechi. Limoni a buccia edibile: aroma intenso, freschezza naturale e gusto versatile direttamente sulla tua tavola.'
+              description: 'Il limone a buccia edibile si distingue per la buccia sottile e liscia di colore giallo intenso, consumabile insieme alla polpa. La polpa è succosa e acidula, mentre la buccia aggiunge un aroma fresco e intenso. È ideale per il consumo fresco, spremute, cucina, dolci e bevande aromatizzate.'
             }
           ]
         },
@@ -305,7 +305,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolo-nero.jpg',
-              description: 'Cavolo Nero: gusto deciso e proprietà nutritive d\'eccellenza. Dalle foglie lunghe e scure, il cavolo nero è un ortaggio tipico della tradizione italiana, apprezzato per il suo sapore intenso e leggermente amarognolo. Ideale per zuppe, minestre, contorni, vellutate e piatti rustici, è ricco di vitamine, sali minerali, fibre e antiossidanti naturali, perfetto per un\'alimentazione sana ed equilibrata. Cavolo Nero: tradizione, gusto e benessere direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolo nero si distingue per le foglie lunghe, scure e rugose, di colore verde intenso, con un sapore leggermente amarognolo e aromatico. È ricco di vitamine e minerali, ideale per zuppe, minestre, insalate, saltati in padella o frullati verdi.'
             },
             { 
               id: 28, 
@@ -315,7 +315,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/verza.jpg',
-              description: 'Cavolo Verza: gusto delicato e grande versatilità in cucina. Con le sue foglie grandi, arricciate e dal colore verde intenso, il cavolo verza è un ortaggio tipico della stagione invernale, apprezzato per il sapore dolce e leggermente aromatico. Perfetto per zuppe, minestre, involtini, risotti e contorni, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolo Verza: tradizione, morbidezza e genuinità direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolo verza si distingue per le foglie grandi, arricciate e di colore verde chiaro, con polpa compatta e croccante. Il gusto è delicato e leggermente dolce, ideale per zuppe, minestre, stufati, saltati in padella o insalate cotte.'
             },
             { 
               id: 29, 
@@ -325,7 +325,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'pz', 
               available: true,
               image: '/images/products/broccoli.jpg',
-              description: 'Broccoli: gusto deciso e benessere naturale in ogni piatto. Con il loro colore verde intenso e la consistenza compatta, i broccoli sono un ortaggio ricco di proprietà nutritive, apprezzato per il sapore leggermente amarognolo e la grande versatilità in cucina. Ideali per contorni, primi piatti, vellutate e ricette salutari, sono ricchi di vitamine, fibre, sali minerali e antiossidanti naturali, perfetti per un\'alimentazione equilibrata. Broccoli: freschezza, qualità e salute direttamente dall\'orto alla tua tavola.'
+              description: 'I broccoli si distinguono per le cime compatte di colore verde intenso e i gambi croccanti. Il gusto è delicato e leggermente amarognolo, ideale per il consumo al vapore, saltati in padella, gratinati, zuppe o insalate cotte.'
             },
             { 
               id: 30, 
@@ -335,7 +335,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolfiore.jpg',
-              description: 'Cavolfiore: gusto delicato e versatilità in cucina. Con la sua infiorescenza compatta e il colore chiaro, il cavolfiore è un ortaggio invernale apprezzato per il sapore morbido e leggermente dolce. Perfetto per contorni, vellutate, gratin, primi piatti e preparazioni al forno, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolfiore: semplicità, genuinità e benessere direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolfiore bianco si distingue per la testa compatta e tondeggiante di colore bianco e le foglie esterne verdi. Il gusto è delicato e leggermente dolce, ideale per il consumo al vapore, bollito, gratinato, in zuppe o insalate cotte.'
             },
             { 
               id: 31, 
@@ -345,7 +345,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolfiore-verde.jpeg',
-              description: 'Cavolfiore Nero: gusto delicato e versatilità in cucina. Con la sua infiorescenza compatta e il colore chiaro, il cavolfiore è un ortaggio invernale apprezzato per il sapore morbido e leggermente dolce. Perfetto per contorni, vellutate, gratin, primi piatti e preparazioni al forno, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolfiore: semplicità, genuinità e benessere direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolfiore verde si distingue per la testa compatta di colore verde brillante e le foglie esterne verdi. Il gusto è delicato e leggermente dolce, ideale per il consumo al vapore, bollito, gratinato, in zuppe o insalate cotte.'
             },
             {
               id: 32, 
@@ -355,7 +355,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolfiore-viola.jpg',
-              description: 'Cavolfiore Viola: gusto delicato e versatilità in cucina. Con la sua infiorescenza compatta e il colore viola, il cavolfiore è un ortaggio invernale apprezzato per il sapore morbido e leggermente dolce. Perfetto per contorni, vellutate, gratin, primi piatti e preparazioni al forno, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolfiore: semplicità, genuinità e benessere direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolfiore viola si distingue per la testa compatta di colore viola intenso e le foglie esterne verdi. Il gusto è delicato e leggermente dolce, ideale per il consumo al vapore, bollito, gratinato, in zuppe o insalate cotte, aggiungendo un tocco di colore ai piatti.'
             },
             {
               id: 33,
@@ -365,7 +365,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/cavolo-romano.jpg',
-              description: 'Cavolo Romano: gusto delicato e versatilità in cucina. Con la sua infiorescenza compatta e il colore verde intenso, il cavolo romano è un ortaggio invernale apprezzato per il sapore morbido e leggermente dolce. Perfetto per contorni, vellutate, gratin, primi piatti e preparazioni al forno, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolo Romano: semplicità, genuinità e benessere direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolo romano si distingue per le foglie lunghe, rugose e di colore verde scuro, con un sapore leggermente amarognolo e aromatico. È ricco di vitamine e minerali, ideale per zuppe, minestre, saltati in padella o frullati verdi.'
             },
             { 
               id: 34, 
@@ -375,7 +375,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolini di bruxelles1.jpg',
-              description: 'Cavolini di Bruxelles: cavolini di Bruxelles sono piccoli ortaggi dal colore verde brillante e dalla consistenza compatta, dal sapore delicato con una leggera nota amarognola. Ottimi saltati in padella, al forno o lessati, sono ideali come contorno o ingrediente per piatti invernali. Ricchi di fibre, vitamine e sali minerali, i cavolini di Bruxelles freschi e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I cavolini di Bruxelles si distinguono per le piccole teste rotonde e compatte di colore verde, con foglie ben chiuse. Il gusto è leggermente amarognolo e aromatico, ideale per il consumo al vapore, bolliti, saltati in padella, gratinati o in zuppe.'
             },
             { 
               id: 35, 
@@ -385,7 +385,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cime-di-rapa.jpeg',
-              description: 'Cime di Rapa: gusto intenso e tradizione mediterranea. Con le loro foglie verdi, le infiorescenze tenere e il sapore leggermente amarognolo, le cime di rapa sono un ortaggio tipico della cucina del Sud Italia. Ideali per primi piatti, contorni e ricette tradizionali come orecchiette e zuppe, sono ricche di vitamine, fibre e sali minerali, perfette per un\'alimentazione sana e ricca di sapore. Cime di Rapa: carattere deciso, freschezza e genuinità direttamente dall\'orto alla tua tavola.'
+              description: 'Le cime di rapa si distinguono per le foglie verdi, tenere e leggermente arricciate, con piccoli germogli e fiori. Il gusto è amarognolo e aromatico, ideale per il consumo saltate in padella, lessate, in zuppe o come contorno.'
             },
             { 
               id: 36, 
@@ -395,7 +395,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolo-cappuccio.jpg',
-              description: 'Il cavolo cappuccio è un ortaggio fresco di stagione, riconoscibile per la sua forma compatta e le foglie croccanti. Dal sapore delicato e leggermente dolce, è ideale sia per il consumo a crudo in insalata sia per la cottura in zuppe, contorni e piatti tradizionali. Ricco di fibre e naturalmente povero di calorie, è molto apprezzato per la sua versatilità in cucina e la buona conservabilità. Prodotto genuino, adatto all\'uso domestico e professionale.'
+              description: 'Il cavolo cappuccio si distingue per la testa compatta e rotonda con foglie lisce e croccanti di colore verde chiaro o violaceo a seconda della varietà. Il gusto è delicato e leggermente dolce, ideale per il consumo crudo in insalata, al vapore, bollito, in zuppe o stufati.'
             },
             { 
               id: 37, 
@@ -405,7 +405,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/finocchi.jpg',
-              description: 'Il finocchio è un ortaggio fresco e profumato, caratterizzato da un grumolo bianco e croccante e da un sapore delicato e aromatico. Ottimo da consumare crudo in insalata o pinzimonio, è ideale anche cotto in gratin, contorni e piatti leggeri. Ricco di fibre e naturalmente digeribile, il finocchio fresco e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I finocchi si distinguono per il bulbo bianco compatto e le fronde verdi e aromatiche. Il gusto è dolce e delicatamente anice, ideale per il consumo crudo in insalata, al vapore, bollito, gratinato o in zuppe.'
             },
             { 
               id: 38, 
@@ -415,7 +415,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/spinaci.jpg',
-              description: 'Gli spinaci sono verdure a foglia verde scuro, fresche e tenere, dal sapore delicato e leggermente erbaceo. Ideali sia crudi in insalata che cotti in zuppe, frittate o contorni, sono ricchi di vitamine, ferro e fibre, perfetti per una dieta sana ed equilibrata. Freschi e di stagione, gli spinaci del nostro banco garantiscono qualità e genuinità direttamente dalla terra alla tua tavola.'
+              description: 'Gli spinaci si distinguono per le foglie verdi, tenere e carnose. Il gusto è delicato e leggermente erbaceo, ideale per il consumo crudo in insalata, al vapore, saltati in padella, frullati o in zuppe.'
             },
             { 
               id: 39, 
@@ -425,7 +425,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/erbette.jpg',
-              description: 'Le erbette sono verdure a foglia verde tenera, dal sapore delicato e leggermente dolce. Molto versatili in cucina, sono ideali per contorni, zuppe, ripieni, frittate e torte salate. Ricche di fibre, vitamine e sali minerali, le erbette fresche e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le erbette si distinguono per le foglie verdi tenere e i gambi bianchi croccanti. Il gusto è delicato e leggermente dolce, ideale per il consumo al vapore, saltate in padella, in zuppe o frittate.'
             },
             { 
               id: 40, 
@@ -435,7 +435,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/catalogna.jpg',
-              description: 'La catalogna è una verdura a foglia verde dal gusto deciso e leggermente amarognolo. Apprezzata sia cruda in insalata, soprattutto i germogli, sia cotta in contorni, zuppe e piatti tradizionali, è molto versatile in cucina. Ricca di fibre e sali minerali, la catalogna fresca e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La catalogna si distingue per le foglie lunghe, sottili e frastagliate di colore verde scuro, con un gusto amarognolo e deciso. È ideale per il consumo saltata in padella, lessata, in zuppe o come contorno.'
             },
             { 
               id: 41, 
@@ -445,7 +445,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/coste.jpg',
-              description: 'Le bietole sono coste a foglia verde dal gusto delicato e leggermente dolce, apprezzate sia crude in insalata sia cotte in zuppe, torte salate o contorni. Ricche di fibre, vitamine e sali minerali, le coste sono un alleato naturale per una dieta sana ed equilibrata. Fresche e di stagione, garantiscono qualità e genuinità direttamente dal campo alla tua tavola.'
+              description: 'La catalogna si distingue per le foglie lunghe, sottili e frastagliate di colore verde scuro, con un gusto amarognolo e deciso. È ideale per il consumo saltata in padella, lessata, in zuppe o come contorno.'
             },
             { 
               id: 42, 
@@ -455,7 +455,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/radicchio.jpg',
-              description: 'Il radicchio è una verdura dal colore rosso intenso e dalle foglie croccanti, dal gusto leggermente amarognolo e aromatico. Perfetto da gustare crudo in insalate o grigliato, saltato in padella o nelle ricette tipiche della cucina italiana, aggiunge colore e sapore a ogni piatto. Ricco di fibre e antiossidanti, il radicchio fresco e di stagione è sinonimo di qualità e genuinità direttamente dal produttore al tuo banco.'
+              description: 'Il radicchio si distingue per le foglie rosse o violacee con venature bianche, croccanti e leggermente amarognole. Il gusto è deciso e amarognolo, ideale per il consumo crudo in insalata, grigliato, al vapore o saltato in padella.'
             },
             {
               id: 43, 
@@ -465,7 +465,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/trevisana.jpg',
-              description: 'Trevisana: radicchio pregiato con colore rosso intenso e venature bianche, dal gusto leggermente amarognolo e aromatico. Croccante e saporita, ideale da consumare cruda in insalata oppure cotta alla griglia, in padella o nei risotti. Ricca di fibre e antiossidanti, la Trevisana fresca e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco. '
+              description: 'La trevisana si distingue per le foglie lunghe, croccanti e di colore rosso intenso con venature bianche. Il gusto è amarognolo e deciso, ideale per il consumo crudo in insalata, grigliata, al vapore o saltata in padella.'
             },
             { 
               id: 44, 
@@ -475,7 +475,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/iceberg.jpg',
-              description: 'La lattuga iceberg è caratterizzata da una testa compatta e foglie croccanti di colore verde chiaro, dal sapore fresco e delicato. Perfetta per insalate croccanti, panini e piatti veloci, aggiunge leggerezza e freschezza a ogni preparazione. Ricca di acqua e fibre, è ideale per chi cerca un ortaggio sano, fresco e di stagione.'
+              description: 'La lattuga Iceberg si distingue per la testa compatta e rotonda, con foglie croccanti di colore verde chiaro. Il gusto è delicato e fresco, ideale per il consumo crudo in insalate, panini, sandwich o come base per piatti freddi.'
             },
             { 
               id: 45, 
@@ -485,7 +485,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/lattuga-romana.jpg',
-              description: 'La lattuga romana è caratterizzata da foglie lunghe e croccanti, di colore verde brillante e dal sapore fresco e delicato. Ideale per insalate classiche, contorni leggeri e piatti freschi, è molto apprezzata per la sua consistenza e versatilità. Ricca di acqua e fibre, la lattuga romana fresca e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La lattuga romana si distingue per le foglie lunghe, croccanti e di colore verde intenso, con un cuore centrale compatto. Il gusto è fresco e leggermente dolce, ideale per il consumo crudo in insalate, panini, wrap o come base per piatti freddi.'
             },
             { 
               id: 46, 
@@ -495,7 +495,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/lattuga-gentilina.jpg',
-              description: 'La lattuga gentilina è una varietà dal colore verde intenso e dalle foglie morbide e leggermente croccanti. Dal sapore delicato e fresco, è perfetta per insalate, panini e contorni leggeri. Ricca di acqua e fibre, è ideale per chi cerca un ortaggio sano, fresco e di stagione, pronto da gustare in ogni occasione.'
+              description: 'La lattuga Gentilina si distingue per le foglie piccole, tenere e croccanti, di colore verde chiaro con sfumature rosate. Il gusto è delicato e dolce, ideale per il consumo crudo in insalate, panini, sandwich o come guarnizione colorata.'
             },
             { 
               id: 47, 
@@ -505,7 +505,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/scarola.jpg',
-              description: 'La scarola è un\'insalata a foglia larga e croccante, dal sapore delicato con una leggera nota amarognola. Ottima sia cruda in insalata sia cotta in contorni, zuppe e ricette tradizionali, è molto apprezzata per la sua versatilità in cucina. Ricca di fibre e acqua, la scarola fresca e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La scarola si distingue per le foglie larghe, leggermente ricce e di colore verde chiaro, con un gusto delicatamente amarognolo. È ideale per il consumo crudo in insalata, saltata in padella, in zuppe o come contorno.'
             },
             { 
               id: 48, 
@@ -515,7 +515,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/barbabietole.jpg',
-              description: 'Le barbabietole sono ortaggi dalla polpa dolce e dal colore rosso intenso, con radice tondeggiante e foglie verdi nutrienti. Perfette cotte, al forno, in zuppe o insalate, aggiungono colore e gusto a ogni piatto. Ricche di vitamine, sali minerali e fibre, le barbabietole fresche e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La barbabietola si distingue per il tubero rotondo o allungato di colore rosso intenso e le foglie verdi commestibili. Il gusto è dolce e terroso, ideale per il consumo cotta, al vapore, arrosto, in insalate o frullati.'
             },
             {
               id: 49, 
@@ -525,7 +525,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/zucca.jpeg',
-              description: 'La zucca è un ortaggio dal colore arancione intenso e dalla polpa dolce e carnosa. Versatile in cucina, è ideale per zuppe, vellutate, torte salate, dolci e contorni, donando sapore e colore a ogni piatto. Ricca di vitamine, fibre e antiossidanti, la zucca fresca e di stagione garantisce qualità e genuinità direttamente dal produttore al tuo banco.'
+              description: 'La zucca si distingue per la buccia dura di colore arancione, verde o grigio a seconda della varietà e la polpa interna arancione, dolce e compatta. Il gusto è delicato e leggermente dolce, ideale per il consumo al forno, in zuppe, risotti, puree e dolci.'
             },  
             { 
               id: 50, 
@@ -535,7 +535,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/carote.jpg',
-              description: 'Le carote sono ortaggi croccanti e dolci, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote con il ciuffo si distinguono per la radice allungata di colore arancione brillante e le foglie verdi fresche attaccate. La polpa è croccante e dolce, con gusto delicato e naturale, ideale per il consumo crudo, cotto, in insalate, contorni e frullati.'
             },
             { 
               id: 51, 
@@ -545,7 +545,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'pz', 
               available: true,
               image: '/images/products/carote pacchetto.jpg',
-              description: 'Carote Pacchetto: carote fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote si distinguono per la radice allungata di colore arancione brillante e la polpa croccante e dolce. Il gusto è delicato e naturalmente zuccherino, ideale per il consumo crudo, cotto, in insalate, zuppe, contorni e frullati.'
             },
             { 
               id: 52, 
@@ -555,7 +555,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/Carote sfuse.jpg',
-              description: 'Carote Sfuse: carote fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote si distinguono per la radice allungata di colore arancione brillante e la polpa croccante e dolce. Il gusto è delicato e naturalmente zuccherino, ideale per il consumo crudo, cotto, in insalate, zuppe, contorni e frullati.'
             },
             { 
               id: 53, 
@@ -565,7 +565,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/patate-rosse.jpg',
-              description: 'Le patate rosse sono ortaggi dalla buccia sottile e dal colore rosso intenso, con polpa compatta e dal sapore delicato. Ideali per arrosti, bolliti, gratinati o fritte, mantengono bene la forma in cottura e regalano un gusto dolce e uniforme ai piatti. Ricche di fibre e nutrienti, le patate rosse fresche e di stagione sono sinonimo di qualità e genuinità direttamente dal produttore al tuo banco.'
+              description: 'Le patate rosse si distinguono per la buccia liscia di colore rosso e la polpa chiara, compatta e soda. Il gusto è delicato e leggermente dolce, ideale per il consumo arrosto, al forno, lessate, in insalate e contorni.'
             },
             {
               id: 54,
@@ -575,7 +575,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/patata-bianca.jpg',
-              description: 'Patate Bianche: patate fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le patate fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le patate bianche si distinguono per la buccia chiara e la polpa bianca, farinosa e morbida dopo la cottura. Il gusto è delicato e leggermente dolce, ideale per il consumo lessate, in puree, gnocchi, zuppe e contorni.'
             },
             { 
               id: 55, 
@@ -585,7 +585,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/patate-gialle.jpg',
-              description: 'Le patate gialle hanno una buccia sottile e una polpa dal colore dorato, dal gusto dolce e leggermente burroso. Perfette per arrosti, purè, gratin e cotture al forno, si prestano a molte preparazioni grazie alla loro consistenza cremosa. Ricche di fibre e nutrienti, le patate gialle fresche e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le patate gialle si distinguono per la buccia chiara e la polpa gialla, compatta e soda. Il gusto è delicato e leggermente saporito, ideale per il consumo al forno, arrosto, in padella, lessate e come contorno.'
             },
             {
               id: 56,
@@ -595,7 +595,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/patate-sacchetto.jpeg',
-              description: 'Patate Sacchetto: patate fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le patate fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le patate gialle in sacchetto da 2 kg si distinguono per la buccia chiara e la polpa gialla, compatta e soda. Il gusto è delicato e leggermente saporito, ideali per il consumo al forno, arrosto, in padella, lessate e come contorno.'
             },
             { 
               id: 57, 
@@ -605,7 +605,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/porri.jpg',
-              description: 'I porri sono ortaggi dal gambo lungo e bianco e dalle foglie verdi tenere, dal sapore delicato e leggermente dolce. Ideali per zuppe, minestre, frittate e contorni, conferiscono aroma e leggerezza a ogni preparazione. Ricchi di vitamine e minerali, i porri freschi e di stagione sono sinonimo di qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Il porro si distingue per il fusto lungo e cilindrico di colore bianco nella parte inferiore e verde nella parte superiore. Il gusto è delicato e leggermente dolce, ideale per il consumo in zuppe, risotti, torte salate, saltato in padella o come contorno.'
             },
             { 
               id: 58, 
@@ -615,7 +615,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/aglio.jpg',
-              description: 'L\'aglio è un bulbo aromatico, essenziale in cucina per insaporire ogni piatto con il suo gusto deciso e inconfondibile. Fresco e profumato, può essere utilizzato crudo, tritato o cotto, aggiungendo aroma a sughi, salse, zuppe e contorni. Ricco di proprietà benefiche per l\'organismo, l\'aglio fresco e di stagione garantisce qualità e genuinità direttamente dal produttore al tuo banco.'
+              description: 'L’aglio si distingue per il bulbo bianco suddiviso in spicchi, con aroma intenso e caratteristico. Il gusto è pungente e aromatico, ideale per il consumo crudo, in soffritti, salse, zuppe, marinate e contorni.'
             },
             { 
               id: 59, 
@@ -625,7 +625,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/sedano.jpg',
-              description: 'Il sedano è un ortaggio fresco e croccante, dal sapore aromatico e leggermente salato. Ideale da consumare crudo in pinzimonio o insalata, è perfetto anche come base per soffritti, zuppe e brodi. Ricco di acqua, fibre e sali minerali, il sedano fresco e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Il sedano si distingue per i gambi croccanti di colore verde chiaro e le foglie aromatiche. Il gusto è fresco e leggermente amarognolo, ideale per il consumo crudo in insalate, centrifugati, zuppe, soffritti e contorni.'
             },
             {
               id: 60, 
@@ -635,7 +635,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'pz',
               available: true,
               image: '/images/products/carciofi sardi ritratto.jpeg',
-              description: 'Carciofi Sardi: carciofi dal colore verde intenso e dalle foglie croccanti, dal gusto delicato e leggermente amarognolo. Ottima per insalate, panini e contorni leggeri, aggiunge leggerezza e freschezza a ogni preparazione. Ricca di fibre e acqua, la carciofi sardi fresca e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I carciofi sardi si distinguono per le teste compatte con foglie carnose di colore verde chiaro, leggermente punteggiate di viola. Il gusto è delicato e leggermente amarognolo, ideale per il consumo al vapore, lessati, gratinati, in padella o sott’olio.'
             },
             {
               id: 61, 
@@ -645,7 +645,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/mammole.jpg',
-              description: 'Le mammole sono carciofi dalla forma tondeggiante, privi di spine, con foglie tenere e sapore delicato. Ideali da consumare sia crude in insalata sia cotte in padella, al forno o nelle ricette tradizionali, sono molto apprezzate per la loro versatilità e morbidezza. Ricche di fibre e sali minerali, le mammole fresche e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I carciofi mammole si distinguono per le teste tonde e compatte con foglie carnose di colore verde chiaro. Il gusto è dolce e delicato, ideale per il consumo al vapore, lessati, gratinati, in padella o sott’olio.'
             }
           ]
         }
@@ -670,7 +670,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/melinda-golden.jpg',
-              description: 'Melinda Golden Delicious è la mela che conquista per la sua dolcezza equilibrata e la sua inconfondibile croccantezza. Coltivata nel cuore delle valli del Trentino, cresce in un ambiente naturale unico che le conferisce qualità superiori e un gusto delicato ma ricco. La buccia giallo dorata racchiude una polpa succosa, fragrante e naturalmente dolce, perfetta da gustare fresca in ogni momento della giornata. Versatile in cucina, è ideale anche per dolci, dessert, macedonie e preparazioni al forno, grazie alla sua capacità di mantenere consistenza e sapore. Sana, genuina e certificata, Melinda Golden Delicious è una mela che unisce tradizione, territorio e qualità, portando sulla tua tavola il meglio della natura.'
+              description: 'La mela Golden Delicious Melinda si distingue per il colore giallo dorato e la buccia sottile. La polpa è croccante, succosa e dal gusto naturalmente dolce e delicato. Coltivata nei frutteti di montagna del Trentino, è ideale sia per il consumo fresco sia per l’utilizzo in cucina, perfetta per dolci e preparazioni salate.'
             },
             { 
               id: 3, 
@@ -680,7 +680,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/renetta.jpg',
-              description: 'Mela Renetta: un classico della tradizione italiana, dal sapore equilibrato tra dolce e acidulo e dalla polpa compatta e profumata. La buccia sottile e leggermente dorata racchiude un frutto versatile, ideale sia da gustare fresco che per preparazioni in cucina, come dolci, torte e composte, dove mantiene consistenza e aroma. Ricca di nutrienti e antiossidanti naturali, la Renetta unisce gusto, genuinità e tradizione, portando sulla tua tavola un frutto autentico e di alta qualità. Renetta: sapore classico, polpa soda e aroma inconfondibile, perfetta in ogni occasione.'
+              description: 'La mela Renetta è una varietà classica dal gusto aromatico e acidulo, con polpa compatta. Ottima sia da mangiare fresca sia per preparazioni culinarie tradizionali.'
             },
             { 
               id: 5, 
@@ -690,7 +690,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/fuji.jpg',
-              description: 'Mela Fuji: dolcezza intensa e croccantezza in ogni morso. Con la sua polpa soda, succosa e aromaticamente zuccherina, la Fuji è una delle mele più amate per il gusto deciso e persistente. La buccia, liscia e dai toni rosso sfumato con giallo, nasconde un frutto versatile, ideale sia da consumare fresco che in insalate, dolci, dessert o preparazioni al forno. Ricca di vitamine e antiossidanti naturali, la Fuji è perfetta per chi cerca un frutto sano, gustoso e adatto a tutta la famiglia. Fuji: croccante, dolce e irresistibile, la mela che rende ogni momento speciale.'
+              description: 'La mela Fuji presenta una buccia bicolore con fondo giallo e sovraccolore rosso. La polpa è molto croccante, compatta e succosa. Il gusto è dolce e aromatico, con un equilibrio piacevole. È ideale per il consumo fresco e adatta anche a preparazioni in cucina.'
             },
             { 
               id: 7, 
@@ -700,7 +700,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/granny-smith.jpg',
-              description: 'Granny Smith: la mela dal gusto fresco, acidulo e vivace, dal caratteristico colore verde brillante. La sua polpa croccante e succosa offre un equilibrio perfetto tra acidità e dolcezza naturale, rendendola ideale da gustare fresca, in insalate, dessert o preparazioni al forno. Ricca di vitamine e antiossidanti, la Granny Smith è perfetta per chi cerca un frutto sano, rinfrescante e dal sapore deciso, capace di dare carattere a ogni piatto. Granny Smith: freschezza, croccantezza e gusto inconfondibile in ogni morso.'
+              description: 'La mela Granny Smith si distingue per la buccia verde brillante e la polpa molto croccante e succosa. Il gusto è fresco, deciso e marcatamente acidulo. È ideale per il consumo fresco e particolarmente apprezzata in cucina, soprattutto per dolci e preparazioni salate.'
             },
             { 
               id: 11, 
@@ -710,7 +710,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/pera-kaiser.jpg',
-              description: 'Pera Kaiser: dolcezza delicata e polpa croccante in ogni morso. La sua buccia liscia, dal verde chiaro leggermente sfumato di rosso, nasconde un frutto versatile e saporito, ideale da gustare fresco o in preparazioni al forno, dolci e macedonie. Ricca di vitamine e antiossidanti naturali, la Kaiser unisce gusto e qualità, rendendola perfetta per chi cerca un frutto sano, genuino e dal sapore equilibrato. Kaiser: croccantezza, dolcezza e freschezza in ogni morso.'
+              description: 'La pera Kaiser si distingue per la forma allungata, la buccia ruvida di colore marrone-ruggine e la polpa chiara, soda e profumata. Il gusto è dolce e aromatico, ideale per il consumo crudo, cotto, in dolci, macedonie e preparazioni da forno.'
             },
             { 
               id: 12, 
@@ -720,7 +720,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/decana.jpg',
-              description: 'Pera Decana: dolcezza intensa e polpa succosa in ogni morso. La sua forma rotonda e compatta, con buccia liscia dal colore giallo-verde, racchiude un frutto dal sapore equilibrato e aromatico. Perfetta da gustare fresca, in macedonie o dessert, mantiene consistenza e gusto anche nelle preparazioni al forno. Ricca di vitamine, fibre e antiossidanti naturali, la Decana è un frutto sano, genuino e versatile, ideale per tutta la famiglia. Decana: dolcezza, morbidezza e aroma inconfondibile, un classico della frutta italiana.'
+              description: 'La pera Decana ha una buccia verde-gialla, talvolta con leggere sfumature rossastre. La polpa è soda, succosa e dal gusto dolce e aromatico, molto equilibrato. È ideale per il consumo fresco e ottima anche per dolci e preparazioni culinarie.'
             },
             { 
               id: 13, 
@@ -730,7 +730,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/kiwi-giallo.jpg',
-              description: 'Kiwi Giallo: dolcezza esotica e polpa morbida in ogni morso. Con il suo colore dorato brillante e il sapore naturalmente zuccherino, il kiwi giallo è perfetto da gustare fresco, in macedonie, smoothie o dessert. Ricco di vitamine, in particolare vitamina C, minerali e antiossidanti naturali, è un frutto sano, nutriente e ideale per chi cerca freschezza e energia in ogni momento della giornata. Kiwi Giallo: gusto dolce, polpa succosa e vitalità naturale, direttamente dalla natura alla tua tavola.'
+              description: 'Il kiwi giallo si distingue per la buccia sottile e liscia di colore marrone chiaro e la polpa interna giallo dorato. La polpa è morbida, succosa e dal gusto dolce, meno acidulo rispetto al kiwi verde, con un aroma intenso e tropicale. È ideale per il consumo fresco, macedonie, smoothie e dolci.'
             },
             { 
               id: 14, 
@@ -740,7 +740,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/kiwi-verde.jpg',
-              description: 'Kiwi Verde: freschezza e sapore inconfondibili in ogni morso. Con la sua polpa verde brillante, succosa e leggermente acidula, il kiwi verde è perfetto da gustare fresco, in macedonie, smoothie o dessert. Ricco di vitamina C, fibre e antiossidanti naturali, è un frutto sano e nutriente, ideale per chi cerca energia e vitalità in modo naturale. Kiwi Verde: gusto deciso, freschezza e benessere direttamente dalla natura alla tua tavola.'
+              description: 'Il kiwi verde si caratterizza per la buccia marrone leggermente pelosa e la polpa verde brillante con piccoli semi neri. La polpa è morbida, succosa e dal gusto acidulo equilibrato, con aroma intenso e caratteristico. Ricco di vitamina C e antiossidanti, è ideale per il consumo fresco, macedonie, frullati, dessert e dolci. Nutriente e rinfrescante.'
             },
 
               { 
@@ -751,7 +751,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'pz', 
               available: true,
               image: '/images/products/Fragole.jpg',
-              description: 'Fragole italiane profumate e dolcissime, coltivate con cura. Il loro colore rosso brillante e il profumo intenso le rendono irresistibili. Perfette da gustare al naturale, con panna, o per preparare dolci e macedonie. Ricche di vitamina C e antiossidanti, sono un concentrato di benessere e gusto.'
+              description: 'La fragola si distingue per il colore rosso brillante e la polpa succosa e dolce, con un aroma intenso e caratteristico. È ideale per il consumo fresco, macedonie, dolci, frullati e marmellate.'
             },
             { 
               id: 63, 
@@ -761,7 +761,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/ciliegie.jpg',
-              description: 'Ciliegie pugliesi dolci e carnose, dal colore rosso intenso. La polpa succosa e il sapore dolce le rendono perfette per uno spuntino goloso. Ottime anche per preparare marmellate o conserve.'
+              description: 'La ciliegia si distingue per il colore rosso brillante o scuro e la polpa succosa e dolce, con un aroma intenso e delicato. È ideale per il consumo fresco, dolci, macedonie, confetture e dessert.'
             },
             { 
               id: 64, 
@@ -771,7 +771,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/nespole.jpg',
-              description: 'Nespole siciliane dal sapore dolce e delicato. La polpa arancione e succosa è ricca di vitamine e minerali. Perfette da gustare fresche, sono un frutto primaverile unico e genuino.'
+              description: 'La nespola si distingue per la buccia arancione tenue e vellutata e la polpa morbida, dolce e leggermente acidula. Il gusto è aromatico e fresco, ideale per il consumo fresco, dolci, marmellate e frullati.'
             },
             { 
               id: 65, 
@@ -781,7 +781,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/albicocche.jpg',
-              description: 'Albicocche campane profumate e vellutate. La buccia arancione nasconde una polpa dolce e succosa, perfetta per marmellate, dolci o da gustare fresca. Ricche di betacarotene, sono un toccasana per la pelle e la vista.'
+              description: 'Le albicocche si distinguono per il colore arancio intenso e la buccia leggermente pelosa. La polpa è morbida, succosa e dolce. Il gusto è aromatico e delicato, con leggere note tartare. Ideali per il consumo fresco, macedonie, marmellate, dolci e frullati. Ricche di betacarotene e vitamina A, sono un frutto estivo irrinunciabile.'
             },
             { id: 66, 
               name: 'Pesche', 
@@ -790,7 +790,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/pesche.jpg',
-              description: 'Pesche: pesche sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pesche freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La pesca si distingue per la buccia vellutata di colore arancione con sfumature rosse e la polpa succosa e dolce. Il gusto è aromatico e rinfrescante, ideale per il consumo fresco, dolci, macedonie, frullati e marmellate.'
             },
             { id: 67, 
               name: 'Pesche Noce',
@@ -799,7 +799,7 @@ export const useProductsStore = defineStore('products', () => {
                unit: 'kg', 
                available: true,
                image: '/images/products/pesca-noce.jpg',
-               description: 'Pesca Noce: pesca noce sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pesca noce freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+               description: 'Le pesche noce si distinguono per l\'assenza della leggera peluria, con una buccia liscia di colore giallo-rosso e una polpa dolce, succosa e profumata. Il gusto è ricco e intenso, con un aroma straordinario. Ideali per il consumo fresco come snack, in macedonie, dolci e frullati. Perfette per chi ama le pesche ma ne preferisce la versione liscia.'
             },
           ]
         },
@@ -816,7 +816,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/asparagi.jpg',
-              description: 'Asparagi: asparagi sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i asparagi freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Gli asparagi si distinguono per i turioni verdi o violetti, sottili o grossi, con punte compatte e tenere. Il gusto è delicato e leggermente dolce, ideale per il consumo al vapore, lessati, gratinati, in padella o in insalate.'
             },
            { id: 69, 
             name: 'Lattuga Trocadero', 
@@ -825,7 +825,7 @@ export const useProductsStore = defineStore('products', () => {
             unit: 'pz', 
             available: true,
             image: '/images/products/lattuga-trocadero.jpg',
-            description: 'Lattuga: lattuga sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i lattuga freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+            description: 'La lattuga Trocadero si distingue per le foglie larghe, croccanti e di colore verde chiaro, con un cuore compatto. Il gusto è fresco e delicato, ideale per il consumo crudo in insalate, panini, wrap o come base per piatti freddi.'
           },
           { 
             id: 38, 
@@ -835,7 +835,7 @@ export const useProductsStore = defineStore('products', () => {
             unit: 'kg', 
             available: true,
             image: '/images/products/spinaci.jpg',
-            description: 'Gli spinaci sono verdure a foglia verde scuro, fresche e tenere, dal sapore delicato e leggermente erbaceo. Ideali sia crudi in insalata che cotti in zuppe, frittate o contorni, sono ricchi di vitamine, ferro e fibre, perfetti per una dieta sana ed equilibrata. Freschi e di stagione, gli spinaci del nostro banco garantiscono qualità e genuinità direttamente dalla terra alla tua tavola.'
+            description: 'Gli spinaci si distinguono per le foglie verdi, tenere e carnose. Il gusto è delicato e leggermente erbaceo, ideale per il consumo crudo in insalata, al vapore, saltati in padella, frullati o in zuppe.'
           },
             { id: 70, 
               name: 'Ravanelli', 
@@ -844,7 +844,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/ravanelli.jpg',
-              description: 'Ravanelli: ravanelli sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i ravanelli freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I ravanelli si distinguono per le radici tonde o allungate di colore rosso, rosa o bianco e le foglie verdi croccanti. Il gusto è fresco, leggermente piccante e croccante, ideale per il consumo crudo in insalate, come snack o come guarnizione.'
             },
             { 
               id: 29, 
@@ -854,7 +854,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'pz', 
               available: true,
               image: '/images/products/broccoli.jpg',
-              description: 'Broccoli: gusto deciso e benessere naturale in ogni piatto. Con il loro colore verde intenso e la consistenza compatta, i broccoli sono un ortaggio ricco di proprietà nutritive, apprezzato per il sapore leggermente amarognolo e la grande versatilità in cucina. Ideali per contorni, primi piatti, vellutate e ricette salutari, sono ricchi di vitamine, fibre, sali minerali e antiossidanti naturali, perfetti per un\'alimentazione equilibrata. Broccoli: freschezza, qualità e salute direttamente dall\'orto alla tua tavola.'
+              description: 'I broccoli si distinguono per le cime compatte di colore verde intenso e i gambi croccanti. Il gusto è delicato e leggermente amarognolo, ideale per il consumo al vapore, saltati in padella, gratinati, zuppe o insalate cotte.'
             },
             { 
               id: 30, 
@@ -864,7 +864,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolfiore.jpg',
-              description: 'Cavolfiore: gusto delicato e versatilità in cucina. Con la sua infiorescenza compatta e il colore chiaro, il cavolfiore è un ortaggio invernale apprezzato per il sapore morbido e leggermente dolce. Perfetto per contorni, vellutate, gratin, primi piatti e preparazioni al forno, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolfiore: semplicità, genuinità e benessere direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolfiore bianco si distingue per la testa compatta e tondeggiante di colore bianco e le foglie esterne verdi. Il gusto è delicato e leggermente dolce, ideale per il consumo al vapore, bollito, gratinato, in zuppe o insalate cotte.'
             },
             { 
               id: 34, 
@@ -874,7 +874,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolini di bruxelles1.jpg',
-              description: 'Cavolini di Bruxelles: cavolini di Bruxelles sono piccoli ortaggi dal colore verde brillante e dalla consistenza compatta, dal sapore delicato con una leggera nota amarognola. Ottimi saltati in padella, al forno o lessati, sono ideali come contorno o ingrediente per piatti invernali. Ricchi di fibre, vitamine e sali minerali, i cavolini di Bruxelles freschi e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I cavolini di Bruxelles si distinguono per le piccole teste rotonde e compatte di colore verde, con foglie ben chiuse. Il gusto è leggermente amarognolo e aromatico, ideale per il consumo al vapore, bolliti, saltati in padella, gratinati o in zuppe.'
             },
             {
               id: 72,
@@ -884,7 +884,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/rucola.jpg',
-              description: 'Rucola: rucola sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i rucola freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La rucola si distingue per le foglie verdi, sottili e leggermente frastagliate, dal sapore piccante e aromatico. È ideale per il consumo crudo in insalate, panini, pizze, insaporire piatti di pasta o come guarnizione.'
             },
             {
               id: 73,
@@ -894,7 +894,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/cipollotto.jpg',
-              description: 'Cipollotti: cipollotti sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i cipollotti freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I cipollotti si distinguono per il bulbo piccolo e allungato di colore bianco e le foglie verdi tenere. Il gusto è delicato e leggermente dolce, ideale per il consumo crudo in insalate, come condimento, in soffritti o grigliati.'
             },
             {
               id: 74,
@@ -904,7 +904,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/piselli.jpg',
-              description: 'Piselli: piselli sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i piselli freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I piselli si distinguono per i baccelli verdi contenenti semi tondeggianti di colore verde brillante. Il gusto è dolce e delicato, ideale per il consumo lessati, al vapore, in zuppe, risotti, minestre o come contorno.'
             },
             {
               id: 75,
@@ -914,7 +914,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/fave.jpg',
-              description: 'Fave: fave sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i fave freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le fave si distinguono per i baccelli verdi contenenti semi piatti e di colore verde chiaro. Il gusto è dolce e delicato, ideale per il consumo lessate, al vapore, in zuppe, insalate o come contorno.'
             },
             { id: 94, 
               name: 'Fagiolini', 
@@ -923,7 +923,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cornetti.jpg',
-              description: 'Fagiolini: fagiolini è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i fagiolini freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I fagiolini si distinguono per i baccelli lunghi e sottili di colore verde brillante, con polpa tenera e croccante. Il gusto è delicato e fresco, ideale per il consumo lessati, al vapore, saltati in padella o in insalate.'
             },
             {id: 178 ,
               name: 'Piattoni',
@@ -932,7 +932,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/piattoni.jpg',
-              description: 'Piattoni: piattoni è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i piattoni freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I piattoni sono legumi a baccello piatto, dal gusto dolce e dalla consistenza tenera. Ricchi di fibre e poveri di calorie, sono ottimi per una cucina sana e gustosa.'
             },
             {
               id: 61, 
@@ -942,7 +942,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/mammole.jpg',
-              description: 'Le mammole sono carciofi dalla forma tondeggiante, privi di spine, con foglie tenere e sapore delicato. Ideali da consumare sia crude in insalata sia cotte in padella, al forno o nelle ricette tradizionali, sono molto apprezzate per la loro versatilità e morbidezza. Ricche di fibre e sali minerali, le mammole fresche e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I carciofi mammole si distinguono per le teste tonde e compatte con foglie carnose di colore verde chiaro. Il gusto è dolce e delicato, ideale per il consumo al vapore, lessati, gratinati, in padella o sott’olio.'
             },
             { 
               id: 50, 
@@ -952,7 +952,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/carote.jpg',
-              description: 'Le carote sono ortaggi croccanti e dolci, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote con il ciuffo si distinguono per la radice allungata di colore arancione brillante e le foglie verdi fresche attaccate. La polpa è croccante e dolce, con gusto delicato e naturale, ideale per il consumo crudo, cotto, in insalate, contorni e frullati.'
             },
             { 
               id: 51, 
@@ -962,7 +962,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'pz', 
               available: true,
               image: '/images/products/carote pacchetto.jpg',
-              description: 'Carote Pacchetto: carote fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote si distinguono per la radice allungata di colore arancione brillante e la polpa croccante e dolce. Il gusto è delicato e naturalmente zuccherino, ideale per il consumo crudo, cotto, in insalate, zuppe, contorni e frullati.'
             },
             { 
               id: 52, 
@@ -972,7 +972,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/Carote sfuse.jpg',
-              description: 'Carote Sfuse: carote fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote si distinguono per la radice allungata di colore arancione brillante e la polpa croccante e dolce. Il gusto è delicato e naturalmente zuccherino, ideale per il consumo crudo, cotto, in insalate, zuppe, contorni e frullati.'
             },
 { 
               id: 53, 
@@ -982,7 +982,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/patate-rosse.jpg',
-              description: 'Le patate rosse sono ortaggi dalla buccia sottile e dal colore rosso intenso, con polpa compatta e dal sapore delicato. Ideali per arrosti, bolliti, gratinati o fritte, mantengono bene la forma in cottura e regalano un gusto dolce e uniforme ai piatti. Ricche di fibre e nutrienti, le patate rosse fresche e di stagione sono sinonimo di qualità e genuinità direttamente dal produttore al tuo banco.'
+              description: 'Le patate rosse si distinguono per la buccia liscia di colore rosso e la polpa chiara, compatta e soda. Il gusto è delicato e leggermente dolce, ideale per il consumo arrosto, al forno, lessate, in insalate e contorni.'
             },
             {
               id: 54,
@@ -992,7 +992,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/patata-bianca.jpg',
-              description: 'Patate Bianche: patate fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le patate fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le patate bianche si distinguono per la buccia chiara e la polpa bianca, farinosa e morbida dopo la cottura. Il gusto è delicato e leggermente dolce, ideale per il consumo lessate, in puree, gnocchi, zuppe e contorni.'
             },
             { 
               id: 55, 
@@ -1002,7 +1002,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/patate-gialle.jpg',
-              description: 'Le patate gialle hanno una buccia sottile e una polpa dal colore dorato, dal gusto dolce e leggermente burroso. Perfette per arrosti, purè, gratin e cotture al forno, si prestano a molte preparazioni grazie alla loro consistenza cremosa. Ricche di fibre e nutrienti, le patate gialle fresche e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le patate gialle si distinguono per la buccia chiara e la polpa gialla, compatta e soda. Il gusto è delicato e leggermente saporito, ideale per il consumo al forno, arrosto, in padella, lessate e come contorno.'
             },
             {
               id: 56,
@@ -1012,7 +1012,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/patate-sacchetto.jpeg',
-              description: 'Patate Sacchetto: patate fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le patate fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le patate gialle in sacchetto da 2 kg si distinguono per la buccia chiara e la polpa gialla, compatta e soda. Il gusto è delicato e leggermente saporito, ideali per il consumo al forno, arrosto, in padella, lessate e come contorno.'
             },
           ]
         }
@@ -1037,7 +1037,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/williams.jpg',
-              description: 'Pera Williams: il simbolo della dolcezza e della succosità. Con la sua polpa morbida, succosa e profumata e la buccia sottile di colore verde-giallo, talvolta sfumata di rosso, la Williams è perfetta da gustare fresca, in macedonie, dolci o preparazioni al forno. Ricca di vitamine, fibre e antiossidanti naturali, è un frutto sano, genuino e versatile, ideale per tutta la famiglia. Williams: dolcezza naturale e profumo intenso in ogni morso.'
+              description: 'La pera Williams si distingue per la buccia verde-gialla, talvolta con leggere sfumature rosate. La polpa è succosa, morbida e molto aromatica, dal gusto dolce e intenso. È ideale per il consumo fresco, per dessert e anche per la preparazione di succhi e liquori.'
             },
             { 
               id: 181, 
@@ -1047,7 +1047,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/Coscia.jpg',
-              description: 'Coscia: coscia è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i coscia freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le noci sono frutti secchi dal sapore intenso e ricco, con un gustoso retrogusto leggermente amaro. Ricchissime di acidi grassi omega-3 e proteine vegetali, sono perfette per un\'alimentazione sana. Ideali come snack naturale, per arricchire dolci, piatti salati, insalate e preparazioni dolciarie tradizionali.'
             },
             { id:77, 
               name: 'Anguria', 
@@ -1056,7 +1056,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/anguria.jpg',
-              description: 'Angurie: angurie sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i angurie freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'L\'anguria si distingue per la buccia verde, spesso striata, e la polpa rossa, succosa e dolce, con semi neri o assenti a seconda della varietà. Il gusto è rinfrescante e zuccherino, ideale per il consumo fresco, macedonie e frullati estivi.'
             },
             { id: 78, 
               name: 'Melone Liscio', 
@@ -1065,7 +1065,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/melone-liscio.jpg',
-              description: 'Melone Lisci: melone lisci sono un melone di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i melone lisci freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Il melone liscio si distingue per la buccia liscia di colore verde chiaro o giallo e la polpa arancione o verdastra, dolce, succosa e profumata. Il gusto è aromatico e rinfrescante, ideale per il consumo fresco, macedonie e frullati.'
             },
             {id:79,
               name: 'Melone Retato',
@@ -1074,7 +1074,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/melone retato.jpg',
-              description: 'Melone Retato: melone retato sono un melone di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i melone retato freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Il melone retato si distingue per la buccia giallo-verde con caratteristica rete di linee, e la polpa arancione, succosa e zuccherina. Il gusto è aromatico e rinfrescante, con una dolcezza bilanciata. Ideale per il consumo fresco, macedonie, frullati e gelati. Perfetto per le giornate calde, ricco di acqua e vitamine.'
             },
             {
               id: 63,
@@ -1084,7 +1084,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/ciliegie.jpg',
-              description: 'Ciliegie: ciliegie sono un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i ciliegie freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La ciliegia si distingue per il colore rosso brillante o scuro e la polpa succosa e dolce, con un aroma intenso e delicato. È ideale per il consumo fresco, dolci, macedonie, confetture e dessert.'
             },
             {
               id: 80,
@@ -1094,7 +1094,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/mirtilli.jpg',
-              description: 'Mirtilli: mirtilli sono un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i mirtilli freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I mirtilli si distinguono per il colore blu intenso e la polpa succosa, dolce e leggermente acidula. Il gusto è aromatico e delicato, ideale per il consumo fresco, in macedonie, yogurt, dolci e marmellate. Ricchissimi di antiossidanti e proprietà benefiche per la salute.'
             },
             {
               id: 81,
@@ -1104,7 +1104,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/more.jpg',
-              description: 'More: more sono un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i more freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le more si distinguono per il colore nero-violaceo della buccia e la polpa succosa e dolce con leggero retrogusto acidulo. Il gusto è aromatico e intenso, ideale per il consumo fresco, dolci, marmellate, smoothie e macedonie.'
             },
             {
               id: 82,
@@ -1114,7 +1114,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/lamponi.jpg',
-              description: 'Lamponi: lamponi sono un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i lamponi freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I lamponi si caratterizzano per il colore rosso vivo e la forma fragile e delicata, con una polpa dolce succosa dal leggerissimo aroma acidulo. Il gusto è aromatico e delicato, ideale per il consumo fresco, in macedonie, dolci, marmellate e bevande. Apprezzati per le loro proprietà nutritive straordinarie.'
             },
             { id: 66, 
               name: 'Pesche', 
@@ -1123,7 +1123,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/pesche.jpg',
-              description: 'Pesche: pesche sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pesche freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La pesca si distingue per la buccia vellutata di colore arancione con sfumature rosse e la polpa succosa e dolce. Il gusto è aromatico e rinfrescante, ideale per il consumo fresco, dolci, macedonie, frullati e marmellate.'
             },
             { id: 67, 
               name: 'Pesche Noce',
@@ -1132,7 +1132,7 @@ export const useProductsStore = defineStore('products', () => {
                unit: 'kg', 
                available: true,
                image: '/images/products/pesca-noce.jpg',
-               description: 'Pesca Noce: pesca noce sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pesca noce freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+               description: 'Le pesche noce si distinguono per l\'assenza della leggera peluria, con una buccia liscia di colore giallo-rosso e una polpa dolce, succosa e profumata. Il gusto è ricco e intenso, con un aroma straordinario. Ideali per il consumo fresco come snack, in macedonie, dolci e frullati. Perfette per chi ama le pesche ma ne preferisce la versione liscia.'
             },
             { id: 83,
               name: 'Pesca Noce Bianca',
@@ -1141,7 +1141,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/pesca-noce-bianca.jpg',
-              description: 'Pesca Noce Bianca: pesca noce bianca sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pesca noce bianca freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La pesca noce bianca si distingue per la buccia vellutata di colore chiaro con sfumature rosate e la polpa bianca, molto succosa e dolce, dal gusto aromatico delicato. È ideale per il consumo fresco, dolci, macedonie, frullati e marmellate.'
             },
             { id: 182,
               name: 'Tabacchiera',
@@ -1150,7 +1150,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/tabacchiera.jpg',
-              description: 'Pesca Noce Bianca: pesca noce bianca sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pesca noce bianca freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I pistacchi sono frutti secchi pregiati dal sapore delicato, leggermente salato e molto apprezzato. Ricchi di antiossidanti e grassi buoni, sono perfetti come snack naturale e in numerose preparazioni dolci e salate. Ingrediente nobile per pasticceria, salse e un\'alimentazione equilibrata.'
             },
             { id: 65, 
               name: 'Albicocche', 
@@ -1159,7 +1159,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/albicocche.jpg',
-              description: 'Albicocche: albicocche sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i albicocche freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le albicocche si distinguono per il colore arancio intenso e la buccia leggermente pelosa. La polpa è morbida, succosa e dolce. Il gusto è aromatico e delicato, con leggere note tartare. Ideali per il consumo fresco, macedonie, marmellate, dolci e frullati. Ricche di betacarotene e vitamina A, sono un frutto estivo irrinunciabile.'
             },
             {
               id: 84,
@@ -1169,7 +1169,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/uva-bianca-senza-semi.jpg',
-              description: 'Uva Senza Semi Bianca: uva è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i uva freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'L\'uva bianca senza semi è la scelta ideale per il consumo pratico e piacevole, senza l\'inconveniente dei semini. La polpa è croccante, succosa e dal gusto dolce e delicato. Perfetta per il consumo fresco, macedonie, frullati e come snack sano per tutta la famiglia. Comoda, gustosa e piacevolmente sorprendente.'
              },
             {id: 85,
               name: 'Fico',
@@ -1178,7 +1178,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/fico.jpg',
-              description: 'Fico: fico è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i fico freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Il fico si distingue per la buccia sottile, di colore verde, viola o nero a seconda della varietà, e la polpa morbida, dolce e succosa con numerosi piccoli semi croccanti. Il gusto è aromatico e zuccherino, ideale per il consumo fresco, dolci, marmellate e frullati.'
             },
             {id: 86,
               name: 'Susina',
@@ -1187,7 +1187,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/susina.jpg',
-              description: 'Susine: susine è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i susine freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La susina si distingue per il colore variabile (dal giallo al rosso al blu) e la buccia liscia. La polpa è morbida, succosa e dal gusto dolce. Il gusto è aromatico e piacevolmente equilibrato tra dolce e leggermente acidulo. Ideale per il consumo fresco, macedonie, marmellate, dolci e frullati. Frutto versatile e apprezzato.'
             },
           ]
         },
@@ -1203,7 +1203,7 @@ export const useProductsStore = defineStore('products', () => {
                unit: 'kg', 
                available: true,
                image: '/images/products/pomodoro ramato.jpg',
-               description: 'Pomodoro ramato: pomodoro ramato è un pomodoro di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pomodori freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+               description: 'Il pomodoro ramato si distingue per la buccia liscia di colore rosso intenso con sfumature ramate e la polpa succosa e soda. Il gusto è dolce e leggermente acidulo, ideale per il consumo crudo in insalate, salse, bruschette, panini e piatti cucinati.'
             },
             { id: 118, 
               name: 'Cuore Di Bue',
@@ -1212,7 +1212,7 @@ export const useProductsStore = defineStore('products', () => {
                unit: 'kg', 
                available: true,
                image: '/images/products/cuore di bue.jpeg',
-               description: 'Cuore Di Bue: cuore di bue è un pomodoro di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pomodori freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+               description: 'Il pomodoro Cuore di Bue si distingue per la forma grande e leggermente a cuore, la buccia liscia di colore rosso intenso e la polpa carnosa e succosa. Il gusto è dolce e delicato, ideale per il consumo crudo in insalate, bruschette, panini o per preparazioni culinarie.'
             },
             { id: 183, 
               name: 'Pomodoro Perino',
@@ -1221,7 +1221,7 @@ export const useProductsStore = defineStore('products', () => {
                unit: 'kg', 
                available: true,
                image: '/images/products/perino.jpg',
-               description: 'Pomodoro Perino: pomodoro perino è un pomodoro di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pomodori freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+               description: 'Il pomodorino datterino si distingue per la forma allungata simile a datteri, la buccia liscia di colore rosso intenso e la polpa succosa e dolce. Il gusto è dolce e leggermente acidulo, ideale per il consumo crudo in insalate, aperitivi, bruschette o per cotture veloci.'
             },
             { id: 88, 
               name: 'Pomodorino Datterino',
@@ -1230,7 +1230,7 @@ export const useProductsStore = defineStore('products', () => {
                unit: 'kg', 
                available: true,
                image: '/images/products/pomodorini.jpg',
-               description: 'Pomodoro ramato: pomodoro ramato è un pomodoro di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pomodori freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+               description: 'Il pomodorino datterino si distingue per la forma allungata simile a datteri, la buccia liscia di colore rosso intenso e la polpa succosa e dolce. Il gusto è dolce e leggermente acidulo, ideale per il consumo crudo in insalate, aperitivi, bruschette o per cotture veloci.'
             },
             { id: 89, name: 'Zucchine',
                origin: 'Italia', 
@@ -1238,7 +1238,7 @@ export const useProductsStore = defineStore('products', () => {
                unit: 'kg', 
                available: true,
                image: '/images/products/zucchine.jpg',
-               description: 'Zucchine: zucchine è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i zucchine freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+               description: 'Le zucchine si distinguono per il frutto cilindrico o leggermente allungato, di colore verde chiaro o scuro, con polpa tenera e delicata. Il gusto è fresco e leggermente dolce, ideale per il consumo crudo in insalate, saltate in padella, al forno, ripiene o in zuppe.'
             },
             { id: 90, 
               name: 'Melanzane', 
@@ -1247,7 +1247,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/melanzane.jpeg',
-              description: 'Melanzane: melanzane è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i melanzane freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le melanzane si distinguono per il frutto allungato o tondeggiante, con buccia liscia di colore viola intenso o scuro e polpa morbida e spugnosa. Il gusto è delicato e leggermente amarognolo, ideale per il consumo grigliate, al forno, in padella, ripiene o in zuppe e ratatouille.'
             },
             { id: 91, 
               name: 'Peperoni gialli', 
@@ -1256,7 +1256,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/peperone-giallo.jpeg',
-              description: 'Peperoni gialli: peperoni gialli è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i peperoni gialli freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I peperoni gialli si distinguono per il frutto carnoso e croccante di colore giallo brillante. Il gusto è dolce e leggermente fruttato, ideale per il consumo crudo in insalate, grigliati, al forno, ripieni o in soffritti.'
             },
             { id: 92, 
               name: 'Peperoni rossi', 
@@ -1265,7 +1265,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/peperone-rosso.jpeg',
-              description: 'Peperoni rossi: peperoni rossi è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i peperoni rossi freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I peperoni rossi si distinguono per il frutto carnoso e croccante di colore rosso intenso. Il gusto è dolce e leggermente fruttato, ideale per il consumo crudo in insalate, grigliati, al forno, ripieni o in soffritti.'
             },
             { id: 93, 
               name: 'Cetrioli', 
@@ -1274,7 +1274,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cetrioli.jpg',
-              description: 'Cetrioli: cetrioli è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i cetrioli freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I cetrioli si distinguono per il frutto lungo e cilindrico, di colore verde chiaro o scuro, con polpa croccante e fresca. Il gusto è delicato e rinfrescante, ideale per il consumo crudo in insalate, panini, centrifugati o come snack.'
             },
             { id: 94, 
               name: 'Fagiolini', 
@@ -1283,7 +1283,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cornetti.jpg',
-              description: 'Fagiolini: fagiolini è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i fagiolini freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I fagiolini si distinguono per i baccelli lunghi e sottili di colore verde brillante, con polpa tenera e croccante. Il gusto è delicato e fresco, ideale per il consumo lessati, al vapore, saltati in padella o in insalate.'
             },
             {id: 178 ,
               name: 'Piattoni',
@@ -1292,7 +1292,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/piattoni.jpg',
-              description: 'Piattoni: piattoni è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i piattoni freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I piattoni sono legumi a baccello piatto, dal gusto dolce e dalla consistenza tenera. Ricchi di fibre e poveri di calorie, sono ottimi per una cucina sana e gustosa.'
             },
             { id: 69, 
               name: 'Lattuga Trocadero', 
@@ -1301,7 +1301,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'pz', 
               available: true,
               image: '/images/products/lattuga-trocadero.jpg',
-              description: 'Lattuga: lattuga sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i lattuga freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La lattuga Trocadero si distingue per le foglie larghe, croccanti e di colore verde chiaro, con un cuore compatto. Il gusto è fresco e delicato, ideale per il consumo crudo in insalate, panini, wrap o come base per piatti freddi.'
             },
             { 
               id: 50, 
@@ -1311,7 +1311,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/carote.jpg',
-              description: 'Le carote sono ortaggi croccanti e dolci, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote con il ciuffo si distinguono per la radice allungata di colore arancione brillante e le foglie verdi fresche attaccate. La polpa è croccante e dolce, con gusto delicato e naturale, ideale per il consumo crudo, cotto, in insalate, contorni e frullati.'
             },
             { 
               id: 51, 
@@ -1321,7 +1321,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'pz', 
               available: true,
               image: '/images/products/carote pacchetto.jpg',
-              description: 'Carote Pacchetto: carote fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote si distinguono per la radice allungata di colore arancione brillante e la polpa croccante e dolce. Il gusto è delicato e naturalmente zuccherino, ideale per il consumo crudo, cotto, in insalate, zuppe, contorni e frullati.'
             },
             { 
               id: 52, 
@@ -1331,7 +1331,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/Carote sfuse.jpg',
-              description: 'Carote Sfuse: carote fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote si distinguono per la radice allungata di colore arancione brillante e la polpa croccante e dolce. Il gusto è delicato e naturalmente zuccherino, ideale per il consumo crudo, cotto, in insalate, zuppe, contorni e frullati.'
             },
           ]
         }
@@ -1356,7 +1356,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/melinda-golden.jpg',
-              description: 'Melinda Golden Delicious è la mela che conquista per la sua dolcezza equilibrata e la sua inconfondibile croccantezza. Coltivata nel cuore delle valli del Trentino, cresce in un ambiente naturale unico che le conferisce qualità superiori e un gusto delicato ma ricco. La buccia giallo dorata racchiude una polpa succosa, fragrante e naturalmente dolce, perfetta da gustare fresca in ogni momento della giornata. Versatile in cucina, è ideale anche per dolci, dessert, macedonie e preparazioni al forno, grazie alla sua capacità di mantenere consistenza e sapore. Sana, genuina e certificata, Melinda Golden Delicious è una mela che unisce tradizione, territorio e qualità, portando sulla tua tavola il meglio della natura.'
+              description: 'La mela Golden Delicious Melinda si distingue per il colore giallo dorato e la buccia sottile. La polpa è croccante, succosa e dal gusto naturalmente dolce e delicato. Coltivata nei frutteti di montagna del Trentino, è ideale sia per il consumo fresco sia per l’utilizzo in cucina, perfetta per dolci e preparazioni salate.'
             },
             { 
               id: 2, 
@@ -1366,7 +1366,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/golden-amelia.jpg',
-              description: 'Golden Delicious: la mela che unisce dolcezza, croccantezza e qualità certificata. Coltivata con cura nelle valli italiane, la Golden Delicious Amelia si distingue per la sua polpa succosa, fragrante e naturalmente dolce, racchiusa in una buccia dal caratteristico giallo dorato. Ideale da gustare fresca, è perfetta anche per dolci, torte, macedonie o dessert al forno, grazie alla sua capacità di mantenere sapore e consistenza in ogni preparazione. Ricca di vitamine e antiossidanti, è la scelta sana e genuina per tutta la famiglia. Golden Delicious Amelia: tradizione, territorio e bontà direttamente sulla tua tavola.'
+              description: 'La mela Golden Delicious presenta una buccia giallo dorata e una polpa croccante e succosa. Il gusto è dolce e delicato, molto equilibrato. È una mela versatile, ideale per il consumo fresco e perfetta anche per l’utilizzo in cucina, sia per dolci sia per preparazioni salate.'
             },
             { 
               id: 3, 
@@ -1376,7 +1376,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/renetta.jpg',
-              description: 'Mela Renetta: un classico della tradizione italiana, dal sapore equilibrato tra dolce e acidulo e dalla polpa compatta e profumata. La buccia sottile e leggermente dorata racchiude un frutto versatile, ideale sia da gustare fresco che per preparazioni in cucina, come dolci, torte e composte, dove mantiene consistenza e aroma. Ricca di nutrienti e antiossidanti naturali, la Renetta unisce gusto, genuinità e tradizione, portando sulla tua tavola un frutto autentico e di alta qualità. Renetta: sapore classico, polpa soda e aroma inconfondibile, perfetta in ogni occasione.'
+              description: 'La mela Renetta è una varietà classica dal gusto aromatico e acidulo, con polpa compatta. Ottima sia da mangiare fresca sia per preparazioni culinarie tradizionali.'
             },
             { 
               id: 5, 
@@ -1386,7 +1386,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/fuji.jpg',
-              description: 'Mela Fuji: dolcezza intensa e croccantezza in ogni morso. Con la sua polpa soda, succosa e aromaticamente zuccherina, la Fuji è una delle mele più amate per il gusto deciso e persistente. La buccia, liscia e dai toni rosso sfumato con giallo, nasconde un frutto versatile, ideale sia da consumare fresco che in insalate, dolci, dessert o preparazioni al forno. Ricca di vitamine e antiossidanti naturali, la Fuji è perfetta per chi cerca un frutto sano, gustoso e adatto a tutta la famiglia. Fuji: croccante, dolce e irresistibile, la mela che rende ogni momento speciale.'
+              description: 'La mela Fuji presenta una buccia bicolore con fondo giallo e sovraccolore rosso. La polpa è molto croccante, compatta e succosa. Il gusto è dolce e aromatico, con un equilibrio piacevole. È ideale per il consumo fresco e adatta anche a preparazioni in cucina.'
             },
             { 
               id: 6, 
@@ -1396,7 +1396,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/red-delicious.jpg',
-              description: 'Red Delicious: la mela dal gusto dolce e delicato, dall\'inconfondibile buccia rosso intenso e brillante. La sua polpa croccante e succosa la rende perfetta da gustare fresca, in spuntini o macedonie, portando un tocco di colore e dolcezza naturale sulla tua tavola. Grazie al suo sapore equilibrato e alla consistenza soda, la Red Delicious è ideale anche per piatti leggeri e dessert, rappresentando la scelta sana e genuina per tutta la famiglia. Red Delicious: dolcezza, croccantezza e bellezza in ogni morso.'
+              description: 'La mela Red Delicious si riconosce per la buccia rosso intenso e la forma allungata. La polpa è tenera e succosa, dal gusto dolce e delicato. È ideale per il consumo fresco ed è apprezzata per il suo aspetto elegante e il sapore equilibrato.'
             },
             { 
               id: 7, 
@@ -1406,7 +1406,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/granny-smith.jpg',
-              description: 'Granny Smith: la mela dal gusto fresco, acidulo e vivace, dal caratteristico colore verde brillante. La sua polpa croccante e succosa offre un equilibrio perfetto tra acidità e dolcezza naturale, rendendola ideale da gustare fresca, in insalate, dessert o preparazioni al forno. Ricca di vitamine e antiossidanti, la Granny Smith è perfetta per chi cerca un frutto sano, rinfrescante e dal sapore deciso, capace di dare carattere a ogni piatto. Granny Smith: freschezza, croccantezza e gusto inconfondibile in ogni morso.'
+              description: 'La mela Granny Smith si distingue per la buccia verde brillante e la polpa molto croccante e succosa. Il gusto è fresco, deciso e marcatamente acidulo. È ideale per il consumo fresco e particolarmente apprezzata in cucina, soprattutto per dolci e preparazioni salate.'
             },           
             { 
               id: 11, 
@@ -1416,7 +1416,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/pera-kaiser.jpg',
-              description: 'Pera Kaiser: dolcezza delicata e polpa croccante in ogni morso. La sua buccia liscia, dal verde chiaro leggermente sfumato di rosso, nasconde un frutto versatile e saporito, ideale da gustare fresco o in preparazioni al forno, dolci e macedonie. Ricca di vitamine e antiossidanti naturali, la Kaiser unisce gusto e qualità, rendendola perfetta per chi cerca un frutto sano, genuino e dal sapore equilibrato. Kaiser: croccantezza, dolcezza e freschezza in ogni morso.'
+              description: 'La pera Kaiser si distingue per la forma allungata, la buccia ruvida di colore marrone-ruggine e la polpa chiara, soda e profumata. Il gusto è dolce e aromatico, ideale per il consumo crudo, cotto, in dolci, macedonie e preparazioni da forno.'
             },
             { 
               id: 10, 
@@ -1426,7 +1426,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/abate-fetel.jpg',
-              description: 'Pera Abate Fetel: dolcezza elegante e polpa succosa in ogni morso. Dalla forma allungata e slanciata, con buccia liscia e color giallo dorato, la Abate Fetel è famosa per il suo aroma delicato e il sapore naturalmente zuccherino. Perfetta da gustare fresca, in macedonie o dessert, mantiene anche consistenza e gusto nelle preparazioni al forno. Ricca di vitamine e fibre naturali, è una scelta sana e genuina per tutta la famiglia. Abate Fetel: dolcezza, morbidezza e profumo inconfondibile, un classico della frutta italiana.'
+              description: 'La pera Abate Fetel si riconosce per la forma allungata e la buccia verde con sfumature giallo-rugginose. La polpa è bianca, fine, molto succosa e dal gusto dolce e aromatico. È ideale per il consumo fresco ed è apprezzata per l’elevata qualità e la sua eleganza.'
             },
             { 
               id: 76, 
@@ -1436,7 +1436,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/williams.jpg',
-              description: 'Pera Williams: il simbolo della dolcezza e della succosità. Con la sua polpa morbida, succosa e profumata e la buccia sottile di colore verde-giallo, talvolta sfumata di rosso, la Williams è perfetta da gustare fresca, in macedonie, dolci o preparazioni al forno. Ricca di vitamine, fibre e antiossidanti naturali, è un frutto sano, genuino e versatile, ideale per tutta la famiglia. Williams: dolcezza naturale e profumo intenso in ogni morso.'
+              description: 'La pera Williams si distingue per la buccia verde-gialla, talvolta con leggere sfumature rosate. La polpa è succosa, morbida e molto aromatica, dal gusto dolce e intenso. È ideale per il consumo fresco, per dessert e anche per la preparazione di succhi e liquori.'
             },
             { 
               id: 12, 
@@ -1446,7 +1446,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/decana.jpg',
-              description: 'Pera Decana: dolcezza intensa e polpa succosa in ogni morso. La sua forma rotonda e compatta, con buccia liscia dal colore giallo-verde, racchiude un frutto dal sapore equilibrato e aromatico. Perfetta da gustare fresca, in macedonie o dessert, mantiene consistenza e gusto anche nelle preparazioni al forno. Ricca di vitamine, fibre e antiossidanti naturali, la Decana è un frutto sano, genuino e versatile, ideale per tutta la famiglia. Decana: dolcezza, morbidezza e aroma inconfondibile, un classico della frutta italiana.'
+              description: 'La pera Decana ha una buccia verde-gialla, talvolta con leggere sfumature rossastre. La polpa è soda, succosa e dal gusto dolce e aromatico, molto equilibrato. È ideale per il consumo fresco e ottima anche per dolci e preparazioni culinarie.'
             },
             { 
               id: 13, 
@@ -1456,7 +1456,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/kiwi-giallo.jpg',
-              description: 'Kiwi Giallo: dolcezza esotica e polpa morbida in ogni morso. Con il suo colore dorato brillante e il sapore naturalmente zuccherino, il kiwi giallo è perfetto da gustare fresco, in macedonie, smoothie o dessert. Ricco di vitamine, in particolare vitamina C, minerali e antiossidanti naturali, è un frutto sano, nutriente e ideale per chi cerca freschezza e energia in ogni momento della giornata. Kiwi Giallo: gusto dolce, polpa succosa e vitalità naturale, direttamente dalla natura alla tua tavola.'
+              description: 'Il kiwi giallo si distingue per la buccia sottile e liscia di colore marrone chiaro e la polpa interna giallo dorato. La polpa è morbida, succosa e dal gusto dolce, meno acidulo rispetto al kiwi verde, con un aroma intenso e tropicale. È ideale per il consumo fresco, macedonie, smoothie e dolci.'
             },
             { 
               id: 14, 
@@ -1466,7 +1466,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/kiwi-verde.jpg',
-              description: 'Kiwi Verde: freschezza e sapore inconfondibili in ogni morso. Con la sua polpa verde brillante, succosa e leggermente acidula, il kiwi verde è perfetto da gustare fresco, in macedonie, smoothie o dessert. Ricco di vitamina C, fibre e antiossidanti naturali, è un frutto sano e nutriente, ideale per chi cerca energia e vitalità in modo naturale. Kiwi Verde: gusto deciso, freschezza e benessere direttamente dalla natura alla tua tavola.'
+              description: 'Il kiwi verde si caratterizza per la buccia marrone leggermente pelosa e la polpa verde brillante con piccoli semi neri. La polpa è morbida, succosa e dal gusto acidulo equilibrato, con aroma intenso e caratteristico. Ricco di vitamina C e antiossidanti, è ideale per il consumo fresco, macedonie, frullati, dessert e dolci. Nutriente e rinfrescante.'
             },
             { 
               id: 19, 
@@ -1476,7 +1476,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/navel.jpg',
-              description: 'Arancia Navel: dolcezza, freschezza e succosità in ogni fetta. L\'arancia Navel, con la sua polpa succosa, di colore arancio brillante e senza semi, è perfetta da gustare fresca, in macedonie, dessert o spremute naturali. Dal gusto naturalmente dolce e aromatico, è ricca di vitamina C e antiossidanti, ideale per chi cerca un frutto genuino, sano e ricco di energia. Navel: colore intenso, dolcezza equilibrata e freschezza naturale direttamente sulla tua tavola.'
+              description: 'Scopri la qualità premium di Arancia Navel. Un prodotto selezionato con cura per offrirti il miglior sapore e la massima freschezza.'
             },
             { 
               id: 22, 
@@ -1486,7 +1486,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/mandarancio.jpg',
-              description: 'Mandarancio: il perfetto equilibrio tra dolcezza e acidità in ogni spicchio. Il mandarancio, frutto dalla buccia sottile e profumata, combina il gusto intenso del mandarino con la freschezza dell\'arancia, regalando una polpa succosa e aromatica, ideale da gustare fresca, in macedonie, dolci o spremute naturali. Ricco di vitamina C, fibre e antiossidanti naturali, è un frutto sano, nutriente e versatile, perfetto per chi cerca gusto, energia e benessere in ogni momento della giornata. Mandarancio: freschezza, dolcezza e vitalità naturale direttamente sulla tua tavola.'
+              description: 'Il mandarancio è un frutto ibrido tra mandarino e arancia, con buccia arancione brillante e polpa succosa, dolce e leggermente acidula. Il gusto è aromatico e equilibrato, ideale per il consumo fresco, spremute e macedonie.'
             },
             {
               id: 96,
@@ -1496,7 +1496,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/melone-giallo.jpg',
-              description: 'Melone Giallo: melone è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i melone freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Il melone giallo si distingue per la buccia liscia o leggermente rugosa di colore giallo intenso e la polpa arancione, dolce, succosa e profumata. Il gusto è aromatico e rinfrescante, ideale per il consumo fresco, macedonie, frullati e dessert.'
             },
             { id: 97, 
               name: 'Uva Italia', 
@@ -1505,7 +1505,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/uva-italia.jpg',
-              description: 'Uva Italia: uva è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i uva freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'L\'uva Italia si distingue per gli acini grandi, di colore verde-giallo con buccia sottile e polpa dolce, succosa e croccante. Il gusto è aromatico e zuccherino, ideale per il consumo fresco, macedonie e dolci.'
              },
              {
               id: 98,
@@ -1515,7 +1515,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/uva-moscato.jpg',
-              description: 'Uva Moscato: uva è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i uva freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'L\'uva Moscata si distingue per gli acini di medie dimensioni, di colore giallo dorato o verde chiaro, con polpa succosa e dolce e buccia sottile. Il gusto è aromatico, intenso e zuccherino, ideale per il consumo fresco, macedonie, dolci e vini aromatici.'
              },
              {
               id: 99,
@@ -1525,7 +1525,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/uva-pizzuttella.jpg',
-              description: 'Uva Passito: uva è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i uva freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'L\'uva Pizzutella si distingue per il colore giallo dorato e la forma caratteristica leggermente affusolata. La polpa è croccante, succosa e dal gusto dolce e buccia sottile. Il gusto è delizioso e bilanciato. Ideale per il consumo fresco, macedonie e come ingrediente per dolci e succhi. Varietà apprezzata per la qualità e il sapore eccezionale.'
              },
              {
               id: 84,
@@ -1535,7 +1535,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/uva-bianca-senza-semi.jpg',
-              description: 'Uva Senza Semi Bianca: uva è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i uva freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'L\'uva bianca senza semi è la scelta ideale per il consumo pratico e piacevole, senza l\'inconveniente dei semini. La polpa è croccante, succosa e dal gusto dolce e delicato. Perfetta per il consumo fresco, macedonie, frullati e come snack sano per tutta la famiglia. Comoda, gustosa e piacevolmente sorprendente.'
              },
              {
               id: 100,
@@ -1545,7 +1545,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/uva-rosata-senza-semi.jpg',
-              description: 'Uva Rosata Senza Semi: uva è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i uva freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'L\'uva senza semi rosata si distingue per gli acini medi di colore rosa tenue, con polpa succosa e dolce e buccia sottile. Il gusto è aromatico e zuccherino, ideale per il consumo fresco, macedonie e dolci.'
              },
              { 
               id: 15, 
@@ -1555,7 +1555,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/melograno.jpg',
-              description: 'Melograno: colore intenso, freschezza e gusto unico in ogni chicco. Il melograno racchiude una polpa succosa e dolce-acidula, ricca di antiossidanti naturali e vitamine, ideale da gustare fresco, in macedonie, smoothie o come ingrediente originale in piatti creativi. Frutto simbolo di salute e vitalità, il melograno è perfetto per chi cerca un\'alimentazione sana, naturale e gustosa, portando sulla tavola un tocco di colore e benessere. Melograno: dolcezza, freschezza e vitalità naturale in ogni chicco.'
+              description: 'Il melograno si distingue per il frutto tondeggiante con buccia spessa di colore rosso intenso e i chicchi interni succosi e brillanti. Il gusto è dolce con una leggera nota acidula, ideale per il consumo fresco, in spremute, insalate, macedonie e come ingrediente decorativo.'
             },
             { 
               id: 16, 
@@ -1565,7 +1565,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cachi.jpg',
-              description: 'Cachi: i cachi sono frutti dal colore arancione intenso e dalla polpa morbida e dolce. Ideali da consumare maturi al cucchiaio o come ingrediente per dolci e dessert, sono apprezzati per il loro gusto zuccherino e avvolgente. Ricchi di vitamine e sali minerali, i cachi freschi e di stagione garantiscono qualità e genuinità direttamente dal produttore al tuo banco.'
+              description: 'Il cachi si distingue per la buccia liscia di colore arancione intenso e la polpa morbida e dolce quando maturo. Il gusto è zuccherino, aromatico e molto gradevole. È ideale per il consumo fresco, dolci, macedonie e frullati.'
             },
             { 
               id: 17, 
@@ -1575,7 +1575,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cachi-mela.jpg',
-              description: 'Cachi Mela: dolcezza croccante e polpa soda in ogni morso. Il cachi mela, con la sua forma tondeggiante e il colore arancio intenso, unisce il gusto delicato del cachi alla consistenza più compatta, simile a quella di una mela. Perfetto da gustare fresco, in spuntini, macedonie o dessert, è un frutto sano e nutriente, ricco di vitamine, fibre e antiossidanti naturali. Cachi Mela: freschezza, dolcezza e croccantezza naturale, direttamente dalla natura alla tua tavola.'
+              description: 'Il Cacomela è un frutto ibrido tra mela e cachi, con buccia liscia che può variare dal giallo-arancio al rosso tenue. La polpa è morbida, succosa e dolce, con un aroma delicato che ricorda entrambe le varietà. È ideale per il consumo fresco, dessert e frullati.'
             },
             {
               id: 85,
@@ -1585,7 +1585,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/fico.jpg',
-              description: 'Fico: fico è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i fico freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Il fico si distingue per la buccia sottile, di colore verde, viola o nero a seconda della varietà, e la polpa morbida, dolce e succosa con numerosi piccoli semi croccanti. Il gusto è aromatico e zuccherino, ideale per il consumo fresco, dolci, marmellate e frullati.'
             },
             {
               id: 101,
@@ -1595,7 +1595,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/fico-d\'india.jpg',
-              description: "Fico D'india: fico è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i fico freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco."
+              description: "Il Fico d'India si distingue per il frutto ovale con buccia spessa di colore verde, gialla o rossastra e polpa dolce, succosa e granulosa con numerosi semi piccoli. Il gusto è aromatico e zuccherino, ideale per il consumo fresco, dolci, succhi e marmellate."
             },
             {
               id: 86,
@@ -1605,7 +1605,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/susina.jpg',
-              description: 'Susine: susine è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i susine freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La susina si distingue per il colore variabile (dal giallo al rosso al blu) e la buccia liscia. La polpa è morbida, succosa e dal gusto dolce. Il gusto è aromatico e piacevolmente equilibrato tra dolce e leggermente acidulo. Ideale per il consumo fresco, macedonie, marmellate, dolci e frullati. Frutto versatile e apprezzato.'
             },
             {
               id: 102,
@@ -1615,7 +1615,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/Goccia-d\'oro.jpg',
-              description: 'Susine Goccia D\'oro: susine è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i susine freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La prugna Goccia d’Oro si distingue per la buccia liscia di colore giallo intenso e la polpa succosa, dolce e leggermente acidula. Il gusto è aromatico e fresco, ideale per il consumo fresco, dolci, marmellate e frullati.'
             },
             {
               id: 103,
@@ -1625,7 +1625,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/santarosa.jpg',
-              description: 'Susine Santa Rosa: susine è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i susine freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La prugna Santarosa si riconosce per il colore rosso vivo e la forma tonda. La polpa è dolce, succosa e dalla consistenza soda. Il gusto è equilibrato tra dolce e leggermente acidulo, molto aromatico. Ideale per il consumo fresco, in macedonie, dolci, marmellate e frullati. Varietà particolarmente apprezzata per la qualità.'
             },
             {
               id: 104,
@@ -1635,7 +1635,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/sangue-di-drago.jpg',
-              description: 'Susine Santa Rosa: susine è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i susine freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La prugna Sangue di Drago si distingue per la buccia liscia di colore rosso scuro e la polpa succosa, dolce con un leggero retrogusto acidulo. Il gusto è aromatico e intenso, ideale per il consumo fresco, dolci, marmellate e frullati.'
             },
             {
               id: 105,
@@ -1645,7 +1645,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/regina-claudia.jpg',
-              description: 'Prugna Regina Claudia: prugna è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i prugne freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La prugna Regina Claudia si distingue per la buccia liscia di colore verde-giallo con sfumature dorate e la polpa succosa, dolce e aromaticamente profumata. Il gusto è equilibrato e delicato, ideale per il consumo fresco, dolci'
             },
             {id: 106,
               name: 'Castagne',
@@ -1654,7 +1654,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/castagne.jpg',
-              description: 'Castagne: castagne è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i castagne freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La castagna si distingue per il guscio marrone lucido e duro e la polpa interna dolce, farinosa e nutriente. Il gusto è delicato e dolce, ideale per il consumo arrostita, bollita, in dolci, puree e farine.'
             },
             {id: 107,
               name: 'Marroni',
@@ -1663,7 +1663,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/marroni.jpg',
-              description: 'Marroni: marroni è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i marroni freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I marroni si distinguono per il guscio liscio e marrone chiaro e la polpa interna dolce, farinosa e molto nutriente. Il gusto è delicato e dolce, ideale per il consumo arrostiti, bolliti, dolci, puree e farine pregiate.'
             },
           ]
         },
@@ -1680,7 +1680,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'pz', 
               available: true,
               image: '/images/products/broccoli.jpg',
-              description: 'Broccoli: gusto deciso e benessere naturale in ogni piatto. Con il loro colore verde intenso e la consistenza compatta, i broccoli sono un ortaggio ricco di proprietà nutritive, apprezzato per il sapore leggermente amarognolo e la grande versatilità in cucina. Ideali per contorni, primi piatti, vellutate e ricette salutari, sono ricchi di vitamine, fibre, sali minerali e antiossidanti naturali, perfetti per un\'alimentazione equilibrata. Broccoli: freschezza, qualità e salute direttamente dall\'orto alla tua tavola.'
+              description: 'I broccoli si distinguono per le cime compatte di colore verde intenso e i gambi croccanti. Il gusto è delicato e leggermente amarognolo, ideale per il consumo al vapore, saltati in padella, gratinati, zuppe o insalate cotte.'
             },
             { 
               id: 27, 
@@ -1690,7 +1690,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolo-nero.jpg',
-              description: 'Cavolo Nero: gusto deciso e proprietà nutritive d\'eccellenza. Dalle foglie lunghe e scure, il cavolo nero è un ortaggio tipico della tradizione italiana, apprezzato per il suo sapore intenso e leggermente amarognolo. Ideale per zuppe, minestre, contorni, vellutate e piatti rustici, è ricco di vitamine, sali minerali, fibre e antiossidanti naturali, perfetto per un\'alimentazione sana ed equilibrata. Cavolo Nero: tradizione, gusto e benessere direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolo nero si distingue per le foglie lunghe, scure e rugose, di colore verde intenso, con un sapore leggermente amarognolo e aromatico. È ricco di vitamine e minerali, ideale per zuppe, minestre, insalate, saltati in padella o frullati verdi.'
             },
             { 
               id: 30, 
@@ -1700,7 +1700,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolfiore.jpg',
-              description: 'Cavolfiore: gusto delicato e versatilità in cucina. Con la sua infiorescenza compatta e il colore chiaro, il cavolfiore è un ortaggio invernale apprezzato per il sapore morbido e leggermente dolce. Perfetto per contorni, vellutate, gratin, primi piatti e preparazioni al forno, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolfiore: semplicità, genuinità e benessere direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolfiore viola si distingue per la testa compatta di colore viola intenso e le foglie esterne verdi. Il gusto è delicato e leggermente dolce, ideale per il consumo al vapore, bollito, gratinato, in zuppe o insalate cotte, aggiungendo un tocco di colore ai piatti.'
             },
             { 
               id: 31, 
@@ -1710,7 +1710,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolfiore-verde.jpeg',
-              description: 'Cavolfiore Nero: gusto delicato e versatilità in cucina. Con la sua infiorescenza compatta e il colore chiaro, il cavolfiore è un ortaggio invernale apprezzato per il sapore morbido e leggermente dolce. Perfetto per contorni, vellutate, gratin, primi piatti e preparazioni al forno, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolfiore: semplicità, genuinità e benessere direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolfiore verde si distingue per la testa compatta di colore verde brillante e le foglie esterne verdi. Il gusto è delicato e leggermente dolce, ideale per il consumo al vapore, bollito, gratinato, in zuppe o insalate cotte.'
             },
             {
               id: 32, 
@@ -1720,7 +1720,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolfiore-viola.jpg',
-              description: 'Cavolfiore Viola: gusto delicato e versatilità in cucina. Con la sua infiorescenza compatta e il colore viola, il cavolfiore è un ortaggio invernale apprezzato per il sapore morbido e leggermente dolce. Perfetto per contorni, vellutate, gratin, primi piatti e preparazioni al forno, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolfiore: semplicità, genuinità e benessere direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolfiore viola si distingue per la testa compatta di colore viola intenso e le foglie esterne verdi. Il gusto è delicato e leggermente dolce, ideale per il consumo al vapore, bollito, gratinato, in zuppe o insalate cotte, aggiungendo un tocco di colore ai piatti.'
             },
             {
               id: 33,
@@ -1730,7 +1730,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/cavolo-romano.jpg',
-              description: 'Cavolo Romano: gusto delicato e versatilità in cucina. Con la sua infiorescenza compatta e il colore verde intenso, il cavolo romano è un ortaggio invernale apprezzato per il sapore morbido e leggermente dolce. Perfetto per contorni, vellutate, gratin, primi piatti e preparazioni al forno, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolo Romano: semplicità, genuinità e benessere direttamente dall\'orto alla tua tavola.'
+              description: 'Il cavolo romano si distingue per le foglie lunghe, rugose e di colore verde scuro, con un sapore leggermente amarognolo e aromatico. È ricco di vitamine e minerali, ideale per zuppe, minestre, saltati in padella o frullati verdi.'
             },
             { 
               id: 37, 
@@ -1740,7 +1740,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/finocchi.jpg',
-              description: 'Il finocchio è un ortaggio fresco e profumato, caratterizzato da un grumolo bianco e croccante e da un sapore delicato e aromatico. Ottimo da consumare crudo in insalata o pinzimonio, è ideale anche cotto in gratin, contorni e piatti leggeri. Ricco di fibre e naturalmente digeribile, il finocchio fresco e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I finocchi si distinguono per il bulbo bianco compatto e le fronde verdi e aromatiche. Il gusto è dolce e delicatamente anice, ideale per il consumo crudo in insalata, al vapore, bollito, gratinato o in zuppe.'
             }, 
             { 
               id: 48, 
@@ -1750,7 +1750,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/barbabietole.jpg',
-              description: 'Le barbabietole sono ortaggi dalla polpa dolce e dal colore rosso intenso, con radice tondeggiante e foglie verdi nutrienti. Perfette cotte, al forno, in zuppe o insalate, aggiungono colore e gusto a ogni piatto. Ricche di vitamine, sali minerali e fibre, le barbabietole fresche e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La barbabietola si distingue per il tubero rotondo o allungato di colore rosso intenso e le foglie verdi commestibili. Il gusto è dolce e terroso, ideale per il consumo cotta, al vapore, arrosto, in insalate o frullati.'
             }, 
             {
               id: 49, 
@@ -1760,7 +1760,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/zucca.jpeg',
-              description: 'La zucca è un ortaggio dal colore arancione intenso e dalla polpa dolce e carnosa. Versatile in cucina, è ideale per zuppe, vellutate, torte salate, dolci e contorni, donando sapore e colore a ogni piatto. Ricca di vitamine, fibre e antiossidanti, la zucca fresca e di stagione garantisce qualità e genuinità direttamente dal produttore al tuo banco.'
+              description: 'La zucca si distingue per la buccia dura di colore arancione, verde o grigio a seconda della varietà e la polpa interna arancione, dolce e compatta. Il gusto è delicato e leggermente dolce, ideale per il consumo al forno, in zuppe, risotti, puree e dolci.'
             },  
             { 
               id: 50, 
@@ -1770,7 +1770,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/carote.jpg',
-              description: 'Le carote sono ortaggi croccanti e dolci, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote con il ciuffo si distinguono per la radice allungata di colore arancione brillante e le foglie verdi fresche attaccate. La polpa è croccante e dolce, con gusto delicato e naturale, ideale per il consumo crudo, cotto, in insalate, contorni e frullati.'
             },
             { 
               id: 51, 
@@ -1780,7 +1780,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'pz', 
               available: true,
               image: '/images/products/carote pacchetto.jpg',
-              description: 'Carote Pacchetto: carote fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote si distinguono per la radice allungata di colore arancione brillante e la polpa croccante e dolce. Il gusto è delicato e naturalmente zuccherino, ideale per il consumo crudo, cotto, in insalate, zuppe, contorni e frullati.'
             },
             { 
               id: 52, 
@@ -1790,7 +1790,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/Carote sfuse.jpg',
-              description: 'Carote Sfuse: carote fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+              description: 'Le carote si distinguono per la radice allungata di colore arancione brillante e la polpa croccante e dolce. Il gusto è delicato e naturalmente zuccherino, ideale per il consumo crudo, cotto, in insalate, zuppe, contorni e frullati.'
             }, 
             {
               id: 108,
@@ -1800,7 +1800,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg',
               available: true,
               image: '/images/products/Funghi-porcini.jpg',
-              description: 'Funghi Porcini: funghi porcini sono un fungo di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i funghi porcini freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'I funghi porcini si distinguono per il cappello carnoso di colore marrone e il gambo robusto chiaro. Il gusto è intenso, aromatico e leggermente nocciolato, ideale per il consumo trifolati, in risotti, zuppe, salse o alla griglia.'
             },
             { 
               id: 57, 
@@ -1810,7 +1810,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/porri.jpg',
-              description: 'I porri sono ortaggi dal gambo lungo e bianco e dalle foglie verdi tenere, dal sapore delicato e leggermente dolce. Ideali per zuppe, minestre, frittate e contorni, conferiscono aroma e leggerezza a ogni preparazione. Ricchi di vitamine e minerali, i porri freschi e di stagione sono sinonimo di qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Il porro si distingue per il fusto lungo e cilindrico di colore bianco nella parte inferiore e verde nella parte superiore. Il gusto è delicato e leggermente dolce, ideale per il consumo in zuppe, risotti, torte salate, saltato in padella o come contorno.'
             },
             { id: 36, 
               name: 'Cavolo cappuccio', 
@@ -1819,7 +1819,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/cavolo-cappuccio.jpg',
-              description: 'Cavolo Cappuccio: cavolo cappuccio è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i cavolo cappuccio freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Il cavolo cappuccio si distingue per la testa compatta e rotonda con foglie lisce e croccanti di colore verde chiaro o violaceo a seconda della varietà. Il gusto è delicato e leggermente dolce, ideale per il consumo crudo in insalata, al vapore, bollito, in zuppe o stufati.'
             },
             { 
               id: 42, 
@@ -1829,7 +1829,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/radicchio.jpg',
-              description: 'Il radicchio è una verdura dal colore rosso intenso e dalle foglie croccanti, dal gusto leggermente amarognolo e aromatico. Perfetto da gustare crudo in insalate o grigliato, saltato in padella o nelle ricette tipiche della cucina italiana, aggiunge colore e sapore a ogni piatto. Ricco di fibre e antiossidanti, il radicchio fresco e di stagione è sinonimo di qualità e genuinità direttamente dal produttore al tuo banco.'
+              description: 'Il radicchio si distingue per le foglie rosse o violacee con venature bianche, croccanti e leggermente amarognole. Il gusto è deciso e amarognolo, ideale per il consumo crudo in insalata, grigliato, al vapore o saltato in padella.'
             },
             { id: 38, 
               name: 'Spinaci', 
@@ -1838,7 +1838,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/spinaci.jpg',
-              description: 'Spinaci: spinaci è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i spinaci freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'Gli spinaci si distinguono per le foglie verdi, tenere e carnose. Il gusto è delicato e leggermente erbaceo, ideale per il consumo crudo in insalata, al vapore, saltati in padella, frullati o in zuppe.'
             },
             { id: 41, 
               name: 'Coste', 
@@ -1847,7 +1847,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/coste.jpg',
-              description: 'Coste: coste è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i coste freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La catalogna si distingue per le foglie lunghe, sottili e frastagliate di colore verde scuro, con un gusto amarognolo e deciso. È ideale per il consumo saltata in padella, lessata, in zuppe o come contorno.'
             },
             { 
               id: 40, 
@@ -1857,7 +1857,7 @@ export const useProductsStore = defineStore('products', () => {
               unit: 'kg', 
               available: true,
               image: '/images/products/catalogna.jpg',
-              description: 'La catalogna è una verdura a foglia verde dal gusto deciso e leggermente amarognolo. Apprezzata sia cruda in insalata, soprattutto i germogli, sia cotta in contorni, zuppe e piatti tradizionali, è molto versatile in cucina. Ricca di fibre e sali minerali, la catalogna fresca e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+              description: 'La catalogna si distingue per le foglie lunghe, sottili e frastagliate di colore verde scuro, con un gusto amarognolo e deciso. È ideale per il consumo saltata in padella, lessata, in zuppe o come contorno.'
             },
           ]
         }
@@ -1883,7 +1883,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/melinda-golden.jpg',
-          description: 'Melinda Golden Delicious è la mela che conquista per la sua dolcezza equilibrata e la sua inconfondibile croccantezza. Coltivata nel cuore delle valli del Trentino, cresce in un ambiente naturale unico che le conferisce qualità superiori e un gusto delicato ma ricco. La buccia giallo dorata racchiude una polpa succosa, fragrante e naturalmente dolce, perfetta da gustare fresca in ogni momento della giornata. Versatile in cucina, è ideale anche per dolci, dessert, macedonie e preparazioni al forno, grazie alla sua capacità di mantenere consistenza e sapore. Sana, genuina e certificata, Melinda Golden Delicious è una mela che unisce tradizione, territorio e qualità, portando sulla tua tavola il meglio della natura.'
+          description: 'La mela Golden Delicious Melinda si distingue per il colore giallo dorato e la buccia sottile. La polpa è croccante, succosa e dal gusto naturalmente dolce e delicato. Coltivata nei frutteti di montagna del Trentino, è ideale sia per il consumo fresco sia per l’utilizzo in cucina, perfetta per dolci e preparazioni salate.'
         },
         { 
           id: 2, 
@@ -1893,7 +1893,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/golden-amelia.jpg',
-          description: 'Golden Delicious: la mela che unisce dolcezza, croccantezza e qualità certificata. Coltivata con cura nelle valli italiane, la Golden Delicious Amelia si distingue per la sua polpa succosa, fragrante e naturalmente dolce, racchiusa in una buccia dal caratteristico giallo dorato. Ideale da gustare fresca, è perfetta anche per dolci, torte, macedonie o dessert al forno, grazie alla sua capacità di mantenere sapore e consistenza in ogni preparazione. Ricca di vitamine e antiossidanti, è la scelta sana e genuina per tutta la famiglia. Golden Delicious Amelia: tradizione, territorio e bontà direttamente sulla tua tavola.'
+          description: 'La mela Golden Delicious presenta una buccia giallo dorata e una polpa croccante e succosa. Il gusto è dolce e delicato, molto equilibrato. È una mela versatile, ideale per il consumo fresco e perfetta anche per l’utilizzo in cucina, sia per dolci sia per preparazioni salate.'
         },
         { 
           id: 3, 
@@ -1903,7 +1903,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/renetta.jpg',
-          description: 'Mela Renetta: un classico della tradizione italiana, dal sapore equilibrato tra dolce e acidulo e dalla polpa compatta e profumata. La buccia sottile e leggermente dorata racchiude un frutto versatile, ideale sia da gustare fresco che per preparazioni in cucina, come dolci, torte e composte, dove mantiene consistenza e aroma. Ricca di nutrienti e antiossidanti naturali, la Renetta unisce gusto, genuinità e tradizione, portando sulla tua tavola un frutto autentico e di alta qualità. Renetta: sapore classico, polpa soda e aroma inconfondibile, perfetta in ogni occasione.'
+          description: 'La mela Renetta è una varietà classica dal gusto aromatico e acidulo, con polpa compatta. Ottima sia da mangiare fresca sia per preparazioni culinarie tradizionali.'
         },
         { 
           id: 4, 
@@ -1913,7 +1913,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/ambrosia.jpg',
-          description: 'Mela Ambrosia: dolcezza e succosità in ogni morso. La sua polpa croccante, morbida e aromatica conquista al primo assaggio, mentre la buccia rosata e leggermente sfumata di giallo la rende immediatamente riconoscibile. Coltivata con attenzione in terreni selezionati, la Ambrosia unisce gusto e qualità, ed è perfetta da gustare fresca o in insalate, dessert e preparazioni creative in cucina. Ricca di vitamine e antiossidanti, è la scelta ideale per chi cerca un frutto sano, genuino e naturalmente dolce. Ambrosia: un\'esperienza di dolcezza e croccantezza che porta il meglio della natura sulla tua tavola.'
+          description: 'La mela Ambrosia si distingue per la buccia bicolore giallo-rossa e l’aspetto elegante. La polpa è molto croccante, succosa e dal gusto intensamente dolce, con leggere note aromatiche. È ideale per il consumo fresco, perfetta come snack e apprezzata anche dai bambini.'
         },
         { 
           id: 5, 
@@ -1923,7 +1923,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/fuji.jpg',
-          description: 'Mela Fuji: dolcezza intensa e croccantezza in ogni morso. Con la sua polpa soda, succosa e aromaticamente zuccherina, la Fuji è una delle mele più amate per il gusto deciso e persistente. La buccia, liscia e dai toni rosso sfumato con giallo, nasconde un frutto versatile, ideale sia da consumare fresco che in insalate, dolci, dessert o preparazioni al forno. Ricca di vitamine e antiossidanti naturali, la Fuji è perfetta per chi cerca un frutto sano, gustoso e adatto a tutta la famiglia. Fuji: croccante, dolce e irresistibile, la mela che rende ogni momento speciale.'
+          description: 'La mela Fuji presenta una buccia bicolore con fondo giallo e sovraccolore rosso. La polpa è molto croccante, compatta e succosa. Il gusto è dolce e aromatico, con un equilibrio piacevole. È ideale per il consumo fresco e adatta anche a preparazioni in cucina.'
         },
         { 
           id: 6, 
@@ -1933,7 +1933,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/red-delicious.jpg',
-          description: 'Red Delicious: la mela dal gusto dolce e delicato, dall\'inconfondibile buccia rosso intenso e brillante. La sua polpa croccante e succosa la rende perfetta da gustare fresca, in spuntini o macedonie, portando un tocco di colore e dolcezza naturale sulla tua tavola. Grazie al suo sapore equilibrato e alla consistenza soda, la Red Delicious è ideale anche per piatti leggeri e dessert, rappresentando la scelta sana e genuina per tutta la famiglia. Red Delicious: dolcezza, croccantezza e bellezza in ogni morso.'
+          description: 'La mela Red Delicious si riconosce per la buccia rosso intenso e la forma allungata. La polpa è tenera e succosa, dal gusto dolce e delicato. È ideale per il consumo fresco ed è apprezzata per il suo aspetto elegante e il sapore equilibrato.'
         },
         { 
           id: 7, 
@@ -1943,7 +1943,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/granny-smith.jpg',
-          description: 'Granny Smith: la mela dal gusto fresco, acidulo e vivace, dal caratteristico colore verde brillante. La sua polpa croccante e succosa offre un equilibrio perfetto tra acidità e dolcezza naturale, rendendola ideale da gustare fresca, in insalate, dessert o preparazioni al forno. Ricca di vitamine e antiossidanti, la Granny Smith è perfetta per chi cerca un frutto sano, rinfrescante e dal sapore deciso, capace di dare carattere a ogni piatto. Granny Smith: freschezza, croccantezza e gusto inconfondibile in ogni morso.'
+          description: 'La mela Granny Smith si distingue per la buccia verde brillante e la polpa molto croccante e succosa. Il gusto è fresco, deciso e marcatamente acidulo. È ideale per il consumo fresco e particolarmente apprezzata in cucina, soprattutto per dolci e preparazioni salate.'
         },
         { 
           id: 8, 
@@ -1953,7 +1953,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/annurca.jpg',
-          description: 'La Mela Annurca è un frutto tipico italiano, di piccole dimensioni, con buccia rosso brillante e polpa croccante e dolce-acidula. Perfetta da gustare fresca, in macedonie o dessert, è apprezzata per il suo sapore unico e aromatico. Ricca di vitamine e fibre, la mela Annurca fresca e di stagione garantisce qualità e genuinità direttamente dal produttore al tuo banco.'
+          description: 'La mela Annurca è una varietà tradizionale italiana, riconoscibile per la buccia rosso intenso con fondo verde. La polpa è compatta e croccante, dal gusto equilibrato, dolce con una piacevole nota acidula. È ideale per il consumo fresco ed è apprezzata per il suo profumo intenso e caratteristico.'
         },
         { 
           id: 9, 
@@ -1963,7 +1963,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/kissabel.jpg',
-          description: 'La mela Kissabel è un frutto tipico italiano, di piccole dimensioni, con buccia rosso brillante e polpa croccante e dolce-acidula. Perfetta da gustare fresca, in macedonie o dessert, è apprezzata per il suo sapore unico e aromatico. Ricca di vitamine e fibre, la mela Kissabel fresca e di stagione garantisce qualità e genuinità direttamente dal produttore al tuo banco.'
+          description: 'La mela Kissabel, nota anche come mela fragola, ha una buccia rossa intensa con sfumature rosa e gialle. La polpa è croccante, succosa e dal gusto dolce con un leggero aroma fruttato che ricorda le fragole. È ideale per il consumo fresco e come snack goloso per tutta la famiglia.'
         },
         { 
           id: 76, 
@@ -1973,7 +1973,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/williams.jpg',
-          description: 'Pera Williams: il simbolo della dolcezza e della succosità. Con la sua polpa morbida, succosa e profumata e la buccia sottile di colore verde-giallo, talvolta sfumata di rosso, la Williams è perfetta da gustare fresca, in macedonie, dolci o preparazioni al forno. Ricca di vitamine, fibre e antiossidanti naturali, è un frutto sano, genuino e versatile, ideale per tutta la famiglia. Williams: dolcezza naturale e profumo intenso in ogni morso.'
+          description: 'La pera Williams si distingue per la buccia verde-gialla, talvolta con leggere sfumature rosate. La polpa è succosa, morbida e molto aromatica, dal gusto dolce e intenso. È ideale per il consumo fresco, per dessert e anche per la preparazione di succhi e liquori.'
         },
         { 
           id: 10, 
@@ -1983,7 +1983,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/abate-fetel.jpg',
-          description: 'Pera Abate Fetel: dolcezza elegante e polpa succosa in ogni morso. Dalla forma allungata e slanciata, con buccia liscia e color giallo dorato, la Abate Fetel è famosa per il suo aroma delicato e il sapore naturalmente zuccherino. Perfetta da gustare fresca, in macedonie o dessert, mantiene anche consistenza e gusto nelle preparazioni al forno. Ricca di vitamine e fibre naturali, è una scelta sana e genuina per tutta la famiglia. Abate Fetel: dolcezza, morbidezza e profumo inconfondibile, un classico della frutta italiana.'
+          description: 'La pera Abate Fetel si riconosce per la forma allungata e la buccia verde con sfumature giallo-rugginose. La polpa è bianca, fine, molto succosa e dal gusto dolce e aromatico. È ideale per il consumo fresco ed è apprezzata per l’elevata qualità e la sua eleganza.'
         },
         { 
           id: 11, 
@@ -1993,7 +1993,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/pera-kaiser.jpg',
-          description: 'Pera Kaiser: dolcezza delicata e polpa croccante in ogni morso. La sua buccia liscia, dal verde chiaro leggermente sfumato di rosso, nasconde un frutto versatile e saporito, ideale da gustare fresco o in preparazioni al forno, dolci e macedonie. Ricca di vitamine e antiossidanti naturali, la Kaiser unisce gusto e qualità, rendendola perfetta per chi cerca un frutto sano, genuino e dal sapore equilibrato. Kaiser: croccantezza, dolcezza e freschezza in ogni morso.'
+          description: 'La pera Kaiser si distingue per la forma allungata, la buccia ruvida di colore marrone-ruggine e la polpa chiara, soda e profumata. Il gusto è dolce e aromatico, ideale per il consumo crudo, cotto, in dolci, macedonie e preparazioni da forno.'
         },
         { 
           id: 12, 
@@ -2003,7 +2003,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/decana.jpg',
-          description: 'Pera Decana: dolcezza intensa e polpa succosa in ogni morso. La sua forma rotonda e compatta, con buccia liscia dal colore giallo-verde, racchiude un frutto dal sapore equilibrato e aromatico. Perfetta da gustare fresca, in macedonie o dessert, mantiene consistenza e gusto anche nelle preparazioni al forno. Ricca di vitamine, fibre e antiossidanti naturali, la Decana è un frutto sano, genuino e versatile, ideale per tutta la famiglia. Decana: dolcezza, morbidezza e aroma inconfondibile, un classico della frutta italiana.'
+          description: 'La pera Decana ha una buccia verde-gialla, talvolta con leggere sfumature rossastre. La polpa è soda, succosa e dal gusto dolce e aromatico, molto equilibrato. È ideale per il consumo fresco e ottima anche per dolci e preparazioni culinarie.'
         },
         { 
           id: 13, 
@@ -2013,7 +2013,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/kiwi-giallo.jpg',
-          description: 'Kiwi Giallo: dolcezza esotica e polpa morbida in ogni morso. Con il suo colore dorato brillante e il sapore naturalmente zuccherino, il kiwi giallo è perfetto da gustare fresco, in macedonie, smoothie o dessert. Ricco di vitamine, in particolare vitamina C, minerali e antiossidanti naturali, è un frutto sano, nutriente e ideale per chi cerca freschezza e energia in ogni momento della giornata. Kiwi Giallo: gusto dolce, polpa succosa e vitalità naturale, direttamente dalla natura alla tua tavola.'
+          description: 'Il kiwi giallo si distingue per la buccia sottile e liscia di colore marrone chiaro e la polpa interna giallo dorato. La polpa è morbida, succosa e dal gusto dolce, meno acidulo rispetto al kiwi verde, con un aroma intenso e tropicale. È ideale per il consumo fresco, macedonie, smoothie e dolci.'
         },
         { 
           id: 14, 
@@ -2023,7 +2023,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/kiwi-verde.jpg',
-          description: 'Kiwi Verde: freschezza e sapore inconfondibili in ogni morso. Con la sua polpa verde brillante, succosa e leggermente acidula, il kiwi verde è perfetto da gustare fresco, in macedonie, smoothie o dessert. Ricco di vitamina C, fibre e antiossidanti naturali, è un frutto sano e nutriente, ideale per chi cerca energia e vitalità in modo naturale. Kiwi Verde: gusto deciso, freschezza e benessere direttamente dalla natura alla tua tavola.'
+          description: 'Il kiwi verde si caratterizza per la buccia marrone leggermente pelosa e la polpa verde brillante con piccoli semi neri. La polpa è morbida, succosa e dal gusto acidulo equilibrato, con aroma intenso e caratteristico. Ricco di vitamina C e antiossidanti, è ideale per il consumo fresco, macedonie, frullati, dessert e dolci. Nutriente e rinfrescante.'
         },
         { 
           id: 62, 
@@ -2033,7 +2033,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz', 
           available: true,
           image: '/images/products/Fragole.jpg',
-          description: 'Fragole italiane profumate e dolcissime, coltivate con cura. Il loro colore rosso brillante e il profumo intenso le rendono irresistibili. Perfette da gustare al naturale, con panna, o per preparare dolci e macedonie. Ricche di vitamina C e antiossidanti, sono un concentrato di benessere e gusto.'
+          description: 'La fragola si distingue per il colore rosso brillante e la polpa succosa e dolce, con un aroma intenso e caratteristico. È ideale per il consumo fresco, macedonie, dolci, frullati e marmellate.'
         },
         {
           id: 80,
@@ -2043,7 +2043,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/mirtilli.jpg',
-          description: 'Mirtilli: mirtilli sono un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i mirtilli freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'I mirtilli si distinguono per il colore blu intenso e la polpa succosa, dolce e leggermente acidula. Il gusto è aromatico e delicato, ideale per il consumo fresco, in macedonie, yogurt, dolci e marmellate. Ricchissimi di antiossidanti e proprietà benefiche per la salute.'
         },
         {
           id: 81,
@@ -2053,7 +2053,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/more.jpg',
-          description: 'More: more sono un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i more freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Le more si distinguono per il colore nero-violaceo della buccia e la polpa succosa e dolce con leggero retrogusto acidulo. Il gusto è aromatico e intenso, ideale per il consumo fresco, dolci, marmellate, smoothie e macedonie.'
         },
         {
           id: 82,
@@ -2063,7 +2063,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/lamponi.jpg',
-          description: 'Lamponi: lamponi sono un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i lamponi freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'I lamponi si caratterizzano per il colore rosso vivo e la forma fragile e delicata, con una polpa dolce succosa dal leggerissimo aroma acidulo. Il gusto è aromatico e delicato, ideale per il consumo fresco, in macedonie, dolci, marmellate e bevande. Apprezzati per le loro proprietà nutritive straordinarie.'
         },
         { 
           id: 19, 
@@ -2073,7 +2073,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/navel.jpg',
-          description: 'Arancia Navel: dolcezza, freschezza e succosità in ogni fetta. L\'arancia Navel, con la sua polpa succosa, di colore arancio brillante e senza semi, è perfetta da gustare fresca, in macedonie, dessert o spremute naturali. Dal gusto naturalmente dolce e aromatico, è ricca di vitamina C e antiossidanti, ideale per chi cerca un frutto genuino, sano e ricco di energia. Navel: colore intenso, dolcezza equilibrata e freschezza naturale direttamente sulla tua tavola.'
+          description: 'Scopri la qualità premium di Arancia Navel. Un prodotto selezionato con cura per offrirti il miglior sapore e la massima freschezza.'
         },
         { 
           id: 21, 
@@ -2083,7 +2083,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/mandarino.jpg',
-          description: 'Mandarino: dolcezza e freschezza in ogni spicchio. Il mandarino, con la sua buccia sottile e facile da sbucciare, racchiude una polpa succosa, aromatica e naturalmente dolce, ideale da gustare fresco, in macedonie, dolci o spremute. Ricco di vitamina C e antiossidanti naturali, è un frutto sano, leggero e nutriente, perfetto per chi cerca gusto e vitalità in ogni momento della giornata. Mandarino: praticità, dolcezza e freschezza naturale direttamente sulla tua tavola.'
+          description: 'Il mandarino si riconosce per la buccia sottile e facile da sbucciare, di colore arancione brillante, e la polpa succosa e dolce con note aromatiche. È ideale per il consumo fresco, macedonie, spremute e dolci.'
         },
         { 
           id: 25, 
@@ -2093,7 +2093,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/limoni.jpeg',
-          description: 'Pera: dolcezza e freschezza in ogni morso. Con la sua polpa succosa, aromatica e naturalmente zuccherina, la pera è un frutto versatile, ideale da gustare fresco, in macedonie, dolci o spremute naturali. Ricca di vitamine e antiossidanti naturali, è un frutto sano e nutriente, perfetto per chi cerca gusto e vitalità in ogni momento della giornata. Pera: dolcezza, freschezza e benessere naturale direttamente sulla tua tavola.'
+          description: 'Il limone si distingue per la buccia gialla, liscia o leggermente rugosa, e la polpa succosa e acidula. Il gusto è fresco, aromatico e deciso, ideale per il consumo fresco, spremuto come succo o utilizzato in cucina per condimenti e preparazioni dolci e salate. Ricco di vitamina C e proprietà benefiche.'
         },
         { 
           id: 26, 
@@ -2103,7 +2103,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/limoni-edibili.jpg',
-          description: 'Limoni a buccia edibile: freschezza, aroma e versatilità in un solo frutto. Con la loro buccia sottile e commestibile, i limoni a buccia edibile offrono un gusto intenso e profumato, ideale per spremute, insalate, dolci, piatti gourmet e decorazioni. Ricchi di vitamina C e antiossidanti naturali, sono un frutto sano, genuino e pratico, perfetto per chi ama sapore e benessere in cucina senza sprechi. Limoni a buccia edibile: aroma intenso, freschezza naturale e gusto versatile direttamente sulla tua tavola.'
+          description: 'Il limone a buccia edibile si distingue per la buccia sottile e liscia di colore giallo intenso, consumabile insieme alla polpa. La polpa è succosa e acidula, mentre la buccia aggiunge un aroma fresco e intenso. È ideale per il consumo fresco, spremute, cucina, dolci e bevande aromatizzate.'
         },
         {
           id: 84,
@@ -2113,7 +2113,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/uva-bianca-senza-semi.jpg',
-          description: 'Uva Senza Semi Bianca: uva è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i uva freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'L\'uva bianca senza semi è la scelta ideale per il consumo pratico e piacevole, senza l\'inconveniente dei semini. La polpa è croccante, succosa e dal gusto dolce e delicato. Perfetta per il consumo fresco, macedonie, frullati e come snack sano per tutta la famiglia. Comoda, gustosa e piacevolmente sorprendente.'
          },
       ]
     },  
@@ -2131,7 +2131,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/banane.jpg',
-          description: 'Banana: banana è un frutto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i banane freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La banana si distingue per la buccia gialla e la polpa morbida, dolce e cremosa. Il gusto è zuccherino e delicato, ideale per il consumo fresco, frullati, dolci, dessert e macedonie.'
         },
         { 
           id: 110, 
@@ -2141,7 +2141,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/Ananas.png',
-          description: 'Ananas: ananas tropicale e succoso, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le ananas fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'L\'ananas si distingue per la buccia spinosa di colore marrone-verde e la polpa interna gialla, succosa e dolce. Il gusto è aromatico e zuccherino, ideale per il consumo fresco, macedonie, frullati, dolci e succhi.'
         },
       
         {
@@ -2152,7 +2152,7 @@ export const useProductsStore = defineStore('products', () => {
         unit: 'kg',
         available: true,
         image: '/images/products/mango.jpg',
-        description: 'Mango: mango tropicale e succoso, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le mango fresche e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+        description: 'Il mango si distingue per la buccia liscia di colore verde, giallo o rosso a seconda della varietà e la polpa interna arancione, morbida, dolce e succosa. Il gusto è aromatico e zuccherino, ideale per il consumo fresco, frullati, macedonie, dolci e succhi.'
       },
       {
         id: 112,
@@ -2162,7 +2162,7 @@ export const useProductsStore = defineStore('products', () => {
         unit: 'kg',
         available: true,
         image: '/images/products/frutto-della-passione.jpg',
-        description: 'Frutto della passione: frutto della passione tropicale e succoso, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le frutto della passione fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+        description: 'Il frutto della passione si distingue per la buccia dura e rugosa di colore viola o giallo e la polpa interna gelatinosa, dolce-acidula e ricca di semi. Il gusto è aromatico e tropicale, ideale per il consumo fresco, succhi, frullati, dessert e dolci.'
       },
       {
         id: 113,
@@ -2172,7 +2172,7 @@ export const useProductsStore = defineStore('products', () => {
         unit: 'pz',
         available: true,
         image: '/images/products/avocado.jpg',
-        description: 'I nostri avocado sono selezionati con cura per offrire un prodotto fresco, sano e dal gusto autentico. Coltivati in aree vocate e raccolti al giusto grado di maturazione, garantiscono polpa cremosa, sapore delicato e valori nutrizionali eccellenti. Ricchi di grassi buoni, vitamine e minerali, gli avocado sono ideali per una cucina sana e moderna: perfetti per insalate, smoothie, guacamole o piatti gourmet. Ogni frutto viene controllato attentamente per assicurare qualità, freschezza e conservazione ottimale dal campo alla tavola. Il nostro ortofrutticolo si impegna ogni giorno a offrire prodotti affidabili, rispettando la stagionalità e privilegiando fornitori che adottano pratiche sostenibili. Scegliere i nostri avocado significa portare in tavola benessere, gusto e naturalezza.'
+        description: 'L\'avocado si distingue per la buccia verde scura, liscia o rugosa a seconda della varietà, e la polpa interna morbida, cremosa e leggermente burrosa. Il gusto è delicato e leggermente nocciolato, ideale per il consumo fresco, insalate, toast, frullati e salse come il guacamole.'
       },
       {
         id: 114,
@@ -2182,7 +2182,7 @@ export const useProductsStore = defineStore('products', () => {
         unit: 'kg',
         available: true,
         image: '/images/products/cocco.jpg',
-        description: 'Cocco Fresco e Naturale Il nostro cocco viene selezionato con attenzione per garantire freschezza, qualità e gusto autentico. Proveniente da coltivazioni controllate, è apprezzato per la sua polpa bianca e compatta, dal sapore delicato e naturalmente dolce, e per l’acqua di cocco fresca e dissetante. Ricco di sali minerali e nutrienti, il cocco è ideale per un’alimentazione equilibrata ed è perfetto sia per il consumo fresco che per l’utilizzo in cucina, in ricette dolci e salate. Ogni frutto viene accuratamente controllato per assicurare integrità, conservazione ottimale e standard elevati di qualità.'
+        description: 'Il cocco si distingue per il guscio duro e marrone all\'esterno e la polpa bianca, carnosa e leggermente dolce all\'interno. Il gusto è delicato e tropicale, ideale per il consumo fresco, latte di cocco, dolci, frullati e dessert.'
       },
       {
         id: 115,
@@ -2192,7 +2192,7 @@ export const useProductsStore = defineStore('products', () => {
         unit: 'pz',
         available: true,
         image: '/images/products/frutto-del-drago.jpg',
-        description: 'Pitaya Frutto del drago: pitaya tropicale e succoso, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le pitaya fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+        description: 'La pitaya si distingue per la buccia spessa e colorata, rosa o rossa con scaglie verdi, e la polpa interna bianca o rossa, dolce, succosa e ricca di piccoli semi neri. Il gusto è delicato e tropicale, ideale per il consumo fresco, frullati, macedonie e dessert.'
       },
       {
         id: 116,
@@ -2202,7 +2202,7 @@ export const useProductsStore = defineStore('products', () => {
         unit: 'kg',
         available: true,
         image: '/images/products/litchi.jpg',
-        description: 'Litchi: litchi tropicale e succoso, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le litchi fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+        description: 'Il litchi si distingue per la buccia rugosa di colore rosso vivo e la polpa interna bianca, succosa, dolce e aromaticamente profumata. Il gusto è delicato e zuccherino, ideale per il consumo fresco, macedonie, dessert e succhi.'
       },
       {
         id: 117,
@@ -2212,7 +2212,7 @@ export const useProductsStore = defineStore('products', () => {
         unit: 'pz',
         available: true,
         image: '/images/products/Papaya.jpg',
-        description: 'Papaya: papaya tropicale e succoso, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le papaya fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+        description: 'La papaya si distingue per la buccia liscia di colore verde o giallo-arancio e la polpa interna arancione, morbida, dolce e succosa. Il gusto è tropicale e aromatico, ideale per il consumo fresco, frullati, macedonie e dessert.'
       },
       ]
     },
@@ -2231,7 +2231,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz', 
           available: true,
           image: '/images/products/broccoli.jpg',
-          description: 'Broccoli: gusto deciso e benessere naturale in ogni piatto. Con il loro colore verde intenso e la consistenza compatta, i broccoli sono un ortaggio ricco di proprietà nutritive, apprezzato per il sapore leggermente amarognolo e la grande versatilità in cucina. Ideali per contorni, primi piatti, vellutate e ricette salutari, sono ricchi di vitamine, fibre, sali minerali e antiossidanti naturali, perfetti per un\'alimentazione equilibrata. Broccoli: freschezza, qualità e salute direttamente dall\'orto alla tua tavola.'
+          description: 'I broccoli si distinguono per le cime compatte di colore verde intenso e i gambi croccanti. Il gusto è delicato e leggermente amarognolo, ideale per il consumo al vapore, saltati in padella, gratinati, zuppe o insalate cotte.'
         },
         { 
           id: 30, 
@@ -2241,7 +2241,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/cavolfiore.jpg',
-          description: 'Cavolfiore: gusto delicato e versatilità in cucina. Con la sua infiorescenza compatta e il colore chiaro, il cavolfiore è un ortaggio invernale apprezzato per il sapore morbido e leggermente dolce. Perfetto per contorni, vellutate, gratin, primi piatti e preparazioni al forno, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolfiore: semplicità, genuinità e benessere direttamente dall\'orto alla tua tavola.'
+          description: 'Il cavolfiore viola si distingue per la testa compatta di colore viola intenso e le foglie esterne verdi. Il gusto è delicato e leggermente dolce, ideale per il consumo al vapore, bollito, gratinato, in zuppe o insalate cotte, aggiungendo un tocco di colore ai piatti.'
         },
         {
           id: 33,
@@ -2251,7 +2251,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/cavolo-romano.jpg',
-          description: 'Cavolo Romano: gusto delicato e versatilità in cucina. Con la sua infiorescenza compatta e il colore verde intenso, il cavolo romano è un ortaggio invernale apprezzato per il sapore morbido e leggermente dolce. Perfetto per contorni, vellutate, gratin, primi piatti e preparazioni al forno, è ricco di vitamine, fibre e sali minerali, ideale per un\'alimentazione sana ed equilibrata. Cavolo Romano: semplicità, genuinità e benessere direttamente dall\'orto alla tua tavola.'
+          description: 'Il cavolo romano si distingue per le foglie lunghe, rugose e di colore verde scuro, con un sapore leggermente amarognolo e aromatico. È ricco di vitamine e minerali, ideale per zuppe, minestre, saltati in padella o frullati verdi.'
         },
         { 
           id: 34, 
@@ -2261,7 +2261,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/cavolini di bruxelles1.jpg',
-          description: 'Cavolini di Bruxelles: cavolini di Bruxelles sono piccoli ortaggi dal colore verde brillante e dalla consistenza compatta, dal sapore delicato con una leggera nota amarognola. Ottimi saltati in padella, al forno o lessati, sono ideali come contorno o ingrediente per piatti invernali. Ricchi di fibre, vitamine e sali minerali, i cavolini di Bruxelles freschi e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'I cavolini di Bruxelles si distinguono per le piccole teste rotonde e compatte di colore verde, con foglie ben chiuse. Il gusto è leggermente amarognolo e aromatico, ideale per il consumo al vapore, bolliti, saltati in padella, gratinati o in zuppe.'
         },
         { 
           id: 36, 
@@ -2271,7 +2271,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/cavolo-cappuccio.jpg',
-          description: 'Il cavolo cappuccio è un ortaggio fresco di stagione, riconoscibile per la sua forma compatta e le foglie croccanti. Dal sapore delicato e leggermente dolce, è ideale sia per il consumo a crudo in insalata sia per la cottura in zuppe, contorni e piatti tradizionali. Ricco di fibre e naturalmente povero di calorie, è molto apprezzato per la sua versatilità in cucina e la buona conservabilità. Prodotto genuino, adatto all\'uso domestico e professionale.'
+          description: 'Il cavolo cappuccio si distingue per la testa compatta e rotonda con foglie lisce e croccanti di colore verde chiaro o violaceo a seconda della varietà. Il gusto è delicato e leggermente dolce, ideale per il consumo crudo in insalata, al vapore, bollito, in zuppe o stufati.'
         },
         { 
           id: 37, 
@@ -2281,7 +2281,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/finocchi.jpg',
-          description: 'Il finocchio è un ortaggio fresco e profumato, caratterizzato da un grumolo bianco e croccante e da un sapore delicato e aromatico. Ottimo da consumare crudo in insalata o pinzimonio, è ideale anche cotto in gratin, contorni e piatti leggeri. Ricco di fibre e naturalmente digeribile, il finocchio fresco e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'I finocchi si distinguono per il bulbo bianco compatto e le fronde verdi e aromatiche. Il gusto è dolce e delicatamente anice, ideale per il consumo crudo in insalata, al vapore, bollito, gratinato o in zuppe.'
         },
         { 
           id: 38, 
@@ -2291,7 +2291,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/spinaci.jpg',
-          description: 'Gli spinaci sono verdure a foglia verde scuro, fresche e tenere, dal sapore delicato e leggermente erbaceo. Ideali sia crudi in insalata che cotti in zuppe, frittate o contorni, sono ricchi di vitamine, ferro e fibre, perfetti per una dieta sana ed equilibrata. Freschi e di stagione, gli spinaci del nostro banco garantiscono qualità e genuinità direttamente dalla terra alla tua tavola.'
+          description: 'Gli spinaci si distinguono per le foglie verdi, tenere e carnose. Il gusto è delicato e leggermente erbaceo, ideale per il consumo crudo in insalata, al vapore, saltati in padella, frullati o in zuppe.'
         },
         { 
           id: 39, 
@@ -2301,7 +2301,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/erbette.jpg',
-          description: 'Le erbette sono verdure a foglia verde tenera, dal sapore delicato e leggermente dolce. Molto versatili in cucina, sono ideali per contorni, zuppe, ripieni, frittate e torte salate. Ricche di fibre, vitamine e sali minerali, le erbette fresche e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Le erbette si distinguono per le foglie verdi tenere e i gambi bianchi croccanti. Il gusto è delicato e leggermente dolce, ideale per il consumo al vapore, saltate in padella, in zuppe o frittate.'
         },
         { 
           id: 40, 
@@ -2311,7 +2311,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/catalogna.jpg',
-          description: 'La catalogna è una verdura a foglia verde dal gusto deciso e leggermente amarognolo. Apprezzata sia cruda in insalata, soprattutto i germogli, sia cotta in contorni, zuppe e piatti tradizionali, è molto versatile in cucina. Ricca di fibre e sali minerali, la catalogna fresca e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La catalogna si distingue per le foglie lunghe, sottili e frastagliate di colore verde scuro, con un gusto amarognolo e deciso. È ideale per il consumo saltata in padella, lessata, in zuppe o come contorno.'
         },
         { 
           id: 41, 
@@ -2321,7 +2321,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/coste.jpg',
-          description: 'Le bietole sono coste a foglia verde dal gusto delicato e leggermente dolce, apprezzate sia crude in insalata sia cotte in zuppe, torte salate o contorni. Ricche di fibre, vitamine e sali minerali, le coste sono un alleato naturale per una dieta sana ed equilibrata. Fresche e di stagione, garantiscono qualità e genuinità direttamente dal campo alla tua tavola.'
+          description: 'La catalogna si distingue per le foglie lunghe, sottili e frastagliate di colore verde scuro, con un gusto amarognolo e deciso. È ideale per il consumo saltata in padella, lessata, in zuppe o come contorno.'
         },
         { 
           id: 42, 
@@ -2331,7 +2331,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/radicchio.jpg',
-          description: 'Il radicchio è una verdura dal colore rosso intenso e dalle foglie croccanti, dal gusto leggermente amarognolo e aromatico. Perfetto da gustare crudo in insalate o grigliato, saltato in padella o nelle ricette tipiche della cucina italiana, aggiunge colore e sapore a ogni piatto. Ricco di fibre e antiossidanti, il radicchio fresco e di stagione è sinonimo di qualità e genuinità direttamente dal produttore al tuo banco.'
+          description: 'Il radicchio si distingue per le foglie rosse o violacee con venature bianche, croccanti e leggermente amarognole. Il gusto è deciso e amarognolo, ideale per il consumo crudo in insalata, grigliato, al vapore o saltato in padella.'
         },
         {
           id: 43, 
@@ -2341,7 +2341,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/trevisana.jpg',
-          description: 'Trevisana: radicchio pregiato con colore rosso intenso e venature bianche, dal gusto leggermente amarognolo e aromatico. Croccante e saporita, ideale da consumare cruda in insalata oppure cotta alla griglia, in padella o nei risotti. Ricca di fibre e antiossidanti, la Trevisana fresca e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco. '
+          description: 'La trevisana si distingue per le foglie lunghe, croccanti e di colore rosso intenso con venature bianche. Il gusto è amarognolo e deciso, ideale per il consumo crudo in insalata, grigliata, al vapore o saltata in padella.'
         },
         { id: 69, 
           name: 'Lattuga Trocadero', 
@@ -2350,7 +2350,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz', 
           available: true,
           image: '/images/products/lattuga-trocadero.jpg',
-          description: 'Lattuga: lattuga sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i lattuga freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La lattuga Trocadero si distingue per le foglie larghe, croccanti e di colore verde chiaro, con un cuore compatto. Il gusto è fresco e delicato, ideale per il consumo crudo in insalate, panini, wrap o come base per piatti freddi.'
         },
         { 
           id: 44, 
@@ -2360,7 +2360,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/iceberg.jpg',
-          description: 'La lattuga iceberg è caratterizzata da una testa compatta e foglie croccanti di colore verde chiaro, dal sapore fresco e delicato. Perfetta per insalate croccanti, panini e piatti veloci, aggiunge leggerezza e freschezza a ogni preparazione. Ricca di acqua e fibre, è ideale per chi cerca un ortaggio sano, fresco e di stagione.'
+          description: 'La lattuga Iceberg si distingue per la testa compatta e rotonda, con foglie croccanti di colore verde chiaro. Il gusto è delicato e fresco, ideale per il consumo crudo in insalate, panini, sandwich o come base per piatti freddi.'
         },
         { 
           id: 45, 
@@ -2370,7 +2370,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/lattuga-romana.jpg',
-          description: 'La lattuga romana è caratterizzata da foglie lunghe e croccanti, di colore verde brillante e dal sapore fresco e delicato. Ideale per insalate classiche, contorni leggeri e piatti freschi, è molto apprezzata per la sua consistenza e versatilità. Ricca di acqua e fibre, la lattuga romana fresca e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La lattuga romana si distingue per le foglie lunghe, croccanti e di colore verde intenso, con un cuore centrale compatto. Il gusto è fresco e leggermente dolce, ideale per il consumo crudo in insalate, panini, wrap o come base per piatti freddi.'
         },
         { 
           id: 46, 
@@ -2380,7 +2380,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/lattuga-gentilina.jpg',
-          description: 'La lattuga gentilina è una varietà dal colore verde intenso e dalle foglie morbide e leggermente croccanti. Dal sapore delicato e fresco, è perfetta per insalate, panini e contorni leggeri. Ricca di acqua e fibre, è ideale per chi cerca un ortaggio sano, fresco e di stagione, pronto da gustare in ogni occasione.'
+          description: 'La lattuga Gentilina si distingue per le foglie piccole, tenere e croccanti, di colore verde chiaro con sfumature rosate. Il gusto è delicato e dolce, ideale per il consumo crudo in insalate, panini, sandwich o come guarnizione colorata.'
         },
         { 
           id: 47, 
@@ -2390,7 +2390,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/scarola.jpg',
-          description: 'La scarola è un\'insalata a foglia larga e croccante, dal sapore delicato con una leggera nota amarognola. Ottima sia cruda in insalata sia cotta in contorni, zuppe e ricette tradizionali, è molto apprezzata per la sua versatilità in cucina. Ricca di fibre e acqua, la scarola fresca e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La scarola si distingue per le foglie larghe, leggermente ricce e di colore verde chiaro, con un gusto delicatamente amarognolo. È ideale per il consumo crudo in insalata, saltata in padella, in zuppe o come contorno.'
         },
         { id: 87,
           name: 'Pomodoro ramato',
@@ -2399,7 +2399,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/pomodoro ramato.jpg',
-          description: 'Pomodoro ramato: pomodoro ramato è un pomodoro di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pomodori freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Il pomodoro ramato si distingue per la buccia liscia di colore rosso intenso con sfumature ramate e la polpa succosa e soda. Il gusto è dolce e leggermente acidulo, ideale per il consumo crudo in insalate, salse, bruschette, panini e piatti cucinati.'
        },
        {
         id: 118,
@@ -2409,7 +2409,7 @@ export const useProductsStore = defineStore('products', () => {
         unit: 'pz',
         available: true,
         image: '/images/products/cuore di bue.jpeg',
-        description: 'Cuore di Bue: cuore di bue sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le cuore di bue fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+        description: 'Il pomodoro Cuore di Bue si distingue per la forma grande e leggermente a cuore, la buccia liscia di colore rosso intenso e la polpa carnosa e succosa. Il gusto è dolce e delicato, ideale per il consumo crudo in insalate, bruschette, panini o per preparazioni culinarie.'
        },
        {
         id: 119,
@@ -2419,7 +2419,7 @@ export const useProductsStore = defineStore('products', () => {
         unit: 'pz',
         available: true,
         image: '/images/products/pomodoro marinda.jpg',
-        description: 'Pomodoro Marinda: pomodoro marinda sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le pomodoro marinda fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+        description: 'Il pomodoro Marinda si distingue per la forma tondeggiante e compatta, la buccia liscia di colore rosso brillante e la polpa soda e succosa. Il gusto è dolce e leggermente acidulo, ideale per il consumo crudo in insalate, panini, salse o per cotture veloci.'
        },
        { id: 88, 
         name: 'Pomodorino Datterino',
@@ -2428,7 +2428,7 @@ export const useProductsStore = defineStore('products', () => {
         unit: 'kg', 
         available: true,
         image: '/images/products/pomodorini.jpg',
-        description: 'Pomodoro ramato: pomodoro ramato è un pomodoro di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i pomodori freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+        description: 'Il pomodorino datterino si distingue per la forma allungata simile a datteri, la buccia liscia di colore rosso intenso e la polpa succosa e dolce. Il gusto è dolce e leggermente acidulo, ideale per il consumo crudo in insalate, aperitivi, bruschette o per cotture veloci.'
        },
         { id: 70, 
           name: 'Ravanelli', 
@@ -2437,7 +2437,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/ravanelli.jpg',
-          description: 'Ravanelli: ravanelli sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i ravanelli freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'I ravanelli si distinguono per le radici tonde o allungate di colore rosso, rosa o bianco e le foglie verdi croccanti. Il gusto è fresco, leggermente piccante e croccante, ideale per il consumo crudo in insalate, come snack o come guarnizione.'
         },
         { 
           id: 48, 
@@ -2447,7 +2447,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/barbabietole.jpg',
-          description: 'Le barbabietole sono ortaggi dalla polpa dolce e dal colore rosso intenso, con radice tondeggiante e foglie verdi nutrienti. Perfette cotte, al forno, in zuppe o insalate, aggiungono colore e gusto a ogni piatto. Ricche di vitamine, sali minerali e fibre, le barbabietole fresche e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La barbabietola si distingue per il tubero rotondo o allungato di colore rosso intenso e le foglie verdi commestibili. Il gusto è dolce e terroso, ideale per il consumo cotta, al vapore, arrosto, in insalate o frullati.'
         },
         {
           id: 49, 
@@ -2457,7 +2457,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/zucca.jpeg',
-          description: 'La zucca è un ortaggio dal colore arancione intenso e dalla polpa dolce e carnosa. Versatile in cucina, è ideale per zuppe, vellutate, torte salate, dolci e contorni, donando sapore e colore a ogni piatto. Ricca di vitamine, fibre e antiossidanti, la zucca fresca e di stagione garantisce qualità e genuinità direttamente dal produttore al tuo banco.'
+          description: 'La zucca si distingue per la buccia dura di colore arancione, verde o grigio a seconda della varietà e la polpa interna arancione, dolce e compatta. Il gusto è delicato e leggermente dolce, ideale per il consumo al forno, in zuppe, risotti, puree e dolci.'
         }, 
         { id: 89, 
           name: 'Zucchine',
@@ -2466,7 +2466,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/zucchine.jpg',
-          description: 'Zucchine: zucchine è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i zucchine freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Le zucchine si distinguono per il frutto cilindrico o leggermente allungato, di colore verde chiaro o scuro, con polpa tenera e delicata. Il gusto è fresco e leggermente dolce, ideale per il consumo crudo in insalate, saltate in padella, al forno, ripiene o in zuppe.'
        },
        { id: 90, 
          name: 'Melanzane', 
@@ -2475,7 +2475,7 @@ export const useProductsStore = defineStore('products', () => {
          unit: 'kg', 
          available: true,
          image: '/images/products/melanzane.jpeg',
-         description: 'Melanzane: melanzane è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i melanzane freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+         description: 'Le melanzane si distinguono per il frutto allungato o tondeggiante, con buccia liscia di colore viola intenso o scuro e polpa morbida e spugnosa. Il gusto è delicato e leggermente amarognolo, ideale per il consumo grigliate, al forno, in padella, ripiene o in zuppe e ratatouille.'
        },
        { id: 91, 
          name: 'Peperoni gialli', 
@@ -2484,7 +2484,7 @@ export const useProductsStore = defineStore('products', () => {
          unit: 'kg', 
          available: true,
          image: '/images/products/peperone-giallo.jpeg',
-         description: 'Peperoni gialli: peperoni gialli è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i peperoni gialli freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+         description: 'I peperoni gialli si distinguono per il frutto carnoso e croccante di colore giallo brillante. Il gusto è dolce e leggermente fruttato, ideale per il consumo crudo in insalate, grigliati, al forno, ripieni o in soffritti.'
        },
        { id: 92, 
          name: 'Peperoni rossi', 
@@ -2493,7 +2493,7 @@ export const useProductsStore = defineStore('products', () => {
          unit: 'kg', 
          available: true,
          image: '/images/products/peperone-rosso.jpeg',
-         description: 'Peperoni rossi: peperoni rossi è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i peperoni rossi freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+         description: 'I peperoni rossi si distinguono per il frutto carnoso e croccante di colore rosso intenso. Il gusto è dolce e leggermente fruttato, ideale per il consumo crudo in insalate, grigliati, al forno, ripieni o in soffritti.'
        },
        { id: 93, 
          name: 'Cetrioli', 
@@ -2502,7 +2502,7 @@ export const useProductsStore = defineStore('products', () => {
          unit: 'kg', 
          available: true,
          image: '/images/products/cetrioli.jpg',
-         description: 'Cetrioli: cetrioli è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i cetrioli freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+         description: 'I cetrioli si distinguono per il frutto lungo e cilindrico, di colore verde chiaro o scuro, con polpa croccante e fresca. Il gusto è delicato e rinfrescante, ideale per il consumo crudo in insalate, panini, centrifugati o come snack.'
        },
        { id: 94, 
          name: 'Fagiolini', 
@@ -2511,7 +2511,7 @@ export const useProductsStore = defineStore('products', () => {
          unit: 'kg', 
          available: true,
          image: '/images/products/cornetti.jpg',
-         description: 'Fagiolini: fagiolini è un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i fagiolini freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+         description: 'I fagiolini si distinguono per i baccelli lunghi e sottili di colore verde brillante, con polpa tenera e croccante. Il gusto è delicato e fresco, ideale per il consumo lessati, al vapore, saltati in padella o in insalate.'
        },
         { 
           id: 50, 
@@ -2521,7 +2521,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/carote.jpg',
-          description: 'Le carote sono ortaggi croccanti e dolci, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+          description: 'Le carote con il ciuffo si distinguono per la radice allungata di colore arancione brillante e le foglie verdi fresche attaccate. La polpa è croccante e dolce, con gusto delicato e naturale, ideale per il consumo crudo, cotto, in insalate, contorni e frullati.'
         },
         { 
           id: 51, 
@@ -2531,7 +2531,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz', 
           available: true,
           image: '/images/products/carote pacchetto.jpg',
-          description: 'Carote Pacchetto: carote fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+          description: 'Le carote si distinguono per la radice allungata di colore arancione brillante e la polpa croccante e dolce. Il gusto è delicato e naturalmente zuccherino, ideale per il consumo crudo, cotto, in insalate, zuppe, contorni e frullati.'
         },
         { 
           id: 52, 
@@ -2541,7 +2541,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/Carote sfuse.jpg',
-          description: 'Carote Sfuse: carote fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le carote fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+          description: 'Le carote si distinguono per la radice allungata di colore arancione brillante e la polpa croccante e dolce. Il gusto è delicato e naturalmente zuccherino, ideale per il consumo crudo, cotto, in insalate, zuppe, contorni e frullati.'
         },
         { 
           id: 53, 
@@ -2551,7 +2551,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/patate-rosse.jpg',
-          description: 'Le patate rosse sono ortaggi dalla buccia sottile e dal colore rosso intenso, con polpa compatta e dal sapore delicato. Ideali per arrosti, bolliti, gratinati o fritte, mantengono bene la forma in cottura e regalano un gusto dolce e uniforme ai piatti. Ricche di fibre e nutrienti, le patate rosse fresche e di stagione sono sinonimo di qualità e genuinità direttamente dal produttore al tuo banco.'
+          description: 'Le patate rosse si distinguono per la buccia liscia di colore rosso e la polpa chiara, compatta e soda. Il gusto è delicato e leggermente dolce, ideale per il consumo arrosto, al forno, lessate, in insalate e contorni.'
         },
         {
           id: 54,
@@ -2561,7 +2561,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/patata-bianca.jpg',
-          description: 'Patate Bianche: patate fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le patate fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+          description: 'Le patate bianche si distinguono per la buccia chiara e la polpa bianca, farinosa e morbida dopo la cottura. Il gusto è delicato e leggermente dolce, ideale per il consumo lessate, in puree, gnocchi, zuppe e contorni.'
         },
         { 
           id: 55, 
@@ -2571,7 +2571,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/patate-gialle.jpg',
-          description: 'Le patate gialle hanno una buccia sottile e una polpa dal colore dorato, dal gusto dolce e leggermente burroso. Perfette per arrosti, purè, gratin e cotture al forno, si prestano a molte preparazioni grazie alla loro consistenza cremosa. Ricche di fibre e nutrienti, le patate gialle fresche e di stagione garantiscono qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Le patate gialle si distinguono per la buccia chiara e la polpa gialla, compatta e soda. Il gusto è delicato e leggermente saporito, ideale per il consumo al forno, arrosto, in padella, lessate e come contorno.'
         },
         {
           id: 56,
@@ -2581,7 +2581,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/patate-sacchetto.jpeg',
-          description: 'Patate Sacchetto: patate fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le patate fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+          description: 'Le patate gialle in sacchetto da 2 kg si distinguono per la buccia chiara e la polpa gialla, compatta e soda. Il gusto è delicato e leggermente saporito, ideali per il consumo al forno, arrosto, in padella, lessate e come contorno.'
         },
         {
           id: 120,
@@ -2591,7 +2591,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/patata-dolce.jpg',
-          description: 'Patate Dolce: patate dolce fresche e croccanti, dal caratteristico colore arancione brillante. Perfette da consumare crude in insalata, frullati o snack, e ottime cotte in zuppe, contorni e ricette tradizionali. Ricche di vitamine, in particolare vitamina A, e fibre, le patate dolce fresche e di stagione garantiscono gusto, salute e genuinità direttamente dal campo al tuo banco.'
+          description: 'La patata dolce si distingue per la buccia liscia di colore arancione, rame o violaceo e la polpa interna arancione o chiara, morbida e naturalmente dolce. Il gusto è dolce e delicato, ideale per il consumo al forno, lessata, in puree, contorni, zuppe e dolci.'
         },
         {
           id: 121,
@@ -2601,7 +2601,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Kg',
           available: true,
           image: '/images/products/zenzero.jpeg',
-          description: 'Zenzero: zenzero sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le zenzero fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Lo zenzero è una radice dal sapore deciso e leggermente piccante, molto apprezzata per le sue proprietà digestive e tonificanti. Ottimo sia fresco che grattugiato in cucina.'
         },
         { 
           id: 57, 
@@ -2611,7 +2611,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/porri.jpg',
-          description: 'I porri sono ortaggi dal gambo lungo e bianco e dalle foglie verdi tenere, dal sapore delicato e leggermente dolce. Ideali per zuppe, minestre, frittate e contorni, conferiscono aroma e leggerezza a ogni preparazione. Ricchi di vitamine e minerali, i porri freschi e di stagione sono sinonimo di qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Il porro si distingue per il fusto lungo e cilindrico di colore bianco nella parte inferiore e verde nella parte superiore. Il gusto è delicato e leggermente dolce, ideale per il consumo in zuppe, risotti, torte salate, saltato in padella o come contorno.'
         },
         {
           id: 122,
@@ -2621,7 +2621,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/cipolla bianca.jpg',
-        description: 'Cipolla Bianca: cipolla bianca fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le cipolla bianca fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+        description: 'La cipolla bianca si distingue per la buccia chiara e la polpa bianca, croccante e dal sapore delicato. Il gusto è dolce e leggermente pungente, ideale per il consumo crudo in insalata, cotto in soffritti, zuppe, salse e contorni.'
         },
         {
           id: 123,
@@ -2631,7 +2631,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/cipolla-rossa.jpg',
-          description: 'Cipolla Rossa: cipolla rossa fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le cipolla rossa fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La cipolla rossa si distingue per la buccia e la polpa violacea, croccante e leggermente dolce. Il gusto è delicato con un retrogusto aromatico, ideale per il consumo crudo in insalate, marinate, grigliate, soffritti e contorni.'
         },
         {
           id: 124,
@@ -2641,7 +2641,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/cipolla dorata.jpg',
-          description: 'Cipolla Dorata: cipolla dorata fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le cipolla dorata fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La cipolla dorata si distingue per la buccia dorata e la polpa bianca, croccante e dolce. Il gusto è delicato e aromatico, ideale per il consumo crudo in insalate, soffritti, zuppe, salse e contorni.'
         },
         {
           id: 125,
@@ -2651,7 +2651,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/cipolla-tropea.jpg',
-          description: 'Cipolla Tropea: cipolla tropea fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le cipolla tropea fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La cipolla di Tropea si distingue per la buccia e la polpa rosso-violacea, dolce e succosa. Il gusto è delicato e aromatico, ideale per il consumo crudo in insalate, carpacci, marinate, grigliate o cotto in soffritti e contorni.'
         },
         {
           id: 126,
@@ -2661,7 +2661,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/scalogno.jpg',
-          description: 'Scalogno: scalogno fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le scalogno fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Lo scalogno si distingue per il bulbo allungato di colore rosato o violaceo e la polpa bianca dal sapore delicato. Il gusto è dolce e aromatico, ideale per il consumo crudo in insalate, marinature, soffritti, salse e contorni.'
         },
         { 
           id: 58, 
@@ -2671,7 +2671,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/aglio.jpg',
-          description: 'L\'aglio è un bulbo aromatico, essenziale in cucina per insaporire ogni piatto con il suo gusto deciso e inconfondibile. Fresco e profumato, può essere utilizzato crudo, tritato o cotto, aggiungendo aroma a sughi, salse, zuppe e contorni. Ricco di proprietà benefiche per l\'organismo, l\'aglio fresco e di stagione garantisce qualità e genuinità direttamente dal produttore al tuo banco.'
+          description: 'L’aglio si distingue per il bulbo bianco suddiviso in spicchi, con aroma intenso e caratteristico. Il gusto è pungente e aromatico, ideale per il consumo crudo, in soffritti, salse, zuppe, marinate e contorni.'
         },
         { 
           id: 59, 
@@ -2681,7 +2681,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/sedano.jpg',
-          description: 'Il sedano è un ortaggio fresco e croccante, dal sapore aromatico e leggermente salato. Ideale da consumare crudo in pinzimonio o insalata, è perfetto anche come base per soffritti, zuppe e brodi. Ricco di acqua, fibre e sali minerali, il sedano fresco e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Il sedano si distingue per i gambi croccanti di colore verde chiaro e le foglie aromatiche. Il gusto è fresco e leggermente amarognolo, ideale per il consumo crudo in insalate, centrifugati, zuppe, soffritti e contorni.'
         },
         {
           id: 72,
@@ -2691,7 +2691,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/rucola.jpg',
-          description: 'Rucola: rucola sono un ortaggio di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i rucola freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La rucola si distingue per le foglie verdi, sottili e leggermente frastagliate, dal sapore piccante e aromatico. È ideale per il consumo crudo in insalate, panini, pizze, insaporire piatti di pasta o come guarnizione.'
         },
         {
           id: 127,
@@ -2701,7 +2701,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/fantasia fine.jpg',
-          description: 'Fantasia Fine: fantasia fine sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le fantasia fine fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Un mix raffinato di tenere insalate a foglia fine, selezionate e sapientemente combinate. Ideale come base per insalatone complete o piatti freschi, con un gusto delicato e una presentazione elegante. Perfetto per chi ama le insalate gourmet e ricercate.'
         },
         {
           id: 128,
@@ -2711,7 +2711,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/fantasia-grossa.jpg',
-          description: 'Fantasia Grossa: fantasia grossa sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le fantasia grossa fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Una selezione generosa di insalate a foglia larga e carnosa, dal sapore ricco e consistente. Perfetto per piatti abbondanti e nutrienti, mantiene la freschezza e la croccantezza anche dopo ore. Ideale per insalate sostanziose che saziano e accontentano tutti.'
         },
         {
           id: 129,
@@ -2721,7 +2721,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/bs mix di insalate.jpg',
-          description: 'Mix di Insalate: mix di insalate sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le mix di insalate fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Una miscela versatile di diverse varietà di insalate, perfettamente bilanciate per offrire una varietà di sapori e consistenze. Il mix ideale per famiglie che amano la varietà e non vogliono annoiarsi. Fresco, nutriente e sempre gustoso.'
         },
         {
           id: 130,
@@ -2731,7 +2731,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/bs novella.jpg',
-          description: 'Novella: novella sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le novella fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Insalata novella di primavera, dal sapore delicato e dalla consistenza incredibilmente tenera e croccante. Raccolta al momento giusto per garantire la massima freschezza. Perfetta per chi apprezza la qualità premium e il gusto autentico dell\'orto.'
         },
         {
           id: 131,
@@ -2741,7 +2741,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/Valeriana.jpg',
-          description: 'Valeriana: valeriana sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le valeriana fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Una insalata dal sapore caratteristico, leggermente dolce con note erbacee raffinate. Ricca di nutrienti e di straordinaria freschezza, perfetta da sola o in abbinamento. Ideale per insalate invernali dal profilo gourmet.'
         },
         {
           id: '38',
@@ -2751,7 +2751,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/spinaci.jpg',
-          description: 'Spinaci: spinaci sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le spinaci fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Gli spinaci si distinguono per le foglie verdi, tenere e carnose. Il gusto è delicato e leggermente erbaceo, ideale per il consumo crudo in insalata, al vapore, saltati in padella, frullati o in zuppe.'
         },
         {
           id: 132,
@@ -2761,7 +2761,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/cicorino-misto.jpg',
-          description: 'Cicorino Misto: cicorino misto sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le cicorino misto fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Un accattivante mix di cicorini selezionati per il loro gusto leggermente amarognolo e la consistenza croccante. Perfetto per chi ama sapori decisi e ricercati. Ottimo da solo o abbinato ad altri ingredienti per contrasti affascinanti.'
         },
         {
           id: 133,
@@ -2771,7 +2771,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/cicoria-verde-fine.jpg',
-          description: 'Cicoria Verde Fine: cicoria verde fine sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le cicoria verde fine fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Cicoria verde a foglia fine dal sapore fresco e caratteristico, lievemente amarognolo. Ricca di proprietà nutritive e dallo straordinario valore salutistico. Perfetta per insalate genuine e preparazioni tradizionali.'
         },
         {
           id: 134,
@@ -2781,7 +2781,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/minestrone.jpg',
-          description: 'Cicoria Verde Grossa: cicoria verde grossa sono un prodotto di stagione, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le cicoria verde grossa fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Una miscela pronta all\'uso di ortaggi freschi e teneri, perfettamente combinati per il minestrone. Qualità selezionata, freschezza garantita. Basta aggiungere il brodo e i vostri ingredienti preferiti per una minestra vera e buona.'
         },
       ]
     },
@@ -2800,7 +2800,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/Noci.jpg',
-          description: 'Noci: noci croccanti e aromatiche, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le noci fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Scopri la qualità premium di Noci Naturali. Un prodotto selezionato con cura per offrirti il miglior sapore e la massima freschezza.'
         },
         { 
           id: 136, 
@@ -2810,7 +2810,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/Mandorle sgusciate.jpg',
-          description: 'Mandorle sgusciate: mandorle croccanti e aromatiche, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le mandorle fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Le mandorle sono frutti secchi dal sapore delicato e dolce, con una consistenza croccante e gustosa. Ricche di proteine, grassi buoni e vitamina E, sono perfette per un\'alimentazione sana ed equilibrata. Ideali come snack naturale, per dolci, pasticceria, marzapani, latte vegetale e numerose preparazioni dolci.'
         },
         { 
           id: 137, 
@@ -2820,7 +2820,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/nocciole.jpg',
-          description: 'Nocciole: nocciole croccanti e aromatiche, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le nocciole fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Le nocciole sono frutti secchi dal sapore dolce e delicato, con una consistenza morbida e piacevole. Ricche di proprietà nutritive e da fondamentale importanza in gastronomia, sono perfette per creme, cioccolato, pasticceria e ricette tradizionali come la nocciola di Piemonte.'
         },
         { 
           id: 138, 
@@ -2830,7 +2830,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/pistacchi.jpg',
-          description: 'Pistacchi: pistacchi croccanti e aromatiche, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le pistacchi fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'I pistacchi sono frutti secchi pregiati dal sapore delicato, leggermente salato e molto apprezzato. Ricchi di antiossidanti e grassi buoni, sono perfetti come snack naturale e in numerose preparazioni dolci e salate. Ingrediente nobile per pasticceria, salse e un\'alimentazione equilibrata.'
         },
         { 
           id: 139, 
@@ -2840,7 +2840,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/castagne secca.jpg',
-          description: 'Castagne Secche: castagne secche sono frutti autunnali essiccati, dal sapore dolce e intenso e dalla polpa compatta. Perfette per essere reidratate e utilizzate in zuppe, dolci, creme o come snack salutare, conservano tutto il gusto e le proprietà nutritive delle castagne fresche. Ricche di fibre, vitamine e minerali, le castagne secche di qualità garantiscono genuinità direttamente dal produttore al tuo banco.'
+          description: 'Le castagne secche mantengono il sapore dolce e la consistenza farinosa del frutto fresco, perfette per preparazioni tradizionali. Ricche di carboidrati e fibre, sono ideali per zuppe, marron glacé, farine e preparazioni tipiche. Ingrediente essenziale della cucina autunnale e invernale.'
         },
         {id: 140,
           name:'Noci Macadamia',
@@ -2849,7 +2849,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/Noci-Macadamia.jpg',
-          description: 'Noci Macadamia: noci macadamia sono frutti autunnali essiccati, dal sapore dolce e intenso e dalla polpa compatta. Perfette per essere reidratate e utilizzate in zuppe, dolci, creme o come snack salutare, conservano tutto il gusto e le proprietà nutritive delle noci macadamia fresche. Ricche di fibre, vitamine e minerali, le noci macadamia di qualità garantisce genuinità direttamente dal produttore al tuo banco.'
+          description: 'Le noci macadamia sono frutti secchi pregiati dal sapore dolce e dalla consistenza morbida e burrosa. Ricchissime di grassi monoinsaturi benefici, sono perfette per un\'alimentazione equilibrata. Ideali come snack di lusso, per creme, pasticceria gourmet e un\'esperienza gustativa straordinaria.'
         },
         {id: 141,
           name:'Arachidi',
@@ -2858,7 +2858,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/Arachidi1.jpg',
-          description: 'Arachidi: arachidi sono frutti autunnali essiccati, dal sapore dolce e intenso e dalla polpa compatta. Perfette per essere reidratate e utilizzate in zuppe, dolci, creme o come snack salutare, conservano tutto il gusto e le proprietà nutritive delle arachidi fresche. Ricche di fibre, vitamine e minerali, le arachidi di qualità garantisce genuinità direttamente dal produttore al tuo banco.'
+          description: 'Le arachidi sono legumi dal sapore intenso e caratteristico, molto apprezzate come snack croccante. Ricche di proteine vegetali e grassi buoni, sono perfette per un\'alimentazione sana. Versatili per numerose preparazioni dolci e salate, burro di arachidi e snack golosi.'
         },
         {
           id: 142,
@@ -2868,7 +2868,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/datteri.jpg',
-          description: 'Datteri: datteri sono frutti autunnali essiccati, dal sapore dolce e intenso e dalla polpa compatta. Perfette per essere reidratate e utilizzate in zuppe, dolci, creme o come snack salutare, conservano tutto il gusto e le proprietà nutritive delle datteri fresche. Ricche di fibre, vitamine e minerali, le datteri di qualità garantisce genuinità direttamente dal produttore al tuo banco.'
+          description: 'I datteri sono frutti dolcissimi e nutrienti, ricchi di fibre, minerali e energia naturale. Dal sapore intenso e piacevolmente melato, sono perfetti per uno spuntino sano e energetico. Ottimi per arricchire dolci, preparazioni orientali, granola e per chi cerca il piacere dolce in forma naturale.'
         },
       ]
     },
@@ -2886,7 +2886,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/grissini-artigianali-classici.jpeg',
-          description: 'Grissini Artigianali Classici: grissini artigianali classici sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i grissini artigianali classici freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Grissini preparati artigianalmente con metodi tradizionali, croccanti e fragranti. Ingredienti semplici e di qualità per un gusto autentico che soddisfa il palato. Perfetti con aperitivi, formaggi o semplicemente come snack goloso.'
         },
         { id: 144,
           name: 'Grissini Artigianali Integrali', 
@@ -2895,7 +2895,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/grissini-artigianali-integrali.jpeg',
-          description: 'Grissini Artigianali Integrali: grissini artigianali integral sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i grissini artigianali integral freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Grissini integrali realizzati con cura artigianale, combinando il sapore autentico con il beneficio dei cereali integrali. Croccanti e saporiti, sono l\'alternativa salutare per chi non vuole rinunciare al gusto. Ideali per spuntini consapevoli.'
         },
         { id: 145, 
           name: 'Crostini', 
@@ -2904,7 +2904,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/crostini.jpeg',
-          description: 'Crostini: crostini sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i crostini freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Crostini croccanti e saporiti, perfetti base per antipasti gourmet o accompagnamento elegante a piatti. Ricetta artigianale che garantisce la fragranza e il sapore autentico ad ogni morso. Essenziali per chi ama l\'aperitivo ricercato.'
         },
         { id: 146, 
           name: 'Cereal Cracker', 
@@ -2913,7 +2913,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/cereal-cracker.jpeg',
-          description: 'Cereal Cracker: cereal cracker sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i cereal cracker freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Cracker ai cereali con ricetta equilibrata e ingredienti selezionati per un gusto completo e genuino. Croccanti e nutrienti, perfetti per accompagnare formaggi, salumi o da gustare da soli. L\'alternativa consapevole e saporita.'
         },
         {
           id: 147, 
@@ -2923,7 +2923,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/focaccella-al-mais.jpeg',
-          description: 'Focaccelle al Mais: focaccelle al mais sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i focaccelle al mais freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Focaccelle leggere e fragranti al mais, con il gusto dolciastro e la consistenza morbida. Realizzate artigianalmente per garantire qualità e sapore autentico. Perfette a colazione, merenda o per sorprese gustose.'
         },
         {
           id: 148, 
@@ -2933,7 +2933,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/focaccine-mantovane.jpeg',
-          description: 'Focaccine Mantovane: focaccine mantovane sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i focaccine mantovane freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Focaccine tradizionali mantovane con ricetta autentica, morbide e saporite. Rispettano la tradizione gastronomica mentre deliziano con il loro sapore caratteristico. Ideali per chi ama il gusto autentico e le ricette di una volta.'
         },
         {
           id: 149, 
@@ -2943,7 +2943,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/taralli.jpeg',
-          description: 'Taralli: taralli sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i taralli freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Taralli croccanti e saporiti, realizzati con ricetta tradizionale italiana. Il perfetto snack da accompagnare a vino, birra o aperitivi. Sapore autentico e croccantezza che non si dimentica facilmente.'
         },
         {
           id: 150, 
@@ -2953,7 +2953,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/gallette-di-mais.jpeg',
-          description: 'Gallette di Mais: gallette di mais sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i gallette di mais freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Gallette leggere e croccanti a base di mais puro, l\'alternativa sana e gustosa. Perfette per chi segue diete consapevoli o semplicemente ama snack leggeri. Ideali da sole o con condimenti a scelta.'
         },
         {
           id: 151, 
@@ -2963,7 +2963,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/aurore.jpeg',
-          description: 'Biscotti Aurora: biscotti aurora sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i biscotti aurora freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Biscotti artigianali dalla ricetta tradizionale, morbidi e fragranti. Preparati con ingredienti genuini selezionati, mantengono la fragranza e il sapore autentico. Prodotto genuino, made in Italy. Ideali con tè, caffè o colazione, sono il piacere semplice e autentico.'
         },
         {
           id: 152, 
@@ -2973,7 +2973,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/treccia-pesca-e-amaretto.jpeg',
-          description: 'Treccia Pesca e Amaretto: treccia pesca e amaretto sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i treccia pesca e amaretto freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Una deliziosa treccia che combina il sapore dolce e fresco della pesca con le note raffinate dell\'amaretto. Preparata artigianalmente con ingredienti di qualità. Irresistibile per i momenti golosi con una certa eleganza.'
         },
         {
           id: 153, 
@@ -2983,7 +2983,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/fiocchi-di-sfoglia-frutti-di-bosco.jpeg',
-          description: 'Fiocchi di sfoglia Frutti di bosco: fiocchi di sfoglia frutti di bosco sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i fiocchi di sfoglia frutti di bosco freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Fiocchi di sfoglia fragranti con l\'aggiunta dei sapori golosi dei frutti di bosco. Sfogliati e delicati, perfetti per colazioni speciali o pause dolci nel pomeriggio. Qualità artigianale che sorprende ad ogni morso.'
         },
         {
           id: 154, 
@@ -2993,7 +2993,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/fiocchi-di-sfoglia-fragola.jpeg',
-          description: 'Fiocchi di sfoglia Fragola: fiocchi di sfoglia fragola sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i fiocchi di sfoglia fragola freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Fiocchi di sfoglia dal sapore inconfondibile della fragola, preparati con ingredienti selezionati. La fragranza della sfoglia abbinata al gusto dolce della fragola crea un\'esperienza golosa memorabile. Perfetti per colazioni o merende raffinate.'
         },
         {
           id: 155, 
@@ -3003,7 +3003,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/frollino-al-limone.jpeg',
-          description: 'Frollino al Limone: frollino al limone sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i frollino al limone freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Frollini mantecati e friabili al profumo di limone siciliano, per un gusto fresco e solare. Ricetta tradizionale con ingredienti genuini che garantisce il crollo in bocca. Ideali con tè o caffè per un momento di autentico piacere.'
         },
         {
           id: 156, 
@@ -3013,7 +3013,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'Pz', 
           available: true,
           image: '/images/products/farina-di-mais-bramata.jpeg',
-          description: 'Farina Bramata di Mais: farina bramata di mais sono un prodotto da forno artigianale, dal sapore deciso e profumato. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, i farina bramata di mais freschi e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Farina di mais bramata, prodotto genuino per preparazioni tradizionali come la polenta. Grani di mais selezionati per garantire gusto autentico e texture perfetta. Essenziale per chi ama la cucina tradizionale e genuina.'
         },
       ]
     },
@@ -3033,7 +3033,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg', 
           available: true,
           image: '/images/products/Salame Nostrano.jpg',
-          description: 'Salame Nostrano: prodotto con carni scelte di suino italiano insaccato in budello naturale legato a mano in 2 pezzature. Pezzatura: 600 / 800  gr. -  900 / 1200 gr. Stagionatura: 90 gg. circa'
+          description: 'Prodotto con carni scelte di suino italiano insaccato in budello naturale legato a mano. Stagionato per circa 90 giorni, sviluppa una maturazione perfetta che garantisce sapore intenso e equilibrato. Pezzatura: 1,4-1,8 kg. Perfetto per antipasti autentici, taglieri tradizionali e il piacere della vera gastronomia italiana.'
         },
       
         {
@@ -3044,7 +3044,7 @@ export const useProductsStore = defineStore('products', () => {
         unit: 'kg',
         available: true,
         image: '/images/products/Salame Cacciatore.jpg',
-        description: 'Cacciatore: prodotto con carni scelte di suino italiano insaccato in budello naturale legato a mano in 2 pezzature. Pezzatura: 210 / 230 gr - Stagionatura: 20-30 gg. circa'
+        description: 'Prodotto con carni scelte di suino italiano insaccato in budello naturale legato a mano. Stagionato per 20-30 giorni, è pronto da gustare con aroma caratteristico. Pezzatura: 210-230 gr. Perfetto per antipasti, spuntini e da abbinare a vini rossi. Classico della salumeria italiana.'
       },
       ]
     },
@@ -3063,7 +3063,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/mozzarella di bufala.jpg',
-          description: 'Mozzarella di Bufala: mozzarella di bufala fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le mozzarella di bufala fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La mozzarella di bufala è un formaggio fresco a pasta filata dal colore bianco puro e dall\'aspetto morbido e cremoso. Dal sapore delicato e lievemente salato, con un aroma caratteristico latte di bufala. La consistenza è elastica e fondente in bocca. Perfetta per insalate caprese, antipasti gourmet e preparazioni fresche. Qualità DOP garantita.'
         },
         {
           id: 160,
@@ -3073,7 +3073,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/bocconcini mozzarella di bufala.jpg',
-          description: 'Mozzarella di Bufala - Bocconcini: mozzarella di bufala fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le mozzarella di bufala fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Mozzarella di bufala in praticissimi bocconcini, dal colore bianco puro e dall\'aspetto morbido e cremoso. Stessi sapori delicati e il caratteristico aroma lattiero della bufala, con una consistenza elastica che diventa più fondente col passare delle ore. Perfetti per stuzzichini, insalate e piatti freddi. Praticità gourmet.'
         },
         {
           id: 161,
@@ -3083,7 +3083,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/burrata.jpeg',
-          description: 'Burrata: burrata fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le burrata fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'La burrata è un formaggio fresco cremoso, con un esterno di mozzarella fiordilatte e un cuore morbido e burroso composto da crema di latte e stracciatella. Dal sapore ricco e delicato, con un aroma intensamente lattiero. La consistenza è esteriormente soda e interiormente straordinariamente cremosa e burrosa. Consumo fresco, accompagnato da pane tostato o insalate. Esperienza gastronomica unica.'
         },
         {
           id: 162,
@@ -3093,7 +3093,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'pz',
           available: true,
           image: '/images/products/Formaggella di Malga.jpg',
-          description: 'Formaggella di Malga: formaggella di malga fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le formaggella di malga fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Formaggio tradizionale delle valli bergamasche, prodotto in malga con latte crudo. Dalla consistenza compatta e cremosa, rappresenta l\'eccellenza casearia alpina. Sapore delicato ma caratteristico, è il simbolo della tradizione casearia montane delle valli bergamasche.'
         },
         
         {
@@ -3104,7 +3104,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/formaggio branzi.jpg',
-          description: 'Formaggio Branzi: formaggio branzi fresco e succoso, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le formaggio branzi fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Formaggio semigrasso da tavola prodotto con latte crudo, dalla tradizione casearia alpina. Pasta compatta con sapore delicato e caratteristico. Ideale per consumo da tavola e per completare taglieri di formaggi tradizionali.'
         },
         {
             id: 164,
@@ -3114,7 +3114,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/Taleggio.jpg',
-          description: 'Taleggio: taleggio fresco e succoso, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le taleggio fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Formaggio a pasta molle di media stagionatura, dal colore giallo paglierino e dai caratteristici odori intensi. La crosta naturale sviluppa una morbidezza unica, la pasta diventa sempre più cremosa con il passare dei giorni. Sapore ricco e aromatico. Perfetto per taglieri, degustazioni e accompagnamenti.'
         },
         {
           id: 165,
@@ -3124,7 +3124,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/Stracchino-nostrano-monte-bronzone.jpg',
-          description: 'Stracchino Nostrano: stracchino nostrano fresco e succoso, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le stracchino nostrano fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Formaggio a pasta molle fresca dalla ricetta tradizionale. Mantiene il sapore cremoso e delicato grazie alla breve stagionatura di 15-20 giorni. Ideale consumato fresco, è perfetto per taglieri e abbinamenti con vini bianchi.'
         },
         {
           id: 166,
@@ -3134,7 +3134,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/gorgonzola.jpeg',
-          description: 'Gorgonzola: gorgonzola fresco e succoso, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le gorgonzola fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Formaggio erborinato dal sapore deciso e affascinante, con le caratteristiche venature blu-verdi. Cremoso al palato con una complessità di sapori che sorprende. Perfetto per piatti gourmet, aperitivi eleganti o tagliere di formaggi ricercato.'
         },
         {
           id: 167,
@@ -3144,7 +3144,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/Robiola-fresca.jpg',
-          description: 'Robiola Fresca: robiola fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le robiola fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Formaggio da tavola a pasta molle fresco dal sapore delicato e cremoso. La consistenza morbida e la freschezza sono garantite. Perfetto da gustare naturale, è ideale per chi ama i formaggi freschi e genuini.'
         },
         {
           id: 168,
@@ -3154,7 +3154,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/Camembert-di-capra.jpg',
-          description: 'Camembert di Capra: camembert di capra fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le camembert di capra fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Formaggio a pasta molle da latte di capra, con crosta fiorita e cuore morbido e cremoso. Sapore delicato con sentori caratteristici capresi, elegante e raffinato. Ideale per taglieri speciali e palati ricercati.'
         },
         {
           id: 169,
@@ -3163,7 +3163,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/Formaggella di capra.jpg',
-          description: 'Formaggella di Capra: formaggella di capra fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le formaggella di capra fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Una tradizionale formaggella di capra, dal sapore leggermente acidulo e salato, perfettamente bilanciato. Pasta compatta e cremosa, ideale per assaporare l\'autenticità casearia. Rappresenta la genuinità della produzione lattiero-casearia tradizionale.'
         },
         {
           id: 170,
@@ -3173,7 +3173,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/formaggio-di-capra.jpg',
-          description: 'Formaggio di Capra: formaggio di capra fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le formaggio di capra fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Formaggio classico da latte di capra, dal sapore caratteristico e dalla consistenza cremosa. Ingrediente versatile per antipasti, insalate o semplicemente gustato al naturale. La scelta per chi apprezza i sapori autentici e distintivi.'
         },
         {
           id: 171,
@@ -3183,7 +3183,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/Toma.jpg',
-          description: 'Toma: toma fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le toma fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Formaggio semigrasso prodotto con latte caprino, dalla pasta compatta e dal sapore delicato ma caratteristico. Rappresenta la qualità della casearia caprina tradizionale. Ideale per consumo da tavola e taglieri specializzati.'
         },
         {
           id: 172,
@@ -3193,7 +3193,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/blu-di-capra.jpeg',
-          description: 'Blu di Capra: blu di capra fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le blu di capra fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Formaggio erborinato pregiato prodotto con latte caprino, dalle caratteristiche venature blu. Sapore deciso e affascinante con note capresi. Formaggio da tavola perfetto per chi ricerca eccellenza e sapori caratteristici.'
         },
         {
           id: 173,
@@ -3203,7 +3203,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/Casera.jpeg',
-          description: 'Casera: casera fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le casera fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Formaggio semigrasso, di media e lunga stagionatura, a pasta semidura e dura. Tipico della valle che gli dà il nome, nella provincia di Sondrio, viene prodotto con latte di vacca parzialmente scremato. La tecnica casearia è tipica dei formaggi alpini. Stagiona almeno 70 giorni, dopodiché viene marchiato a fuoco.'
         },
         {
           id: 174,
@@ -3213,7 +3213,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/Camembert-di-bufala.jpg',
-          description: 'Camembert di Bufala: camembert di bufala fresca e succosa, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le camembert di bufala fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Camembert realizzato con il latte pregiato di bufala, offrendo una cremosità straordinaria e un sapore ricco. Crosta fiorita e pasta morbida creano un\'esperienza gastronomica unica. Perfetto per chi ricerca l\'eccellenza nei formaggi.'
         },
         {
           id: 175,
@@ -3223,7 +3223,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'kg',
           available: true,
           image: '/images/products/Burro.jpg',
-          description: 'Burro: Burro pastorizzato. Ottenuto dalle migliori panne di affioramento italiane. Dal punto di vista compositivo il burro deve avere un tenore minimo di grassi lattieri dell’80% ma inferiore al 90% e tenori massimi di acqua del 16% ed estratto secco no grasso lattiero del 2%.'
+          description: 'Burro pastorizzato. Ottenuto dalle migliori panne di affioramento italiane. Dal punto di vista compositivo il burro deve avere un tenore minimo di grassi lattieri dell’80% ma inferiore al 90% e tenori massimi di acqua del 16% ed estratto secco no grasso lattiero del 2%.'
         }
       ]
     },
@@ -3241,7 +3241,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'conf', 
           available: true,
           image: '/images/products/uova-6pz.jpeg',
-          description: 'Uova: uova fresche da allevamenti selezionati, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le uova fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Uova fresche da galline allevate con cura, garantendo qualità e tracciabilità. Guscio robusto e contenuto nutrizionalmente ricco. Essenziali per ogni cucina, dalle ricette semplici alle preparazioni più elaborate.'
         },
         { id: 177, 
           name: 'Uova (4pz)', 
@@ -3250,7 +3250,7 @@ export const useProductsStore = defineStore('products', () => {
           unit: 'conf', 
           available: true,
           image: '/images/products/uova-4pz.jpeg',
-          description: 'Uova: uova fresche da allevamenti selezionati, dal sapore deciso e leggermente amarognolo. Ideale da consumare crudo in spuntini o insalate, è perfetto anche come base per dolci e dessert. Ricche di fibre e sali minerali, le uova fresche e di stagione garantisce qualità e genuinità direttamente dal campo al tuo banco.'
+          description: 'Confezione pratica di 4 uova fresche e di qualità, perfetta per chi ha esigenze abitudinarie. Garantiscono freschezza e genuinità in ogni preparazione. La scelta intelligente per chi ama la praticità senza compromessi sulla qualità.'
         },
         ]
     }
