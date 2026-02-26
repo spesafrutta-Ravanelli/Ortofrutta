@@ -281,11 +281,11 @@ const giovediMarkets = ref([
     id: 5,
     giorno: 'Giovedì',
     luogo: "Caslino D'Erba",
-    indirizzo: "Piazza del Comune, Caslino D'Erba (CO)",
+    indirizzo: "Piazza Giuseppe Mazzini, Caslino D'Erba (CO)",
     orario: '7:00 - 12:10',
     lat: 45.8167,
     lng: 9.2833,
-    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Piazza+del+Comune+Caslino+D%27Erba+CO'
+    googleMapsUrl: 'https://www.google.com/maps?q=45.83902359008789,9.224343299865723&z=17&hl=it'
   },
   {
     id: 6,
