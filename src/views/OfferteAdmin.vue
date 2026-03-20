@@ -1,6 +1,5 @@
 <!--
-  OfferteAdmin: iframe brochure_ravanelli.html (editor).
-  Stessa logica del Volantino: editor in iframe, Firebase settings/volantino.
+  OfferteAdmin: iframe /brochure_ravanelli.html (editor, file in public/ per il build)
 -->
 <template>
   <div class="offerte-admin-page">
@@ -11,7 +10,7 @@
     </div>
     <div class="brochure-container">
       <iframe
-        :src="`/src/stores/brochure_ravanelli.html?v=${brochureVersion}`"
+        :src="`/brochure_ravanelli.html?v=${brochureVersion}`"
         class="brochure-iframe"
         title="Editor Brochure"
         frameborder="0"
@@ -25,7 +24,7 @@ import { onMounted } from 'vue'
 import { useAdmin } from '@/composables/useAdmin'
 
 const { toggleAdminMode } = useAdmin()
-const brochureVersion = 6 // Incrementare per bypassare cache iframe
+const brochureVersion = 7 // Incrementare per bypassare cache iframe
 const exitAdminMode = () => toggleAdminMode()
 
 onMounted(() => {

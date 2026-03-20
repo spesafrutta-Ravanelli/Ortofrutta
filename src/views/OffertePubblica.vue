@@ -1,6 +1,5 @@
 <!--
-  OffertePubblica: iframe brochure_ravanelli.html?public=1
-  Stessa logica del Volantino (iframe, Firebase settings/volantino).
+  OffertePubblica: iframe /brochure_ravanelli.html?public=1 (file in public/ per il build)
 -->
 <template>
   <div class="offerte-page">
@@ -13,7 +12,7 @@
     <div class="brochure-container">
       <iframe
         ref="brochureIframe"
-        :src="`/src/stores/brochure_ravanelli.html?public=1&v=${brochureVersion}`"
+        :src="`/brochure_ravanelli.html?public=1&v=${brochureVersion}`"
         class="brochure-iframe"
         title="Brochure Offerte"
         frameborder="0"
@@ -84,7 +83,7 @@ const formatData = (dateStr) => {
   return `${day}/${month}/${year}`
 }
 
-const brochureVersion = 6 // Incrementare per bypassare cache iframe
+const brochureVersion = 7 // Incrementare per bypassare cache iframe
 
 const scrollBrochureToFirst = () => {
   window.scrollTo(0, 0)
