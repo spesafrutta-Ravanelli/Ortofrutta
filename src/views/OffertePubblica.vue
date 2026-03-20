@@ -1,5 +1,7 @@
 <!--
-  OffertePubblica: iframe /brochure_ravanelli.html?public=1 (file in public/ per il build)
+  OffertePubblica: brochure HTML originale in iframe.
+  L'URL viene da import Vite (?url) → file in dist/assets/ con hash, così il server
+  non confonde la richiesta con la SPA (evita index.html dentro l'iframe).
 -->
 <template>
   <div class="offerte-page">
@@ -12,7 +14,7 @@
     <div class="brochure-container">
       <iframe
         ref="brochureIframe"
-        :src="`/brochure_ravanelli.html?public=1&v=${brochureVersion}`"
+        :src="brochureIframeSrc"
         class="brochure-iframe"
         title="Brochure Offerte"
         frameborder="0"
@@ -72,8 +74,9 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useVolantino } from '@/composables/useVolantino'
+import brochureHtmlUrl from '@/assets/brochure_ravanelli.html?url'
 
 const { dataInizio, dataFine } = useVolantino()
 
@@ -83,7 +86,14 @@ const formatData = (dateStr) => {
   return `${day}/${month}/${year}`
 }
 
-const brochureVersion = 7 // Incrementare per bypassare cache iframe
+/** Bump per bypassare cache sul file brochure in assets */
+const brochureVersion = 8
+
+const brochureIframeSrc = computed(() => {
+  const base = brochureHtmlUrl
+  const sep = base.includes('?') ? '&' : '?'
+  return `${base}${sep}public=1&v=${brochureVersion}`
+})
 
 const scrollBrochureToFirst = () => {
   window.scrollTo(0, 0)
@@ -95,9 +105,6 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-$navbar-height: 100px;
-$footer-height: 260px;
-
 .offerte-page {
   display: flex;
   flex-direction: column;
