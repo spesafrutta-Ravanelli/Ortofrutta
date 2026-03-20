@@ -1,0 +1,60 @@
+# robots.txt — Ortofrutticola Ravanelli & Carminati
+# https://www.ortofruttaravanellicarminati.it
+
+# Motori di ricerca tradizionali
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+
+# Google Images
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
+User-agent: bingbot
+Allow: /
+
+# === AI CRAWLERS — abilitati per GEO ===
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+
+# Google AI (Gemini / AI Overviews)
+User-agent: Google-Extended
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Microsoft Copilot
+User-agent: Bingbot
+Allow: /
+
+# Common Crawl (usato dai modelli LLM per training)
+User-agent: CCBot
+Allow: /
+
+# Sitemap
+Sitemap: https://www.ortofruttaravanellicarminati.it/sitemap.xml
