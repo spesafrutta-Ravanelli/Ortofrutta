@@ -22,6 +22,14 @@ const CLOUD_NAME    = 'dxejinitp'
 const UPLOAD_PRESET = 'hero-video-preset'
 const UPLOAD_URL    = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/video/upload`
 
+/** iOS/Android dalla galleria spesso non impostano `file.type` — si usa l'estensione */
+export function isLikelyVideoFile(file) {
+  if (!file) return false
+  if (file.type && file.type.startsWith('video/')) return true
+  const n = (file.name || '').toLowerCase()
+  return /\.(mp4|mov|m4v|webm|avi|mkv|3gp|3g2|qt)$/i.test(n)
+}
+
 export function useHeroVideoAdmin() {
   const videos    = ref([])
   const uploading = ref(false)
@@ -43,23 +51,38 @@ export function useHeroVideoAdmin() {
       // XMLHttpRequest per progress tracking
       const result = await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest()
+        // Limite generoso per 4G / upload lenti (0 in alcuni browser = nessun timeout esplicito)
+        xhr.timeout = 900000
 
         xhr.upload.addEventListener('progress', (e) => {
-          if (e.lengthComputable) {
+          if (e.lengthComputable && e.total > 0) {
             const pct = Math.round((e.loaded / e.total) * 90)
             progress.value = { step: '☁️ Caricamento su Cloudinary...', percent: pct }
+          } else {
+            // Safari mobile spesso non espone la dimensione totale fino alla fine
+            progress.value = {
+              step: '☁️ Caricamento su Cloudinary (connessione mobile)...',
+              percent: 45
+            }
           }
         })
 
         xhr.addEventListener('load', () => {
           if (xhr.status === 200) {
-            resolve(JSON.parse(xhr.responseText))
+            try {
+              resolve(JSON.parse(xhr.responseText))
+            } catch {
+              reject(new Error('Risposta Cloudinary non valida'))
+            }
           } else {
             reject(new Error(`Cloudinary error: ${xhr.status} — ${xhr.responseText}`))
           }
         })
 
-        xhr.addEventListener('error', () => reject(new Error('Errore di rete')))
+        xhr.addEventListener('error', () => reject(new Error('Errore di rete durante l\'upload')))
+        xhr.addEventListener('abort', () => reject(new Error('Upload annullato')))
+        xhr.addEventListener('timeout', () => reject(new Error('Timeout: file troppo grande o rete lenta. Riprova con Wi‑Fi o un video più corto.')))
+
         xhr.open('POST', UPLOAD_URL)
         xhr.send(formData)
       })
@@ -73,13 +96,14 @@ export function useHeroVideoAdmin() {
 
       // Salva nuovo documento Firestore
       progress.value = { step: '💾 Salvataggio metadati...', percent: 96 }
+      // Un solo documento dopo la pulizia: subito attivo così la hero lo mostra (anche da mobile senza tap extra)
       await addDoc(collection(db, 'heroVideos'), {
         title:      title || file.name,
         url:        result.secure_url,
         publicId:   result.public_id,
         format:     result.format,
         duration:   result.duration ?? null,
-        active:     false,
+        active:     true,
         uploadedAt: serverTimestamp(),
       })
 

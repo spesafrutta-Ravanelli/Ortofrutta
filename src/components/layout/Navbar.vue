@@ -179,11 +179,13 @@ onUnmounted(() => {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(0.75rem, 3vw, 2rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-height: 60px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Logo ora è un div, manteniamo lo stesso stile + cursor pointer */
@@ -372,39 +374,19 @@ onUnmounted(() => {
   }
 }
 
-/* Responsive - Tablet */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .logo {
-    font-size: 1rem;
-    
-    .logo-icon {
-      font-size: 1.75rem;
-    }
-    
-    .logo-text {
-      font-size: 0.95rem;
-      line-height: 1.3;
-    }
-  }
-
+/* Desktop: menu orizzontale (larghezza sufficiente per evitare overflow) */
+@media (min-width: 1025px) {
   .nav-links {
-    gap: 1rem;
-
-    li a {
-      font-size: 0.9rem;
-      padding: 0.4rem 1rem;
-    }
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    row-gap: 0.5rem;
   }
 }
 
-/* Responsive - Mobile */
-@media (max-width: 768px) {
+/* Tablet + smartphone: menu hamburger (evita link tagliati o scroll orizzontale) */
+@media (max-width: 1024px) {
   .navbar {
     padding: 0.75rem 0;
-  }
-
-  .container {
-    padding: 0 1rem;
   }
 
   .logo {
@@ -430,16 +412,18 @@ onUnmounted(() => {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 75%;
-    max-width: 320px;
+    width: min(88vw, 340px);
+    max-width: 340px;
     height: 100vh;
+    height: 100dvh;
     background: white;
     flex-direction: column;
-    padding: 5rem 2rem 2rem;
-    gap: 1rem;
+    padding: 5rem 1.5rem 2rem;
+    gap: 0.75rem;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 
     &.active {
       right: 0;
@@ -450,7 +434,7 @@ onUnmounted(() => {
     }
 
     li a {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       display: block;
       padding: 0.875rem 1rem;
       min-height: 44px;
@@ -463,21 +447,21 @@ onUnmounted(() => {
       }
 
       &.btn-prenota,
-      &.btn-contact {
+      &.btn-contact,
+      &.btn-offerte {
         text-align: center;
-        margin-top: 0.5rem;
+        margin-top: 0.25rem;
       }
     }
   }
 }
 
-/* Responsive - Mobile molto piccolo */
 @media (max-width: 480px) {
   .logo {
     .logo-icon {
       font-size: 1.3rem;
     }
-    
+
     .logo-text {
       font-size: 0.75rem;
       line-height: 1.2;
@@ -485,8 +469,7 @@ onUnmounted(() => {
   }
 
   .nav-links {
-    width: 85%;
-    padding: 4rem 1.5rem 2rem;
+    padding: 4.5rem 1.25rem 2rem;
   }
 }
 </style>

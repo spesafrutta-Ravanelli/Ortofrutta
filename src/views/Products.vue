@@ -461,7 +461,8 @@ onMounted(async () => {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(0.75rem, 3vw, 2rem);
+  box-sizing: border-box;
 }
 
 .page-hero {
@@ -472,7 +473,7 @@ onMounted(async () => {
 }
 
 .page-hero h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   margin-bottom: 0.5rem;
 }
 
@@ -499,13 +500,16 @@ onMounted(async () => {
 
 .admin-indicator {
   position: fixed;
-  top: 90px;
-  right: 20px;
+  top: max(90px, env(safe-area-inset-top, 0px));
+  right: max(12px, env(safe-area-inset-right, 0px));
+  left: auto;
+  max-width: calc(100vw - 24px);
   background: #10b981;
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
   font-weight: 600;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
   z-index: 999;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -685,7 +689,9 @@ onMounted(async () => {
   background: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
   margin-bottom: 2rem;
 }
 
@@ -889,10 +895,6 @@ onMounted(async () => {
 
   .category-filter {
     width: 100%;
-  }
-
-  .products-table-wrapper {
-    overflow-x: auto;
   }
 
   .products-table {

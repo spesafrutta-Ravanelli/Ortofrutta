@@ -41,10 +41,17 @@
               <video
                 ref="heroVideoEl"
                 class="hero-video"
-                autoplay muted loop playsinline
+                autoplay
+                muted
+                loop
+                playsinline
+                webkit-playsinline
+                preload="metadata"
                 :src="heroVideo.url"
                 :title="heroVideo.title || 'Video Golosello'"
                 @error="handleVideoError"
+                @canplay="onHeroVideoReady"
+                @loadeddata="onHeroVideoReady"
               />
               <!-- Pulsante Audio -->
               <button class="audio-btn" @click="toggleAudio" :title="isMuted ? 'Attiva audio' : 'Disattiva audio'">
@@ -154,7 +161,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProductsStore } from '@/stores/productsStore'
 import { useAdmin } from '@/composables/useAdmin'
@@ -181,6 +188,27 @@ const toggleAudio = () => {
   isMuted.value              = !isMuted.value
   heroVideoEl.value.muted    = isMuted.value
 }
+
+/** Safari iOS: autoplay muted richiede spesso play() dopo il load; senza resta schermo nero */
+const tryPlayHeroVideo = () => {
+  const el = heroVideoEl.value
+  if (!el) return
+  el.muted = true
+  const p = el.play()
+  if (p && typeof p.catch === 'function') p.catch(() => {})
+}
+
+const onHeroVideoReady = () => {
+  tryPlayHeroVideo()
+}
+
+watch(
+  () => heroVideo.value?.url,
+  async () => {
+    await nextTick()
+    tryPlayHeroVideo()
+  }
+)
 
 // ─── Fallback immagine ────────────────────────────────────────────────────────
 const heroFallbackImg = '/images/products/foto-banchi.webp'
@@ -242,22 +270,22 @@ const handleVideoError = (e) => {
   background: linear-gradient(135deg, #2c5f2d 0%, #4caf50 100%);
   color: white; padding: 4rem 0; margin-bottom: 0;
 
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(0.75rem, 3vw, 2rem); }
 
   .hero-content {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center;
   }
 
   .hero-text { text-align: left; }
 
   .hero-title {
-    font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2;
-    .accent    { display: block; font-size: 4rem; margin-bottom: 0.5rem; }
+    font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2;
+    .accent    { display: block; font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 0.5rem; }
     .highlight { color: #fff3cd; }
   }
 
-  .hero-description { font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem; opacity: 0.95; }
-  .hero-buttons     { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-description { font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.8; margin-bottom: 2rem; opacity: 0.95; }
+  .hero-buttons     { display: flex; gap: 0.75rem 1rem; flex-wrap: wrap; }
 
   .hero-image {
     display: flex; justify-content: center; align-items: center;
@@ -304,13 +332,13 @@ const handleVideoError = (e) => {
 .admin-video-section {
   background: #f0f7f0; border-top: 3px solid #4caf50; border-bottom: 3px solid #4caf50;
   padding: 2rem 0; margin-bottom: 3rem;
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(0.75rem, 3vw, 2rem); }
 }
 
 /* Slider */
 .banco-slider-section {
   padding: 0 0 3rem; margin-bottom: 2rem;
-  .container      { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .container      { max-width: 1200px; margin: 0 auto; padding: 0 clamp(0.75rem, 3vw, 2rem); }
   .slider-wrapper { max-width: 1000px; margin: 0 auto; }
   .slider-container { position: relative; width: 100%; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); background: #f5f5f5; aspect-ratio: 16 / 9; }
   .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease-in-out; &.active { opacity: 1; } img { width: 100%; height: 100%; object-fit: cover; } }
@@ -321,8 +349,8 @@ const handleVideoError = (e) => {
 /* Stats */
 .stats {
   padding: 3rem 0; background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e9 100%);
-  .container  { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .container  { max-width: 1200px; margin: 0 auto; padding: 0 clamp(0.75rem, 3vw, 2rem); }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 3vw, 2rem); }
 }
 
 .stat-card {
@@ -336,8 +364,8 @@ const handleVideoError = (e) => {
 /* Stagioni */
 .seasonal-products {
   padding: 3rem 0; margin-bottom: 3rem; background: white;
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-  .seasonal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(0.75rem, 3vw, 2rem); }
+  .seasonal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: clamp(1rem, 3vw, 2rem); margin-top: 2rem; }
   .season-card {
     background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%); padding: 2.5rem 2rem;
     border-radius: 16px; text-align: center; cursor: pointer; transition: all 0.3s ease;
@@ -368,34 +396,34 @@ const handleVideoError = (e) => {
 @keyframes pulse { 0%, 100% { box-shadow: 0 4px 15px rgba(255,152,0,0.3); } 50% { box-shadow: 0 4px 20px rgba(255,152,0,0.5); } }
 
 /* Responsive */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .hero { padding: 3.5rem 0; .hero-content { gap: 2.5rem; } .hero-title { font-size: 2.5rem; } }
+@media (max-width: 1024px) {
+  .hero {
+    padding: clamp(2rem, 5vw, 3.5rem) 0;
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .hero-text { text-align: center; }
+  }
   .seasonal-grid { grid-template-columns: repeat(2, 1fr); }
-  .stats-grid    { grid-template-columns: repeat(4, 1fr); }
+  .stats-grid    { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-  .scrolling-banner { padding: 0.75rem 0; .banner-text { font-size: 1rem; padding: 0 1.5rem; } }
+  .scrolling-banner { padding: 0.75rem 0; .banner-text { font-size: clamp(0.85rem, 2.5vw, 1rem); padding: 0 1rem; } }
   .hero {
-    padding: 3rem 0;
-    .hero-content     { grid-template-columns: 1fr; gap: 2rem; }
-    .hero-text        { text-align: center; }
-    .hero-title       { font-size: 2rem; .accent { font-size: 3rem; } }
-    .hero-description { font-size: 1rem; }
-    .hero-buttons     { flex-direction: column; align-items: center; .btn { width: 100%; max-width: 300px; } }
+    .hero-buttons     { flex-direction: column; align-items: stretch; .btn { width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; } }
     .hero-image       { img, .hero-video { max-width: 100%; } }
   }
-  .banco-slider-section { .slider-btn { width: 45px; height: 45px; font-size: 1.8rem; &.prev { left: 10px; } &.next { right: 10px; } } .slider-dots { bottom: 15px; gap: 8px; .dot { width: 10px; height: 10px; } } }
-  .section-title { font-size: 2rem; }
-  .stats-grid    { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-  .stat-card     { padding: 1.5rem 1rem; .stat-number { font-size: 2.5rem; } .stat-label { font-size: 0.9rem; } }
+  .banco-slider-section { .slider-btn { width: 44px; height: 44px; font-size: 1.6rem; &.prev { left: 8px; } &.next { right: 8px; } } .slider-dots { bottom: 12px; gap: 8px; .dot { width: 10px; height: 10px; } } }
+  .section-title { font-size: clamp(1.5rem, 5vw, 2rem); }
+  .stat-card     { padding: 1.5rem 1rem; .stat-number { font-size: clamp(2rem, 8vw, 2.5rem); } .stat-label { font-size: 0.9rem; } }
   .seasonal-products { .seasonal-grid { grid-template-columns: 1fr; gap: 1.5rem; } .season-card { padding: 2rem 1.5rem; .season-icon { font-size: 3rem; } h3 { font-size: 1.2rem; } } }
 }
 
 @media (max-width: 480px) {
-  .scrolling-banner .banner-text { font-size: 0.9rem; padding: 0 1rem; }
-  .hero { padding: 2rem 0; .hero-title { font-size: 1.75rem; .accent { font-size: 2.5rem; } } .hero-description { font-size: 0.95rem; } .hero-buttons .btn { width: 100%; min-height: 44px; font-size: 1rem; } }
   .stats-grid    { grid-template-columns: 1fr; }
-  .section-title { font-size: 1.75rem; }
+  .section-title { font-size: 1.65rem; }
+  .hero .hero-buttons .btn { min-height: 44px; font-size: 1rem; }
 }
 </style>

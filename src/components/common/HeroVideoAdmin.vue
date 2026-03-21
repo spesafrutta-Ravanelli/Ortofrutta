@@ -10,39 +10,41 @@
         </p>
       </div>
 
-      <!-- Upload zone -->
+      <!--
+        Upload: su iOS Safari `input.click()` da JS spesso non apre la galleria (non è nel gesto utente).
+        Il <label for="id"> è l’unico modo affidabile per aprire il file picker su smartphone.
+      -->
       <div
         class="upload-zone"
         :class="{ 'dragging': isDragging, 'disabled': uploading }"
         @dragover.prevent="isDragging = true"
         @dragleave.prevent="isDragging = false"
         @drop.prevent="onDrop"
-        @click="!uploading && $refs.fileInput.click()"
       >
         <input
+          id="hero-video-file-input"
           ref="fileInput"
           type="file"
-          accept="video/*"
-          class="hidden-input"
+          accept="video/mp4,video/quicktime,video/webm,video/x-m4v,video/*"
+          class="visually-hidden-input"
+          aria-label="Seleziona file video per la hero"
           @change="onFileSelected"
         />
 
-        <template v-if="!uploading">
-          <div class="upload-icon">🎥</div>
-          <p class="upload-label">Trascina il video oppure clicca per selezionarlo</p>
-          <p class="upload-hint">MP4, MOV, AVI — il vecchio video verrà sostituito automaticamente</p>
-        </template>
+        <label v-if="!uploading" for="hero-video-file-input" class="upload-zone-label">
+          <span class="upload-icon" aria-hidden="true">🎥</span>
+          <span class="upload-label">Tocca per scegliere un video (galleria o file)</span>
+          <span class="upload-hint">MP4 o MOV consigliati. Su iPhone la galleria funziona da qui.</span>
+        </label>
 
-        <template v-else>
-          <div class="progress-wrapper">
-            <div class="progress-step">{{ progress.step }}</div>
-            <div class="progress-bar-track">
-              <div class="progress-bar-fill" :style="{ width: progress.percent + '%' }" />
-            </div>
-            <div class="progress-percent">{{ progress.percent }}%</div>
-            <p class="progress-note">⏳ Non chiudere questa scheda durante il caricamento.</p>
+        <div v-else class="progress-wrapper">
+          <div class="progress-step">{{ progress.step }}</div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" :style="{ width: progress.percent + '%' }" />
           </div>
-        </template>
+          <div class="progress-percent">{{ progress.percent }}%</div>
+          <p class="progress-note">⏳ Non chiudere questa scheda durante il caricamento.</p>
+        </div>
       </div>
 
       <!-- Form titolo -->
@@ -131,7 +133,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useHeroVideoAdmin } from '@/composables/useHeroVideoAdmin'
+import { useHeroVideoAdmin, isLikelyVideoFile } from '@/composables/useHeroVideoAdmin'
 
 const {
   videos, uploading, progress, errorMsg,
@@ -149,15 +151,25 @@ const hasActiveVideo = computed(() => videos.value.some(v => v.active))
 
 onMounted(() => loadVideos())
 
-const onFileSelected = (e) => { const f = e.target.files[0]; if (f) pickFile(f) }
+const onFileSelected = (e) => {
+  const f = e.target.files[0]
+  if (f) pickFile(f)
+}
 const onDrop = (e) => {
   isDragging.value = false
   const f = e.dataTransfer.files[0]
-  if (f && f.type.startsWith('video/')) pickFile(f)
+  if (f) pickFile(f)
 }
 const pickFile = (f) => {
+  errorMsg.value = ''
+  if (!isLikelyVideoFile(f)) {
+    errorMsg.value =
+      'Seleziona un video (MP4, MOV, M4V…). Su iPhone, se non parte, rinomina il file con estensione .mov prima di caricarlo.'
+    clearSelection()
+    return
+  }
   selectedFile.value = f
-  videoTitle.value   = f.name.replace(/\.[^.]+$/, '')
+  videoTitle.value = f.name.replace(/\.[^.]+$/, '')
 }
 const clearSelection = () => {
   selectedFile.value = null
@@ -170,7 +182,7 @@ const startUpload = async () => {
   successMsg.value = ''
   await uploadVideo(selectedFile.value, videoTitle.value.trim() || selectedFile.value.name)
   if (!errorMsg.value) {
-    successMsg.value = 'Video caricato! Clicca "Attiva in Hero" per mostrarlo.'
+    successMsg.value = 'Video caricato e mostrato nella hero.'
     clearSelection()
     setTimeout(() => { successMsg.value = '' }, 6000)
   }
@@ -220,16 +232,42 @@ const formatDate = (ts) => {
 }
 
 .upload-zone {
+  position: relative;
   border: 2px dashed #4caf50; border-radius: 12px; padding: 2.5rem 2rem;
-  text-align: center; cursor: pointer; transition: all 0.3s ease; background: #f9fbe7;
+  text-align: center; transition: all 0.3s ease; background: #f9fbe7;
   min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;
   &:hover:not(.disabled) { background: #f1f8e9; border-color: #2c5f2d; }
   &.dragging { background: #e8f5e9; border-color: #1a472a; transform: scale(1.01); }
   &.disabled { cursor: default; border-style: solid; }
-  .hidden-input { display: none; }
-  .upload-icon  { font-size: 3rem; }
-  .upload-label { font-size: 1.05rem; font-weight: 600; color: #2c5f2d; margin: 0; }
-  .upload-hint  { font-size: 0.85rem; color: #888; margin: 0; }
+}
+
+/* input nascosto ma nel DOM: display:none rompe spesso il label→picker su iOS */
+.visually-hidden-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+}
+
+.upload-zone-label {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  .upload-icon  { font-size: 3rem; line-height: 1; }
+  .upload-label { font-size: 1.05rem; font-weight: 600; color: #2c5f2d; }
+  .upload-hint  { font-size: 0.85rem; color: #888; max-width: 28rem; }
 }
 
 .progress-wrapper {

@@ -461,8 +461,8 @@ onMounted(async () => {
 /* Products Grid */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
 .product-card {
@@ -990,7 +990,7 @@ onMounted(async () => {
   }
 
   .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
     gap: 1rem;
   }
 

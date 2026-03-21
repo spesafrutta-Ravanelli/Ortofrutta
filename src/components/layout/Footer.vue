@@ -80,12 +80,13 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(0.75rem, 3vw, 2rem);
+  box-sizing: border-box;
 }
 
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem 1.25rem;
   margin-bottom: 1.5rem;
 }
@@ -100,9 +101,11 @@
   }
 
   h4 {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     margin-bottom: 0.5rem;
     color: #4caf50;
+    word-break: break-word;
+    hyphens: auto;
   }
 
   p {
@@ -235,21 +238,28 @@
   }
 }
 
+@media (max-width: 1200px) {
+  .footer-content {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 992px) {
   .footer-content {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
   }
 }
 
 @media (max-width: 576px) {
-  .footer .container {
-    padding: 0 1rem;
-  }
-
   .footer-content {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .footer-bottom .credits {
+    padding: 0 0.25rem;
+    line-height: 1.5;
   }
 }
 </style>

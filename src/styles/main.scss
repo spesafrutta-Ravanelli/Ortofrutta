@@ -69,8 +69,12 @@ body {
   color: $text-primary;
   background-color: $background-light;
   line-height: 1.6;
-  font-size: 16px;
+  /* Base fluida: smartphone → desktop */
+  font-size: clamp(15px, 0.45vw + 14px, 17px);
   overflow-x: hidden;
+  /* iPhone con notch / Dynamic Island */
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
 }
 
 #app {
@@ -135,11 +139,9 @@ a {
 .container {
   max-width: $breakpoint-xl;
   margin: 0 auto;
-  padding: 0 2rem;
-  
-  @media (max-width: $breakpoint-md) {
-    padding: 0 1rem;
-  }
+  width: 100%;
+  padding-left: clamp(0.75rem, 3vw, 2rem);
+  padding-right: clamp(0.75rem, 3vw, 2rem);
 }
 
 .text-center {

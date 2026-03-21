@@ -22,19 +22,17 @@ const admin = useAdmin()
 <style scoped>
 .main-content {
   min-height: calc(100vh - 140px);
-  padding-top: 80px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .main-content {
-    padding-top: 70px;
-  }
+  /* Sotto navbar fissa: si adatta a logo più basso su mobile */
+  padding-top: clamp(68px, 12vw, 88px);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 
 @media (max-width: 480px) {
   .main-content {
-    padding-top: 65px;
+    padding-top: clamp(64px, 16vw, 76px);
   }
 }
 </style>
