@@ -71,6 +71,9 @@
 
 <style scoped lang="scss">
 .footer {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   background: #1a1a1a;
   color: #fff;
   padding: 3rem 0 1rem;

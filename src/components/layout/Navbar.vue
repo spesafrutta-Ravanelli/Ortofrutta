@@ -170,6 +170,9 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   background: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;

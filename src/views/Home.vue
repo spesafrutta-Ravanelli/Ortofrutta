@@ -253,49 +253,114 @@ const handleVideoError = (e) => {
 </script>
 
 <style scoped lang="scss">
-.home { width: 100%; }
+.home {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
 
-/* Banner */
+/* Banner: contenitore blocca larghezza intrinseca del testo ripetuto (evita scroll orizzontale pagina) */
 .scrolling-banner {
+  width: 100%;
+  max-width: 100%;
   background: linear-gradient(90deg, #4caf50, #2c5f2d, #4caf50);
-  color: white; padding: 1rem 0; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  .banner-content { display: flex; white-space: nowrap; animation: scroll 30s linear infinite; }
-  .banner-text    { padding: 0 2rem; font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-  @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  color: white;
+  padding: 0.65rem 0;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  contain: content;
+
+  .banner-content {
+    display: flex;
+    width: max-content;
+    white-space: nowrap;
+    animation: scroll 30s linear infinite;
+    will-change: transform;
+  }
+
+  .banner-text {
+    flex-shrink: 0;
+    padding: 0 clamp(0.75rem, 4vw, 2rem);
+    font-size: clamp(0.75rem, 3.2vw, 1.1rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  @keyframes scroll {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+  }
+
   &:hover .banner-content { animation-play-state: paused; }
 }
 
 /* Hero */
 .hero {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   background: linear-gradient(135deg, #2c5f2d 0%, #4caf50 100%);
-  color: white; padding: 4rem 0; margin-bottom: 0;
+  color: white;
+  padding: clamp(1.5rem, 5vw, 4rem) 0;
+  margin-bottom: 0;
 
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(0.75rem, 3vw, 2rem); }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(0.65rem, 4vw, 2rem);
+    width: 100%;
+    box-sizing: border-box;
+  }
 
   .hero-content {
     display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center;
   }
 
-  .hero-text { text-align: left; }
+  .hero-text {
+    text-align: left;
+    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
 
   .hero-title {
-    font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2;
-    .accent    { display: block; font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 0.5rem; }
-    .highlight { color: #fff3cd; }
+    font-size: clamp(1.35rem, 5.5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+    .accent {
+      display: block;
+      font-size: clamp(2rem, 10vw, 4rem);
+      margin-bottom: 0.35rem;
+      line-height: 1;
+    }
+    .highlight { color: #fff3cd; display: inline-block; }
   }
 
   .hero-description { font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.8; margin-bottom: 2rem; opacity: 0.95; }
   .hero-buttons     { display: flex; gap: 0.75rem 1rem; flex-wrap: wrap; }
 
   .hero-image {
-    display: flex; justify-content: center; align-items: center;
-    position: relative; /* necessario per posizionare il pulsante audio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    min-width: 0;
 
     img,
     .hero-video {
-      width: 100%; max-width: 500px; border-radius: 20px;
+      width: 100%;
+      max-width: min(500px, 100%);
+      height: auto;
+      border-radius: 16px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease; object-fit: cover;
+      transition: transform 0.3s ease;
+      object-fit: cover;
+      display: block;
       &:hover { transform: scale(1.02); }
     }
 
@@ -410,7 +475,6 @@ const handleVideoError = (e) => {
 }
 
 @media (max-width: 768px) {
-  .scrolling-banner { padding: 0.75rem 0; .banner-text { font-size: clamp(0.85rem, 2.5vw, 1rem); padding: 0 1rem; } }
   .hero {
     .hero-buttons     { flex-direction: column; align-items: stretch; .btn { width: 100%; max-width: 320px; margin-left: auto; margin-right: auto; } }
     .hero-image       { img, .hero-video { max-width: 100%; } }

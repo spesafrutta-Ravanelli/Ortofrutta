@@ -162,7 +162,12 @@ window.RC_Cookies = {
 /* ── Banner ─────────────────────────────────────────────── */
 #rc-cookie-banner {
   position: fixed;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   background: #1a1a1a;
   color: #f5f5f5;
   z-index: 99999;
@@ -173,11 +178,13 @@ window.RC_Cookies = {
 .rc-banner-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1.25rem 2rem;
+  padding: 1.25rem clamp(0.75rem, 4vw, 2rem);
   display: flex;
   align-items: center;
   gap: 2rem;
   flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .rc-banner-text {

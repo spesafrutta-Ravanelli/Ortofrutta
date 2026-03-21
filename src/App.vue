@@ -20,13 +20,16 @@ const admin = useAdmin()
 </script>
 
 <style scoped>
+/* NO max-width:100vw — su mobile può superare la larghezza utile e creare overflow */
 .main-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
   min-height: calc(100vh - 140px);
-  /* Sotto navbar fissa: si adatta a logo più basso su mobile */
+  min-height: calc(100dvh - 140px);
   padding-top: clamp(68px, 12vw, 88px);
   padding-bottom: env(safe-area-inset-bottom, 0);
-  width: 100%;
-  max-width: 100vw;
   box-sizing: border-box;
 }
 
