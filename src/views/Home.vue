@@ -130,7 +130,7 @@
             <div class="stat-label">Prodotti</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number">{{ productStats.available }}</div>
+            <div class="stat-number">{{ disponibiliLabel }}</div>
             <div class="stat-label">Disponibili</div>
           </div>
           <div class="stat-card">
@@ -174,6 +174,7 @@ import { useRouter } from 'vue-router'
 import { useProductsStore } from '@/stores/productsStore'
 import { useAdmin } from '@/composables/useAdmin'
 import { useHeroVideo } from '@/composables/useHeroVideo'
+import { useListinoFirestoreCount } from '@/composables/useListinoFirestoreCount'
 
 // Caricato solo con modalità admin attiva: non ingombra il bundle pubblico né il primo paint
 const HeroVideoAdmin = defineAsyncComponent(() =>
@@ -184,6 +185,16 @@ const router = useRouter()
 const store  = useProductsStore()
 
 const productStats = computed(() => store.productStats)
+
+// Disponibili = numero documenti in Firestore `products` (stesso listino della pagina Listino)
+const { count: listinoCount, loading: listinoCountLoading, error: listinoCountError } =
+  useListinoFirestoreCount()
+
+const disponibiliLabel = computed(() => {
+  if (listinoCountError.value) return '—'
+  if (listinoCountLoading.value && listinoCount.value === null) return '...'
+  return listinoCount.value != null ? String(listinoCount.value) : '...'
+})
 
 // ─── Admin mode globale ────────────────────────────────────────────────────────
 const { isAdminMode } = useAdmin()
