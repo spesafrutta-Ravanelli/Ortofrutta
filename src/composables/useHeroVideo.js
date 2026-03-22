@@ -12,37 +12,43 @@
 // }
 
 import { ref, onUnmounted } from 'vue'
+import { db } from '@/firebase.config'
 import {
-  getFirestore,
   collection,
   query,
   where,
-  orderBy,
   limit,
   onSnapshot
 } from 'firebase/firestore'
+
+/** Ordina per data in memoria: evita indice composito Firestore (where + orderBy su campi diversi). */
+function pickNewestActive(docs) {
+  if (!docs.length) return null
+  const withData = docs.map((d) => ({ id: d.id, ...d.data() }))
+  withData.sort((a, b) => {
+    const ta = a.uploadedAt?.seconds ?? a.uploadedAt?._seconds ?? 0
+    const tb = b.uploadedAt?.seconds ?? b.uploadedAt?._seconds ?? 0
+    return tb - ta
+  })
+  return withData[0]
+}
 
 export function useHeroVideo() {
   const heroVideo = ref(null)  // null → mostra immagine statica
   const loading   = ref(true)
   const error     = ref(null)
 
-  const db = getFirestore()
-
   const q = query(
     collection(db, 'heroVideos'),
     where('active', '==', true),
-    orderBy('uploadedAt', 'desc'),
-    limit(1)
+    limit(20)
   )
 
   const unsubscribe = onSnapshot(
     q,
     (snapshot) => {
       loading.value   = false
-      heroVideo.value = snapshot.empty
-        ? null
-        : { id: snapshot.docs[0].id, ...snapshot.docs[0].data() }
+      heroVideo.value = snapshot.empty ? null : pickNewestActive(snapshot.docs)
     },
     (err) => {
       loading.value   = false

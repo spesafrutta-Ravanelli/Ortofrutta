@@ -43,8 +43,15 @@ export default defineConfig({
     target: 'es2015',
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vue-vendor': ['vue', 'vue-router', 'pinia']
+        manualChunks(id) {
+          if (id.includes('node_modules/firebase')) return 'firebase-vendor'
+          if (
+            id.includes('node_modules/vue/') ||
+            id.includes('node_modules/vue-router') ||
+            id.includes('node_modules/pinia')
+          ) {
+            return 'vue-vendor'
+          }
         }
       }
     }

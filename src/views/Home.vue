@@ -1,11 +1,19 @@
 <template>
   <div class="home">
-    <!-- Banner Scorrevole -->
+    <!-- Banner consegna: su mobile testo fisso (evita tagli); su desktop scorrimento -->
     <div class="scrolling-banner">
-      <div class="banner-content">
-        <span v-for="n in 10" :key="n" class="banner-text">
-          🚚 Consegna a domicilio 🚚 Consegna a domicilio
-        </span>
+      <p class="banner-static">
+        <span class="banner-static-inner">🚚 CONSEGNA A DOMICILIO</span>
+      </p>
+      <div class="banner-marquee">
+        <div class="banner-content">
+          <div class="banner-segment">
+            <span v-for="n in 16" :key="'a-' + n" class="banner-item">🚚 CONSEGNA A DOMICILIO</span>
+          </div>
+          <div class="banner-segment" aria-hidden="true">
+            <span v-for="n in 16" :key="'b-' + n" class="banner-item">🚚 CONSEGNA A DOMICILIO</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -161,12 +169,16 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick, defineAsyncComponent } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProductsStore } from '@/stores/productsStore'
 import { useAdmin } from '@/composables/useAdmin'
 import { useHeroVideo } from '@/composables/useHeroVideo'
-import HeroVideoAdmin from '@/components/common/HeroVideoAdmin.vue'
+
+// Caricato solo con modalità admin attiva: non ingombra il bundle pubblico né il primo paint
+const HeroVideoAdmin = defineAsyncComponent(() =>
+  import('@/components/common/HeroVideoAdmin.vue')
+)
 
 const router = useRouter()
 const store  = useProductsStore()
@@ -193,7 +205,7 @@ const toggleAudio = () => {
 const tryPlayHeroVideo = () => {
   const el = heroVideoEl.value
   if (!el) return
-  el.muted = true
+  el.muted = isMuted.value
   const p = el.play()
   if (p && typeof p.catch === 'function') p.catch(() => {})
 }
@@ -211,7 +223,7 @@ watch(
 )
 
 // ─── Fallback immagine ────────────────────────────────────────────────────────
-const heroFallbackImg = '/images/products/foto-banchi.webp'
+const heroFallbackImg = '/images/foto-banchi.webp'
 
 // ─── Stagioni ──────────────────────────────────────────────────────────────────
 const seasons = ref([
@@ -225,8 +237,8 @@ const goToSeason = (season) => router.push(`/stagione/${season.slug}`)
 
 // ─── Slider ────────────────────────────────────────────────────────────────────
 const heroImages = ref([
-  { src: '/images/slider-banco1.webp',        alt: 'Banco Ortofrutta - Foto Banco 1'   },
-  { src: '/images/featured-ortofrutta.webp',  alt: 'Banco Scarenna - Prodotti Freschi' },
+  { src: '/slider-banco1.webp',        alt: 'Banco Ortofrutta - Foto Banco 1'   },
+  { src: '/featured-ortofrutta.webp',  alt: 'Banco Scarenna - Prodotti Freschi' },
 ])
 
 const currentSlide  = ref(0)
@@ -261,40 +273,131 @@ const handleVideoError = (e) => {
   box-sizing: border-box;
 }
 
-/* Banner: contenitore blocca larghezza intrinseca del testo ripetuto (evita scroll orizzontale pagina) */
+/* Banner consegna: due segmenti identici + gap uniforme; animazione -50% */
 .scrolling-banner {
   width: 100%;
   max-width: 100%;
   background: linear-gradient(90deg, #4caf50, #2c5f2d, #4caf50);
   color: white;
-  padding: 0.65rem 0;
-  overflow: hidden;
+  padding: 0.55rem 0;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  contain: content;
+  position: relative;
+  height: auto;
+  min-height: 2.5rem;
+  overflow-x: hidden;
+  overflow-y: visible;
+  box-sizing: border-box;
+  display: block;
+  visibility: visible;
+
+  .banner-static {
+    display: none;
+    margin: 0;
+    padding: 0.4rem clamp(0.75rem, 4vw, 1.25rem);
+    text-align: center;
+    font-size: clamp(0.8rem, 3.5vw, 1rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.45;
+    min-height: 2.5rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .banner-static-inner {
+    display: inline-block;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    padding-block: 0.1rem;
+  }
+
+  .banner-marquee {
+    overflow-x: hidden;
+    overflow-y: visible;
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
 
   .banner-content {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     width: max-content;
-    white-space: nowrap;
-    animation: scroll 30s linear infinite;
+    animation: banner-scroll 40s linear infinite;
     will-change: transform;
   }
 
-  .banner-text {
+  .banner-segment {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
     flex-shrink: 0;
-    padding: 0 clamp(0.75rem, 4vw, 2rem);
-    font-size: clamp(0.75rem, 3.2vw, 1.1rem);
+    gap: clamp(2rem, 10vw, 4rem);
+    padding-inline: clamp(1rem, 2vw, 2rem);
+  }
+
+  .banner-item {
+    flex-shrink: 0;
+    font-size: clamp(0.78rem, 2.8vw, 1.05rem);
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    line-height: 1.5;
+    padding-block: 0.1rem;
+    white-space: nowrap;
   }
 
-  @keyframes scroll {
+  @keyframes banner-scroll {
     0% { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(-50%, 0, 0); }
   }
 
-  &:hover .banner-content { animation-play-state: paused; }
+  &:hover .banner-content {
+    animation-play-state: paused;
+  }
+}
+
+@media (max-width: 640px) {
+  .scrolling-banner {
+    padding: 0.45rem 0;
+    min-height: 2.75rem;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: visible;
+
+    .banner-static {
+      display: flex;
+    }
+
+    .banner-marquee {
+      display: none;
+    }
+  }
+}
+
+/* Tablet / iPad landscape: marquee sempre visibile (evita scomparsa) */
+@media (orientation: landscape) and (min-width: 641px) {
+  .scrolling-banner {
+    display: block !important;
+    visibility: visible !important;
+    min-height: 2.5rem;
+    height: auto;
+  }
+
+  .scrolling-banner .banner-marquee {
+    display: flex !important;
+    min-height: 2.5rem;
+  }
+
+  .scrolling-banner .banner-static {
+    display: none !important;
+  }
 }
 
 /* Hero */

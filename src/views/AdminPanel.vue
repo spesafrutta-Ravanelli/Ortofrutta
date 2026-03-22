@@ -47,7 +47,12 @@
     <!-- ▶️ Sezione Video Hero (solo in Admin Mode) -->
     <div v-if="isAdminMode" class="hero-video-section">
       <div class="container">
-        <HeroVideoAdmin />
+        <Suspense>
+          <HeroVideoAdmin />
+          <template #fallback>
+            <p class="async-panel-fallback" role="status">Caricamento pannello video…</p>
+          </template>
+        </Suspense>
       </div>
     </div>
 
@@ -114,7 +119,7 @@
             <input 
               type="text" 
               v-model="newProduct.imageUrl"
-              placeholder="/images/products/prodotto.webp"
+              placeholder="/images/prodotto.webp"
               class="form-input"
             />
           </div>
@@ -151,7 +156,7 @@
           >
             <div class="product-image">
               <img 
-                :src="product.imageUrl || '/images/products/default.webp'" 
+                :src="product.imageUrl || '/images/default.webp'" 
                 :alt="product.name"
                 @error="handleImageError"
               />
@@ -230,10 +235,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, defineAsyncComponent } from 'vue'
 import { useAdmin } from '@/composables/useAdmin'
-import HeroVideoAdmin from '@/components/common/HeroVideoAdmin.vue'
 import { deepMigrateImageUrls } from '@/utils/migrateImageUrlsToWebp'
+
+const HeroVideoAdmin = defineAsyncComponent(() =>
+  import('@/components/common/HeroVideoAdmin.vue')
+)
 
 // ─── Stato globale admin (condiviso con Navbar, Home, ecc.) ───────────────────
 // isAdminMode e toggleAdminMode vengono da useAdmin.js che gestisce già:
@@ -254,9 +262,9 @@ const newProduct = ref({
 })
 
 const demoProducts = [
-  { id: 1, name: 'Mela Golden Delicious', price: 2.40, description: 'Mela dolce e croccante, perfetta per ogni occasione',   imageUrl: '/images/products/melinda-golden.webp',   stock: 50, category: 'Frutta'  },
-  { id: 2, name: 'Pomodoro San Marzano',  price: 3.50, description: 'Pomodoro italiano DOP, ideale per sughi e conserve',    imageUrl: '/images/products/pomodoro-marinda.webp', stock: 3,  category: 'Verdura' },
-  { id: 3, name: 'Insalata Lattuga',      price: 1.80, description: 'Insalata fresca e croccante, raccolta giornalmente',    imageUrl: '/images/products/iceberg.webp',          stock: 20, category: 'Verdura' },
+  { id: 1, name: 'Mela Golden Delicious', price: 2.40, description: 'Mela dolce e croccante, perfetta per ogni occasione',   imageUrl: '/images/melinda-golden.webp',   stock: 50, category: 'Frutta'  },
+  { id: 2, name: 'Pomodoro San Marzano',  price: 3.50, description: 'Pomodoro italiano DOP, ideale per sughi e conserve',    imageUrl: '/images/Pomodoro-marinda.webp', stock: 3,  category: 'Verdura' },
+  { id: 3, name: 'Insalata Lattuga',      price: 1.80, description: 'Insalata fresca e croccante, raccolta giornalmente',    imageUrl: '/images/iceberg.webp',          stock: 20, category: 'Verdura' },
 ]
 
 // ─── Prodotti (localStorage) ──────────────────────────────────────────────────
@@ -298,7 +306,7 @@ const addProduct = () => {
     name:        newProduct.value.name.trim(),
     price:       parseFloat(newProduct.value.price),
     description: newProduct.value.description.trim(),
-    imageUrl:    newProduct.value.imageUrl.trim() || '/images/products/default.webp',
+    imageUrl:    newProduct.value.imageUrl.trim() || '/images/default.webp',
     stock:       parseInt(newProduct.value.stock),
     category:    newProduct.value.category.trim(),
   })
@@ -506,6 +514,13 @@ onMounted(() => {
   background: #fafafa;
   border-top: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
+}
+
+.async-panel-fallback {
+  margin: 0;
+  padding: 1rem;
+  color: #666;
+  font-size: 0.95rem;
 }
 
 /* Form prodotto */

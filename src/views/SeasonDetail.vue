@@ -100,7 +100,7 @@
                 <div class="product-image-wrapper" :class="{ 'edit-mode-active': isAdminMode && isEditMode }">
                   <img 
                     v-if="!isAdminMode || !isEditMode"
-                    :src="prodotto.image || '/images/placeholder-product.webp'" 
+                    :src="prodotto.image || '/placeholder-product.webp'" 
                     :alt="prodotto.name"
                     @error="handleImageError"
                   />
@@ -188,8 +188,9 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { applyPageMeta, SEO_KEYWORDS } from '@/utils/pageMeta'
 import { useProductsStore } from '@/stores/productsStore'
 import { useAdmin } from '@/composables/useAdmin'
 
@@ -216,6 +217,22 @@ const stagione = computed(() => {
   const seasonId = route.params.seasonId
   return store.getSeasonById(seasonId)
 })
+
+watch(
+  stagione,
+  (s) => {
+    if (!s) return
+    const desc = `${s.nome}: frutta e verdura fresca di stagione. Brembate, Agrate, Eupilio, Vimercate, Gorgonzola e dintorni.`
+    applyPageMeta({
+      title: `${s.nome} — prodotti di stagione`,
+      description: desc.length > 160 ? `${desc.slice(0, 157)}…` : desc,
+      keywords: SEO_KEYWORDS,
+      path: route.path,
+      ogDescription: desc.length > 160 ? `${desc.slice(0, 157)}…` : desc
+    })
+  },
+  { immediate: true }
+)
 
 const enterEditMode = () => {
   if (stagione.value) {
@@ -286,7 +303,7 @@ const addNewProduct = () => {
       price: '0.00',
       unit: 'kg',
       available: true,
-      image: '/images/placeholder-product.webp',
+      image: '/placeholder-product.webp',
       description: ''
     }
     

@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/((?!robots.txt|sitemap.xml|llms.txt|og-image.webp|favicon.ico|googled2f53c1fed59d1b2.html|brochure_ravanelli.html).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]

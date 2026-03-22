@@ -32,10 +32,15 @@
             </p>
           </div>
           <div class="image-placeholder">
-            <ImageGallery 
-              :images="aboutImages"
-              title="La nostra attività"
-            />
+            <Suspense>
+              <ImageGallery
+                :images="aboutImages"
+                title="La nostra attività"
+              />
+              <template #fallback>
+                <div class="gallery-loading" role="status">Caricamento galleria…</div>
+              </template>
+            </Suspense>
           </div>
         </div>
       </section>
@@ -158,21 +163,24 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, defineAsyncComponent } from 'vue'
 import { useProductsStore } from '@/stores/productsStore'
-import ImageGallery from '@/components/common/ImageGallery.vue'
+
+const ImageGallery = defineAsyncComponent(() =>
+  import('@/components/common/ImageGallery.vue')
+)
 
 const store = useProductsStore()
 
 const productStats = computed(() => store.productStats)
 
-// Placeholder per immagini future
+// Foto famiglia: file in public/Ravanelli Family.webp — altre in public/ o public/images/
 const aboutImages = [
-  '/images/foto-banco-vecchio.webp',
-  '/images/foto banco vecchia 1.webp',
-  '/images/foto banco vecchia 2.webp',
-  '/images/Ravanelli Family.webp', 
-  '/images/Foto banchi.webp',
+  '/foto-banco-vecchio.webp',
+  '/foto banco vecchia 1.webp',
+  '/foto banco vecchia 2.webp',
+  '/Ravanelli-Family.webp',
+  '/images/Foto banchi1.webp',
 ]
 </script>
 
@@ -244,6 +252,15 @@ const aboutImages = [
     overflow: hidden;
     max-width: 1000px;
     margin: 0 auto;
+
+    .gallery-loading {
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-weight: 500;
+    }
   }
 }
 

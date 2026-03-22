@@ -2,7 +2,16 @@
   <div id="app">
     <Navbar />
     <main class="main-content">
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <template v-if="Component">
+          <Suspense>
+            <component :is="Component" />
+            <template #fallback>
+              <div class="route-loading" role="status" aria-live="polite">Caricamento…</div>
+            </template>
+          </Suspense>
+        </template>
+      </RouterView>
     </main>
     <Footer />
     <CookieBanner />
@@ -37,5 +46,15 @@ const admin = useAdmin()
   .main-content {
     padding-top: clamp(64px, 16vw, 76px);
   }
+}
+
+.route-loading {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2c5f2d;
+  font-weight: 600;
+  padding: 2rem;
 }
 </style>

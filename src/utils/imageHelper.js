@@ -43,19 +43,19 @@ export const handleImageError = (event, fallbackText = 'Immagine non disponibile
  */
 export const imagePaths = {
   categories: {
-    frutta: '/images/categories/frutta-1.webp',
-    verdura: '/images/categories/verdura-1.webp',
-    bio: '/images/categories/bio-1.webp',
-    secca: '/images/categories/secca-1.webp',
-    agrumi: '/images/categories/agrumi-1.webp',
-    esotici: '/images/categories/esotici-1.webp'
+    frutta: '/images/melinda-golden.webp',
+    verdura: '/images/broccoli.webp',
+    bio: '/images/spinaci.webp',
+    secca: '/images/datteri.webp',
+    agrumi: '/images/limoni.webp',
+    esotici: '/images/Ananas.webp'
   },
   about: {
-    negozio: '/images/about/negozio-1.webp',
-    team: '/images/about/team-1.webp',
-    prodotti: '/images/about/prodotti-1.webp'
+    negozio: '/images/foto banco.webp',
+    team: '/Ravanelli Family.webp',
+    prodotti: '/featured-ortofrutta.webp'
   },
-  hero: '/images/hero-bg.webp'
+  hero: '/hero-image.webp'
 }
 
 /**

@@ -103,7 +103,7 @@
                 <td v-if="isAdminMode && isEditMode">
                   <div class="image-cell">
                     <img 
-                      :src="product.image || '/images/placeholder-product.webp'" 
+                      :src="product.image || '/placeholder-product.webp'" 
                       :alt="product.name"
                       class="product-image-preview"
                       @error="handleImageError"
@@ -370,7 +370,7 @@ const handleImageUpload = async (event, index) => {
 }
 
 const handleImageError = (event) => {
-  event.target.src = '/images/placeholder-product.webp'
+  event.target.src = '/placeholder-product.webp'
 }
 
 const saveChanges = async () => {
@@ -386,7 +386,7 @@ const saveChanges = async () => {
         unit: product.unit || 'kg',
         available: product.available !== false,
         description: product.description || '',
-        image: product.image || '/images/placeholder-product.webp',
+        image: product.image || '/placeholder-product.webp',
         type: product.type || 'product'
       }
       
@@ -438,7 +438,7 @@ const addNewProduct = () => {
     unit: 'kg',
     available: true,
     description: '',
-    image: '/images/placeholder-product.webp',
+    image: '/placeholder-product.webp',
     type: 'product'
   }
   
