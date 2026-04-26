@@ -25,16 +25,23 @@ const admin = useAdmin()
   padding-top: 185px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .main-content {
-    padding-top: 120px;
-  }
+/* Tablet orizzontale */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .main-content { padding-top: 90px; }
 }
 
+/* Tablet verticale */
+@media (max-width: 768px) and (min-width: 481px) {
+  .main-content { padding-top: 85px; }
+}
+
+/* Smartphone */
 @media (max-width: 480px) {
-  .main-content {
-    padding-top: 75px;
-  }
+  .main-content { padding-top: 75px; }
+}
+
+/* Landscape */
+@media (max-width: 900px) and (orientation: landscape) {
+  .main-content { padding-top: 60px; }
 }
 </style>
