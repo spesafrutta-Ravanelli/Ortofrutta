@@ -15,7 +15,7 @@
         <div class="hero-content">
           <div class="hero-text">
             <h1 class="hero-title">
-              <span class="accent">🍎</span>
+              <img src="/images/hero-frutta.webp" alt="Frutta e Verdura" class="hero-accent-img" />
               Freschezza e Qualità
               <span class="highlight">dall'inizio anni '50</span>
             </h1>
@@ -145,7 +145,6 @@ const productStats = computed(() => store.productStats)
 const { isAdminMode }                          = useAdmin()
 const { heroVideo, heroImage, loading }        = useHeroVideo()
 
-// ─── Audio ────────────────────────────────────────────────────────────────────
 const heroVideoEl = ref(null)
 const isMuted     = ref(true)
 
@@ -155,10 +154,8 @@ const toggleAudio = () => {
   heroVideoEl.value.muted = isMuted.value
 }
 
-// ─── Fallback ─────────────────────────────────────────────────────────────────
 const heroFallbackImg = '/images/products/foto-banchi.webp'
 
-// ─── Stagioni ──────────────────────────────────────────────────────────────────
 const seasons = ref([
   { id: 1, nome: 'Prodotti Invernali',   icon: '❄️', descrizione: 'Arance, mandarini, cavolfiori, broccoli e tutta la freschezza dell\'inverno', mesi: 'Dicembre - Febbraio',   slug: 'inverno'   },
   { id: 2, nome: 'Prodotti Primaverili', icon: '🌸', descrizione: 'Fragole, asparagi, piselli, fave e i primi sapori della primavera',            mesi: 'Marzo - Maggio',       slug: 'primavera' },
@@ -167,7 +164,6 @@ const seasons = ref([
 ])
 const goToSeason = (season) => router.push(`/stagione/${season.slug}`)
 
-// ─── Slider ────────────────────────────────────────────────────────────────────
 const heroImages = ref([
   { src: '/images/slider-banco1.webp',       alt: 'Banco Ortofrutta' },
   { src: '/images/featured-ortofrutta.webp', alt: 'Prodotti Freschi' },
@@ -182,7 +178,6 @@ const stopAutoSlide  = () => { if (slideInterval) clearInterval(slideInterval) }
 onMounted(()   => startAutoSlide())
 onUnmounted(() => stopAutoSlide())
 
-// ─── Errors ────────────────────────────────────────────────────────────────────
 const handleImageError = (e) => {
   e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%23f0f0f0" width="800" height="600"/%3E%3Ctext fill="%234caf50" font-family="Arial" font-size="40" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3E🍎 Immagine in arrivo%3C/text%3E%3C/svg%3E'
 }
@@ -217,11 +212,11 @@ const handleVideoError = (e) => {
     align-items: center;
   }
 
-  .hero-text { text-align: left; }
+  .hero-text { text-align: center; }
 
   .hero-title {
     font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2;
-    .accent    { display: block; font-size: 4rem; margin-bottom: 0.5rem; }
+    .hero-accent-img { display: block; width: 180px; height: auto; margin: 0 auto 0.75rem; }
     .highlight { color: #fff3cd; }
   }
 
@@ -234,7 +229,6 @@ const handleVideoError = (e) => {
     align-items: center;
     position: relative;
 
-    /* Immagine default e promo */
     img {
       width: 100%;
       max-width: 500px;
@@ -245,7 +239,6 @@ const handleVideoError = (e) => {
       &:hover { transform: scale(1.02); }
     }
 
-    /* Wrapper video — relativo per posizionare il pulsante audio */
     .hero-video-wrapper {
       position: relative;
       display: inline-flex;
@@ -257,7 +250,6 @@ const handleVideoError = (e) => {
       transition: transform 0.3s ease;
       &:hover { transform: scale(1.02); }
 
-      /* Verticale */
       &.is-vertical {
         width: 270px;
         height: auto;
@@ -266,7 +258,6 @@ const handleVideoError = (e) => {
       }
     }
 
-    /* Video — riempie il wrapper */
     .hero-video {
       width: 100%;
       height: 100%;
@@ -280,7 +271,6 @@ const handleVideoError = (e) => {
       }
     }
 
-    /* Pulsante audio — ancorato al wrapper */
     .audio-btn {
       position: absolute;
       bottom: 12px; right: 12px;
@@ -295,7 +285,6 @@ const handleVideoError = (e) => {
       &:hover { background: rgba(0,0,0,0.8); transform: scale(1.1); }
     }
 
-    /* Skeleton */
     .hero-media-skeleton {
       width: 100%; max-width: 500px; aspect-ratio: 16 / 9; border-radius: 20px;
       background: linear-gradient(90deg, rgba(255,255,255,0.10) 25%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.10) 75%);
@@ -313,7 +302,7 @@ const handleVideoError = (e) => {
 }
 
 .banco-slider-section {
-  padding: 0 0 3rem; margin-bottom: 2rem;
+  padding: 3rem 0; margin-bottom: 2rem;
   .container      { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
   .slider-wrapper { max-width: 1000px; margin: 0 auto; }
   .slider-container { position: relative; width: 100%; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); background: #f5f5f5; aspect-ratio: 16 / 9; }
@@ -367,7 +356,6 @@ const handleVideoError = (e) => {
 
 @keyframes pulse { 0%, 100% { box-shadow: 0 4px 15px rgba(255,152,0,0.3); } 50% { box-shadow: 0 4px 20px rgba(255,152,0,0.5); } }
 
-/* Responsive */
 @media (max-width: 1024px) and (min-width: 769px) {
   .hero { .hero-content { gap: 2.5rem; } .hero-title { font-size: 2.5rem; } }
   .seasonal-grid { grid-template-columns: repeat(2, 1fr); }
@@ -381,7 +369,7 @@ const handleVideoError = (e) => {
     padding: 3rem 0;
     .hero-content     { grid-template-columns: 1fr; gap: 2rem; }
     .hero-text        { text-align: center; }
-    .hero-title       { font-size: 2rem; .accent { font-size: 3rem; } }
+    .hero-title       { font-size: 2rem; .hero-accent-img { width: 140px; margin: 0 auto 0.75rem; } }
     .hero-description { font-size: 1rem; }
     .hero-buttons     { flex-direction: column; align-items: center; .btn { width: 100%; max-width: 300px; } }
     .hero-image {
@@ -401,7 +389,7 @@ const handleVideoError = (e) => {
 @media (max-width: 480px) {
   .hero {
     padding: 2rem 0;
-    .hero-title { font-size: 1.75rem; .accent { font-size: 2.5rem; } }
+    .hero-title { font-size: 1.75rem; .hero-accent-img { width: 120px; } }
     .hero-description { font-size: 0.95rem; }
     .hero-buttons .btn { width: 100%; min-height: 44px; font-size: 1rem; }
     .hero-image .hero-video-wrapper.is-vertical { height: 280px; width: auto; }
