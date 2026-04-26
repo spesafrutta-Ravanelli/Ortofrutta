@@ -22,19 +22,19 @@ const admin = useAdmin()
 <style scoped>
 .main-content {
   min-height: calc(100vh - 140px);
-  padding-top: 195px;
+  padding-top: 185px;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .main-content {
-    padding-top: 195px;
+    padding-top: 120px;
   }
 }
 
 @media (max-width: 480px) {
   .main-content {
-    padding-top: 195px;
+    padding-top: 100px;
   }
 }
 </style>
