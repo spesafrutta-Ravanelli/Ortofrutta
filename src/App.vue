@@ -27,21 +27,21 @@ const admin = useAdmin()
 
 /* Tablet orizzontale */
 @media (max-width: 1024px) and (min-width: 769px) {
-  .main-content { padding-top: 90px; }
+  .main-content { padding-top: 80px; }
 }
 
 /* Tablet verticale */
 @media (max-width: 768px) and (min-width: 481px) {
-  .main-content { padding-top: 85px; }
+  .main-content { padding-top: 70px; }
 }
 
 /* Smartphone */
 @media (max-width: 480px) {
-  .main-content { padding-top: 75px; }
+  .main-content { padding-top: 65px; }
 }
 
 /* Landscape */
 @media (max-width: 900px) and (orientation: landscape) {
-  .main-content { padding-top: 60px; }
+  .main-content { padding-top: 55px; }
 }
 </style>
