@@ -242,17 +242,17 @@ onMounted(() => { window.scrollTo(0, 0) })
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 0.5rem 0.5rem;
-  min-height: calc(100dvh - 120px);
+  padding: 0.5rem 0 0.5rem;
+  height: calc(100dvh - 120px);
 }
 
 .slider-card {
   width: 100%;
-  max-width: 420px;
+  height: 100%;
   flex: 1;
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -294,7 +294,7 @@ onMounted(() => { window.scrollTo(0, 0) })
 }
 
 .slider-title {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: #2c5f2d;
   margin-bottom: 0.6rem;
@@ -304,17 +304,17 @@ onMounted(() => { window.scrollTo(0, 0) })
 .slider-prices {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.5rem;
   align-items: center;
 }
 
 .price-badge {
-  font-size: 1.1rem;
-  font-weight: 900;
+  font-size: 1rem;
+  font-weight: 800;
   color: white;
   background: linear-gradient(135deg, #ff6f00, #ffd600);
-  padding: 4px 12px;
-  border-radius: 10px;
+  padding: 6px 16px;
+  border-radius: 20px;
   white-space: nowrap;
 }
 
