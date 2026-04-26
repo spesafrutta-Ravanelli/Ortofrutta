@@ -28,13 +28,13 @@ const admin = useAdmin()
 /* Responsive */
 @media (max-width: 768px) {
   .main-content {
-    padding-top: 120px;
+    padding-top: 120x;
   }
 }
 
 @media (max-width: 480px) {
   .main-content {
-    padding-top: 100px;
+    padding-top: 75px;
   }
 }
 </style>
