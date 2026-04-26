@@ -104,7 +104,7 @@
         <div class="stats-grid">
           <div class="stat-card"><div class="stat-number">{{ productStats.categories }}</div><div class="stat-label">Categorie</div></div>
           <div class="stat-card"><div class="stat-number">{{ productStats.total }}</div><div class="stat-label">Prodotti</div></div>
-          <div class="stat-card"><div class="stat-number">{{ productStats.available }}</div><div class="stat-label">Disponibili</div></div>
+          <div class="stat-card"><div class="stat-number">{{ availableCount || productStats.available }}</div><div class="stat-label">Disponibili</div></div>
           <div class="stat-card"><div class="stat-number">75+</div><div class="stat-label">Anni di Esperienza</div></div>
         </div>
       </div>
@@ -142,8 +142,14 @@ const router = useRouter()
 const store  = useProductsStore()
 const productStats = computed(() => store.productStats)
 
-const { isAdminMode }                          = useAdmin()
+const { isAdminMode, products: adminProducts, loadProducts } = useAdmin()
 const { heroVideo, heroImage, loading }        = useHeroVideo()
+
+// Carica prodotti Firebase per il conteggio disponibili
+onMounted(() => { loadProducts() })
+
+// Conta disponibili da Firebase (stessa fonte del listino prezzi)
+const availableCount = computed(() => adminProducts.value.filter(p => p.available !== false).length)
 
 const heroVideoEl = ref(null)
 const isMuted     = ref(true)
@@ -212,11 +218,11 @@ const handleVideoError = (e) => {
     align-items: center;
   }
 
-  .hero-text { text-align: center; }
+  .hero-text { text-align: left; }
 
   .hero-title {
     font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2;
-    .hero-accent-img { display: block; width: 180px; height: auto; margin: 0 auto 0.75rem; }
+    .hero-accent-img { display: block; width: 200px; height: auto; margin: 0 0 0.75rem 5.5rem; }
     .highlight { color: #fff3cd; }
   }
 
