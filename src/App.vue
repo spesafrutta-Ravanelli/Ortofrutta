@@ -28,7 +28,7 @@ const admin = useAdmin()
 /* Responsive */
 @media (max-width: 768px) {
   .main-content {
-    padding-top: 120x;
+    padding-top: 120px;
   }
 }
 

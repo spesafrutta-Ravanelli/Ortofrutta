@@ -10,11 +10,11 @@
         tabindex="0"
         @keydown.enter="handleLogoClick"
       >
-        <img
-          src="/images/logo.webp"
-          alt="Ortofrutticola Ravanelli & Carminati"
-          class="logo-img"
-        />
+        <span class="logo-icon">🍎</span>
+        <span class="logo-text">
+          Ortofrutticola<br />
+          Ravanelli & Carminati
+        </span>
       </div>
 
       <button 
@@ -177,32 +177,46 @@ onUnmounted(() => {
 }
 
 .container {
-  max-width: 1250px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 80px;
+  min-height: 60px;
 }
 
 /* Logo ora è un div, manteniamo lo stesso stile + cursor pointer */
 .logo {
   display: flex;
   align-items: center;
+  gap: 0.75rem;
   text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2c5f2d;
   transition: transform 0.3s ease;
-  cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;        /* ← importante: mostra la manina */
+  user-select: none;      /* ← evita selezione testo durante i tap rapidi */
+  -webkit-tap-highlight-color: transparent; /* ← rimuove il flash blu su mobile */
 
-  &:hover { transform: scale(1.02); }
+  &:hover {
+    transform: scale(1.02);
+  }
 
-  .logo-img {
-    height: 150px;
-    width: 300px;
-    width: auto;
-    object-fit: contain;
+  .logo-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-text {
+    font-family: 'Georgia', serif;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
@@ -256,7 +270,7 @@ onUnmounted(() => {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 1rem;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
   align-items: center;
@@ -360,7 +374,18 @@ onUnmounted(() => {
 
 /* Responsive - Tablet */
 @media (max-width: 1024px) and (min-width: 769px) {
-  .logo .logo-img { height: 65px; }
+  .logo {
+    font-size: 1rem;
+    
+    .logo-icon {
+      font-size: 1.75rem;
+    }
+    
+    .logo-text {
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+  }
 
   .nav-links {
     gap: 1rem;
@@ -382,7 +407,18 @@ onUnmounted(() => {
     padding: 0 1rem;
   }
 
-  .logo .logo-img { height: 55px; }
+  .logo {
+    font-size: 0.95rem;
+
+    .logo-icon {
+      font-size: 1.5rem;
+    }
+
+    .logo-text {
+      font-size: 0.85rem;
+      line-height: 1.3;
+    }
+  }
 
   .mobile-toggle {
     display: flex;
@@ -437,7 +473,16 @@ onUnmounted(() => {
 
 /* Responsive - Mobile molto piccolo */
 @media (max-width: 480px) {
-  .logo .logo-img { height: 48px; }
+  .logo {
+    .logo-icon {
+      font-size: 1.3rem;
+    }
+    
+    .logo-text {
+      font-size: 0.75rem;
+      line-height: 1.2;
+    }
+  }
 
   .nav-links {
     width: 85%;
