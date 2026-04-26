@@ -964,6 +964,10 @@ body.public-mode .slider-dot.active {
       <input type="text" id="pPrice2" placeholder="es. 1,50 (opz.)" />
     </div>
     <div class="form-group">
+      <label>Terzo prezzo (€)</label>
+      <input type="text" id="pPrice3" placeholder="es. 3,90 (opz.)" />
+    </div>
+    <div class="form-group">
       <label>Immagine Prodotto</label>
       <input type="file" id="pImg" accept="image/*" />
       <small style="display:block;margin-top:6px;color:#666;font-size:12px;">Le foto vengono ridimensionate (max 1200px) e convertite in WebP per occupare meno spazio (JPEG di fallback se necessario).</small>
@@ -1225,7 +1229,7 @@ if (typeof isPublicMode !== 'undefined' && isPublicMode && typeof db !== 'undefi
     db.collection('settings').doc('volantino').get().then(function(docSnap) {
       if (docSnap.exists && docSnap.data().products && docSnap.data().products.length > 0) {
         products = docSnap.data().products.map(function(p) {
-          return { name: p.title || '', price: p.price || '', price2: p.price2 || '', tag: p.tag || '', img: p.image || null };
+          return { name: p.title || '', price: p.price || '', price2: p.price2 || '', price3: p.price3 || '', tag: p.tag || '', img: p.image || null };
         });
         renderAll();
       }
@@ -1235,7 +1239,7 @@ if (typeof isPublicMode !== 'undefined' && isPublicMode && typeof db !== 'undefi
   db.collection('settings').doc('volantino').onSnapshot(function(docSnap) {
     if (docSnap.exists && docSnap.data().products && docSnap.data().products.length > 0) {
       products = docSnap.data().products.map(function(p) {
-        return { name: p.title || '', price: p.price || '', price2: p.price2 || '', tag: p.tag || '', img: p.image || null };
+        return { name: p.title || '', price: p.price || '', price2: p.price2 || '', price3: p.price3 || '', tag: p.tag || '', img: p.image || null };
       });
       renderAll();
     }
@@ -1254,30 +1258,35 @@ document.getElementById('pImg').addEventListener('change', function() {
   r.readAsDataURL(f);
 });
 
-function formatPriceBadge(price, price2) {
-  if (!price && !price2) return '';
-  var a = price ? '<span class="prod-price-badge">€ ' + price + '</span>' : '';
+function formatPriceBadge(price, price2, price3) {
+  if (!price && !price2 && !price3) return '';
+  var a = price  ? '<span class="prod-price-badge">€ ' + price  + '</span>' : '';
   var b = price2 ? '<span class="prod-price-badge">€ ' + price2 + '</span>' : '';
-  return a && b ? a + ' <span class="prod-price-sep"></span> ' + b : (a || b);
+  var c = price3 ? '<span class="prod-price-badge">€ ' + price3 + '</span>' : '';
+  var sep = ' <span class="prod-price-sep"></span> ';
+  var parts = [a, b, c].filter(Boolean);
+  return parts.join(sep);
 }
 function tagIsPrice(tag) { return tag && /€/.test(String(tag)); }
 function addOrSaveProduct() {
   const name = document.getElementById('pName').value.trim();
   const price = document.getElementById('pPrice').value.trim();
   const price2 = document.getElementById('pPrice2').value.trim();
+  const price3 = document.getElementById('pPrice3').value.trim();
   const tag = document.getElementById('pTag').value.trim();
   if (!name || !price) return alert('Inserisci almeno nome e prezzo!');
   var img = pendingImg !== null ? pendingImg : (editingIndex >= 0 && products[editingIndex] ? products[editingIndex].img : null);
   if (editingIndex >= 0) {
-    products[editingIndex] = { name, price, price2, tag, img };
+    products[editingIndex] = { name, price, price2, price3, tag, img };
     cancelEdit();
   } else {
-    products.push({ name, price, price2, tag, img });
+    products.push({ name, price, price2, price3, tag, img });
   }
   pendingImg = null;
   document.getElementById('pName').value = '';
   document.getElementById('pPrice').value = '';
   document.getElementById('pPrice2').value = '';
+  document.getElementById('pPrice3').value = '';
   document.getElementById('pTag').value = '';
   document.getElementById('pImg').value = '';
   if (typeof db !== 'undefined') saveToFirebase();
@@ -1291,6 +1300,7 @@ function editProduct(i) {
   document.getElementById('pName').value = p.name || '';
   document.getElementById('pPrice').value = p.price || '';
   document.getElementById('pPrice2').value = p.price2 || '';
+  document.getElementById('pPrice3').value = p.price3 || '';
   document.getElementById('pTag').value = p.tag || '';
   document.getElementById('pImg').value = '';
   pendingImg = p.img || null;
@@ -1304,6 +1314,7 @@ function cancelEdit() {
   document.getElementById('pName').value = '';
   document.getElementById('pPrice').value = '';
   document.getElementById('pPrice2').value = '';
+  document.getElementById('pPrice3').value = '';
   document.getElementById('pTag').value = '';
   document.getElementById('pImg').value = '';
   document.getElementById('btnAddOrSave').textContent = '➕ Aggiungi al Volantino';
@@ -1319,7 +1330,7 @@ function removeProduct(i) {
 }
 function saveToFirebase() {
   if (typeof db === 'undefined') return;
-  var toSave = products.map(function(p) { return { title: p.name, price: p.price || '', price2: p.price2 || '', image: p.img || null, tag: p.tag || '' }; });
+  var toSave = products.map(function(p) { return { title: p.name, price: p.price || '', price2: p.price2 || '', price3: p.price3 || '', image: p.img || null, tag: p.tag || '' }; });
   var data = { products: toSave, updatedAt: new Date().toISOString() };
   var di = document.getElementById('dataInizio');
   var df = document.getElementById('dataFine');
@@ -1378,7 +1389,7 @@ function renderAll() {
       </div>
       <div class="prod-body">
         <div class="prod-name">${p.name}</div>
-        <span class="prod-price-badges">${formatPriceBadge(p.price, secondPrice)}</span>
+        <span class="prod-price-badges">${formatPriceBadge(p.price, secondPrice, p.price3 || '')}</span>
       </div>`;
     grid.appendChild(c);
   });
@@ -1393,7 +1404,7 @@ if (typeof isPublicMode !== 'undefined' && !isPublicMode && typeof db !== 'undef
       if (d.dataFine) { var df = document.getElementById('dataFine'); if (df) df.value = d.dataFine; }
       if (d.products && d.products.length > 0) {
         products = d.products.map(function(p) {
-          return { name: p.title || '', price: p.price || '', price2: p.price2 || '', tag: p.tag || '', img: p.image || null };
+          return { name: p.title || '', price: p.price || '', price2: p.price2 || '', price3: p.price3 || '', tag: p.tag || '', img: p.image || null };
         });
         renderAll();
       }
