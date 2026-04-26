@@ -5,12 +5,14 @@
       <RouterView />
     </main>
     <Footer />
+    <CookieBanner />
   </div>
 </template>
 
 <script setup>
 import Navbar from './components/layout/Navbar.vue'
 import Footer from './components/layout/Footer.vue'
+import CookieBanner from './components/common/CookieBanner.vue'
 import { useAdmin } from './composables/useAdmin'
 
 // Inizializza admin mode (Ctrl+Shift+A o triple-tap logo)

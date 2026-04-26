@@ -168,11 +168,11 @@ const productStats = computed(() => store.productStats)
 
 // Placeholder per immagini future
 const aboutImages = [
-  '/images/foto-banco-vecchio.jpeg',
-  '/images/foto banco vecchia 1.jpeg',
-  '/images/foto banco vecchia 2.jpeg',
-  '/images/Ravanelli Family.jpeg', 
-  '/images/Foto banchi.jpg',
+  '/images/foto-banco-vecchio.webp',
+  '/images/foto banco vecchia 1.webp',
+  '/images/foto banco vecchia 2.webp',
+  '/images/Ravanelli Family.webp', 
+  '/images/Foto banchi.webp',
 ]
 </script>
 

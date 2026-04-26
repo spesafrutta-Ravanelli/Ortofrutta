@@ -982,7 +982,10 @@ imageInput.addEventListener("change", function () {
             canvas.height = height;
             ctx.drawImage(img, 0, 0, width, height);
             
-            uploadedImage = canvas.toDataURL('image/jpeg', 0.7);
+            var webpTry = canvas.toDataURL('image/webp', 0.82);
+            uploadedImage = webpTry.indexOf('data:image/webp') === 0
+              ? webpTry
+              : canvas.toDataURL('image/jpeg', 0.78);
             
             // Mostra anteprima
             const previewImg = document.getElementById('previewImg');

@@ -73,7 +73,7 @@
               <div class="product-image-wrapper" :class="{ 'edit-mode-active': isAdminMode && isEditMode }">
                 <img 
                   v-if="!isAdminMode || !isEditMode"
-                  :src="prodotto.image || '/images/placeholder-product.jpg'" 
+                  :src="prodotto.image || '/images/placeholder-product.webp'" 
                   :alt="prodotto.name"
                   @error="handleImageError"
                 />
@@ -245,7 +245,7 @@ const addNewProduct = () => {
     price: '0.00',
     unit: 'kg',
     available: true,
-    image: '/images/placeholder-product.jpg',
+    image: '/images/placeholder-product.webp',
     description: ''
   }
   

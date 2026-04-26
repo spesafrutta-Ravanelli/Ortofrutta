@@ -153,7 +153,7 @@ const startCleanupAndMigration = async () => {
               price: parseFloat(prod.price) || 0,
               unit: prod.unit || 'kg',
               available: prod.available !== false,
-              image: prod.image || '/images/placeholder-product.jpg',
+              image: prod.image || '/images/placeholder-product.webp',
               description: prod.description || '',
               type: 'product'
             })
@@ -175,7 +175,7 @@ const startCleanupAndMigration = async () => {
             price: parseFloat(prod.price) || 0,
             unit: prod.unit || 'kg',
             available: prod.available !== false,
-            image: prod.image || '/images/placeholder-product.jpg',
+            image: prod.image || '/images/placeholder-product.webp',
             description: prod.description || '',
             type: 'product'
           })
@@ -247,7 +247,7 @@ const startCleanupAndMigration = async () => {
   max-width: 900px;
   margin: 2rem auto;
   padding: 2rem;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
 }
 
 h1 {
@@ -371,13 +371,13 @@ h1 {
   border-radius: 12px;
   max-height: 500px;
   overflow-y: auto;
-  font-family: 'Courier New', monospace;
+  font-family: inherit;
 }
 
 .log h3 {
   margin-top: 0;
   color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
 }
 
 .log-entry {

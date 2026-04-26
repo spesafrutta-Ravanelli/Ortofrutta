@@ -1,7 +1,7 @@
 /**
  * Composable useVolantino: connessione Firebase per offerte/volantino.
  * Ascolta in tempo reale il documento settings/volantino (prodotti, date).
- * Usato da OffertePubblica, OfferteAdmin e BrochureSlider.
+ * Usato da OffertePubblica (date in header) e BrochureSlider (se riusato altrove).
  */
 import { ref, onMounted, onUnmounted } from 'vue'
 import { db } from '@/firebase.config'

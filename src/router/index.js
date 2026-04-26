@@ -17,6 +17,7 @@ const PrenotaQui = () => import('../views/PrenotaQui.vue')
 const Contacts = () => import('../views/Contacts.vue')
 const AdminPanel = () => import('../views/AdminPanel.vue')
 const Offerte = () => import('../views/Offerte.vue')
+const CookiePolicy = () => import('../views/CookiePolicy.vue')
 
 const routes = [
   {
@@ -105,6 +106,14 @@ const routes = [
     component: AdminPanel,
     meta: {
       title: 'Pannello Admin - Ortofrutta'
+    }
+  },
+  {
+    path: '/cookie-policy',
+    name: 'CookiePolicy',
+    component: CookiePolicy,
+    meta: {
+      title: 'Cookie Policy - Ortofrutticola Ravanelli & Carminati'
     }
   },
   {

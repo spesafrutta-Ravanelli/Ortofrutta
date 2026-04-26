@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { db } from '@/firebase.config'
+import { deepMigrateImageUrls } from '@/utils/migrateImageUrlsToWebp'
 import { 
   collection, 
   doc, 
@@ -46,10 +47,9 @@ export function useAdmin() {
   const loadProducts = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, 'products'))
-      products.value = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }))
+      products.value = querySnapshot.docs.map((doc) =>
+        deepMigrateImageUrls({ id: doc.id, ...doc.data() }),
+      )
       console.log(`✅ Caricati ${products.value.length} prodotti da Firebase`)
     } catch (error) {
       console.error('❌ Errore caricamento prodotti:', error)

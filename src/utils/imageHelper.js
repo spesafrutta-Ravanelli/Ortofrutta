@@ -43,19 +43,19 @@ export const handleImageError = (event, fallbackText = 'Immagine non disponibile
  */
 export const imagePaths = {
   categories: {
-    frutta: '/images/categories/frutta-1.jpg',
-    verdura: '/images/categories/verdura-1.jpg',
-    bio: '/images/categories/bio-1.jpg',
-    secca: '/images/categories/secca-1.jpg',
-    agrumi: '/images/categories/agrumi-1.jpg',
-    esotici: '/images/categories/esotici-1.jpg'
+    frutta: '/images/categories/frutta-1.webp',
+    verdura: '/images/categories/verdura-1.webp',
+    bio: '/images/categories/bio-1.webp',
+    secca: '/images/categories/secca-1.webp',
+    agrumi: '/images/categories/agrumi-1.webp',
+    esotici: '/images/categories/esotici-1.webp'
   },
   about: {
-    negozio: '/images/about/negozio-1.jpg',
-    team: '/images/about/team-1.jpg',
-    prodotti: '/images/about/prodotti-1.jpg'
+    negozio: '/images/about/negozio-1.webp',
+    team: '/images/about/team-1.webp',
+    prodotti: '/images/about/prodotti-1.webp'
   },
-  hero: '/images/hero-bg.jpg'
+  hero: '/images/hero-bg.webp'
 }
 
 /**
