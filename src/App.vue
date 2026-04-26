@@ -32,16 +32,16 @@ const admin = useAdmin()
 
 /* Tablet verticale */
 @media (max-width: 768px) and (min-width: 481px) {
-  .main-content { padding-top: 85px; }
+  .main-content { padding-top: 95px; }
 }
 
 /* Smartphone */
 @media (max-width: 480px) {
-  .main-content { padding-top: 75px; }
+  .main-content { padding-top: 85px; }
 }
 
 /* Landscape */
 @media (max-width: 900px) and (orientation: landscape) {
-  .main-content { padding-top: 75px; }
+  .main-content { padding-top: 85px; }
 }
 </style>
