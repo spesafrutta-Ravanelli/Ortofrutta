@@ -3,9 +3,12 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h4>🍎 Ortofrutticola Golosello S.N.C. di Ravanelli Alex & Carminati Giovanni</h4>
+          <div class="footer-logo">
+            <img src="/images/hero-frutta.webp" alt="Ortofrutticola Ravanelli & Carminati" class="footer-logo-img" />
+          </div>
+          <h4>Ortofrutticola Golosello S.N.C. di Ravanelli Alex & Carminati Giovanni</h4>
           <p>Partita IVA: 04324410168</p>
-          
+          <p>Via Giovanni Carnovali, 24041 Brembate BG, Italia</p>
         </div>
 
         <div class="footer-section">
@@ -32,7 +35,6 @@
               </a>
             </li>
             <li>✉️ <a href="mailto:spesafrutta@gmail.com">spesafrutta@gmail.com</a></li>
-            
           </ul>
         </div>
 
@@ -53,7 +55,6 @@
         </div>
       </div>
 
-      <!-- Footer Bottom con Credits -->
       <div class="footer-bottom">
         <p class="credits">
           🌐 Sito realizzato da 
@@ -93,10 +94,15 @@
 .footer-section {
   min-width: 0;
 
-  h3 {
-    font-size: 1.5rem;
+  .footer-logo {
     margin-bottom: 0.75rem;
-    color: #4caf50;
+    .footer-logo-img {
+      height: 60px;
+      margin-left: 25px;
+      width: auto;
+      object-fit: contain;
+
+    }
   }
 
   h4 {
@@ -116,140 +122,50 @@
     list-style: none;
     padding: 0;
     margin: 0;
-
     li {
       margin-bottom: 0.5rem;
       color: #ccc;
-
-      a {
-        color: #ccc;
-        text-decoration: none;
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: #4caf50;
-        }
-      }
+      a { color: #ccc; text-decoration: none; transition: color 0.3s ease; &:hover { color: #4caf50; } }
     }
   }
 
-  .contact-info li,
-  .opening-hours li,
-  .payment-methods li {
+  .contact-info li, .opening-hours li, .payment-methods li {
     line-height: 1.6;
     margin-bottom: 0.35rem;
-  }
-
-  .contact-info a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #4caf50;
-    }
   }
 
   .whatsapp-link a {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-
-    &:hover {
-      color: #25D366;
-
-      .whatsapp-icon {
-        color: #25D366;
-      }
-    }
+    &:hover { color: #25D366; .whatsapp-icon { color: #25D366; } }
   }
 
-  .whatsapp-icon {
-    width: 20px;
-    height: 20px;
-    color: #25D366;
-    transition: color 0.3s ease;
-  }
+  .whatsapp-icon { width: 20px; height: 20px; color: #25D366; transition: color 0.3s ease; }
 
   .payment-methods {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      color: #ccc;
-      font-size: 0.9rem;
-    }
+    list-style: none; padding: 0; margin: 0;
+    li { display: flex; align-items: center; gap: 0.35rem; color: #ccc; font-size: 0.9rem; }
   }
 
-  .payment-emoji {
-    font-size: 1.1rem;
-    line-height: 1;
-  }
-}
-
-.social-links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-
-  a {
-    font-size: 1.5rem;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-
-    &:hover {
-      transform: scale(1.2);
-    }
-  }
+  .payment-emoji { font-size: 1.1rem; line-height: 1; }
 }
 
 .footer-bottom {
   border-top: 1px solid #333;
   padding-top: 1.5rem;
   text-align: center;
-
-  p {
-    color: #999;
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-  }
-
-  .credits {
-    font-size: 0.85rem;
-  }
-
-  .credits-link {
-    color: #4caf50;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #81c784;
-      text-decoration: underline;
-    }
-  }
+  p { color: #999; margin: 0.5rem 0; font-size: 0.9rem; }
+  .credits { font-size: 0.85rem; }
+  .credits-link { color: #4caf50; text-decoration: none; font-weight: 600; transition: color 0.3s ease; &:hover { color: #81c784; text-decoration: underline; } }
 }
 
 @media (max-width: 992px) {
-  .footer-content {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
+  .footer-content { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
 }
 
 @media (max-width: 576px) {
-  .footer .container {
-    padding: 0 1rem;
-  }
-
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+  .footer .container { padding: 0 1rem; }
+  .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
 }
 </style>
