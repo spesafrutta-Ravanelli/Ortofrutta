@@ -167,7 +167,7 @@ window.RC_Cookies = {
   color: #f5f5f5;
   z-index: 99999;
   box-shadow: 0 -4px 24px rgba(0,0,0,.35);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: inherit;
 }
 
 .rc-banner-inner {

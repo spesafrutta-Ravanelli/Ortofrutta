@@ -11,7 +11,7 @@ const firebaseConfig={apiKey:"AIzaSyBqwe7FJxPT2d7ugVbgB1TmUcaIFGj8eQA",authDomai
 try{firebase.initializeApp(firebaseConfig);var db=firebase.firestore();}catch(e){}
 const isPublicMode=typeof URLSearchParams!=='undefined'&&new URLSearchParams(window.location.search).get('public')==='1';
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
 <style>
@@ -38,14 +38,14 @@ const isPublicMode=typeof URLSearchParams!=='undefined'&&new URLSearchParams(win
 }
 
 body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: #e8e8e8;
     padding: 20px;
 }
 
 h1 {
     text-align: center;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto', sans-serif;
     color: var(--green-main);
     margin-bottom: 10px;
     font-size: 24px;
@@ -77,7 +77,7 @@ input[type=text], input[type=number] {
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size:15px;
-    font-family:'Nunito',sans-serif;
+    font-family:'Roboto',sans-serif;
     transition: border-color .2s;
 }
 input[type=text]:focus, input[type=number]:focus { outline:none; border-color:var(--green-light); }
@@ -99,7 +99,7 @@ input[type=file] {
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Roboto', sans-serif;
     transition: transform .15s, box-shadow .15s;
     box-shadow: 0 3px 10px rgba(46,125,50,.3);
 }
@@ -110,7 +110,7 @@ input[type=file] {
     margin: 0 auto 30px;
     padding: 14px 44px;
     font-size: 17px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 800;
     border-radius: 12px;
     background: linear-gradient(135deg, #ff6f00, #ffd600);
@@ -148,7 +148,7 @@ input[type=file] {
 .editor-actions { display:flex; gap:12px; align-items:center; margin-top:12px; flex-wrap:wrap; }
 .btn-cancel {
     background:#757575; color:white; border:none; padding:10px 20px; border-radius:8px;
-    font-size:14px; font-weight:700; cursor:pointer; font-family:'Nunito',sans-serif;
+    font-size:14px; font-weight:700; cursor:pointer; font-family:'Roboto',sans-serif;
 }
 .btn-cancel:hover { background:#616161; }
 .preview-item.editing { box-shadow:0 0 0 2px var(--green-light); }
@@ -226,7 +226,7 @@ input[type=file] {
 }
 
 .cover-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 26pt;
     font-weight: 900;
     color: white;
@@ -333,7 +333,7 @@ input[type=file] {
 }
 
 .products-header h2 {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 16pt;
     font-weight: bold;
     background: linear-gradient(180deg, #c62828 0%, #e53935 30%, #ff5722 70%, #ff9800 100%);
@@ -352,14 +352,14 @@ input[type=file] {
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-top: 3px;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .page-products .brand-small {
     font-size: 6.5pt;
     color: #888;
     font-weight: 600;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-bottom: 2px;
@@ -506,14 +506,14 @@ input[type=file] {
     align-items: center;
     justify-content: space-between;
     flex-shrink: 0;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .footer-strip .footer-brand {
     color: white;
     font-size: 7pt;
     font-weight: 700;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .footer-strip .footer-phone {
@@ -523,7 +523,7 @@ input[type=file] {
     color: var(--accent-yellow);
     font-size: 7.5pt;
     font-weight: 800;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* ════════════════════════════════
@@ -542,7 +542,7 @@ input[type=file] {
 }
 
 .back-header h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto', sans-serif;
     color: white;
     font-size: 14pt;
 }
@@ -617,7 +617,7 @@ input[type=file] {
     color: var(--accent-yellow);
     font-size: 12pt;
     font-weight: 900;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* ════════════════════════════════
@@ -670,7 +670,7 @@ body.public-mode .public-print-btn {
   color: #1a1a1a;
   font-size: 15px;
   font-weight: 800;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Roboto', sans-serif;
   border: none;
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(255,111,0,.5);

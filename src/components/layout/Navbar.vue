@@ -1,8 +1,6 @@
 <template>
   <nav class="navbar">
     <div class="container">
-      <!-- ✅ RouterLink rimosso: gestiamo noi la navigazione manualmente
-           per evitare che il 1° tap navighi subito a "/" -->
       <div 
         class="logo"
         @click="handleLogoClick"
@@ -42,6 +40,9 @@
           <RouterLink to="/offerte" @click="closeMobileMenu" class="btn-offerte">🎉 Offerte</RouterLink>
         </li>
         <li>
+          <RouterLink to="/eventi" @click="closeMobileMenu" class="btn-eventi">📅 Eventi</RouterLink>
+        </li>
+        <li>
           <RouterLink to="/chi-siamo" @click="closeMobileMenu">Chi Siamo</RouterLink>
         </li>
         <li>
@@ -56,8 +57,8 @@
       </ul>
     </div>
 
-    <!-- Indicatore visivo admin mode (opzionale ma utile) -->
-    <div v-if="admin.isAdminMode.value" class="admin-badge">
+    <!-- Badge admin: nascosto se siamo dentro un iframe (es. preview brochure) -->
+    <div v-if="admin.isAdminMode.value && !isInIframe" class="admin-badge">
       🔐 Admin Mode
     </div>
   </nav>
@@ -73,28 +74,21 @@ const router = useRouter()
 const mobileMenuOpen = ref(false)
 const admin = useAdmin()
 
-// =========================================================
-// TRIPLE-TAP LOGO — LOGICA CORRETTA
-// =========================================================
-// Problema precedente: RouterLink navigava a "/" già al 1° tap,
-// quindi al 3° tap l'utente era già tornato alla homepage.
-//
-// Soluzione: il logo è ora un <div> normale. Gestiamo noi
-// la navigazione:
-//  - 1 tap solo → dopo 500ms navighiamo a "/"
-//  - 3 tap rapidi → attiviamo admin mode (senza navigare)
-// =========================================================
+// ✅ FIX: se siamo dentro un iframe (es. preview brochure offerte)
+// non mostriamo il badge Admin Mode per evitare il doppio badge su mobile
+const isInIframe = window.self !== window.top
 
+// =========================================================
+// TRIPLE-TAP LOGO
+// =========================================================
 const clickCount = ref(0)
 let clickTimer = null
 
 const handleLogoClick = () => {
   clickCount.value++
 
-  // Al primo tap avviamo il timer di "attesa"
   if (clickCount.value === 1) {
     clickTimer = setTimeout(() => {
-      // Scaduto il tempo senza 3 tap → è un tap singolo → naviga a home
       if (clickCount.value < 3) {
         router.push('/')
       }
@@ -102,7 +96,6 @@ const handleLogoClick = () => {
     }, 500)
   }
 
-  // Al 3° tap attiviamo l'admin mode senza navigare
   if (clickCount.value === 3) {
     clearTimeout(clickTimer)
     clickCount.value = 0
@@ -111,16 +104,9 @@ const handleLogoClick = () => {
   }
 }
 
-// =========================================================
-
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
-  
-  if (mobileMenuOpen.value) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = ''
-  }
+  document.body.style.overflow = mobileMenuOpen.value ? 'hidden' : ''
 }
 
 const closeMobileMenu = () => {
@@ -128,26 +114,15 @@ const closeMobileMenu = () => {
   document.body.style.overflow = ''
 }
 
-// Chiudi il menu mobile quando cambia la route
-watch(() => route.path, () => {
-  closeMobileMenu()
-})
+watch(() => route.path, () => { closeMobileMenu() })
 
-// ESC per chiudere il menu
 const handleKeyDown = (e) => {
-  if (e.key === 'Escape' && mobileMenuOpen.value) {
-    closeMobileMenu()
-  }
+  if (e.key === 'Escape' && mobileMenuOpen.value) closeMobileMenu()
 }
 
-// Chiudi il menu se si clicca fuori
 const handleClickOutside = (e) => {
   const navbar = document.querySelector('.navbar')
-  const isClickInside = navbar?.contains(e.target)
-  
-  if (!isClickInside && mobileMenuOpen.value) {
-    closeMobileMenu()
-  }
+  if (!navbar?.contains(e.target) && mobileMenuOpen.value) closeMobileMenu()
 }
 
 onMounted(() => {
@@ -159,7 +134,6 @@ onUnmounted(() => {
   document.removeEventListener('keydown', handleKeyDown)
   document.removeEventListener('click', handleClickOutside)
   document.body.style.overflow = ''
-  // Pulisci il timer se il componente viene smontato
   if (clickTimer) clearTimeout(clickTimer)
 })
 </script>
@@ -186,7 +160,6 @@ onUnmounted(() => {
   min-height: 80px;
 }
 
-/* Logo ora è un div, manteniamo lo stesso stile + cursor pointer */
 .logo {
   display: flex;
   align-items: center;
@@ -200,13 +173,11 @@ onUnmounted(() => {
 
   .logo-img {
     height: 150px;
-    width: 300px;
     width: auto;
     object-fit: contain;
   }
 }
 
-/* Badge admin mode */
 .admin-badge {
   position: absolute;
   top: 100%;
@@ -241,15 +212,9 @@ onUnmounted(() => {
   }
 
   &.active {
-    span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    span:nth-child(2) {
-      opacity: 0;
-    }
-    span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -6px);
-    }
+    span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
   }
 }
 
@@ -290,18 +255,12 @@ onUnmounted(() => {
 
     &:hover {
       color: #4caf50;
-
-      &::after {
-        width: 100%;
-      }
+      &::after { width: 100%; }
     }
 
     &.router-link-active {
       color: #4caf50;
-
-      &::after {
-        width: 100%;
-      }
+      &::after { width: 100%; }
     }
 
     &.btn-offerte {
@@ -311,17 +270,8 @@ onUnmounted(() => {
       border-radius: 25px;
       font-weight: 600;
       box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
-      
-      &::after {
-        display: none;
-      }
-
-      &:hover {
-        background: linear-gradient(135deg, #ffb300 0%, #f57c00 100%);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
-      }
+      &::after { display: none; }
+      &:hover { background: linear-gradient(135deg, #ffb300 0%, #f57c00 100%); color: white; transform: translateY(-2px); }
     }
 
     &.btn-prenota {
@@ -329,15 +279,8 @@ onUnmounted(() => {
       color: white;
       padding: 0.5rem 1.5rem;
       border-radius: 25px;
-      
-      &::after {
-        display: none;
-      }
-
-      &:hover {
-        background: #f57c00;
-        color: white;
-      }
+      &::after { display: none; }
+      &:hover { background: #f57c00; color: white; }
     }
 
     &.btn-contact {
@@ -345,43 +288,29 @@ onUnmounted(() => {
       color: white;
       padding: 0.5rem 1.5rem;
       border-radius: 25px;
-      
-      &::after {
-        display: none;
-      }
+      &::after { display: none; }
+      &:hover { background: #45a049; color: white; }
+    }
 
-      &:hover {
-        background: #45a049;
-        color: white;
-      }
+    &.btn-eventi {
+      background: #4caf50;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      &::after { display: none; }
+      &:hover { background: #45a049; color: white; }
     }
   }
 }
 
-/* Responsive - Tablet */
 @media (max-width: 1024px) and (min-width: 769px) {
   .logo .logo-img { height: 65px; }
-
-  .nav-links {
-    gap: 1rem;
-
-    li a {
-      font-size: 0.9rem;
-      padding: 0.4rem 1rem;
-    }
-  }
+  .nav-links { gap: 1rem; li a { font-size: 0.9rem; padding: 0.4rem 1rem; } }
 }
 
-/* Responsive - Mobile */
 @media (max-width: 768px) {
-  .navbar {
-    padding: 0.75rem 0;
-  }
-
-  .container {
-    padding: 0 1rem;
-  }
-
+  .navbar { padding: 0.75rem 0; }
+  .container { padding: 0 1rem; }
   .logo .logo-img { height: 55px; }
 
   .mobile-toggle {
@@ -405,13 +334,9 @@ onUnmounted(() => {
     transition: right 0.3s ease;
     overflow-y: auto;
 
-    &.active {
-      right: 0;
-    }
+    &.active { right: 0; }
 
-    li {
-      width: 100%;
-    }
+    li { width: 100%; }
 
     li a {
       font-size: 1.1rem;
@@ -421,13 +346,9 @@ onUnmounted(() => {
       border-radius: 8px;
       transition: background 0.3s ease;
 
-      &:hover,
-      &:active {
-        background: #f5f5f5;
-      }
+      &:hover, &:active { background: #f5f5f5; }
 
-      &.btn-prenota,
-      &.btn-contact {
+      &.btn-prenota, &.btn-contact {
         text-align: center;
         margin-top: 0.5rem;
       }
@@ -435,13 +356,8 @@ onUnmounted(() => {
   }
 }
 
-/* Responsive - Mobile molto piccolo */
 @media (max-width: 480px) {
   .logo .logo-img { height: 48px; }
-
-  .nav-links {
-    width: 85%;
-    padding: 4rem 1.5rem 2rem;
-  }
+  .nav-links { width: 85%; padding: 4rem 1.5rem 2rem; }
 }
 </style>

@@ -418,7 +418,7 @@ $container-max: 1200px;
 }
 
 .cover-title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: inherit;
   font-size: 1.4rem;
   font-weight: 900;
   color: white;
@@ -622,7 +622,7 @@ $container-max: 1200px;
 }
 
 .back-header h2 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: inherit;
   color: white;
   font-size: 0.85rem;
 }

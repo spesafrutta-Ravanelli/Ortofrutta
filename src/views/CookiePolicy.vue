@@ -181,7 +181,7 @@ onMounted(() => {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: .5rem;
-    font-family: 'Georgia', serif;
+    font-family: inherit;
   }
 
   .last-update {
@@ -215,7 +215,7 @@ onMounted(() => {
     color: #2c5f2d;
     font-weight: 700;
     margin-bottom: 1rem;
-    font-family: 'Georgia', serif;
+    font-family: inherit;
   }
 
   p {

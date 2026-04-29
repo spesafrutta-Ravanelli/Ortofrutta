@@ -412,7 +412,7 @@ onMounted(() => {
       background: rgba(255,255,255,0.2);
       padding: 0.25rem 0.5rem;
       border-radius: 4px;
-      font-family: 'Courier New', monospace;
+      font-family: inherit;
       font-size: 0.85rem;
       font-weight: 600;
       border: 1px solid rgba(255,255,255,0.3);

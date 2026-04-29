@@ -17,13 +17,17 @@ import {
   serverTimestamp
 } from 'firebase/firestore'
 
-const CLOUD_NAME    = 'dxejinitp'
-const UPLOAD_PRESET = 'hero-video-preset'
-const UPLOAD_URL    = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}`
+const CLOUD_NAME          = 'dxejinitp'
+const UPLOAD_PRESET_VIDEO = 'hero-video-preset'
+// ✅ FIX: preset separato per immagini
+// → Su Cloudinary: Settings > Upload Presets > "Aggiungi preset"
+//   Nome: hero-image-preset | Resource type: Image | Signing mode: Unsigned
+const UPLOAD_PRESET_IMAGE = 'hero-image-preset'
+const UPLOAD_URL          = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}`
 
 export function useHeroVideoAdmin() {
   const videos       = ref([])
-  const promoImage   = ref(null)   // immagine promo attuale (se esiste)
+  const promoImage   = ref(null)
   const uploading    = ref(false)
   const uploadingImg = ref(false)
   const progress     = ref({ step: '', percent: 0 })
@@ -33,12 +37,16 @@ export function useHeroVideoAdmin() {
 
   // ── Upload generico su Cloudinary ─────────────────────────────────────────
   const _upload = async (file, folder, type, onProgress) => {
+    const isVideo = file.type.startsWith('video/')
+    // ✅ FIX: usa il preset corretto in base al tipo di file
+    const preset  = isVideo ? UPLOAD_PRESET_VIDEO : UPLOAD_PRESET_IMAGE
+
     const formData = new FormData()
     formData.append('file',          file)
-    formData.append('upload_preset', UPLOAD_PRESET)
+    formData.append('upload_preset', preset)
     formData.append('public_id',     `${folder}/${type}-${Date.now()}`)
 
-    const url = `${UPLOAD_URL}/${file.type.startsWith('video/') ? 'video' : 'image'}/upload`
+    const url = `${UPLOAD_URL}/${isVideo ? 'video' : 'image'}/upload`
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
@@ -72,14 +80,12 @@ export function useHeroVideoAdmin() {
         progress.value = { step: '☁️ Caricamento video su Cloudinary...', percent: pct }
       })
 
-      // Elimina vecchi record video
       progress.value = { step: '🗑️ Pulizia vecchi record...', percent: 92 }
       const existing = await getDocs(collection(db, 'heroVideos'))
       const batch    = writeBatch(db)
       existing.docs.forEach(d => batch.delete(doc(db, 'heroVideos', d.id)))
       await batch.commit()
 
-      // Salva nuovo record
       progress.value = { step: '💾 Salvataggio metadati...', percent: 96 }
       await addDoc(collection(db, 'heroVideos'), {
         title:      title || file.name,
@@ -88,7 +94,7 @@ export function useHeroVideoAdmin() {
         format:     result.format,
         width:      result.width,
         height:     result.height,
-        isVertical: result.height > result.width,  // true se video verticale
+        isVertical: result.height > result.width,
         duration:   result.duration ?? null,
         active:     false,
         uploadedAt: serverTimestamp(),
@@ -116,20 +122,18 @@ export function useHeroVideoAdmin() {
         progressImg.value = { step: '☁️ Caricamento immagine su Cloudinary...', percent: pct }
       })
 
-      // Elimina vecchie immagini promo
       progressImg.value = { step: '🗑️ Pulizia vecchi record...', percent: 92 }
       const existing = await getDocs(collection(db, 'heroImages'))
       const batch    = writeBatch(db)
       existing.docs.forEach(d => batch.delete(doc(db, 'heroImages', d.id)))
       await batch.commit()
 
-      // Salva nuovo record
       progressImg.value = { step: '💾 Salvataggio metadati...', percent: 96 }
       await addDoc(collection(db, 'heroImages'), {
         title:      title || file.name,
         url:        result.secure_url,
         publicId:   result.public_id,
-        active:     true,   // l'immagine promo è sempre attiva di default
+        active:     true,
         uploadedAt: serverTimestamp(),
       })
 
@@ -155,7 +159,7 @@ export function useHeroVideoAdmin() {
     await loadVideos()
   }
 
-  // ── Disattiva video (torna a immagine promo o default) ────────────────────
+  // ── Disattiva video ────────────────────────────────────────────────────────
   const deactivateAll = async () => {
     const snapshot = await getDocs(collection(db, 'heroVideos'))
     const batch    = writeBatch(db)

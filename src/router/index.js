@@ -18,6 +18,7 @@ const Contacts = () => import('../views/Contacts.vue')
 const AdminPanel = () => import('../views/AdminPanel.vue')
 const Offerte = () => import('../views/Offerte.vue')
 const CookiePolicy = () => import('../views/CookiePolicy.vue')
+const Eventi = () => import('../views/EventiView.vue')
 
 const routes = [
   {
@@ -93,6 +94,14 @@ const routes = [
     }
   },
   {
+    path: '/eventi',
+    name: 'Eventi',
+    component: Eventi,
+    meta: {
+      title: 'Eventi - Ortofrutticola Ravanelli & Carminati'
+    }
+  },
+  {
     path: '/contatti',
     name: 'Contacts',
     component: Contacts,
@@ -127,29 +136,16 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    // Se c'è una posizione salvata (es. torna indietro)
     if (savedPosition) {
       return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(savedPosition)
-        }, 100)
+        setTimeout(() => { resolve(savedPosition) }, 100)
       })
     }
-    
-    // Se c'è un hash (anchor link)
     if (to.hash) {
-      return {
-        el: to.hash,
-        behavior: 'smooth',
-        top: 80 // Offset per la navbar fissa
-      }
+      return { el: to.hash, behavior: 'smooth', top: 80 }
     }
-    
-    // Altrimenti scroll to top
     return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({ top: 0, behavior: 'smooth' })
-      }, 100)
+      setTimeout(() => { resolve({ top: 0, behavior: 'smooth' }) }, 100)
     })
   }
 })
