@@ -25,7 +25,7 @@ import { useAdmin } from '@/composables/useAdmin'
 import brochureHtmlUrl from '@/assets/brochure_ravanelli.html?url'
 
 const { toggleAdminMode } = useAdmin()
-const brochureVersion = 8 // Incrementare per bypassare cache iframe
+const brochureVersion = 9 // Incrementare per bypassare cache iframe
 
 const brochureIframeSrc = computed(() => {
   const base = brochureHtmlUrl

@@ -158,7 +158,7 @@ const formatData = (dateStr) => {
   return `${day}/${month}/${year}`
 }
 
-const brochureVersion = 8
+const brochureVersion = 9
 
 const brochureIframeSrc = computed(() => {
   const base = brochureHtmlUrl
@@ -263,17 +263,22 @@ onMounted(() => { window.scrollTo(0, 0) })
 .slider-img-wrap {
   flex: 1;
   min-height: 0;
-  background: #f5f5f5;
+  width: 100%;
+  background: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
 }
 
 .slider-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
