@@ -148,8 +148,6 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useVolantino } from '@/composables/useVolantino'
-import brochureHtmlUrl from '@/assets/brochure_ravanelli.html?url'
-
 const { offerte, dataInizio, dataFine } = useVolantino()
 
 const formatData = (dateStr) => {
@@ -158,7 +156,8 @@ const formatData = (dateStr) => {
   return `${day}/${month}/${year}`
 }
 
-const brochureVersion = 9
+const brochureHtmlUrl = '/brochure_ravanelli.html'
+const brochureVersion = 10
 
 const brochureIframeSrc = computed(() => {
   const base = brochureHtmlUrl

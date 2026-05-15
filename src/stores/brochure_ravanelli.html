@@ -964,8 +964,13 @@ body.public-mode .slider-dot.active {
       <input type="text" id="pPrice2" placeholder="es. 1,50 (opz.)" />
     </div>
     <div class="form-group">
+      <label>Terzo prezzo (€)</label>
+      <input type="text" id="pPrice3" placeholder="es. 3,90 (opz.)" />
+    </div>
+    <div class="form-group">
       <label>Immagine Prodotto</label>
       <input type="file" id="pImg" accept="image/*" />
+      <small style="display:block;margin-top:6px;color:#666;font-size:12px;">Le foto vengono ridimensionate (max 1200px) e convertite in WebP per occupare meno spazio (JPEG di fallback se necessario).</small>
     </div>
     <div class="form-group">
       <label>Etichetta offerta (opz.)</label>
@@ -1129,6 +1134,42 @@ let pendingImg = null;
 let editingIndex = -1;
 let scrollToFirstPage = function() {};
 
+/** Ridimensiona (max lato) e converte in WebP per alleggerire Firebase; fallback JPEG se il browser non supporta WebP da canvas. */
+function dataUrlResizeToWebpOrJpeg(dataUrl, maxSide, webpQuality, callback) {
+  var img = new Image();
+  img.onload = function() {
+    try {
+      var w = img.naturalWidth || img.width;
+      var h = img.naturalHeight || img.height;
+      if (maxSide > 0 && (w > maxSide || h > maxSide)) {
+        if (w >= h) {
+          h = Math.round((h * maxSide) / w);
+          w = maxSide;
+        } else {
+          w = Math.round((w * maxSide) / h);
+          h = maxSide;
+        }
+      }
+      var canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      var out = canvas.toDataURL('image/webp', webpQuality);
+      if (out.indexOf('data:image/webp') !== 0) {
+        out = canvas.toDataURL('image/jpeg', 0.85);
+      }
+      callback(out);
+    } catch (e) {
+      callback(dataUrl);
+    }
+  };
+  img.onerror = function() {
+    callback(dataUrl);
+  };
+  img.src = dataUrl;
+}
+
 if (typeof isPublicMode !== 'undefined' && isPublicMode) {
   document.documentElement.classList.add('public-mode');
   document.body.classList.add('public-mode');
@@ -1188,7 +1229,7 @@ if (typeof isPublicMode !== 'undefined' && isPublicMode && typeof db !== 'undefi
     db.collection('settings').doc('volantino').get().then(function(docSnap) {
       if (docSnap.exists && docSnap.data().products && docSnap.data().products.length > 0) {
         products = docSnap.data().products.map(function(p) {
-          return { name: p.title || '', price: p.price || '', price2: p.price2 || '', tag: p.tag || '', img: p.image || null };
+          return { name: p.title || '', price: p.price || '', price2: p.price2 || '', price3: p.price3 || '', tag: p.tag || '', img: p.image || null };
         });
         renderAll();
       }
@@ -1198,7 +1239,7 @@ if (typeof isPublicMode !== 'undefined' && isPublicMode && typeof db !== 'undefi
   db.collection('settings').doc('volantino').onSnapshot(function(docSnap) {
     if (docSnap.exists && docSnap.data().products && docSnap.data().products.length > 0) {
       products = docSnap.data().products.map(function(p) {
-        return { name: p.title || '', price: p.price || '', price2: p.price2 || '', tag: p.tag || '', img: p.image || null };
+        return { name: p.title || '', price: p.price || '', price2: p.price2 || '', price3: p.price3 || '', tag: p.tag || '', img: p.image || null };
       });
       renderAll();
     }
@@ -1206,37 +1247,46 @@ if (typeof isPublicMode !== 'undefined' && isPublicMode && typeof db !== 'undefi
 }
 
 document.getElementById('pImg').addEventListener('change', function() {
-  const f = this.files[0];
+  var f = this.files[0];
   if (!f) return;
-  const r = new FileReader();
-  r.onload = e => pendingImg = e.target.result;
+  var r = new FileReader();
+  r.onload = function(e) {
+    dataUrlResizeToWebpOrJpeg(e.target.result, 400, 0.65, function(done) {
+      pendingImg = done;
+    });
+  };
   r.readAsDataURL(f);
 });
 
-function formatPriceBadge(price, price2) {
-  if (!price && !price2) return '';
-  var a = price ? '<span class="prod-price-badge">€ ' + price + '</span>' : '';
+function formatPriceBadge(price, price2, price3) {
+  if (!price && !price2 && !price3) return '';
+  var a = price  ? '<span class="prod-price-badge">€ ' + price  + '</span>' : '';
   var b = price2 ? '<span class="prod-price-badge">€ ' + price2 + '</span>' : '';
-  return a && b ? a + ' <span class="prod-price-sep"></span> ' + b : (a || b);
+  var c = price3 ? '<span class="prod-price-badge">€ ' + price3 + '</span>' : '';
+  var sep = ' <span class="prod-price-sep"></span> ';
+  var parts = [a, b, c].filter(Boolean);
+  return parts.join(sep);
 }
 function tagIsPrice(tag) { return tag && /€/.test(String(tag)); }
 function addOrSaveProduct() {
   const name = document.getElementById('pName').value.trim();
   const price = document.getElementById('pPrice').value.trim();
   const price2 = document.getElementById('pPrice2').value.trim();
+  const price3 = document.getElementById('pPrice3').value.trim();
   const tag = document.getElementById('pTag').value.trim();
   if (!name || !price) return alert('Inserisci almeno nome e prezzo!');
   var img = pendingImg !== null ? pendingImg : (editingIndex >= 0 && products[editingIndex] ? products[editingIndex].img : null);
   if (editingIndex >= 0) {
-    products[editingIndex] = { name, price, price2, tag, img };
+    products[editingIndex] = { name, price, price2, price3, tag, img };
     cancelEdit();
   } else {
-    products.push({ name, price, price2, tag, img });
+    products.push({ name, price, price2, price3, tag, img });
   }
   pendingImg = null;
   document.getElementById('pName').value = '';
   document.getElementById('pPrice').value = '';
   document.getElementById('pPrice2').value = '';
+  document.getElementById('pPrice3').value = '';
   document.getElementById('pTag').value = '';
   document.getElementById('pImg').value = '';
   if (typeof db !== 'undefined') saveToFirebase();
@@ -1250,6 +1300,7 @@ function editProduct(i) {
   document.getElementById('pName').value = p.name || '';
   document.getElementById('pPrice').value = p.price || '';
   document.getElementById('pPrice2').value = p.price2 || '';
+  document.getElementById('pPrice3').value = p.price3 || '';
   document.getElementById('pTag').value = p.tag || '';
   document.getElementById('pImg').value = '';
   pendingImg = p.img || null;
@@ -1263,6 +1314,7 @@ function cancelEdit() {
   document.getElementById('pName').value = '';
   document.getElementById('pPrice').value = '';
   document.getElementById('pPrice2').value = '';
+  document.getElementById('pPrice3').value = '';
   document.getElementById('pTag').value = '';
   document.getElementById('pImg').value = '';
   document.getElementById('btnAddOrSave').textContent = '➕ Aggiungi al Volantino';
@@ -1278,13 +1330,17 @@ function removeProduct(i) {
 }
 function saveToFirebase() {
   if (typeof db === 'undefined') return;
-  var toSave = products.map(function(p) { return { title: p.name, price: p.price || '', price2: p.price2 || '', image: p.img || null, tag: p.tag || '' }; });
+  var toSave = products.map(function(p) { return { title: p.name, price: p.price || '', price2: p.price2 || '', price3: p.price3 || '', image: p.img || null, tag: p.tag || '' }; });
   var data = { products: toSave, updatedAt: new Date().toISOString() };
   var di = document.getElementById('dataInizio');
   var df = document.getElementById('dataFine');
   if (di && di.value) data.dataInizio = di.value;
   if (df && df.value) data.dataFine = df.value;
-  db.collection('settings').doc('volantino').set(data, { merge: true });
+  db.collection('settings').doc('volantino').set(data, { merge: true })
+    .catch(function(err) {
+      console.error('Errore salvataggio Firebase:', err);
+      alert('⚠️ Errore salvataggio: ' + err.message + '\n\nProbabile causa: documento troppo grande. Riduci le immagini.');
+    });
 }
 function saveDatesToFirebase() {
   if (typeof db === 'undefined') return;
@@ -1337,7 +1393,7 @@ function renderAll() {
       </div>
       <div class="prod-body">
         <div class="prod-name">${p.name}</div>
-        <span class="prod-price-badges">${formatPriceBadge(p.price, secondPrice)}</span>
+        <span class="prod-price-badges">${formatPriceBadge(p.price, secondPrice, p.price3 || '')}</span>
       </div>`;
     grid.appendChild(c);
   });
@@ -1352,7 +1408,7 @@ if (typeof isPublicMode !== 'undefined' && !isPublicMode && typeof db !== 'undef
       if (d.dataFine) { var df = document.getElementById('dataFine'); if (df) df.value = d.dataFine; }
       if (d.products && d.products.length > 0) {
         products = d.products.map(function(p) {
-          return { name: p.title || '', price: p.price || '', price2: p.price2 || '', tag: p.tag || '', img: p.image || null };
+          return { name: p.title || '', price: p.price || '', price2: p.price2 || '', price3: p.price3 || '', tag: p.tag || '', img: p.image || null };
         });
         renderAll();
       }

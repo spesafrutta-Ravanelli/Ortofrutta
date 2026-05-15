@@ -1,5 +1,8 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/((?!brochure_ravanelli\\.html|images/|assets/).*)",
+      "destination": "/index.html"
+    }
   ]
 }

@@ -22,10 +22,10 @@
 <script setup>
 import { computed, onMounted } from 'vue'
 import { useAdmin } from '@/composables/useAdmin'
-import brochureHtmlUrl from '@/assets/brochure_ravanelli.html?url'
+const brochureHtmlUrl = '/brochure_ravanelli.html'
 
 const { toggleAdminMode } = useAdmin()
-const brochureVersion = 9 // Incrementare per bypassare cache iframe
+const brochureVersion = 10 // Incrementare per bypassare cache iframe
 
 const brochureIframeSrc = computed(() => {
   const base = brochureHtmlUrl
